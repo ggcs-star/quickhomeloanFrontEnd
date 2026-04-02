@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickHomeLoan CRM - Advanced</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .sidebar { transition: all 0.3s; }
+        .card-hover { transition: transform 0.2s; }
+        .card-hover:hover { transform: translateY(-2px); }
+        .gradient-bg { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); }
+        .ai-pulse { animation: pulse 2s infinite; }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+        }
+        .notification-badge {
+            animation: bounce 1s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        .risk-low { background: linear-gradient(135deg, #10b981, #34d399); }
+        .risk-medium { background: linear-gradient(135deg, #f59e0b, #fbbf24); }
+        .risk-high { background: linear-gradient(135deg, #ef4444, #f87171); }
+        .automation-card { border-left: 4px solid #3b82f6; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Notification Bell -->
+    <div class="fixed top-4 right-4 z-50">
+        <div class="relative">
+            <button id="notificationBell" class="bg-white p-3 rounded-full shadow-lg hover:shadow-xl transition-shadow">
+                <i class="fas fa-bell text-blue-600 text-xl"></i>
+                <span class="notification-badge absolute -top-1 -right-1 bg-red-500 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center">3</span>
+            </button>
+            <div id="notificationPanel" class="hidden absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-xl border border-gray-200">
+                <div class="p-4 border-b border-gray-200">
+                    <h3 class="font-semibold text-gray-800">Notifications</h3>
+                </div>
+                <div class="max-h-96 overflow-y-auto">
+                    <div class="p-3 border-b border-gray-100 hover:bg-gray-50 cursor-pointer">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                            <div class="flex-1">
+                                <p class="text-sm font-medium">AI Suggestion: High-potential lead needs immediate follow-up</p>
+                                <p class="text-xs text-gray-500 mt-1">QLHL000167 • Just now</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-3 border-b border-gray-100 hover:bg-gray-50 cursor-pointer">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                            <div class="flex-1">
+                                <p class="text-sm font-medium">Automated reminder: Follow up with QLHL000145</p>
+                                <p class="text-xs text-gray-500 mt-1">Due in 2 hours</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-3 border-b border-gray-100 hover:bg-gray-50 cursor-pointer">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-2 h-2 bg-red-500 rounded-full mt-2"></div>
+                            <div class="flex-1">
+                                <p class="text-sm font-medium">Risk Alert: Document verification pending for 3 applications</p>
+                                <p class="text-xs text-gray-500 mt-1">15 mins ago</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Assistant -->
+    <div class="fixed bottom-4 right-4 z-50">
+        <button id="aiAssistant" class="ai-pulse bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all">
+            <i class="fas fa-robot text-xl"></i>
+        </button>
+        <div id="aiPanel" class="hidden absolute bottom-16 right-0 w-80 bg-white rounded-lg shadow-xl border border-gray-200">
+            <div class="p-4 border-b border-gray-200 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-t-lg">
+                <div class="flex items-center space-x-3">
+                    <i class="fas fa-robot"></i>
+                    <div>
+                        <h3 class="font-semibold">AI Assistant</h3>
+                        <p class="text-blue-100 text-sm">Ready to help you optimize</p>
+                    </div>
+                </div>
+            </div>
+            <div class="p-4 max-h-64 overflow-y-auto">
+                <div class="space-y-3">
+                    <div class="bg-blue-50 p-3 rounded-lg">
+                        <p class="text-sm text-gray-800">I've analyzed your pipeline. Here are my recommendations:</p>
+                    </div>
+                    <div class="bg-green-50 p-3 rounded-lg">
+                        <p class="text-sm text-gray-800">• Follow up with 3 high-potential leads today</p>
+                        <p class="text-sm text-gray-800">• 2 applications need document verification</p>
+                        <p class="text-sm text-gray-800">• Partner commission payout due tomorrow</p>
+                    </div>
+                </div>
+            </div>
+            <div class="p-3 border-t border-gray-200">
+                <input type="text" placeholder="Ask me anything..." class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="gradient-bg text-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-4">
+                    <h1 class="text-xl font-bold flex items-center">
+                        <i class="fas fa-home mr-2"></i>QuickHomeLoan CRM
+                    </h1>
+                    <div class="hidden md:flex space-x-4">
+                        <a href="#dashboard" class="nav-link hover:bg-blue-800 px-3 py-2 rounded transition-colors">Dashboard</a>
+                        <a href="#leads" class="nav-link hover:bg-blue-800 px-3 py-2 rounded transition-colors">Leads</a>
+                        <a href="#loans" class="nav-link hover:bg-blue-800 px-3 py-2 rounded transition-colors">Loans</a>
+                        <a href="#partners" class="nav-link hover:bg-blue-800 px-3 py-2 rounded transition-colors">Partners</a>
+                        <a href="#automation" class="nav-link hover:bg-blue-800 px-3 py-2 rounded transition-colors">Automation</a>
+                        <a href="#reports" class="nav-link hover:bg-blue-800 px-3 py-2 rounded transition-colors">AI Insights</a>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <input type="text" placeholder="Search..." class="bg-blue-800 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 placeholder-blue-200">
+                        <i class="fas fa-search absolute right-3 top-3 text-blue-200"></i>
+                    </div>
+                    <div class="flex items-center space-x-2 cursor-pointer">
+                        <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                            <span class="text-sm font-semibold">AS</span>
+                        </div>
+                        <span class="hidden md:block">Admin User</span>
+                        <i class="fas fa-chevron-down text-sm"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="flex">
+        <!-- Sidebar -->
+        <div class="sidebar bg-white w-64 min-h-screen shadow-lg hidden md:block">
+            <div class="p-6">
+                <h2 class="text-lg font-semibold text-gray-700 mb-6">Main Menu</h2>
+                <nav class="space-y-2">
+                    <a href="#dashboard" class="menu-item flex items-center space-x-3 p-3 rounded-lg bg-blue-50 text-blue-700 border-l-4 border-blue-600">
+                        <i class="fas fa-chart-line w-5"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="#leads" class="menu-item flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 text-gray-700 border-l-4 border-transparent">
+                        <i class="fas fa-users w-5"></i>
+                        <span>Lead Management</span>
+                    </a>
+                    <a href="#loans" class="menu-item flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 text-gray-700 border-l-4 border-transparent">
+                        <i class="fas fa-file-invoice-dollar w-5"></i>
+                        <span>Loan Applications</span>
+                    </a>
+                    <a href="#partners" class="menu-item flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 text-gray-700 border-l-4 border-transparent">
+                        <i class="fas fa-handshake w-5"></i>
+                        <span>Partners & DSA</span>
+                    </a>
+                    <a href="#automation" class="menu-item flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 text-gray-700 border-l-4 border-transparent">
+                        <i class="fas fa-magic w-5"></i>
+                        <span>Automation</span>
+                    </a>
+                    <a href="#reports" class="menu-item flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 text-gray-700 border-l-4 border-transparent">
+                        <i class="fas fa-brain w-5"></i>
+                        <span>AI Insights</span>
+                    </a>
+                </nav>
+
+                <!-- Quick Stats -->
+                <div class="mt-8 p-4 bg-blue-50 rounded-lg">
+                    <h3 class="font-semibold text-blue-900 mb-3">AI Quick Stats</h3>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-600">AI Score > 80</span>
+                            <span class="font-semibold text-green-600">23 leads</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-600">Auto Tasks Today</span>
+                            <span class="font-semibold text-orange-600">8</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-600">Risk Alerts</span>
+                            <span class="font-semibold text-red-600">3</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 p-6">
+            <!-- Enhanced Dashboard Section -->
+            <section id="dashboard">
+                <div class="mb-8">
+                    <h1 class="text-3xl font-bold text-gray-900 mb-2">AI-Powered Dashboard</h1>
+                    <p class="text-gray-600">Real-time insights and predictive analytics</p>
+                </div>
+
+                <!-- AI Insights Bar -->
+                <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 rounded-xl mb-6">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-robot text-xl"></i>
+                            <div>
+                                <p class="font-semibold">AI Recommendation</p>
+                                <p class="text-blue-100 text-sm">Focus on high-potential leads in Mumbai and Bangalore today</p>
+                            </div>
+                        </div>
+                        <button class="bg-white text-blue-600 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-blue-50 transition-colors">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Enhanced KPI Cards with AI Scores -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="card-hover bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-gray-600 text-sm">Total Leads</p>
+                                <p class="text-3xl font-bold text-blue-900 mt-2">156</p>
+                            </div>
+                            <div class="bg-blue-100 p-3 rounded-full">
+                                <i class="fas fa-users text-blue-600 text-xl"></i>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="text-gray-600">AI Quality Score</span>
+                                <span class="font-semibold text-green-600">78/100</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-green-500 h-2 rounded-full" style="width: 78%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-hover bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-gray-600 text-sm">Conversion Rate</p>
+                                <p class="text-3xl font-bold text-blue-900 mt-2">18.2%</p>
+                            </div>
+                            <div class="bg-green-100 p-3 rounded-full">
+                                <i class="fas fa-chart-line text-green-600 text-xl"></i>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="text-gray-600">AI Prediction</span>
+                                <span class="font-semibold text-green-600">+2.4%</span>
+                            </div>
+                            <div class="text-green-600 text-sm">
+                                <i class="fas fa-arrow-up mr-1"></i>Expected to reach 20.6%
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-hover bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-gray-600 text-sm">Avg. Process Time</p>
+                                <p class="text-3xl font-bold text-blue-900 mt-2">7.3d</p>
+                            </div>
+                            <div class="bg-purple-100 p-3 rounded-full">
+                                <i class="fas fa-clock text-purple-600 text-xl"></i>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="text-gray-600">AI Optimization</span>
+                                <span class="font-semibold text-green-600">-1.2d</span>
+                            </div>
+                            <div class="text-green-600 text-sm">
+                                <i class="fas fa-bolt mr-1"></i>Can be reduced to 6.1d
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-hover bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-gray-600 text-sm">Risk Level</p>
+                                <p class="text-3xl font-bold text-blue-900 mt-2">Low</p>
+                            </div>
+                            <div class="risk-low p-3 rounded-full">
+                                <i class="fas fa-shield-alt text-white text-xl"></i>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="text-gray-600">AI Monitoring</span>
+                                <span class="font-semibold text-green-600">3 Alerts</span>
+                            </div>
+                            <div class="text-green-600 text-sm">
+                                <i class="fas fa-check-circle mr-1"></i>All critical items addressed
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Predictive Analytics Section -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="text-lg font-semibold text-gray-800">Predictive Conversion Forecast</h3>
+                            <select class="border border-gray-300 rounded-lg px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option>Next 30 Days</option>
+                                <option>Next 90 Days</option>
+                                <option>Next 6 Months</option>
+                            </select>
+                        </div>
+                        <canvas id="predictiveChart" height="250"></canvas>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-6">AI Lead Scoring Distribution</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                                    <span class="text-sm text-gray-600">High Risk (0-40)</span>
+                                </div>
+                                <span class="font-semibold">12%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-3">
+                                <div class="bg-red-500 h-3 rounded-full" style="width: 12%"></div>
+                            </div>
+
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                                    <span class="text-sm text-gray-600">Medium (41-70)</span>
+                                </div>
+                                <span class="font-semibold">45%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-3">
+                                <div class="bg-yellow-500 h-3 rounded-full" style="width: 45%"></div>
+                            </div>
+
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                                    <span class="text-sm text-gray-600">High Potential (71-100)</span>
+                                </div>
+                                <span class="font-semibold">43%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-3">
+                                <div class="bg-green-500 h-3 rounded-full" style="width: 43%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 p-4 bg-blue-50 rounded-lg">
+                            <div class="flex items-center space-x-2 text-blue-700">
+                                <i class="fas fa-lightbulb"></i>
+                                <p class="text-sm font-medium">AI Insight: 23 high-potential leads need immediate attention</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real-time Activity Feed with AI -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">AI-Optimized Activity Queue</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between p-3 bg-green-50 border border-green-200 rounded-lg">
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-bolt text-green-600"></i>
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-900">Call Amit Sharma</p>
+                                        <p class="text-xs text-gray-500">QLHL000167 • AI Score: 92</p>
+                                    </div>
+                                </div>
+                                <button class="bg-green-600 text-white px-3 py-1 rounded text-sm hover:bg-green-700">
+                                    Call Now
+                                </button>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-envelope text-blue-600"></i>
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-900">Send proposal to Priya</p>
+                                        <p class="text-xs text-gray-500">QLHL000145 • AI Score: 85</p>
+                                    </div>
+                                </div>
+                                <button class="bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700">
+                                    Send
+                                </button>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-orange-50 border border-orange-200 rounded-lg">
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-clock text-orange-600"></i>
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-900">Follow up document collection</p>
+                                        <p class="text-xs text-gray-500">3 applications pending</p>
+                                    </div>
+                                </div>
+                                <button class="bg-orange-600 text-white px-3 py-1 rounded text-sm hover:bg-orange-700">
+                                    Remind
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">AI Performance Alerts</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start space-x-3 p-3 bg-red-50 border border-red-200 rounded-lg">
+                                <i class="fas fa-exclamation-triangle text-red-600 mt-1"></i>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-900">Conversion rate dropping in Delhi region</p>
+                                    <p class="text-xs text-gray-500 mt-1">Down 15% compared to last week</p>
+                                    <button class="text-red-600 text-xs font-medium mt-2 hover:text-red-700">
+                                        View detailed analysis →
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+                                <i class="fas fa-clock text-yellow-600 mt-1"></i>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-900">Processing time increasing for Home Loans</p>
+                                    <p class="text-xs text-gray-500 mt-1">Average increased by 2.3 days</p>
+                                    <button class="text-yellow-600 text-xs font-medium mt-2 hover:text-yellow-700">
+                                        Optimize workflow →
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3 p-3 bg-green-50 border border-green-200 rounded-lg">
+                                <i class="fas fa-trending-up text-green-600 mt-1"></i>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-900">Partner performance improving</p>
+                                    <p class="text-xs text-gray-500 mt-1">Amit Kumar showing 25% growth</p>
+                                    <button class="text-green-600 text-xs font-medium mt-2 hover:text-green-700">
+                                        View insights →
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Enhanced Lead Management with AI -->
+            <section id="leads" class="hidden">
+                <div class="mb-8">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h1 class="text-3xl font-bold text-gray-900 mb-2">AI-Powered Lead Management</h1>
+                            <p class="text-gray-600">Smart lead scoring and automated prioritization</p>
+                        </div>
+                        <div class="flex space-x-3">
+                            <button class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 flex items-center space-x-2 transition-colors">
+                                <i class="fas fa-robot"></i>
+                                <span>AI Analysis</span>
+                            </button>
+                            <button onclick="showAddLeadForm()" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 flex items-center space-x-2 transition-colors">
+                                <i class="fas fa-plus"></i>
+                                <span>Add New Lead</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Lead Insights -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <div class="bg-gradient-to-r from-blue-500 to-blue-600 text-white p-6 rounded-xl">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-blue-100 text-sm">High Potential Leads</p>
+                                <p class="text-3xl font-bold mt-2">23</p>
+                            </div>
+                            <i class="fas fa-bolt text-2xl text-blue-200"></i>
+                        </div>
+                        <p class="text-blue-100 text-sm mt-2">AI Score > 80</p>
+                    </div>
+                    <div class="bg-gradient-to-r from-green-500 to-green-600 text-white p-6 rounded-xl">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-green-100 text-sm">Ready for Proposal</p>
+                                <p class="text-3xl font-bold mt-2">15</p>
+                            </div>
+                            <i class="fas fa-paper-plane text-2xl text-green-200"></i>
+                        </div>
+                        <p class="text-green-100 text-sm mt-2">Qualified & Ready</p>
+                    </div>
+                    <div class="bg-gradient-to-r from-purple-500 to-purple-600 text-white p-6 rounded-xl">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-purple-100 text-sm">Needs Nurturing</p>
+                                <p class="text-3xl font-bold mt-2">34</p>
+                            </div>
+                            <i class="fas fa-seedling text-2xl text-purple-200"></i>
+                        </div>
+                        <p class="text-purple-100 text-sm mt-2">AI Score 40-70</p>
+                    </div>
+                </div>
+
+                <!-- AI Recommendation Bar -->
+                <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6">
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-lightbulb text-yellow-600 text-xl"></i>
+                        <div class="flex-1">
+                            <p class="font-semibold text-gray-800">AI Recommendation</p>
+                            <p class="text-sm text-gray-600">Focus on Mumbai leads today - 68% higher conversion probability based on historical data</p>
+                        </div>
+                        <button class="bg-yellow-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-yellow-700">
+                            Apply Filter
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Enhanced Leads Table with AI Scores -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden mb-6">
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Lead</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">AI Score</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Loan Details</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Next Action</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">AI Suggestions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200" id="leadsTableBody">
+                                <!-- Leads populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Automation Center -->
+            <section id="automation" class="hidden">
+                <div class="mb-8">
+                    <h1 class="text-3xl font-bold text-gray-900 mb-2">Automation Center</h1>
+                    <p class="text-gray-600">Streamline your workflow with smart automation rules</p>
+                </div>
+
+                <!-- Automation Stats -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 text-center">
+                        <i class="fas fa-robot text-3xl text-blue-600 mb-3"></i>
+                        <div class="text-2xl font-bold text-gray-900">12</div>
+                        <div class="text-sm text-gray-600">Active Automations</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 text-center">
+                        <i class="fas fa-tasks text-3xl text-green-600 mb-3"></i>
+                        <div class="text-2xl font-bold text-gray-900">156</div>
+                        <div class="text-sm text-gray-600">Tasks Completed</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 text-center">
+                        <i class="fas fa-clock text-3xl text-orange-600 mb-3"></i>
+                        <div class="text-2xl font-bold text-gray-900">8.2h</div>
+                        <div class="text-sm text-gray-600">Time Saved Weekly</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 text-center">
+                        <i class="fas fa-rupee-sign text-3xl text-purple-600 mb-3"></i>
+                        <div class="text-2xl font-bold text-gray-900">25%</div>
+                        <div class="text-sm text-gray-600">Efficiency Gain</div>
+                    </div>
+                </div>
+
+                <!-- Automation Rules -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                    <div class="automation-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-semibold text-gray-800">Lead Nurturing</h3>
+                            <div class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Active</div>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">Automated follow-up sequences for new leads</p>
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-500">Emails sent this week</span>
+                                <span class="font-semibold">45</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-500">SMS reminders</span>
+                                <span class="font-semibold">23</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-500">Response rate</span>
+                                <span class="font-semibold text-green-600">32%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="automation-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-semibold text-gray-800">Document Collection</h3>
+                            <div class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Active</div>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">Automated reminders for pending documents</p>
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-500">Reminders sent</span>
+                                <span class="font-semibold">18</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-500">Documents collected</span>
+                                <span class="font-semibold">12</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-500">Success rate</span>
+                                <span class="font-semibold text-green-600">67%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Workflow Automation -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Smart Workflow Automation</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-envelope text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-900">Welcome Email Sequence</p>
+                                    <p class="text-sm text-gray-500">Sends automated welcome emails to new leads</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <div class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Active</div>
+                                <button class="text-gray-400 hover:text-gray-600">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-sms text-green-600"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-900">SMS Follow-up</p>
+                                    <p class="text-sm text-gray-500">Sends SMS reminders for follow-ups</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <div class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Active</div>
+                                <button class="text-gray-400 hover:text-gray-600">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-robot text-purple-600"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-900">AI Lead Scoring</p>
+                                    <p class="text-sm text-gray-500">Automatically scores and prioritizes leads</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <div class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Active</div>
+                                <button class="text-gray-400 hover:text-gray-600">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AI Insights Section -->
+            <section id="reports" class="hidden">
+                <div class="mb-8">
+                    <h1 class="text-3xl font-bold text-gray-900 mb-2">AI Insights & Predictive Analytics</h1>
+                    <p class="text-gray-600">Advanced machine learning insights for better decision making</p>
+                </div>
+
+                <!-- AI Insights Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Conversion Probability Forecast</h3>
+                        <canvas id="conversionProbabilityChart" height="250"></canvas>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Customer Lifetime Value Prediction</h3>
+                        <canvas id="clvChart" height="250"></canvas>
+                    </div>
+                </div>
+
+                <!-- Advanced AI Features -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-gradient-to-br from-blue-500 to-blue-600 text-white p-6 rounded-xl">
+                        <i class="fas fa-brain text-2xl mb-4"></i>
+                        <h4 class="font-semibold mb-2">Predictive Lead Scoring</h4>
+                        <p class="text-blue-100 text-sm">AI models predict lead conversion probability with 92% accuracy</p>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-green-500 to-green-600 text-white p-6 rounded-xl">
+                        <i class="fas fa-chart-line text-2xl mb-4"></i>
+                        <h4 class="font-semibold mb-2">Revenue Forecasting</h4>
+                        <p class="text-green-100 text-sm">Predict monthly revenue with 88% confidence interval</p>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-purple-500 to-purple-600 text-white p-6 rounded-xl">
+                        <i class="fas fa-exclamation-triangle text-2xl mb-4"></i>
+                        <h4 class="font-semibold mb-2">Risk Detection</h4>
+                        <p class="text-purple-100 text-sm">Early warning system for potential application risks</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Enhanced Add Lead Modal with AI Suggestions -->
+    <div id="addLeadModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6 border-b border-gray-200 flex justify-between items-center">
+                <h2 class="text-2xl font-bold text-gray-900">Add New Lead with AI Assistance</h2>
+                <button onclick="hideAddLeadForm()" class="text-gray-400 hover:text-gray-600">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="p-6">
+                <!-- AI Suggestion Bar -->
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-robot text-blue-600"></i>
+                        <div>
+                            <p class="font-semibold text-blue-900">AI Suggestion</p>
+                            <p class="text-sm text-blue-700">Based on similar profiles, this lead has 78% conversion probability</p>
+                        </div>
+                    </div>
+                </div>
+
+                <form id="leadForm" onsubmit="addNewLead(event)">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Form fields remain the same but enhanced -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">First Name *</label>
+                            <input type="text" required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Last Name *</label>
+                            <input type="text" required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
+                            <input type="email" required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number *</label>
+                            <input type="tel" required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Loan Type *</label>
+                            <select required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option value="">Select Loan Type</option>
+                                <option value="Home Loan">Home Loan</option>
+                                <option value="LAP">Loan Against Property</option>
+                                <option value="Balance Transfer">Balance Transfer</option>
+                                <option value="Personal Loan">Personal Loan</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Loan Amount *</label>
+                            <input type="number" required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="₹">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">AI Initial Score</label>
+                            <div class="flex items-center space-x-4">
+                                <div class="flex-1">
+                                    <div class="w-full bg-gray-200 rounded-full h-3">
+                                        <div class="bg-green-500 h-3 rounded-full" style="width: 78%"></div>
+                                    </div>
+                                </div>
+                                <span class="text-sm font-semibold text-green-600">78/100</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1">Based on loan type, amount, and location patterns</p>
+                        </div>
+                    </div>
+                    <div class="flex justify-end space-x-4 mt-8 pt-6 border-t border-gray-200">
+                        <button type="button" onclick="hideAddLeadForm()" class="px-6 py-3 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors">Cancel</button>
+                        <button type="submit" class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2">
+                            <i class="fas fa-plus"></i>
+                            <span>Add Lead with AI</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Enhanced sample leads with AI data
+        const sampleLeads = [
+            {
+                id: 1,
+                leadId: 'QLHL000001',
+                firstName: 'Amit',
+                lastName: 'Sharma',
+                email: 'amit.sharma@email.com',
+                phone: '+91 9876543210',
+                loanType: 'Home Loan',
+                loanAmount: '₹35L',
+                city: 'Mumbai',
+                status: 'New',
+                assignedTo: 'Raj Kumar',
+                lastActivity: '2 hours ago',
+                aiScore: 92,
+                nextAction: 'Call immediately',
+                aiSuggestion: 'High conversion probability'
+            },
+            {
+                id: 2,
+                leadId: 'QLHL000002',
+                firstName: 'Priya',
+                lastName: 'Patel',
+                email: 'priya.patel@email.com',
+                phone: '+91 9876543211',
+                loanType: 'LAP',
+                loanAmount: '₹25L',
+                city: 'Delhi',
+                status: 'Contacted',
+                assignedTo: 'Neha Singh',
+                lastActivity: '1 hour ago',
+                aiScore: 85,
+                nextAction: 'Send proposal',
+                aiSuggestion: 'Ready for proposal'
+            },
+            {
+                id: 3,
+                leadId: 'QLHL000003',
+                firstName: 'Rahul',
+                lastName: 'Verma',
+                email: 'rahul.verma@email.com',
+                phone: '+91 9876543212',
+                loanType: 'Balance Transfer',
+                loanAmount: '₹45L',
+                city: 'Bangalore',
+                status: 'Qualified',
+                assignedTo: 'Priya Patel',
+                lastActivity: '30 mins ago',
+                aiScore: 78,
+                nextAction: 'Document collection',
+                aiSuggestion: 'Needs document verification'
+            }
+        ];
+
+        // Initialize the enhanced CRM
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeNavigation();
+            initializeEnhancedCharts();
+            loadEnhancedLeadsTable();
+            initializeAIComponents();
+        });
+
+        // AI Components Initialization
+        function initializeAIComponents() {
+            // Notification bell
+            document.getElementById('notificationBell').addEventListener('click', function() {
+                const panel = document.getElementById('notificationPanel');
+                panel.classList.toggle('hidden');
+            });
+
+            // AI Assistant
+            document.getElementById('aiAssistant').addEventListener('click', function() {
+                const panel = document.getElementById('aiPanel');
+                panel.classList.toggle('hidden');
+            });
+
+            // Close panels when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!event.target.closest('#notificationBell') && !event.target.closest('#notificationPanel')) {
+                    document.getElementById('notificationPanel').classList.add('hidden');
+                }
+                if (!event.target.closest('#aiAssistant') && !event.target.closest('#aiPanel')) {
+                    document.getElementById('aiPanel').classList.add('hidden');
+                }
+            });
+
+            // Simulate real-time updates
+            setInterval(() => {
+                updateRealTimeData();
+            }, 30000); // Update every 30 seconds
+        }
+
+        // Enhanced Charts with Predictive Analytics
+        function initializeEnhancedCharts() {
+            // Predictive Conversion Chart
+            const predictiveCtx = document.getElementById('predictiveChart').getContext('2d');
+            new Chart(predictiveCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Next Week', 'Week 6'],
+                    datasets: [
+                        {
+                            label: 'Actual Conversions',
+                            data: [12, 18, 15, 22, null, null],
+                            borderColor: '#3b82f6',
+                            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                            borderWidth: 2,
+                            fill: true
+                        },
+                        {
+                            label: 'AI Prediction',
+                            data: [null, null, null, 22, 26, 28],
+                            borderColor: '#10b981',
+                            borderDash: [5, 5],
+                            borderWidth: 2,
+                            fill: false
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Number of Conversions'
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Conversion Probability Chart
+            const conversionCtx = document.getElementById('conversionProbabilityChart').getContext('2d');
+            new Chart(conversionCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['0-20%', '21-40%', '41-60%', '61-80%', '81-100%'],
+                    datasets: [{
+                        label: 'Number of Leads',
+                        data: [5, 12, 28, 45, 23],
+                        backgroundColor: [
+                            '#ef4444',
+                            '#f59e0b',
+                            '#eab308',
+                            '#84cc16',
+                            '#10b981'
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: 'Lead Distribution by Conversion Probability'
+                        }
+                    }
+                }
+            });
+
+            // Customer Lifetime Value Chart
+            const clvCtx = document.getElementById('clvChart').getContext('2d');
+            new Chart(clvCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Basic (₹1-2L)', 'Standard (₹2-5L)', 'Premium (₹5-10L)', 'Enterprise (₹10L+)'],
+                    datasets: [{
+                        data: [25, 45, 20, 10],
+                        backgroundColor: [
+                            '#3b82f6',
+                            '#10b981',
+                            '#f59e0b',
+                            '#ef4444'
+                        ],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                        }
+                    }
+                }
+            });
+        }
+
+        // Enhanced Leads Table with AI Data
+        function loadEnhancedLeadsTable() {
+            const tbody = document.getElementById('leadsTableBody');
+            tbody.innerHTML = '';
+
+            sampleLeads.forEach(lead => {
+                const statusColors = {
+                    'New': 'bg-green-100 text-green-800',
+                    'Contacted': 'bg-blue-100 text-blue-800',
+                    'Qualified': 'bg-purple-100 text-purple-800',
+                    'Proposal Sent': 'bg-yellow-100 text-yellow-800'
+                };
+
+                const scoreColor = lead.aiScore >= 80 ? 'text-green-600' : 
+                                 lead.aiScore >= 60 ? 'text-yellow-600' : 'text-red-600';
+
+                const row = document.createElement('tr');
+                row.className = 'hover:bg-gray-50 transition-colors';
+                row.innerHTML = `
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div>
+                            <div class="text-sm font-medium text-gray-900">${lead.firstName} ${lead.lastName}</div>
+                            <div class="text-sm text-gray-500">${lead.leadId}</div>
+                            <div class="text-xs text-gray-400">${lead.city}</div>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-16 bg-gray-200 rounded-full h-2">
+                                <div class="bg-green-500 h-2 rounded-full" style="width: ${lead.aiScore}%"></div>
+                            </div>
+                            <span class="text-sm font-semibold ${scoreColor}">${lead.aiScore}</span>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm text-gray-900">${lead.loanType}</div>
+                        <div class="text-sm text-gray-500">${lead.loanAmount}</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${statusColors[lead.status]}">${lead.status}</span>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm text-gray-900">${lead.nextAction}</div>
+                        <div class="text-xs text-gray-500">${lead.lastActivity}</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm text-gray-600">${lead.aiSuggestion}</div>
+                        <button class="text-blue-600 text-xs hover:text-blue-800 mt-1">
+                            View AI Analysis →
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // Real-time Data Updates
+        function updateRealTimeData() {
+            // Simulate real-time updates
+            const activities = [
+                'New lead received from website',
+                'Loan application approved',
+                'Document uploaded for verification',
+                'Follow-up completed',
+                'Partner commission processed'
+            ];
+            
+            const randomActivity = activities[Math.floor(Math.random() * activities.length)];
+            console.log('Real-time update:', randomActivity);
+            
+            // In a real application, this would update the UI with new data
+            // For now, we'll just log to console
+        }
+
+        // Enhanced Navigation (same as before but with new sections)
+        function initializeNavigation() {
+            const navLinks = document.querySelectorAll('.nav-link, .menu-item');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    
+                    document.querySelectorAll('section').forEach(section => {
+                        section.classList.add('hidden');
+                    });
+                    
+                    document.getElementById(targetId).classList.remove('hidden');
+                    
+                    document.querySelectorAll('.menu-item').forEach(item => {
+                        item.classList.remove('bg-blue-50', 'text-blue-700', 'border-blue-600');
+                        item.classList.add('hover:bg-gray-100', 'text-gray-700', 'border-transparent');
+                    });
+                    
+                    if (this.classList.contains('menu-item')) {
+                        this.classList.add('bg-blue-50', 'text-blue-700', 'border-blue-600');
+                        this.classList.remove('hover:bg-gray-100', 'text-gray-700', 'border-transparent');
+                    }
+                    
+                    document.querySelectorAll('.nav-link').forEach(navLink => {
+                        navLink.classList.remove('bg-blue-800');
+                    });
+                    
+                    if (this.classList.contains('nav-link')) {
+                        this.classList.add('bg-blue-800');
+                    }
+                });
+            });
+
+            document.querySelector('a[href="#dashboard"]').click();
+        }
+
+        // Lead Management Functions (enhanced)
+        function showAddLeadForm() {
+            document.getElementById('addLeadModal').classList.remove('hidden');
+        }
+
+        function hideAddLeadForm() {
+            document.getElementById('addLeadModal').classList.add('hidden');
+        }
+
+        function addNewLead(event) {
+            event.preventDefault();
+            // Simulate AI processing
+            setTimeout(() => {
+                alert('Lead added successfully with AI analysis!');
+                hideAddLeadForm();
+                document.getElementById('leadForm').reset();
+                loadEnhancedLeadsTable();
+            }, 1000);
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('addLeadModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                hideAddLeadForm();
+            }
+        });
+    </script>
+</body>
+</html>

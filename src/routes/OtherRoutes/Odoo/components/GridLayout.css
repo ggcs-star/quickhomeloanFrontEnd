@@ -1,0 +1,103 @@
+/* Base styles */
+.row.o_grid_mode {
+    --gutter-y: 0;
+    --gutter-x: 0px;
+    --grid-item-padding-y: 10px;
+    --grid-item-padding-x: 10px;
+    
+    display: grid !important;
+    grid-auto-rows: 50px;
+    grid-template-columns: repeat(12, 1fr);
+    row-gap: 0px;
+    column-gap: 0px;
+    
+    flex-wrap: wrap;
+    margin-top: calc(-1 * var(--gutter-y));
+    margin-right: calc(-.5 * var(--gutter-x));
+    margin-left: calc(-.5 * var(--gutter-x));
+  }
+  
+  /* Grid item styles */
+  .o_grid_item {
+    padding: var(--grid-item-padding-y) var(--grid-item-padding-x);
+  }
+  
+  /* Image thumbnail styles */
+  .img-thumbnail {
+    padding: 0.25rem;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Responsive display utilities */
+  .d-none {
+    display: none !important;
+  }
+  
+  .d-block {
+    display: block !important;
+  }
+  
+  .d-lg-none {
+    display: none !important;
+  }
+  
+  .d-lg-block {
+    display: block !important;
+  }
+  
+  @media (min-width: 992px) {
+    .d-lg-none {
+      display: none !important;
+    }
+    
+    .d-lg-block {
+      display: block !important;
+    }
+  }
+  
+  /* Animation classes */
+  .o_anim_fade_in {
+    animation-name: fadeIn;
+  }
+  
+  .o_animate {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+  }
+  
+  .o_animated {
+    animation-play-state: running;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  /* Height utilities */
+  .g-height-6 { height: 6rem; }
+  .g-height-8 { height: 8rem; }
+  .g-height-9 { height: 9rem; }
+  .g-height-12 { height: 12rem; }
+  
+  /* Column utilities */
+  .g-col-lg-3 { grid-column: span 3; }
+  .g-col-lg-6 { grid-column: span 6; }
+  
+  /* Width utility */
+  .w-100 {
+    width: 100% !important;
+  }
+  
+  /* Visibility utility */
+  .o_visible {
+    visibility: visible;
+  }
