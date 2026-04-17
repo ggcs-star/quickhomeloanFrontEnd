@@ -4,7 +4,7 @@ import axios from "axios";
 
 export default function Step1({ formData, setFormData, setStep, token }) {
   const [errors, setErrors] = useState({});
-  const BASE_URL = "https://backend.quickhomeloan.in/public/api/loan/submit-form";
+  const BASE_URL = "http://backend.quickhomeloan.in/public/api/loan/submit-form";
 
   const panRegex = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
 
@@ -47,8 +47,11 @@ export default function Step1({ formData, setFormData, setStep, token }) {
       console.log("✅ STEP 1 RESPONSE:", res.data);
 
       // ⭐ Save Application ID returned from backend
-      if (res.data.application_id) {
-        localStorage.setItem("application_id", res.data.application_id);
+      const applicationId = res.data.application_id;
+      if (applicationId) {
+        localStorage.setItem("application_id", applicationId);
+        // ⭐ Also save to formData for consistency
+        setFormData({ ...formData, application_id: applicationId });
       }
 
       // Move to next step
@@ -62,10 +65,6 @@ export default function Step1({ formData, setFormData, setStep, token }) {
 
   return (
     <div className="max-w-3xl mx-auto p-8 mt-20">
-      {/* <h1 className="text-3xl font-bold text-black">Smart Profile Setup</h1>
-      <p className="text-gray-600 mt-1">We auto-fetch details to save your time.</p> */}
-
-      {/* Step Indicators */}
       <div className="flex items-center justify-center mt-8 mb-10 space-x-6">
         <div className="h-10 w-10 flex items-center justify-center bg-neutral-800 text-white rounded-full">1</div>
         <div className="h-1 w-28 bg-gray-300"></div>
@@ -75,7 +74,6 @@ export default function Step1({ formData, setFormData, setStep, token }) {
       </div>
 
       <div className="bg-white p-8 rounded-2xl border border-neutral-300">
-
         <label>PAN Number</label>
         <input
           type="text"

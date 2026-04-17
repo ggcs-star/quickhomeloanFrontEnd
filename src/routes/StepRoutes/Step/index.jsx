@@ -1,13 +1,11 @@
+// Step.js - Add this debug
 import { useEffect, useState } from "react";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
 
 export default function Step() {
-  // ⭐ Load saved step OR default to 1
   const savedStep = Number(localStorage.getItem("loan_step")) || 1;
-
-  // ⭐ Load saved formData OR fallback to empty form
   const savedFormData = JSON.parse(localStorage.getItem("loan_form")) || {
     pan: "",
     name: "",
@@ -21,15 +19,25 @@ export default function Step() {
 
   const [step, setStep] = useState(savedStep);
   const [formData, setFormData] = useState(savedFormData);
-
   const token = localStorage.getItem("token");
 
-  // ⭐ Save step to localStorage whenever it changes
+  // Debug token
+  useEffect(() => {
+    console.log("=== STEP COMPONENT DEBUG ===");
+    console.log("Current step:", step);
+    console.log("Token exists:", !!token);
+    console.log("Token value:", token);
+    console.log("Form data:", formData);
+    
+    if (!token) {
+      console.error("⚠️ NO TOKEN FOUND! Please login first.");
+    }
+  }, [step, token]);
+
   useEffect(() => {
     localStorage.setItem("loan_step", step);
   }, [step]);
 
-  // ⭐ Save form data to localStorage whenever it changes
   useEffect(() => {
     localStorage.setItem("loan_form", JSON.stringify(formData));
   }, [formData]);

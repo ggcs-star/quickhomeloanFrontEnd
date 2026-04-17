@@ -1,15 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 
 const ProModal = ({ isOpen, onClose }) => {
+  const [isProcessing, setIsProcessing] = useState(false);
+
   if (!isOpen) return null;
+
+  const handlePayment = async () => {
+    try {
+      setIsProcessing(true);
+
+      // 👉 YOUR PAYMENT API / RAZORPAY / STRIPE
+      await new Promise((res) => setTimeout(res, 2000)); // simulate success
+
+      // ✅ CLOSE MODAL AFTER SUCCESS
+      onClose();
+
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsProcessing(false);
+    }
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
       
-      {/* Modal Box */}
-      <div className="bg-white w-[90%] max-w-md rounded-xl shadow-xl relative animate-fadeIn">
+      <div className="bg-white w-[90%] max-w-md rounded-xl shadow-xl relative">
 
-        {/* Close Button */}
         <button
           onClick={onClose}
           className="absolute top-3 right-3 text-gray-400 hover:text-black text-xl"
@@ -17,7 +34,6 @@ const ProModal = ({ isOpen, onClose }) => {
           ✕
         </button>
 
-        {/* CONTENT (your UI) */}
         <div className="p-5">
           
           <div className="text-center mb-5">
@@ -30,7 +46,6 @@ const ProModal = ({ isOpen, onClose }) => {
             </p>
           </div>
 
-          {/* Features */}
           <div className="space-y-3 mb-6">
             {[
               "Unlimited Projects & Links",
@@ -47,29 +62,17 @@ const ProModal = ({ isOpen, onClose }) => {
             ))}
           </div>
 
-          {/* Pricing Box */}
-          <div className="bg-gray-50 rounded-lg p-4 mb-6 border border-gray-100 text-center">
-            <p className="text-sm text-gray-600">Yearly subscription</p>
-            <div className="flex justify-center gap-2 mt-1">
-              <span className="text-2xl font-bold text-gray-900">₹999</span>
-              <span className="text-gray-500">/year</span>
-            </div>
-            <p className="text-xs text-gray-500">
-              Billed yearly, cancel anytime
-            </p>
-          </div>
-
-          {/* CTA */}
           <button
-            className="w-full py-3.5 bg-gradient-to-r from-[#4C6FFF] to-[#8B5CF6] 
-              text-white font-bold rounded-lg hover:shadow-lg 
-              transition-all text-sm mb-3"
-            onClick={() => alert("Payment Flow Here")}
+            onClick={handlePayment}
+            disabled={isProcessing}
+            className={`w-full py-3.5 bg-gradient-to-r from-[#4C6FFF] to-[#8B5CF6] 
+              text-white font-bold rounded-lg transition-all text-sm
+              ${isProcessing ? "opacity-70 cursor-not-allowed" : "hover:shadow-lg"}`}
           >
-            Subscribe at ₹999/yearly
+            {isProcessing ? "Processing..." : "Subscribe at ₹999/year"}
           </button>
 
-          <p className="text-center text-xs text-gray-500">
+          <p className="text-center text-xs text-gray-500 mt-3">
             🔒 Secure SSL encrypted payment
           </p>
         </div>

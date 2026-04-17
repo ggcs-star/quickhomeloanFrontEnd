@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 // Firebase FCM
 import { generateFCMToken } from "../../../firebase";
@@ -757,7 +758,7 @@ const getCsrfTokenFromMeta = () => {
                     className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
                     disabled={isLoggingIn}
                   >
-                    {showLoginPass ? "🙈" : "👁️"}
+                    {showLoginPass ? <FaEyeSlash /> : <FaEye />}
                   </button>
                 </div>
 
@@ -843,7 +844,7 @@ const getCsrfTokenFromMeta = () => {
                     className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
                     disabled={isRegistering}
                   >
-                    {showRegPass1 ? "🙈" : "👁️"}
+                    {showRegPass1 ? <FaEyeSlash /> : <FaEye />}
                   </button>
                 </div>
 
@@ -869,7 +870,7 @@ const getCsrfTokenFromMeta = () => {
                     className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
                     disabled={isRegistering}
                   >
-                    {showRegPass2 ? "🙈" : "👁️"}
+                    {showRegPass2 ? <FaEyeSlash /> : <FaEye />}
                   </button>
                 </div>
 

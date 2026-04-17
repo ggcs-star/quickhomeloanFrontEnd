@@ -19,6 +19,7 @@ export default function DuplicateStepper() {
 
   const [step, setStep] = useState(savedStep);
   const [formData, setFormData] = useState(savedFormData);
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     localStorage.setItem("loan_step", step);
@@ -28,6 +29,16 @@ export default function DuplicateStepper() {
     localStorage.setItem("loan_form", JSON.stringify(formData));
   }, [formData]);
 
+  // Debug token
+  useEffect(() => {
+    console.log("=== DUPLICATE STEPPER DEBUG ===");
+    console.log("Current step:", step);
+    console.log("Token exists:", !!token);
+    if (!token) {
+      console.warn("⚠️ No token found in localStorage!");
+    }
+  }, [step, token]);
+
   return (
     <div>
       {step === 1 && (
@@ -35,6 +46,7 @@ export default function DuplicateStepper() {
           formData={formData}
           setFormData={setFormData}
           setStep={setStep}
+          token={token}
         />
       )}
 
@@ -43,6 +55,7 @@ export default function DuplicateStepper() {
           formData={formData}
           setFormData={setFormData}
           setStep={setStep}
+          token={token}
         />
       )}
 
@@ -50,6 +63,7 @@ export default function DuplicateStepper() {
         <Step3
           formData={formData}
           setStep={setStep}
+          token={token}
         />
       )}
     </div>

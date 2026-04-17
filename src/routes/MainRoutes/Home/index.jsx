@@ -37,6 +37,7 @@ import WhyChooseUs from "./components/WhyChooseUs";
 import LoanProcessSection from "./components/LoanProcessSection";
 import ContactSection from "./components/ContactSection";
 import RealEstatePosts from "./components/RealEstatePosts";
+import HeroSection4 from "./components/HeroSection4";
 
 export default function Home(props) {
   const [scrollPercentage, setScrollPercentage] = useState(0);
@@ -77,7 +78,7 @@ export default function Home(props) {
 
   return (
     <div className="font-proximaNova">
-      <HeroSection {...props} />
+      <HeroSection4 {...props} />
       <TrustedPartners />
       <CategoriesSection />
       <WhyChooseUs />

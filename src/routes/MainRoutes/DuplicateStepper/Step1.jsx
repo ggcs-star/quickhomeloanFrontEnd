@@ -1,7 +1,11 @@
 import { useState } from "react";
+import axios from "axios";
 
-export default function Step1({ formData, setFormData, setStep }) {
+export default function Step1({ formData, setFormData, setStep, token }) {
   const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [apiResponse, setApiResponse] = useState(null);
+  const BASE_URL = "https://backend.quickhomeloan.in/public/api/loan/submit-form";
 
   const panRegex = /^[A-Z]{5}[0-9]{4}[A-Z]$/;
 
@@ -29,9 +33,45 @@ export default function Step1({ formData, setFormData, setStep }) {
     return Object.keys(newErrors).length === 0;
   };
 
-  const nextStep = () => {
+  const nextStep = async () => {
     if (!validate()) return;
-    setStep(2);
+    
+    setIsSubmitting(true);
+    setApiResponse(null);
+
+    const payload = {
+      step: 1,
+      pan: formData.pan,
+      full_name: formData.name,
+      dob: formData.dob,
+      city: formData.city,
+      employment_type: formData.employment,
+    };
+
+    console.log("▶ STEP 1 Payload:", payload);
+
+    try {
+      const res = await axios.post(BASE_URL, payload, {
+        headers: { 
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+      });
+
+      console.log("✅ STEP 1 RESPONSE:", res.data);
+      setApiResponse({ success: true, data: res.data });
+      
+      // Auto move to next step after 1 second
+      setTimeout(() => {
+        setStep(2);
+      }, 1000);
+    } catch (err) {
+      console.error("❌ STEP 1 API ERROR:", err.response?.data || err);
+      const errorMessage = err.response?.data?.message || "Failed to submit Step 1";
+      setApiResponse({ success: false, error: errorMessage });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -42,9 +82,18 @@ export default function Step1({ formData, setFormData, setStep }) {
           Smart Profile Setup
         </h1>
         <p className="text-slate-500">
-          We auto-fetch details to save your time.
+          Your progress is saved automatically. Continue from any device.
         </p>
       </div>
+
+      {/* API Response Display */}
+      {apiResponse && (
+        <div className={`mb-4 p-3 rounded-lg ${apiResponse.success ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'}`}>
+          <p className={`text-sm ${apiResponse.success ? 'text-green-700' : 'text-red-700'}`}>
+            {apiResponse.success ? '✓ Step 1 completed successfully! Moving to next step...' : `✗ Error: ${apiResponse.error}`}
+          </p>
+        </div>
+      )}
 
       {/* Stepper */}
       <div className="flex items-center w-full mb-8">
@@ -64,7 +113,6 @@ export default function Step1({ formData, setFormData, setStep }) {
       {/* Card */}
       <div className="bg-white rounded-xl shadow-sm border border-slate-100">
         <div className="p-6 space-y-6">
-
           {/* PAN */}
           <div>
             <label className="text-sm font-medium text-slate-700">
@@ -199,9 +247,10 @@ export default function Step1({ formData, setFormData, setStep }) {
           {/* CTA */}
           <button
             onClick={nextStep}
-            className="w-full px-4 py-3 rounded-lg font-semibold bg-gray-600 hover:bg-gray-700 text-white shadow-lg"
+            disabled={isSubmitting}
+            className="w-full px-4 py-3 rounded-lg font-semibold bg-gray-600 hover:bg-gray-700 text-white shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Next Step →
+            {isSubmitting ? "Submitting..." : "Next Step →"}
           </button>
         </div>
       </div>

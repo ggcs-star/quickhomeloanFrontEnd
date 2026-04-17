@@ -16,67 +16,67 @@ const BASE_URL = "https://backend.quickhomeloan.in/public/api";
 
 // Create axios instance with interceptors
 const api = axios.create({
-  baseURL: BASE_URL,
-  headers: {
-    'Content-Type': 'application/json',
-    'Accept': 'application/json'
-  }
+    baseURL: BASE_URL,
+    headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+    }
 });
 
 // Request interceptor to add token to every request
 api.interceptors.request.use(
-  (config) => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+    (config) => {
+        const token = localStorage.getItem("token");
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
+        }
+        return config;
+    },
+    (error) => {
+        return Promise.reject(error);
     }
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
 );
 
 // Response interceptor to handle token expiration
 api.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    if (error.response?.status === 401) {
-      // Token expired or invalid
-      localStorage.removeItem("token");
-      localStorage.removeItem("isAuthenticated");
-      localStorage.removeItem("user_id");
-      localStorage.removeItem("user_email");
-      localStorage.removeItem("user_name");
-      localStorage.removeItem("is_pro_user");
-      localStorage.removeItem("subscription_id");
-      
-      // Dispatch event to update UI
-      window.dispatchEvent(new Event("authStateChanged"));
-      
-      toast.error("Session expired. Please login again.");
-      
-      // Redirect to login
-      window.location.href = "/login";
+    (response) => response,
+    (error) => {
+        if (error.response?.status === 401) {
+            // Token expired or invalid
+            localStorage.removeItem("token");
+            localStorage.removeItem("isAuthenticated");
+            localStorage.removeItem("user_id");
+            localStorage.removeItem("user_email");
+            localStorage.removeItem("user_name");
+            localStorage.removeItem("is_pro_user");
+            localStorage.removeItem("subscription_id");
+
+            // Dispatch event to update UI
+            window.dispatchEvent(new Event("authStateChanged"));
+
+            toast.error("Session expired. Please login again.");
+
+            // Redirect to login
+            window.location.href = "/login";
+        }
+        return Promise.reject(error);
     }
-    return Promise.reject(error);
-  }
 );
 
 // Load Razorpay script dynamically
 const loadRazorpayScript = () => {
-  return new Promise((resolve) => {
-    if (window.Razorpay) {
-      resolve(true);
-      return;
-    }
-    
-    const script = document.createElement("script");
-    script.src = "https://checkout.razorpay.com/v1/checkout.js";
-    script.onload = () => resolve(true);
-    script.onerror = () => resolve(false);
-    document.body.appendChild(script);
-  });
+    return new Promise((resolve) => {
+        if (window.Razorpay) {
+            resolve(true);
+            return;
+        }
+
+        const script = document.createElement("script");
+        script.src = "https://checkout.razorpay.com/v1/checkout.js";
+        script.onload = () => resolve(true);
+        script.onerror = () => resolve(false);
+        document.body.appendChild(script);
+    });
 };
 
 export default function NavbarContent1(props) {
@@ -153,7 +153,7 @@ export default function NavbarContent1(props) {
         setIsCheckingAccess(true);
         try {
             const token = localStorage.getItem("token");
-            
+
             // Check local storage first
             const isProLocal = localStorage.getItem("is_pro_user") === "true";
             if (isProLocal) {
@@ -161,13 +161,13 @@ export default function NavbarContent1(props) {
                 setIsCheckingAccess(false);
                 return;
             }
-            
+
             if (!token) {
                 setIsProUser(false);
                 setIsCheckingAccess(false);
                 return;
             }
-            
+
             // Verify with API using the check-access endpoint
             const response = await axios.get(
                 "https://backend.quickhomeloan.in/public/api/check-access",
@@ -178,7 +178,7 @@ export default function NavbarContent1(props) {
                     },
                 }
             );
-            
+
             if (response.data && response.data.access === true) {
                 setIsProUser(true);
                 localStorage.setItem("is_pro_user", "true");
@@ -202,7 +202,7 @@ export default function NavbarContent1(props) {
             const authStatus = localStorage.getItem("isAuthenticated") === "true" && !!token;
             const email = localStorage.getItem("user_email") || "";
             const name = localStorage.getItem("user_name") || "";
-            
+
             setIsAuthenticated(authStatus);
             setUserEmail(email);
             setUserName(name);
@@ -286,9 +286,9 @@ export default function NavbarContent1(props) {
     // Handle subscription payment - FIXED to show full Razorpay UI
     const handleSubscriptionPayment = async () => {
         if (isProcessingPayment) return;
-        
+
         setIsProcessingPayment(true);
-        
+
         try {
             // Check if Razorpay is loaded
             if (!window.Razorpay) {
@@ -303,7 +303,7 @@ export default function NavbarContent1(props) {
             // Get auth token and validate
             const token = localStorage.getItem("token");
             const userId = localStorage.getItem("user_id");
-            
+
             if (!token) {
                 toast.error("Please login to subscribe");
                 setShowProModal(false);
@@ -339,17 +339,15 @@ export default function NavbarContent1(props) {
             const user_email_final = localStorage.getItem("user_email") || "";
             const user_phone = localStorage.getItem("user_phone") || "9999999999";
 
-            // Razorpay options - CONFIGURED TO SHOW FULL UI
+            // Razorpay options
             const options = {
                 key: key,
                 subscription_id: subscription_id,
                 name: "Quick Home Loan",
                 description: "Pro Yearly Subscription - ₹999",
                 image: logo,
-                // These fields ensure the full payment UI is shown
-                amount: 99900, // Amount in paise (₹999)
+                amount: 99900,
                 currency: "INR",
-                // Add these to show full checkout UI
                 prefill: {
                     name: user_name || "Customer",
                     email: user_email_final || "customer@example.com",
@@ -362,9 +360,8 @@ export default function NavbarContent1(props) {
                 },
                 theme: {
                     color: "#4C6FFF",
-                    hide_topbar: false // Keep topbar visible for better UX
+                    hide_topbar: false
                 },
-                // Force show all payment methods in full UI
                 method: {
                     upi: true,
                     card: true,
@@ -373,7 +370,6 @@ export default function NavbarContent1(props) {
                     emi: true,
                     paylater: true
                 },
-                // Configuration for full checkout UI
                 config: {
                     display: {
                         language: "en",
@@ -416,44 +412,47 @@ export default function NavbarContent1(props) {
                         hide: []
                     }
                 },
-                // Show order summary
                 display: {
-                    hide: [], // Don't hide anything
+                    hide: [],
                     language: "en",
                     currency: "INR"
                 },
                 handler: async function (response) {
                     console.log("Payment successful:", response);
-                    
+
+                    // ✅ CLOSE MODAL IMMEDIATELY - First thing!
+                    setShowProModal(false);
+
                     // Show verifying toast
                     const verifyingToast = toast.loading("Verifying your subscription...");
-                    
+
                     // Verify subscription immediately
                     const verificationResult = await verifySubscription(response, subscription_id);
-                    
+
                     if (verificationResult) {
                         toast.update(verifyingToast, {
-                            render: "Subscription verified! Pro features activated.",
+                            render: "🎉 Subscription activated! Welcome to Pro!",
                             type: "success",
                             isLoading: false,
                             autoClose: 3000
                         });
-                        
-                        // Close modal after successful verification
-                        setShowProModal(false);
-                        
+
+                        // Reset processing state
+                        setIsProcessingPayment(false);
+
                         // Force immediate UI update
                         setIsProUser(true);
                         localStorage.setItem("is_pro_user", "true");
-                        
+
                         // Dispatch event for other components
                         window.dispatchEvent(new CustomEvent("subscriptionUpdated", {
-                            detail: { 
+                            detail: {
                                 isPro: true,
                                 subscription_id: subscription_id,
                                 verified: true
                             }
                         }));
+
                     } else {
                         toast.update(verifyingToast, {
                             render: "Subscription verification failed. Please contact support.",
@@ -461,15 +460,15 @@ export default function NavbarContent1(props) {
                             isLoading: false,
                             autoClose: 5000
                         });
+                        setIsProcessingPayment(false);
                     }
                 },
                 modal: {
-                    ondismiss: function() {
+                    ondismiss: function () {
                         console.log("Payment modal closed");
                         setIsProcessingPayment(false);
                         toast.info("Payment cancelled");
                     },
-                    // Ensure modal is large enough for full UI
                     backdropclose: true,
                     escape: true,
                     confirm_close: false,
@@ -478,24 +477,25 @@ export default function NavbarContent1(props) {
             };
 
             const razorpay = new window.Razorpay(options);
-            
+
             // Add event listeners for better UX
             razorpay.on('payment.failed', function (response) {
                 console.error("Payment failed:", response);
                 const error = response.error;
                 toast.error(`Payment failed: ${error.description || "Please try again"}`);
                 setIsProcessingPayment(false);
+                // Don't close the pro modal on payment failure
             });
-            
+
             razorpay.on('payment.success', function (response) {
                 console.log("Payment success event:", response);
             });
-            
+
             razorpay.open();
-            
+
         } catch (error) {
             console.error("Error creating subscription:", error);
-            
+
             if (error.response?.status === 401) {
                 toast.error("Session expired. Please login again.");
                 setShowProModal(false);
@@ -521,7 +521,7 @@ export default function NavbarContent1(props) {
             } else {
                 toast.error("Failed to initiate subscription. Please try again.");
             }
-            
+
             setIsProcessingPayment(false);
         }
     };
@@ -530,46 +530,46 @@ export default function NavbarContent1(props) {
     const verifySubscription = async (paymentResponse, subscription_id) => {
         try {
             const token = localStorage.getItem("token");
-            
+
             if (!token) {
                 toast.warning("Payment received but verification pending. Please contact support.");
                 setIsProcessingPayment(false);
                 return false;
             }
-            
+
             // Call verification API
             const response = await api.post("/verify-subscription", {
                 razorpay_payment_id: paymentResponse.razorpay_payment_id,
                 razorpay_subscription_id: subscription_id,
                 razorpay_signature: paymentResponse.razorpay_signature
             });
-            
+
             // Update local storage based on verification response
             if (response.data && response.data.success) {
                 localStorage.setItem("is_pro_user", "true");
                 if (response.data.subscription_id) {
                     localStorage.setItem("subscription_id", response.data.subscription_id);
                 }
-                
+
                 // Update state immediately
                 setIsProUser(true);
-                
+
                 // Refresh user completion data
                 await fetchUserCompletion();
-                
+
                 return true;
             } else {
                 return false;
             }
-            
+
         } catch (error) {
             console.error("Subscription verification failed:", error);
-            
+
             // Even if verification fails, try to check status after delay
             setTimeout(async () => {
                 await checkProAccess();
             }, 3000);
-            
+
             return false;
         } finally {
             setIsProcessingPayment(false);
@@ -1066,7 +1066,10 @@ export default function NavbarContent1(props) {
                                 <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/60 backdrop-blur-sm">
                                     <div className="bg-white w-[90%] max-w-md rounded-xl shadow-xl relative">
                                         <button
-                                            onClick={() => setShowProModal(false)}
+                                            onClick={() => {
+                                                setShowProModal(false);
+                                                setIsProcessingPayment(false);
+                                            }}
                                             className="absolute top-3 right-3 text-gray-400 hover:text-black text-xl"
                                         >
                                             ✕
@@ -1079,18 +1082,18 @@ export default function NavbarContent1(props) {
                                                     <span className="text-gray-500 text-sm">/year</span>
                                                 </div>
                                                 <p className="text-sm text-gray-600 mb-4">
-                                                    Everything you need to grow your social media presence
+                                                    Get unlimited access to all pro features
                                                 </p>
                                             </div>
 
                                             <div className="space-y-3 mb-6">
                                                 {[
-                                                    "Unlimited Projects & Links",
-                                                    "10 Social Accounts",
-                                                    "Advanced Analytics",
+                                                    "All Audio Lessons",
+                                                    "Video Masterclasses",
+                                                    "Downloadable Resources",
                                                     "Priority Support",
-                                                    "Team Collaboration",
-                                                    "Custom URL Shortener",
+                                                    "Certificate of Completion",
+                                                    "Exclusive Webinars",
                                                 ].map((item, i) => (
                                                     <div key={i} className="flex items-center">
                                                         <span className="text-indigo-500 mr-3">✔</span>
@@ -1112,8 +1115,8 @@ export default function NavbarContent1(props) {
 
                                             <button
                                                 className={`w-full py-3.5 bg-gradient-to-r from-[#4C6FFF] to-[#8B5CF6] 
-                                                text-white font-bold rounded-lg hover:shadow-lg transition-all text-sm mb-3
-                                                ${isProcessingPayment ? 'opacity-70 cursor-not-allowed' : ''}`}
+                    text-white font-bold rounded-lg hover:shadow-lg transition-all text-sm mb-3
+                    ${isProcessingPayment ? 'opacity-70 cursor-not-allowed' : ''}`}
                                                 onClick={handleSubscriptionPayment}
                                                 disabled={isProcessingPayment}
                                             >
@@ -1127,7 +1130,7 @@ export default function NavbarContent1(props) {
                                     </div>
                                 </div>
                             )}
-                            
+
                             <button
                                 className="cursor-pointer bg-brand-action text-black px-6 py-2.5 rounded-lg text-[14px] font-semibold tracking-wide hover:brightness-110 active:scale-[0.98] transition-all shadow-sm"
                                 onClick={() => navigate("/dashboard")}
@@ -1240,7 +1243,7 @@ export default function NavbarContent1(props) {
                     style={{ zIndex: 50 }}
                     className={`w-full z-50 ${isScrolled ? "fixed top-0 bg-white border-b border-gray-200 shadow-md" : "absolute top-0 bg-white border-b-0"}`}
                 >
-                    <div className="gap-4 sm:px-5 relative flex justify-between border-gray-200 max-w-screen-lg lg:max-w-screen-xl mx-2 lg:mx-auto xl:px-0 lg:px-8 py-4 lg:py-0">
+                    <div className="h-16 gap-4 sm:px-5 relative flex justify-between border-gray-200 max-w-screen-lg lg:max-w-screen-xl mx-2 lg:mx-auto xl:px-0 lg:px-8 py-4 lg:py-0">
                         <div className="flex items-center z-10 relative">
                             <Link to="/" className="flex items-center relative z-10">
                                 <img src={logo} alt="Quick Home Loan Logo" className="h-10 lg:h-28 w-48 object-cover rounded-md" />
