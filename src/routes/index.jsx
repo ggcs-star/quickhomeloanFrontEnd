@@ -57,14 +57,18 @@ export default function Routes(props) {
         //         </RequireAuth>
         //     ),
         // },
-        {
-            path: "/apply-now/*",
-            element: (
-                <RequireAuth>
-                    <StepRoutes />
-                </RequireAuth>
-            ),
-        },
+
+
+
+        // uncomment
+        // {
+        //     path: "/apply-now/*",
+        //     element: (
+        //         <RequireAuth>
+        //             <StepRoutes />
+        //         </RequireAuth>
+        //     ),
+        // },
     ]);
 
     return <main>{routes}</main>;
