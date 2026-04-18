@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { BarChart3, ShieldCheck, Zap, ArrowRight } from "lucide-react";
+import heroVideo from "../../../../assets/home/HeroSection/quickhomeloan.mp4";
 
 export default function HeroSection4() {
   const [activeTab, setActiveTab] = useState("first"); // "first" | "refinance"
@@ -39,7 +40,7 @@ export default function HeroSection4() {
           {/* Heading */}
           <div className="space-y-4">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-black tracking-tight leading-[0.95]">
-              Don’t Just Take a Home Loan —{" "}
+              Don’t Just hewq Take a Home Loan —{" "}
               <span className="text-neutral-400">
                 Make the Right One.
               </span>
@@ -114,81 +115,15 @@ export default function HeroSection4() {
         </div>
 
         {/* ================= RIGHT ================= */}
-        <div className="relative">
-          <div className="bg-white border border-neutral-200 rounded-[2rem] shadow-xl overflow-hidden">
-
-            <div className="bg-neutral-50 border-b border-neutral-200 p-5 flex items-center justify-between">
-              <span className="text-xs font-semibold text-neutral-400 uppercase">
-                Loan Optimizer
-              </span>
-
-              <span className="bg-black text-white text-xs font-semibold px-3 py-1 rounded-full">
-                Best Option
-              </span>
-            </div>
-
-            <div className="p-8 space-y-6">
-              <h3 className="text-lg font-semibold text-black">
-                Real Cost Comparison
-              </h3>
-
-              <div className="space-y-3 text-sm">
-                <div className="grid grid-cols-4 text-neutral-400 text-xs font-semibold">
-                  <div>Feature</div>
-                  <div className="text-center">Current</div>
-                  <div className="text-center">Bank A</div>
-                  <div className="text-center">Best</div>
-                </div>
-
-                <div className="grid grid-cols-4 p-3 bg-neutral-50 rounded-lg">
-                  <div>Interest</div>
-                  <div className="text-center">8.95%</div>
-                  <div className="text-center">8.40%</div>
-                  <div className="text-center font-semibold">8.15%</div>
-                </div>
-
-                <div className="grid grid-cols-4 p-3">
-                  <div>Fees</div>
-                  <div className="text-center">₹15K</div>
-                  <div className="text-center">₹5K</div>
-                  <div className="text-center font-semibold">₹0</div>
-                </div>
-
-                <div className="grid grid-cols-4 p-3 bg-neutral-50 rounded-lg">
-                  <div>Hidden</div>
-                  <div className="text-center text-red-500">₹24K</div>
-                  <div className="text-center">₹8K</div>
-                  <div className="text-center font-semibold">₹0</div>
-                </div>
-
-                <div className="grid grid-cols-4 p-4 bg-black text-white rounded-xl">
-                  <div>Total</div>
-                  <div className="text-center">₹1.24Cr</div>
-                  <div className="text-center">₹1.16Cr</div>
-                  <div className="text-center font-bold">₹1.08Cr</div>
-                </div>
-              </div>
-
-              <div className="p-5 bg-neutral-100 rounded-xl flex justify-between items-center">
-                <div>
-                  <p className="text-xs font-semibold text-neutral-500">
-                    Savings
-                  </p>
-                  <p className="text-2xl font-bold text-black">
-                    ₹16,42,000
-                  </p>
-                </div>
-                <ArrowRight className="w-5 h-5 text-black rotate-[-45deg]" />
-              </div>
-            </div>
-          </div>
-
-          <div className="absolute -bottom-6 -left-2 lg:-left-6 bg-white p-4 rounded-xl shadow-lg border border-neutral-200">
-            <p className="text-xs font-bold text-black">Verified</p>
-            <p className="text-[10px] text-neutral-400">
-              Advisory Panel
-            </p>
-          </div>
+       <div className="relative">
+          <video 
+            src={heroVideo} 
+            autoPlay 
+            loop 
+            muted 
+            playsInline 
+            className="w-full h-auto rounded-[2rem] shadow-xl border border-neutral-200 object-cover"
+          />
         </div>
       </div>
     </section>
