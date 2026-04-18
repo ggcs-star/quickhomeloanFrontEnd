@@ -731,7 +731,7 @@ export default function NavbarContent1(props) {
 
         return (
             <div
-                className="fixed left-1/2 transform -translate-x-1/2 top-28 min-h-[500px] min-w-[1200px] w-fit border-radius-0 border-b-5 border-solid border-b-black bg-white shadow-lg z-50 border border-neutral-300 border-t-0 rounded-b-lg overflow-y-auto"
+                className="fixed left-1/2 transform -translate-x-1/2 top-20 min-h-[500px] min-w-[1200px] w-fit border-radius-0 border-b-5 border-solid border-b-black bg-white shadow-lg z-50 border border-neutral-300 border-t-0 rounded-b-lg overflow-y-auto"
                 style={{
                     boxShadow: "-10px 10px 20px 0 rgba(30,30,30,.05)",
                     borderBottom: "5px solid black",
@@ -937,7 +937,7 @@ export default function NavbarContent1(props) {
                                 ))}
                             </div>
 
-                            <div className="px-4 py-5 bg-white flex gap-3">
+                            {/* <div className="px-4 py-5 bg-white flex gap-3">
                                 {isAuthenticated ? (
                                     <>
                                         <div className="flex-1 flex items-center justify-center text-sm text-gray-600">
@@ -976,7 +976,7 @@ export default function NavbarContent1(props) {
                                         </button>
                                     </>
                                 )}
-                            </div>
+                            </div> */}
                         </div>
                     );
                 })}
@@ -1243,7 +1243,7 @@ export default function NavbarContent1(props) {
                     style={{ zIndex: 50 }}
                     className={`w-full z-50 ${isScrolled ? "fixed top-0 bg-white border-b border-gray-200 shadow-md" : "absolute top-0 bg-white border-b-0"}`}
                 >
-                    <div className="h-16 gap-4 sm:px-5 relative flex justify-between border-gray-200 max-w-screen-lg lg:max-w-screen-xl mx-2 lg:mx-auto xl:px-0 lg:px-8 py-4 lg:py-0">
+                    <div className="h-16 gap-4 sm:px-5 relative flex gap-48 border-gray-200 max-w-screen-lg lg:max-w-screen-xl mx-2 lg:mx-auto xl:px-0 lg:px-8 py-4 lg:py-0">
                         <div className="flex items-center z-10 relative">
                             <Link to="/" className="flex items-center relative z-10">
                                 <img src={logo} alt="Quick Home Loan Logo" className="h-10 lg:h-28 w-48 object-cover rounded-md" />
@@ -1303,7 +1303,7 @@ export default function NavbarContent1(props) {
                                 </span>
                             </div>
                         </div>
-
+{/* 
                         <div className="hidden lg:flex items-center gap-4">
                             <button
                                 onClick={() => navigate("/login")}
@@ -1317,7 +1317,7 @@ export default function NavbarContent1(props) {
                             >
                                 Sign Up
                             </button>
-                        </div>
+                        </div> */}
                     </div>
 
                     {menuOpen && (

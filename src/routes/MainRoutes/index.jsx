@@ -44,9 +44,9 @@ export default function MainRoutes(props) {
     { path: "/calculators", element: <Calculators {...props} /> },
     { path: "/calculators/:slug", element: <CalculatorsDetails {...props} /> },
     { path: "/premium-home-loan-categories/:slug", element: <PremiumHomeLoanCategoriesDetails {...props} /> },
-    { path: "/dashboard", element: <Dashboard {...props} /> },
-    { path: "/profile", element: <ProfilePage {...props} /> },
-    { path: "/subscription", element: <SubscriptionControlCenter {...props} /> },
+    // { path: "/dashboard", element: <Dashboard {...props} /> },
+    // { path: "/profile", element: <ProfilePage {...props} /> },
+    // { path: "/subscription", element: <SubscriptionControlCenter {...props} /> },
     { path: "/communications", element: <CommunicationCenter {...props} /> },
 
     { path: "/home-loan/details/:slug", element: <HomeLoanDetail /> },
@@ -57,16 +57,15 @@ export default function MainRoutes(props) {
     { path: "/home-loan/profession/:slug", element: <HomeLoanByProfession /> },
     { path: "/home-loan/bhktype/:slug", element: <HomeLoanByBhkTypes /> },
 
-    // { path: "/step", element: <DuplicateStepper {...props} /> },
 
-    {
-      path: "/login",
-      element: isAuth ? <Navigate to="/dashboard" replace /> : <LoginPage {...props} />,
-    },
-    {
-      path: "/signup",
-      element: isAuth ? <Navigate to="/dashboard" replace /> : <RegisterPage {...props} />,
-    },
+    // {
+    //   path: "/login",
+    //   element: isAuth ? <Navigate to="/dashboard" replace /> : <LoginPage {...props} />,
+    // },
+    // {
+    //   path: "/signup",
+    //   element: isAuth ? <Navigate to="/dashboard" replace /> : <RegisterPage {...props} />,
+    // },
   ]);
 
   return <div>{routes}</div>;
