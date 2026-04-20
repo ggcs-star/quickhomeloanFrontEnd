@@ -40,7 +40,7 @@ export default function HeroSection4() {
           {/* Heading */}
           <div className="space-y-4">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-black tracking-tight leading-[0.95]">
-              Don’t Just hewq Take a Home Loan —{" "}
+              Don’t Just Take a Home Loan —{" "}
               <span className="text-neutral-400">
                 Make the Right One.
               </span>
