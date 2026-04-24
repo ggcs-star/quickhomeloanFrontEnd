@@ -198,7 +198,7 @@ export const homeLoanBySalary = [
       },
       phone: {
         title: "Phone",
-        number: "1800-123-4567",
+        number: "98765 43210",
       },
       hours: {
         title: "Business Hours",
@@ -482,7 +482,7 @@ export const homeLoanBySalary = [
       },
       phone: {
         title: "Phone",
-        number: "1800-123-4567",
+        number: "98765 43210",
       },
       hours: {
         title: "Business Hours",
@@ -766,7 +766,7 @@ export const homeLoanBySalary = [
       },
       phone: {
         title: "Phone",
-        number: "1800-123-4567",
+        number: "98765 43210",
       },
       hours: {
         title: "Business Hours",
@@ -1049,7 +1049,7 @@ export const homeLoanBySalary = [
       },
       phone: {
         title: "Phone",
-        number: "1800-123-4567",
+        number: "98765 43210",
       },
       hours: {
         title: "Business Hours",
@@ -1333,7 +1333,7 @@ export const homeLoanBySalary = [
       },
       phone: {
         title: "Phone",
-        number: "1800-123-4567",
+        number: "98765 43210",
       },
       hours: {
         title: "Business Hours",
@@ -1617,7 +1617,7 @@ export const homeLoanBySalary = [
       },
       phone: {
         title: "Phone",
-        number: "1800-123-4567",
+        number: "98765 43210",
       },
       hours: {
         title: "Business Hours",

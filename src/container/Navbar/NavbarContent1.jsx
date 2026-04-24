@@ -731,11 +731,13 @@ export default function NavbarContent1(props) {
 
         return (
             <div
-                className="fixed left-1/2 transform -translate-x-1/2 top-20 min-h-[500px] min-w-[1200px] w-fit border-radius-0 border-b-5 border-solid border-b-black bg-white shadow-lg z-50 border border-neutral-300 border-t-0 rounded-b-lg overflow-y-auto"
+                className="fixed left-1/2 transform -translate-x-1/2 top-16 min-h-[500px] min-w-[1200px] w-fit border-radius-0 border-b-5 border-solid border-b-black bg-white shadow-lg z-50 border border-neutral-300 border-t-0 rounded-b-lg overflow-y-auto"
                 style={{
-                    boxShadow: "-10px 10px 20px 0 rgba(30,30,30,.05)",
+                    boxShadow: "-10px 40px 20px 0 rgba(30,30,30,.05)",
                     borderBottom: "5px solid black",
                     height: "500px",
+                        paddingTop: "-60px", // 🔥 increase this to move underline down
+
                     scrollbarWidth: "thin",
                     scrollbarColor: "#9CA3AF #F3F4F6",
                 }}

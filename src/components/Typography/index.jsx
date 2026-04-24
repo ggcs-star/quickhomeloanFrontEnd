@@ -75,7 +75,7 @@ export const Telephone = ({ children, className }) => {
     return (
         <a
             className={`text-2xl font-axiMedium text-primar ${className}`}
-            href="tel:+916354917511"
+            href="tel:+91 98765 43210"
         >
             {children}
         </a>

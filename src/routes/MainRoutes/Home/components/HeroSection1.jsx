@@ -207,7 +207,7 @@ export default function HeroSection(props) {
                                 <p className="text-base font-semibold text-grey1">
                                     Contact Us Today!
                                 </p>
-                                <H5>+91 6354917511</H5>
+                                <H5>+91 98765 43210</H5>
                             </div>
                         </div> */}
                     </div>

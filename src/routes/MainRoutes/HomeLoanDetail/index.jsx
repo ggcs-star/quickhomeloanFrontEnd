@@ -59,9 +59,7 @@ const HomeLoanDetail = () => {
                     {loanData.heroSection && <SBIHeroSection data={loanData.heroSection} />}
 
                     {/* 🌟 Highlights */}
-                    {loanData.highlightsSection && (
-                        <SBIHighlightsSection data={loanData.highlightsSection} />
-                    )}
+                    <SBIHighlightsSection slug={slug} />
 
                     {/* 🧮 EMI + Eligibility Section */}
                     <section className="my-12">
