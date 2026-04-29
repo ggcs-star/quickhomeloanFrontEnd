@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { homeLoanData } from "../../../db/homeLoanData";
 import { Container } from "../../../components/Layout";
+import { BASE_URL } from "../../../api";
 
 // Component imports
 import SBIHeroSection from "./components/SBIHeroSection";
@@ -29,15 +30,62 @@ const HomeLoanDetail = () => {
         window.scrollTo(0, 0);
         setLoading(true);
 
-        const data = homeLoanData.find((loan) => loan.slug === slug);
+        const fetchDynamicData = async () => {
+            const data = homeLoanData.find((loan) => loan.slug === slug);
 
-        if (!data) {
-            navigate("/404", { replace: true });
-        } else {
-            setLoanData(data);
+            if (!data) {
+                navigate("/404", { replace: true });
+                return;
+            }
+
+            // Clone data to allow overriding the calculator's defaultInterestRate safely
+            let updatedData = { ...data };
+            if (updatedData.emiCalculator) {
+                updatedData.emiCalculator = { ...updatedData.emiCalculator };
+                if (updatedData.emiCalculator.interestRange) {
+                    updatedData.emiCalculator.interestRange = { ...updatedData.emiCalculator.interestRange };
+                }
+            }
+
+            try {
+                const bankKey = updatedData.title.toLowerCase().replace("home loan", "").trim();
+                const res = await fetch(`${BASE_URL}/lenders`);
+                const json = await res.json();
+
+                if (json?.status && json?.data) {
+                    const lender = json.data.find((item) => {
+                        const apiName = item.name.toLowerCase();
+                        return apiName.includes(bankKey) || bankKey.includes(apiName.split(" ")[0]);
+                    });
+
+                    const finalLender = lender || json.data.find((item) => item.name.toLowerCase().includes("state bank of india"));
+
+                    if (finalLender && finalLender.rate && updatedData.emiCalculator) {
+                        const numericRate = parseFloat(finalLender.rate);
+                        if (!isNaN(numericRate)) {
+                            updatedData.emiCalculator.defaultInterestRate = numericRate;
+                            
+                            // Automatically adjust the slider's max range if dynamic rate exceeds it
+                            if (updatedData.emiCalculator.interestRange && numericRate > updatedData.emiCalculator.interestRange.max) {
+                                updatedData.emiCalculator.interestRange.max = Math.ceil(numericRate + 5);
+                            }
+                        }
+                    }
+                }
+            } catch (error) {
+                console.error("API error while fetching rate for EMI Calculator:", error);
+            }
+
+        // Allow users to explore interest rates up to 100%
+        if (updatedData.emiCalculator && updatedData.emiCalculator.interestRange) {
+            updatedData.emiCalculator.interestRange.max = 100;
         }
 
-        setLoading(false);
+            setLoanData(updatedData);
+            setLoading(false);
+        };
+
+        fetchDynamicData();
     }, [slug, navigate]);
 
     if (loading) {
