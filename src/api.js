@@ -1,7 +1,7 @@
 // src/api.js
 import axios from "axios";
 
-const BASE_URL = "https://backend.quickhomeloan.in/public/api";
+export const BASE_URL = "https://backend.quickhomeloan.in/public/api";
 
 // 🔥 Simple in-memory cache
 let lendersCache = null;

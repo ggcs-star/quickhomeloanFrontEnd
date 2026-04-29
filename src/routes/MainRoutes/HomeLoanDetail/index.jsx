@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { homeLoanData } from "../../../db/homeLoanData";
 import { Container } from "../../../components/Layout";
+import { BASE_URL } from "../../../api";
 
 // Component imports
 import SBIHeroSection from "./components/SBIHeroSection";
@@ -48,7 +49,7 @@ const HomeLoanDetail = () => {
 
             try {
                 const bankKey = updatedData.title.toLowerCase().replace("home loan", "").trim();
-                const res = await fetch("https://backend.quickhomeloan.in/public/api/lenders");
+                const res = await fetch(`${BASE_URL}/lenders`);
                 const json = await res.json();
 
                 if (json?.status && json?.data) {
