@@ -4,6 +4,7 @@ import {
   Home, Car, PiggyBank, Coins, Gem, Lock
 } from 'lucide-react';
 import axios from 'axios';
+import { BASE_URL } from '../../../api'; // Adjust path as needed
 
 const StatementAnalyzer = () => {
   const [fileEntries, setFileEntries] = useState([]);
@@ -11,6 +12,7 @@ const StatementAnalyzer = () => {
   const [currentTypeSelection, setCurrentTypeSelection] = useState('PERSONAL');
   const [selectedFileId, setSelectedFileId] = useState(null);
   const [showComplianceResult, setShowComplianceResult] = useState(false);
+  const [auditResults, setAuditResults] = useState(null);
   const [isProUser, setIsProUser] = useState(false);
   const [isCheckingAccess, setIsCheckingAccess] = useState(true);
 
@@ -59,9 +61,9 @@ const StatementAnalyzer = () => {
         return;
       }
       
-      // Verify with API
+      // Verify with API using BASE_URL
       const response = await axios.get(
-        "https://backend.quickhomeloan.in/public/api/check-access",
+        `${BASE_URL}/check-access`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -89,13 +91,20 @@ const StatementAnalyzer = () => {
   // Handle file selection
   const handleFileSelect = (e) => {
     if (!isProUser && !isCheckingAccess) {
-      alert("This feature requires a Pro subscription. Please upgrade to continue.");
+      window.dispatchEvent(new CustomEvent("openProModal"));
       e.target.value = '';
       return;
     }
     
     const files = e.target.files;
     if (!files || files.length === 0) return;
+
+    // Check upload limit for free users
+    if (!isProUser && fileEntries.length + files.length > 3) {
+      alert("Free plan allows maximum 3 files. Please upgrade to Pro for unlimited uploads.");
+      e.target.value = '';
+      return;
+    }
 
     const newEntries = Array.from(files).map((file) => {
       const sizeInMB = (file.size / 1024 / 1024).toFixed(2);
@@ -108,7 +117,8 @@ const StatementAnalyzer = () => {
         size: sizeInMB,
         category: currentTypeSelection,
         fileObject: file,
-        uploadDate: new Date().toLocaleDateString('en-GB')
+        uploadDate: new Date().toLocaleDateString('en-GB'),
+        status: 'pending'
       };
     });
 
@@ -144,20 +154,52 @@ const StatementAnalyzer = () => {
   // Handle compliance audit
   const handleComplianceAudit = async () => {
     if (!isProUser && !isCheckingAccess) {
-      alert("This feature requires a Pro subscription. Please upgrade to continue.");
+      window.dispatchEvent(new CustomEvent("openProModal"));
       return;
     }
     
-    if (fileEntries.length === 0) return;
+    if (fileEntries.length === 0) {
+      alert("Please upload at least one statement file to audit.");
+      return;
+    }
     
     setLoading(true);
     
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      setShowComplianceResult(true);
+      // Prepare form data for API upload
+      const formData = new FormData();
+      fileEntries.forEach((file, index) => {
+        if (file.fileObject) {
+          formData.append(`statement_${index}`, file.fileObject);
+          formData.append(`type_${index}`, file.type);
+        }
+      });
+      formData.append('total_files', fileEntries.length);
+      formData.append('user_id', localStorage.getItem('user_id') || '');
+      
+      // Send to backend for analysis
+      const token = localStorage.getItem("token");
+      
+      const response = await axios.post(
+        `${BASE_URL}/analyze-statements`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
+      
+      if (response.data && response.data.status === true) {
+        setAuditResults(response.data.data);
+        setShowComplianceResult(true);
+      } else {
+        throw new Error(response.data.message || 'Analysis failed');
+      }
     } catch (err) {
-      console.error(err);
+      console.error("Error analyzing statements:", err);
+      alert("Failed to analyze statements. Please try again later.");
     } finally {
       setLoading(false);
     }
@@ -498,12 +540,29 @@ const StatementAnalyzer = () => {
             </button>
 
             {/* Compliance Result */}
-            {showComplianceResult && isProUser && (
+            {showComplianceResult && isProUser && auditResults && (
               <div className="mt-6 p-4 bg-green-50 border border-green-200 rounded-lg">
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 mb-3">
                   <CheckCircle size={18} className="text-green-600" />
                   <span className="font-medium text-green-800">Compliance audit completed successfully</span>
                 </div>
+                
+                {/* Display audit results summary */}
+                {auditResults.summary && (
+                  <div className="mt-3 text-sm text-green-700">
+                    <p>{auditResults.summary}</p>
+                    {auditResults.recommendations && (
+                      <div className="mt-2 pt-2 border-t border-green-200">
+                        <strong>Recommendations:</strong>
+                        <ul className="mt-1 list-disc list-inside">
+                          {auditResults.recommendations.map((rec, idx) => (
+                            <li key={idx}>{rec}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
             )}
 

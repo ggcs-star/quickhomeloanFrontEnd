@@ -12,6 +12,7 @@ import {
   Wallet as WalletIcon, PiggyBank as PiggyBankIcon, Flame, ChartColumn, TrendingUp, Lock
 } from 'lucide-react';
 import axios from 'axios';
+import { BASE_URL } from '../../../api'; // Adjust path as needed
 
 const EMIRepaymentHealth = () => {
   const [isProUser, setIsProUser] = useState(false);
@@ -96,9 +97,9 @@ const EMIRepaymentHealth = () => {
         return;
       }
       
-      // Verify with API
+      // Verify with API using BASE_URL
       const response = await axios.get(
-        "https://backend.quickhomeloan.in/public/api/check-access",
+        `${BASE_URL}/check-access`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -397,6 +398,15 @@ const EMIRepaymentHealth = () => {
     </div>
   );
 
+  const handleCompleteAudit = () => {
+    if (!isProUser) {
+      window.dispatchEvent(new CustomEvent("openProModal"));
+      return;
+    }
+    calculateResults();
+    alert('Compliance audit completed! Check the updated results.');
+  };
+
   return (
     <main className="flex-1 py-6 overflow-x-hidden bg-white">
       <div className="max-w-7xl mx-auto space-y-12 pb-20 font-sans px-4 sm:px-6 lg:px-8">
@@ -501,7 +511,7 @@ const EMIRepaymentHealth = () => {
                       <div 
                         key={index}
                         className={`p-4 rounded-md border transition-all ${statusConfig.bgColor} ${statusConfig.borderColor} ${isProUser ? 'cursor-pointer hover:scale-[1.02] active:scale-[0.98]' : 'cursor-default opacity-80'}`}
-                        onClick={() => updateEMIStatus(index, emi.status === 'paid' ? 'bounce' : emi.status === 'bounce' ? 'delayed' : 'paid')}
+                        onClick={() => isProUser && updateEMIStatus(index, emi.status === 'paid' ? 'bounce' : emi.status === 'bounce' ? 'delayed' : 'paid')}
                       >
                         <div className="text-[12px] font-medium text-neutral-500 uppercase tracking-widest mb-3">
                           {emi.month}
@@ -734,6 +744,7 @@ const EMIRepaymentHealth = () => {
                     </div>
                   </div>
                   <button 
+                    onClick={handleCompleteAudit}
                     className={`w-full py-4 rounded-md text-[14px] font-semibold tracking-wide flex items-center justify-center gap-2 transition-all ${isProUser ? 'bg-black text-white hover:bg-neutral-800 active:scale-[0.98]' : 'bg-gray-200 text-gray-500 cursor-not-allowed'}`}
                     disabled={!isProUser}
                   >
@@ -1022,6 +1033,11 @@ const EMIRepaymentHealth = () => {
               )}
             </p>
             <button 
+              onClick={() => {
+                if (!isProUser) {
+                  window.dispatchEvent(new CustomEvent("openProModal"));
+                }
+              }}
               className={`w-full py-4 rounded-md text-[14px] font-semibold tracking-wide uppercase transition-all active:scale-[0.98] flex items-center justify-center gap-2 ${isProUser ? 'bg-black text-white hover:bg-neutral-800' : 'bg-gray-200 text-gray-500 cursor-not-allowed'}`}
               disabled={!isProUser}
             >

@@ -6,6 +6,7 @@ import {
   Clock as ClockIcon, Lock, Shield, Info, Lightbulb, PieChart
 } from 'lucide-react';
 import axios from 'axios';
+import { BASE_URL } from '../../../api'; // Adjust path as needed
 
 const YearlyInterestProjections = () => {
   const [isProUser, setIsProUser] = useState(false);
@@ -65,9 +66,9 @@ const YearlyInterestProjections = () => {
         return;
       }
       
-      // Verify with API
+      // Verify with API using BASE_URL
       const response = await axios.get(
-        "https://backend.quickhomeloan.in/public/api/check-access",
+        `${BASE_URL}/check-access`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -260,6 +261,15 @@ const YearlyInterestProjections = () => {
     </div>
   );
 
+  const handleCompleteAudit = () => {
+    if (!isProUser) {
+      window.dispatchEvent(new CustomEvent("openProModal"));
+      return;
+    }
+    calculateResults();
+    alert('Yearly Interest Projection Audit completed! Check the updated results.');
+  };
+
   return (
     <main className="flex-1 py-6 overflow-x-hidden bg-white">
       <div className="max-w-7xl mx-auto space-y-12 pb-20 font-sans px-4 sm:px-6 lg:px-8">
@@ -273,7 +283,7 @@ const YearlyInterestProjections = () => {
         </div>
 
         {/* Show upgrade banner for non-pro users */}
-        {/* {!isProUser && !isCheckingAccess && <UpgradeBanner />} */}
+        {!isProUser && !isCheckingAccess && <UpgradeBanner />}
 
         {/* Main Audit Card */}
         <div className="animate-in fade-in duration-500">
@@ -418,14 +428,7 @@ const YearlyInterestProjections = () => {
                   </div>
 
                   <button 
-                    onClick={() => {
-                      if (!isProUser) {
-                        alert("This feature requires a Pro subscription. Please upgrade to continue.");
-                        return;
-                      }
-                      calculateResults();
-                      alert('Yearly Interest Projection Audit completed! Check the updated results.');
-                    }}
+                    onClick={handleCompleteAudit}
                     disabled={!isProUser}
                     className={`w-full py-4 rounded-md text-[14px] font-semibold tracking-wide flex items-center justify-center gap-2 transition-all ${isProUser ? 'bg-black text-white hover:bg-neutral-800 active:scale-[0.98]' : 'bg-gray-200 text-gray-500 cursor-not-allowed'}`}
                   >

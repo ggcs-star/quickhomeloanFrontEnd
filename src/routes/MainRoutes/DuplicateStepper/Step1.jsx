@@ -1,11 +1,13 @@
 import { useState } from "react";
 import axios from "axios";
+import { BASE_URL } from "../../../api"; // Adjust path as needed
 
 export default function Step1({ formData, setFormData, setStep, token }) {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [apiResponse, setApiResponse] = useState(null);
-  const BASE_URL = "https://backend.quickhomeloan.in/public/api/loan/submit-form";
+  
+  // Using BASE_URL from api.js - no need to redeclare
 
   const panRegex = /^[A-Z]{5}[0-9]{4}[A-Z]$/;
 
@@ -51,7 +53,7 @@ export default function Step1({ formData, setFormData, setStep, token }) {
     console.log("▶ STEP 1 Payload:", payload);
 
     try {
-      const res = await axios.post(BASE_URL, payload, {
+      const res = await axios.post(`${BASE_URL}/loan/submit-form`, payload, {
         headers: { 
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -248,7 +250,7 @@ export default function Step1({ formData, setFormData, setStep, token }) {
           <button
             onClick={nextStep}
             disabled={isSubmitting}
-            className="w-full px-4 py-3 rounded-lg font-semibold bg-gray-600 hover:bg-gray-700 text-white shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full px-4 py-3 rounded-lg font-semibold bg-gray-600 hover:bg-gray-700 text-white shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             {isSubmitting ? "Submitting..." : "Next Step →"}
           </button>

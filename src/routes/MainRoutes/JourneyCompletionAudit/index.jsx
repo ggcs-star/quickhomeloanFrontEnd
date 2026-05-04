@@ -22,6 +22,7 @@ import {
   Lock
 } from 'lucide-react';
 import axios from 'axios';
+import { BASE_URL } from '../../../api'; // Adjust path as needed
 
 const JourneyCompletionAudit = () => {
   const [isProUser, setIsProUser] = useState(false);
@@ -66,9 +67,9 @@ const JourneyCompletionAudit = () => {
         return;
       }
       
-      // Verify with API
+      // Verify with API using BASE_URL
       const response = await axios.get(
-        "https://backend.quickhomeloan.in/public/api/check-access",
+        `${BASE_URL}/check-access`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -102,7 +103,7 @@ const JourneyCompletionAudit = () => {
     const completedYears = (completedMonths / 12).toFixed(2);
     
     // Freedom Index (percentage completed)
-    const freedomIndex = ((completedMonths / sanctionedTenure) * 100).toFixed(2);
+    const freedomIndex = sanctionedTenure > 0 ? ((completedMonths / sanctionedTenure) * 100).toFixed(2) : "0";
     
     // Time served in years and months
     const timeServedYears = Math.floor(completedMonths / 12);
@@ -196,7 +197,7 @@ const JourneyCompletionAudit = () => {
 
   const handleCompleteAudit = () => {
     if (!isProUser) {
-      alert("This feature requires a Pro subscription. Please upgrade to continue.");
+      window.dispatchEvent(new CustomEvent("openProModal"));
       return;
     }
     

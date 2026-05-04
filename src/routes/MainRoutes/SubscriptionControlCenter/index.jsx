@@ -10,6 +10,7 @@ import {
   AlertCircle,
 } from "lucide-react";
 import axios from "axios";
+import { BASE_URL } from "../../../api"; // Adjust path as needed
 
 const StatusBadge = ({ status }) => {
   const styles = {
@@ -89,8 +90,9 @@ const SubscriptionControlCenter = () => {
         return;
       }
       
+      // Using BASE_URL from api.js
       const response = await axios.get(
-        "https://backend.quickhomeloan.in/public/api/check-access",
+        `${BASE_URL}/check-access`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -107,8 +109,8 @@ const SubscriptionControlCenter = () => {
         const endDate = data.end_date ? new Date(data.end_date).toLocaleDateString('en-IN', { year: 'numeric', month: 'short', day: 'numeric' }) : "-";
         
         // Calculate usage percentage
-        const totalDays = data.days_remaining ? 
-          Math.ceil((new Date(data.end_date) - new Date(data.start_date)) / (1000 * 60 * 60 * 24)) : 1;
+        const totalDays = data.days_remaining && data.start_date && data.end_date ? 
+          Math.ceil((new Date(data.end_date) - new Date(data.start_date)) / (1000 * 60 * 60 * 24)) : 365;
         const daysUsed = totalDays - (data.days_remaining || 0);
         const usagePercent = data.days_remaining ? Math.round((daysUsed / totalDays) * 100) : 0;
         
@@ -122,10 +124,10 @@ const SubscriptionControlCenter = () => {
           usagePercent: usagePercent,
           amount: data.amount || 0,
           invoice: {
-            id: `INV-${new Date().getFullYear()}-${Math.floor(Math.random() * 1000)}`,
-            paymentMethod: "Credit Card (Visa ending in 4242)",
+            id: data.invoice_id || `INV-${new Date().getFullYear()}-${Math.floor(Math.random() * 1000)}`,
+            paymentMethod: data.payment_method || "Credit Card (Visa ending in 4242)",
             amount: `₹ ${data.amount || 999}`,
-            billingDate: startDate,
+            billingDate: data.billing_date || startDate,
           },
         });
         
@@ -174,16 +176,16 @@ const SubscriptionControlCenter = () => {
   const handleDownloadInvoice = () => {
     // Create a simple invoice download
     const invoiceContent = `
-      INVOICE
-      ========================================
-      Invoice ID: ${subscriptionData.invoice.id}
-      Date: ${subscriptionData.invoice.billingDate}
-      Plan: ${subscriptionData.plan}
-      Amount: ${subscriptionData.invoice.amount}
-      Payment Method: ${subscriptionData.invoice.paymentMethod}
-      Status: ${subscriptionData.status}
-      ========================================
-      Thank you for your subscription!
+INVOICE
+========================================
+Invoice ID: ${subscriptionData.invoice.id}
+Date: ${subscriptionData.invoice.billingDate}
+Plan: ${subscriptionData.plan}
+Amount: ${subscriptionData.invoice.amount}
+Payment Method: ${subscriptionData.invoice.paymentMethod}
+Status: ${subscriptionData.status}
+========================================
+Thank you for your subscription!
     `;
     
     const blob = new Blob([invoiceContent], { type: 'text/plain' });
@@ -195,6 +197,11 @@ const SubscriptionControlCenter = () => {
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
+  };
+
+  const handleUpdateBillingInfo = () => {
+    // Dispatch event to open billing modal or navigate to billing page
+    window.dispatchEvent(new CustomEvent("openBillingModal"));
   };
 
   if (isLoading) {
@@ -210,7 +217,7 @@ const SubscriptionControlCenter = () => {
     );
   }
 
-  if (error && !subscriptionData.status === "Active") {
+  if (error && subscriptionData.status !== "Active") {
     return (
       <div className="max-w-7xl mx-auto p-4 md:p-8">
         <div className="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
@@ -372,7 +379,10 @@ const SubscriptionControlCenter = () => {
                 Download Invoice
               </button>
 
-              <button className="w-full border border-white/20 text-white/70 py-3 rounded-xl font-bold text-sm hover:bg-white/5 transition-colors">
+              <button 
+                onClick={handleUpdateBillingInfo}
+                className="w-full border border-white/20 text-white/70 py-3 rounded-xl font-bold text-sm hover:bg-white/5 transition-colors"
+              >
                 Update Billing Info
               </button>
             </div>

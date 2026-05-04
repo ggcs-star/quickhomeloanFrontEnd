@@ -25,6 +25,7 @@ import {
   CircleAlert
 } from 'lucide-react';
 import axios from 'axios';
+import { BASE_URL } from '../../../api'; // Adjust path as needed
 
 const BenchmarkTransmissionAudit = () => {
   const [isProUser, setIsProUser] = useState(false);
@@ -84,9 +85,9 @@ const BenchmarkTransmissionAudit = () => {
         return;
       }
       
-      // Verify with API
+      // Verify with API using BASE_URL
       const response = await axios.get(
-        "https://backend.quickhomeloan.in/public/api/check-access",
+        `${BASE_URL}/check-access`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -162,7 +163,8 @@ const BenchmarkTransmissionAudit = () => {
   // Handle audit button click
   const handleAuditClick = () => {
     if (!isProUser) {
-      alert("This feature requires a Pro subscription. Please upgrade to continue.");
+      // Dispatch event to open pro modal instead of alert
+      window.dispatchEvent(new CustomEvent("openProModal"));
       return;
     }
     calculateMetrics();

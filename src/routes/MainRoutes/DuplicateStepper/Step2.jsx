@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { BASE_URL } from "../../../api"; // Adjust path as needed
 
 export default function Step2({ formData, setFormData, setStep, token }) {
   const [income, setIncome] = useState(formData.income);
@@ -8,7 +9,8 @@ export default function Step2({ formData, setFormData, setStep, token }) {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [apiResponse, setApiResponse] = useState(null);
-  const BASE_URL = "https://backend.quickhomeloan.in/public/api/loan/submit-form";
+  
+  // Using BASE_URL from api.js - no need to redeclare
 
   const validate = () => {
     const newErrors = {};
@@ -41,7 +43,7 @@ export default function Step2({ formData, setFormData, setStep, token }) {
     console.log("🔑 TOKEN exists:", !!token);
 
     try {
-      const res = await axios.post(BASE_URL, payload, {
+      const res = await axios.post(`${BASE_URL}/loan/submit-form`, payload, {
         headers: { 
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -208,14 +210,14 @@ export default function Step2({ formData, setFormData, setStep, token }) {
             <button
               onClick={() => setStep(1)}
               disabled={isSubmitting}
-              className="flex-1 px-4 py-3 rounded-lg border text-slate-600 hover:border-brand-500 disabled:opacity-50"
+              className="flex-1 px-4 py-3 rounded-lg border text-slate-600 hover:border-brand-500 disabled:opacity-50 transition-colors"
             >
               Back
             </button>
             <button
               onClick={handleNext}
               disabled={isSubmitting}
-              className="flex-1 px-4 py-3 rounded-lg bg-gray-600 hover:bg-brand-700 text-white font-semibold shadow-lg disabled:opacity-50"
+              className="flex-1 px-4 py-3 rounded-lg bg-gray-600 hover:bg-gray-700 text-white font-semibold shadow-lg disabled:opacity-50 transition-colors"
             >
               {isSubmitting ? "Submitting..." : "Next Step →"}
             </button>

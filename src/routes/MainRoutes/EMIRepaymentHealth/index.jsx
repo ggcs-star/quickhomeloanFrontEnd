@@ -12,6 +12,7 @@ import {
   Wallet as WalletIcon, PiggyBank as PiggyBankIcon, Lock
 } from 'lucide-react';
 import axios from 'axios';
+import { BASE_URL } from '../../../api'; // Adjust path as needed
 
 const EMIRepaymentHealth = () => {
   const [isProUser, setIsProUser] = useState(false);
@@ -96,9 +97,9 @@ const EMIRepaymentHealth = () => {
         return;
       }
       
-      // Verify with API
+      // Verify with API using BASE_URL
       const response = await axios.get(
-        "https://backend.quickhomeloan.in/public/api/check-access",
+        `${BASE_URL}/check-access`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -396,6 +397,15 @@ const EMIRepaymentHealth = () => {
     </div>
   );
 
+  const handleCompleteAudit = () => {
+    if (!isProUser) {
+      window.dispatchEvent(new CustomEvent("openProModal"));
+      return;
+    }
+    calculateResults();
+    alert('Compliance audit completed! Check the updated results.');
+  };
+
   return (
     <main className="flex-1 py-6 overflow-x-hidden bg-white">
       <div className="max-w-[1200px] mx-auto space-y-12 pb-20 font-sans">
@@ -414,7 +424,7 @@ const EMIRepaymentHealth = () => {
         </div>
 
         {/* Show upgrade banner for non-pro users */}
-        {/* {!isProUser && !isCheckingAccess && <UpgradeBanner />} */}
+        {!isProUser && !isCheckingAccess && <UpgradeBanner />}
 
         {/* Health Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -731,6 +741,7 @@ const EMIRepaymentHealth = () => {
                     </div>
                   </div>
                   <button 
+                    onClick={handleCompleteAudit}
                     className={`w-full py-4 rounded-md text-[14px] font-semibold tracking-wide uppercase transition-all shadow-sm flex items-center justify-center gap-2 ${isProUser ? 'bg-black text-white hover:bg-neutral-800 active:scale-[0.98]' : 'bg-gray-200 text-gray-500 cursor-not-allowed'}`}
                     disabled={!isProUser}
                   >
@@ -1017,6 +1028,11 @@ const EMIRepaymentHealth = () => {
               )}
             </p>
             <button 
+              onClick={() => {
+                if (!isProUser) {
+                  window.dispatchEvent(new CustomEvent("openProModal"));
+                }
+              }}
               className={`w-full py-4 rounded-md text-[14px] font-semibold tracking-wide uppercase transition-all shadow-sm active:scale-[0.98] flex items-center justify-center gap-2 ${isProUser ? 'bg-black text-white hover:bg-neutral-800' : 'bg-gray-200 text-gray-500 cursor-not-allowed'}`}
               disabled={!isProUser}
             >
