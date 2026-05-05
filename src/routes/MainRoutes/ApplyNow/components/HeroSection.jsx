@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Container } from "../../../../components/Layout";
+import { getLenders, getLenderBySlug, BASE_URL } from "../../../../api"; // Adjust path as needed
 
 const HeroSection = ({ heroSection }) => {
   /* ---------------- CATEGORY MAP ---------------- */
@@ -81,6 +82,32 @@ const HeroSection = ({ heroSection }) => {
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [submitError, setSubmitError] = useState(null);
+  
+  /* ---------------- LENDERS STATE ---------------- */
+  const [lenders, setLenders] = useState([]);
+  const [selectedLender, setSelectedLender] = useState(null);
+
+  /* ---------------- FETCH LENDERS ON MOUNT ---------------- */
+  useEffect(() => {
+    const fetchLenders = async () => {
+      try {
+        const lendersData = await getLenders();
+        setLenders(lendersData);
+        
+        // Check URL for lender slug
+        const params = new URLSearchParams(window.location.search);
+        const lenderSlug = params.get("lender");
+        if (lenderSlug) {
+          const lender = await getLenderBySlug(lenderSlug);
+          setSelectedLender(lender);
+        }
+      } catch (error) {
+        console.error("Failed to fetch lenders:", error);
+      }
+    };
+    
+    fetchLenders();
+  }, []);
 
   /* ---------------- PREFILL FROM URL ---------------- */
   useEffect(() => {
@@ -161,10 +188,18 @@ const HeroSection = ({ heroSection }) => {
 
     setLoading(true);
 
+    // Prepare data with lender info if selected
+    const submitData = {
+      ...formData,
+      lender_id: selectedLender?.id || null,
+      lender_name: selectedLender?.name || null,
+    };
+
     try {
+      // Using BASE_URL from api.js
       await axios.post(
-        "https://backend.quickhomeloan.in/public/api/apply-loan/store",
-        formData,
+        `${BASE_URL}/apply-loan/store`,
+        submitData,
         { headers: { "Content-Type": "application/json" } }
       );
 
@@ -208,6 +243,15 @@ const HeroSection = ({ heroSection }) => {
           </p>
         )}
 
+        {/* Selected Lender Information */}
+        {selectedLender && (
+          <div className="mb-4 p-3 bg-blue-50 rounded-md border border-blue-200">
+            <p className="text-sm text-blue-800">
+              <span className="font-semibold">Selected Lender:</span> {selectedLender.name}
+            </p>
+          </div>
+        )}
+
         {/* FORM */}
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* FULL NAME */}
@@ -218,9 +262,10 @@ const HeroSection = ({ heroSection }) => {
               value={formData.full_name}
               onChange={handleChange}
               className={inputClasses}
+              placeholder="Enter your full name"
             />
             {errors.full_name && (
-              <p className="text-red-500 text-xs">{errors.full_name}</p>
+              <p className="text-red-500 text-xs mt-1">{errors.full_name}</p>
             )}
           </div>
 
@@ -233,9 +278,10 @@ const HeroSection = ({ heroSection }) => {
               value={formData.email}
               onChange={handleChange}
               className={inputClasses}
+              placeholder="you@example.com"
             />
             {errors.email && (
-              <p className="text-red-500 text-xs">{errors.email}</p>
+              <p className="text-red-500 text-xs mt-1">{errors.email}</p>
             )}
           </div>
 
@@ -250,9 +296,10 @@ const HeroSection = ({ heroSection }) => {
               value={formData.number}
               onChange={handleChange}
               className={inputClasses}
+              placeholder="1234567890"
             />
             {errors.number && (
-              <p className="text-red-500 text-xs">{errors.number}</p>
+              <p className="text-red-500 text-xs mt-1">{errors.number}</p>
             )}
           </div>
 
@@ -275,7 +322,7 @@ const HeroSection = ({ heroSection }) => {
               ))}
             </select>
             {errors.loan_category_main && (
-              <p className="text-red-500 text-xs">
+              <p className="text-red-500 text-xs mt-1">
                 {errors.loan_category_main}
               </p>
             )}
@@ -301,7 +348,7 @@ const HeroSection = ({ heroSection }) => {
                 ))}
               </select>
               {errors.loan_category_sub && (
-                <p className="text-red-500 text-xs">
+                <p className="text-red-500 text-xs mt-1">
                   {errors.loan_category_sub}
                 </p>
               )}
@@ -311,7 +358,7 @@ const HeroSection = ({ heroSection }) => {
           {/* LOAN AMOUNT */}
           <div>
             <label className="block text-sm font-medium mb-1">
-              Loan Amount
+              Loan Amount (₹)
             </label>
             <input
               id="loan_amount"
@@ -319,16 +366,17 @@ const HeroSection = ({ heroSection }) => {
               value={formData.loan_amount}
               onChange={handleChange}
               className={inputClasses}
+              placeholder="Enter loan amount"
             />
             {errors.loan_amount && (
-              <p className="text-red-500 text-xs">{errors.loan_amount}</p>
+              <p className="text-red-500 text-xs mt-1">{errors.loan_amount}</p>
             )}
           </div>
 
           {/* MONTHLY INCOME */}
           <div>
             <label className="block text-sm font-medium mb-1">
-              Monthly Income
+              Monthly Income (₹)
             </label>
             <input
               id="monthly_income"
@@ -336,9 +384,10 @@ const HeroSection = ({ heroSection }) => {
               value={formData.monthly_income}
               onChange={handleChange}
               className={inputClasses}
+              placeholder="Enter monthly income"
             />
             {errors.monthly_income && (
-              <p className="text-red-500 text-xs">
+              <p className="text-red-500 text-xs mt-1">
                 {errors.monthly_income}
               </p>
             )}
@@ -354,9 +403,10 @@ const HeroSection = ({ heroSection }) => {
               value={formData.property_city}
               onChange={handleChange}
               className={inputClasses}
+              placeholder="Enter property city"
             />
             {errors.property_city && (
-              <p className="text-red-500 text-xs">
+              <p className="text-red-500 text-xs mt-1">
                 {errors.property_city}
               </p>
             )}

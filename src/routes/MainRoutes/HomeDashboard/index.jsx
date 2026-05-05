@@ -13,19 +13,35 @@ import {
   Lock
 } from 'lucide-react';
 import axios from 'axios';
+import { BASE_URL } from '../../../api'; // Adjust path as needed
 
 const HomeDashboard = () => {
   const [isProUser, setIsProUser] = useState(false);
   const [isCheckingAccess, setIsCheckingAccess] = useState(true);
+  
+  // Dashboard data state
+  const [dashboardData, setDashboardData] = useState({
+    dailyInterestLeak: 1301.37,
+    monthlyInterestLeak: 39041.1,
+    yearlyInterestLeak: 475000,
+    hiddenCostsFound: 2006,
+    benchmarkGap: -0.75,
+    continuityScore: 92,
+    effectiveRate: 9.25,
+    potentialSavings: 42500,
+    journeyProgress: 23.4
+  });
 
   // Check pro access on component mount
   useEffect(() => {
     checkProAccess();
+    fetchDashboardData();
     
     // Listen for subscription updates
     const handleSubscriptionUpdate = (event) => {
       if (event.detail?.isPro === true) {
         checkProAccess();
+        fetchDashboardData();
       }
     };
     
@@ -55,9 +71,9 @@ const HomeDashboard = () => {
         return;
       }
       
-      // Verify with API
+      // Verify with API using BASE_URL
       const response = await axios.get(
-        "https://backend.quickhomeloan.in/public/api/check-access",
+        `${BASE_URL}/check-access`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -79,6 +95,42 @@ const HomeDashboard = () => {
       setIsProUser(isProLocal);
     } finally {
       setIsCheckingAccess(false);
+    }
+  };
+
+  // Fetch dashboard data from API
+  const fetchDashboardData = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) return;
+      
+      const response = await axios.get(
+        `${BASE_URL}/user/dashboard`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      
+      if (response.data && response.data.status === true) {
+        const data = response.data.data;
+        setDashboardData({
+          dailyInterestLeak: data.daily_interest_leak || 1301.37,
+          monthlyInterestLeak: data.monthly_interest_leak || 39041.1,
+          yearlyInterestLeak: data.yearly_interest_leak || 475000,
+          hiddenCostsFound: data.hidden_costs_found || 2006,
+          benchmarkGap: data.benchmark_gap || -0.75,
+          continuityScore: data.continuity_score || 92,
+          effectiveRate: data.effective_rate || 9.25,
+          potentialSavings: data.potential_savings || 42500,
+          journeyProgress: data.journey_progress || 23.4
+        });
+      }
+    } catch (error) {
+      console.error("Error fetching dashboard data:", error);
+      // Use default values if API fails
     }
   };
 
@@ -164,7 +216,7 @@ const HomeDashboard = () => {
         </div>
 
         {/* Show upgrade banner for non-pro users */}
-        {/* {!isProUser && !isCheckingAccess && <UpgradeBanner />} */}
+        {!isProUser && !isCheckingAccess && <UpgradeBanner />}
 
         {/* Main Card - Money Leak Tracker */}
         <div className="animate-in fade-in duration-500">
@@ -199,7 +251,7 @@ const HomeDashboard = () => {
                     </span>
                     <div className="flex items-center gap-4">
                       <div className="text-4xl md:text-5xl font-black text-neutral-900 tabular-nums tracking-tighter">
-                        <BlurredNumberDisplay value={1301.37} isCurrency={true} />
+                        <BlurredNumberDisplay value={dashboardData.dailyInterestLeak} isCurrency={true} />
                       </div>
                       {isProUser && (
                         <div className="flex flex-col items-center">
@@ -215,7 +267,7 @@ const HomeDashboard = () => {
                   <div className="bg-neutral-50 p-4 rounded-md border border-neutral-300 flex items-start gap-3">
                     <CircleAlert className="w-4 h-4 text-neutral-700 shrink-0 mt-0.5" />
                     <p className="text-[12px] text-neutral-600 font-regular">
-                      Verified Interest Calculation Engine (8.75% ROI / ₹1.7Cr Principal)
+                      Verified Interest Calculation Engine ({dashboardData.effectiveRate}% ROI / ₹1.7Cr Principal)
                     </p>
                   </div>
                 </div>
@@ -230,7 +282,7 @@ const HomeDashboard = () => {
                       </span>
                     </div>
                     <div className="text-[22px] font-medium text-neutral-900 tabular-nums">
-                      <BlurredNumberDisplay value={39041.1} isCurrency={true} />
+                      <BlurredNumberDisplay value={dashboardData.monthlyInterestLeak} isCurrency={true} />
                     </div>
                     <p className="text-[11px] text-neutral-500 mt-1 font-regular italic">
                       Automatic direct loss projection
@@ -245,7 +297,7 @@ const HomeDashboard = () => {
                       </span>
                     </div>
                     <div className={`text-[22px] font-medium tabular-nums ${isProUser ? 'text-red-600' : 'text-gray-500'}`}>
-                      <BlurredNumberDisplay value={475000} isCurrency={true} />
+                      <BlurredNumberDisplay value={dashboardData.yearlyInterestLeak} isCurrency={true} />
                     </div>
                     <p className={`text-[11px] mt-1 font-regular italic ${isProUser ? 'text-red-500' : 'text-gray-400'}`}>
                       Compounded leakage impact
@@ -266,7 +318,10 @@ const HomeDashboard = () => {
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {/* Statement Analyzer Card */}
-            <div className={`bg-white p-5 rounded-md border shadow-sm flex flex-col items-start ${isProUser ? 'group hover:border-black transition-all border-neutral-300' : 'border-gray-200 opacity-70'}`}>
+            <a 
+              href="/statement-analyzer" 
+              className={`bg-white p-5 rounded-md border shadow-sm flex flex-col items-start ${isProUser ? 'group hover:border-black transition-all border-neutral-300' : 'border-gray-200 opacity-70'} cursor-pointer`}
+            >
               <div className="flex items-center justify-between w-full mb-3">
                 <div className="w-10 h-10 bg-neutral-50 rounded-md flex items-center justify-center text-black">
                   <FileText className="w-5 h-5" />
@@ -284,10 +339,13 @@ const HomeDashboard = () => {
               <p className="text-[12px] text-neutral-500 mt-1 font-regular">
                 {isProUser ? 'Last Audit: Today' : 'Pro feature'}
               </p>
-            </div>
+            </a>
 
             {/* Hidden Costs Card */}
-            <div className={`bg-white p-5 rounded-md border shadow-sm flex flex-col items-start ${isProUser ? 'group hover:border-black transition-all border-neutral-300' : 'border-gray-200 opacity-70'}`}>
+            <a 
+              href="/hidden-costs-audit" 
+              className={`bg-white p-5 rounded-md border shadow-sm flex flex-col items-start ${isProUser ? 'group hover:border-black transition-all border-neutral-300' : 'border-gray-200 opacity-70'} cursor-pointer`}
+            >
               <div className="flex items-center justify-between w-full mb-3">
                 <div className="w-10 h-10 bg-neutral-50 rounded-md flex items-center justify-center text-black">
                   <ZapOff className="w-5 h-5" />
@@ -300,15 +358,18 @@ const HomeDashboard = () => {
                 Hidden Costs
               </h4>
               <div className="text-[16px] font-medium text-neutral-900">
-                <BlurredNumberDisplay value={2006} isCurrency={true} /> Found
+                <BlurredNumberDisplay value={dashboardData.hiddenCostsFound} isCurrency={true} /> Found
               </div>
               <p className="text-[12px] text-neutral-500 mt-1 font-regular">
                 {isProUser ? '3 Penalties detected' : 'Upgrade to view'}
               </p>
-            </div>
+            </a>
 
             {/* Benchmark Gap Card */}
-            <div className={`bg-white p-5 rounded-md border shadow-sm flex flex-col items-start ${isProUser ? 'group hover:border-black transition-all border-neutral-300' : 'border-gray-200 opacity-70'}`}>
+            <a 
+              href="/benchmark-transmission-audit" 
+              className={`bg-white p-5 rounded-md border shadow-sm flex flex-col items-start ${isProUser ? 'group hover:border-black transition-all border-neutral-300' : 'border-gray-200 opacity-70'} cursor-pointer`}
+            >
               <div className="flex items-center justify-between w-full mb-3">
                 <div className="w-10 h-10 bg-neutral-50 rounded-md flex items-center justify-center text-black">
                   <Scale className="w-5 h-5" />
@@ -321,15 +382,18 @@ const HomeDashboard = () => {
                 Benchmark Gap
               </h4>
               <div className="text-[16px] font-medium text-neutral-900">
-                <BlurredNumberDisplay value={-0.75} isPercentage={true} /> Gap
+                <BlurredNumberDisplay value={dashboardData.benchmarkGap} isPercentage={true} /> Gap
               </div>
               <p className="text-[12px] text-neutral-500 mt-1 font-regular">
                 {isProUser ? 'Action Recommended' : 'Pro feature'}
               </p>
-            </div>
+            </a>
 
             {/* Continuity Card */}
-            <div className={`bg-white p-5 rounded-md border shadow-sm flex flex-col items-start ${isProUser ? 'group hover:border-black transition-all border-neutral-300' : 'border-gray-200 opacity-70'}`}>
+            <a 
+              href="/emi-repayment-health" 
+              className={`bg-white p-5 rounded-md border shadow-sm flex flex-col items-start ${isProUser ? 'group hover:border-black transition-all border-neutral-300' : 'border-gray-200 opacity-70'} cursor-pointer`}
+            >
               <div className="flex items-center justify-between w-full mb-3">
                 <div className="w-10 h-10 bg-neutral-50 rounded-md flex items-center justify-center text-black">
                   <HeartPulse className="w-5 h-5" />
@@ -342,12 +406,12 @@ const HomeDashboard = () => {
                 Continuity
               </h4>
               <div className="text-[16px] font-medium text-neutral-900">
-                <BlurredNumberDisplay value={92} /> / 100
+                <BlurredNumberDisplay value={dashboardData.continuityScore} /> / 100
               </div>
               <p className="text-[12px] text-neutral-500 mt-1 font-regular">
                 {isProUser ? 'Health: Normal' : 'Pro feature'}
               </p>
-            </div>
+            </a>
           </div>
         </div>
 
@@ -363,10 +427,13 @@ const HomeDashboard = () => {
                     <p className="text-[12px] text-neutral-500 font-medium uppercase tracking-wider">Rate and compliance monitoring</p>
                   </div>
                   <div className="flex items-center gap-2">
-                    <button className={`text-[12px] font-semibold uppercase flex items-center gap-1 ${isProUser ? 'text-black hover:underline group' : 'text-gray-400 cursor-not-allowed'}`} disabled={!isProUser}>
+                    <a 
+                      href="/rate-change-tracker" 
+                      className={`text-[12px] font-semibold uppercase flex items-center gap-1 ${isProUser ? 'text-black hover:underline group' : 'text-gray-400 cursor-not-allowed'}`}
+                    >
                       View Fix 
                       <ArrowRight className={`w-3 h-3 ${isProUser ? 'group-hover:translate-x-1 transition-transform' : ''}`} />
-                    </button>
+                    </a>
                   </div>
                 </div>
 
@@ -376,7 +443,7 @@ const HomeDashboard = () => {
                       Effective Rate
                     </span>
                     <div className={`text-[16px] font-medium tabular-nums ${isProUser ? 'text-red-600' : 'text-gray-500'}`}>
-                      <BlurredNumberDisplay value={9.25} isPercentage={true} /> ROI
+                      <BlurredNumberDisplay value={dashboardData.effectiveRate} isPercentage={true} /> ROI
                     </div>
                     <p className="text-[12px] text-neutral-500 font-regular mt-1 italic">Current applied rate</p>
                   </div>
@@ -386,7 +453,7 @@ const HomeDashboard = () => {
                       Potential Savings
                     </span>
                     <div className="text-[16px] font-medium text-neutral-900 tabular-nums">
-                      <BlurredNumberDisplay value={42500} isCurrency={true} /> / yr
+                      <BlurredNumberDisplay value={dashboardData.potentialSavings} isCurrency={true} /> / yr
                     </div>
                     <p className="text-[12px] text-neutral-500 font-regular mt-1 italic">With benchmark reset</p>
                   </div>
@@ -397,7 +464,10 @@ const HomeDashboard = () => {
 
           {/* Right Column - Freedom Strategy */}
           <div className="lg:col-span-4">
-            <div className={`p-6 rounded-md text-white shadow-lg flex flex-col justify-center h-full relative overflow-hidden ${isProUser ? 'bg-neutral-900' : 'bg-gray-600'}`}>
+            <a 
+              href="/freedom-roadmap" 
+              className={`p-6 rounded-md text-white shadow-lg flex flex-col justify-center h-full relative overflow-hidden ${isProUser ? 'bg-neutral-900' : 'bg-gray-600'} cursor-pointer`}
+            >
               <div className="relative z-10 space-y-4">
                 <div className="flex items-center gap-2 text-green-400 font-bold text-[12px] uppercase tracking-widest">
                   <Compass className="w-4 h-4" />
@@ -409,25 +479,18 @@ const HomeDashboard = () => {
                   <div className="flex justify-between items-center">
                     <span className="text-[14px] text-neutral-300">Progress</span>
                     <span className="text-[14px] font-medium">
-                      <BlurredNumberDisplay value={23.4} isPercentage={true} />
+                      <BlurredNumberDisplay value={dashboardData.journeyProgress} isPercentage={true} />
                     </span>
                   </div>
                   <div className="h-2 w-full bg-white/10 rounded-full overflow-hidden">
-                    <div className="h-full bg-green-600" style={{ width: `${isProUser ? 23.4 : 0}%` }}></div>
+                    <div className="h-full bg-green-600" style={{ width: `${isProUser ? dashboardData.journeyProgress : 0}%` }}></div>
                   </div>
                   <p className="text-[12px] text-neutral-400 font-regular">
                     {isProUser ? 'Target: 100% debt-free milestone' : 'Upgrade to track progress'}
                   </p>
                 </div>
-                
-                <button 
-                  className={`w-full py-3 rounded-md text-[14px] font-semibold uppercase tracking-widest transition-all mt-4 shadow-sm ${isProUser ? 'bg-black text-white hover:bg-neutral-800' : 'bg-gray-500 text-gray-200 cursor-not-allowed'}`}
-                  disabled={!isProUser}
-                >
-                  {!isProUser && !isCheckingAccess ? 'Upgrade to Pro' : 'Complete Compliance'}
-                </button>
               </div>
-            </div>
+            </a>
           </div>
         </div>
       </div>

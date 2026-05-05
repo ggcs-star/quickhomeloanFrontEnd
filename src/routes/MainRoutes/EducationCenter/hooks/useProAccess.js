@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { BASE_URL } from '../../../../api'; // Adjust path as needed
 
 export const useProAccess = () => {
   const [isProUser, setIsProUser] = useState(false);
@@ -23,8 +24,9 @@ export const useProAccess = () => {
         return;
       }
       
+      // Using BASE_URL from api.js
       const response = await axios.get(
-        "https://backend.quickhomeloan.in/public/api/check-access",
+        `${BASE_URL}/check-access`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -65,5 +67,5 @@ export const useProAccess = () => {
     };
   }, []);
 
-  return { isProUser, isCheckingAccess };
+  return { isProUser, isCheckingAccess, checkProAccess };
 };

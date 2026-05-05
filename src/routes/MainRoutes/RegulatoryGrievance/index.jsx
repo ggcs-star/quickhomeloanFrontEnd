@@ -13,6 +13,7 @@ import {
   Lock,
 } from "lucide-react";
 import axios from "axios";
+import { BASE_URL } from "../../../api"; // Adjust path as needed
 
 const RegulatoryGrievance = () => {
   const [isProUser, setIsProUser] = useState(false);
@@ -56,9 +57,9 @@ const RegulatoryGrievance = () => {
         return;
       }
       
-      // Verify with API
+      // Verify with API using BASE_URL
       const response = await axios.get(
-        "https://backend.quickhomeloan.in/public/api/check-access",
+        `${BASE_URL}/check-access`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -125,23 +126,40 @@ const RegulatoryGrievance = () => {
 
   const handleActionClick = (action) => {
     if (!isProUser) {
-      // Show upgrade modal or toast notification
-      alert("This feature requires a Pro subscription. Please upgrade to continue.");
+      // Show upgrade modal via custom event
+      window.dispatchEvent(new CustomEvent("openProModal"));
       return;
     }
     // Proceed with the action
     console.log(`Executing action: ${action}`);
-    // Add your action logic here
+    alert(`Action "${action}" initiated. A representative will contact you shortly.`);
   };
 
   const handleDownloadTemplate = (action) => {
     if (!isProUser) {
-      alert("This feature requires a Pro subscription. Please upgrade to continue.");
+      window.dispatchEvent(new CustomEvent("openProModal"));
       return;
     }
     // Proceed with download
     console.log(`Downloading template for: ${action}`);
-    // Add your download logic here
+    
+    // Create template content based on action
+    let templateContent = `TEMPLATE FOR: ${action}\n\n`;
+    templateContent += `To,\nThe Bank Manager,\n[Bank Name]\n\n`;
+    templateContent += `Subject: ${action}\n\n`;
+    templateContent += `Dear Sir/Madam,\n\n`;
+    templateContent += `I am writing to bring to your attention...\n\n`;
+    templateContent += `Respectfully,\n[Your Name]\n[Loan Account Number]\n[Contact Details]\n`;
+    
+    const blob = new Blob([templateContent], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${action.toLowerCase().replace(/ /g, '_')}_template.txt`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   };
 
   return (
@@ -188,7 +206,7 @@ const RegulatoryGrievance = () => {
 
               <div className="flex items-center gap-1.5 text-[11px] font-bold text-neutral-500 uppercase tracking-widest">
                 <div className="w-2 h-2 rounded-full bg-red-500" />
-                5 Active Cases
+                {grievanceItems.length} Active Cases
               </div>
             </div>
 

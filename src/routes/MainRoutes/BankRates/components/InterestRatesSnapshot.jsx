@@ -2,8 +2,7 @@ import { useEffect, useRef, useState, useMemo } from "react"
 import CompareBar from "./CompareBar"
 import CompareModal from "./CompareModal"
 import TableShimmer from "../../../../components/TableShimmer"
-
-const API_URL = "https://backend.quickhomeloan.in/public/api/lenders"
+import { getLenders, BASE_URL } from "../../../../api" // Adjust path as needed
 
 export default function InterestRatesSnapshot() {
   const [banks, setBanks] = useState([])
@@ -22,14 +21,10 @@ export default function InterestRatesSnapshot() {
         setLoading(true)
         setError(null)
 
-        const res = await fetch(API_URL)
-        const json = await res.json()
-
-        if (!json.status) {
-          throw new Error("Failed to fetch lenders")
-        }
-
-        const normalized = json.data.map((b) => ({
+        // Using getLenders from api.js which has built-in caching
+        const lendersData = await getLenders()
+        
+        const normalized = lendersData.map((b) => ({
           id: b.id,
           name: b.name,
           type: b.type,
@@ -38,7 +33,7 @@ export default function InterestRatesSnapshot() {
           emi: b.emi,
           amount: b.loan,
           tenure: b.tenure,
-          applyLink: "#",
+          applyLink: "/apply-loan",
         }))
 
         setBanks(normalized)
@@ -122,6 +117,26 @@ export default function InterestRatesSnapshot() {
     )
   }
 
+  /* ---------------- ERROR STATE ---------------- */
+  if (error) {
+    return (
+      <section className="mb-16">
+        <h2 className="text-3xl font-bold border-b-2 border-gray-800/50 pb-2 mb-6">
+          Current Interest Rates Snapshot
+        </h2>
+        <div className="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
+          <p className="text-red-600">Failed to load interest rates. Please try again later.</p>
+          <button 
+            onClick={() => window.location.reload()} 
+            className="mt-4 px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700"
+          >
+            Retry
+          </button>
+        </div>
+      </section>
+    )
+  }
+
   /* ---------------- SUCCESS UI (HIDDEN ON ERROR) ---------------- */
   return (
     <>
@@ -196,11 +211,13 @@ export default function InterestRatesSnapshot() {
                         </td>
 
                         <td className="px-6 py-4 flex items-center gap-3">
-                          <img
-                            src={bank.logo}
-                            alt={bank.name}
-                            className="w-6 h-6 rounded-full"
-                          />
+                          {bank.logo && (
+                            <img
+                              src={bank.logo}
+                              alt={bank.name}
+                              className="w-6 h-6 rounded-full"
+                            />
+                          )}
                           <span className="font-medium">
                             {bank.name}
                           </span>
@@ -219,8 +236,8 @@ export default function InterestRatesSnapshot() {
 
                         <td className="px-6 py-4 text-center">
                           <a
-                            href="/apply-loan"
-                            className="inline-flex px-5 py-2 text-sm font-semibold rounded-lg bg-gray-900 text-white hover:bg-gray-700"
+                            href={bank.applyLink}
+                            className="inline-flex px-5 py-2 text-sm font-semibold rounded-lg bg-gray-900 text-white hover:bg-gray-700 transition-colors"
                           >
                             Apply Now
                           </a>
@@ -230,6 +247,13 @@ export default function InterestRatesSnapshot() {
                   })}
                 </tbody>
               </table>
+
+              {/* Empty state when filtered results are empty */}
+              {filteredBanks.length === 0 && (
+                <div className="text-center py-8 text-gray-500">
+                  No lenders found for this category.
+                </div>
+              )}
             </div>
           </div>
         </section>

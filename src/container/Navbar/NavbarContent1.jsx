@@ -11,8 +11,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import NavbarAuthActions from "./NavbarAuthActions";
 import ProModal from "./ProModal";
-
-const BASE_URL = "https://backend.quickhomeloan.in/public/api";
+import { BASE_URL } from "../../api"; // Adjust path as needed
 
 // Create axios instance with interceptors
 const api = axios.create({
@@ -168,9 +167,9 @@ export default function NavbarContent1(props) {
                 return;
             }
 
-            // Verify with API using the check-access endpoint
+            // Verify with API using BASE_URL
             const response = await axios.get(
-                "https://backend.quickhomeloan.in/public/api/check-access",
+                `${BASE_URL}/check-access`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,

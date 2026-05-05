@@ -4,8 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import CommunicationHistoryTimeline from "./components/CommunicationHistoryTimeline";
 import PersonalInfoSkeleton from "./components/PersonalInfoSkeleton";
-
-const BASE_URL = "https://backend.quickhomeloan.in/public/api";
+import { BASE_URL } from "../../../api"; // Adjust path as needed
 
 export default function ProfilePage() {
   const navigate = useNavigate();
@@ -66,23 +65,29 @@ export default function ProfilePage() {
             employment_type: user.employment_type ?? "",
             annual_income: user.annual_income ?? "",
 
-            bank_name: "",
-            loan_type: "home",
-            loan_amount: "",
-            interest_rate: "",
-            tenure: "",
-            emi: "",
-            loan_start_date: "",
+            bank_name: user.bank_name ?? "",
+            loan_type: user.loan_type ?? "home",
+            loan_amount: user.loan_amount ?? "",
+            interest_rate: user.interest_rate ?? "",
+            tenure: user.tenure ?? "",
+            emi: user.emi ?? "",
+            loan_start_date: user.loan_start_date ?? "",
           };
 
           setFormData(mappedData);
           setOriginalData(mappedData);
+          
+          // Set hasLoan based on existing loan data
+          if (user.loan_amount && user.loan_amount > 0) {
+            setHasLoan(true);
+          }
         }
       } catch (error) {
         if (error.response?.status === 401) {
           localStorage.clear();
           navigate("/login");
         }
+        console.error("Error fetching profile:", error);
       } finally {
         setLoading(false);
       }
@@ -119,6 +124,16 @@ export default function ProfilePage() {
         annual_income: formData.annual_income
           ? Number(formData.annual_income)
           : 0,
+        // Include loan details if hasLoan is true
+        ...(hasLoan && {
+          bank_name: formData.bank_name,
+          loan_type: formData.loan_type,
+          loan_amount: formData.loan_amount ? Number(formData.loan_amount) : 0,
+          interest_rate: formData.interest_rate ? Number(formData.interest_rate) : 0,
+          tenure: formData.tenure ? Number(formData.tenure) : 0,
+          emi: formData.emi ? Number(formData.emi) : 0,
+          loan_start_date: formData.loan_start_date,
+        }),
       };
 
       const response = await axios.post(
@@ -141,12 +156,16 @@ export default function ProfilePage() {
         toast.error(response.data?.message || "Update failed");
       }
     } catch (error) {
+      console.error("Error saving profile:", error);
       if (error.response?.status === 422) {
         const errors = error.response.data.errors;
         const firstError = Object.values(errors)[0][0];
         toast.error(firstError);
+      } else if (error.response?.status === 401) {
+        toast.error("Session expired. Please login again.");
+        navigate("/login");
       } else {
-        toast.error("Update failed");
+        toast.error("Update failed. Please try again.");
       }
     } finally {
       setIsSaving(false);
@@ -158,11 +177,18 @@ export default function ProfilePage() {
     setIsEditing(false);
   };
 
-  // if (loading) {
-  //   return <div className="p-10 text-center font-semibold">Loading profile...</div>;
-  // }
+  /* ================= SAVE ALL CHANGES ================= */
+  const handleSaveAllChanges = async () => {
+    await handleSaveProfile();
+  };
 
-  const [isLoading, setIsLoading] = useState(true);
+  if (loading) {
+    return (
+      <div className="max-w-6xl mx-auto p-4 md:p-8">
+        <PersonalInfoSkeleton />
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-6xl mx-auto p-4 md:p-8">
@@ -219,11 +245,6 @@ export default function ProfilePage() {
         </header>
        
         {/* ================= PERSONAL INFO ================= */}
-
-        
-        {/* {isLoading ? (
-  <PersonalInfoSkeleton />
-) : ( */}
         <section className="bg-white rounded-3xl border border-slate-200 shadow-sm">
           <div className="p-6 border-b bg-slate-50/50 flex justify-between items-center">
             <h2 className="text-lg font-bold">Personal Information</h2>
@@ -231,19 +252,22 @@ export default function ProfilePage() {
             {!isEditing ? (
               <button
                 onClick={() => setIsEditing(true)}
-                className="px-5 py-2 text-sm font-semibold bg-black text-white rounded-lg"
+                className="px-5 py-2 text-sm font-semibold bg-black text-white rounded-lg hover:bg-gray-800 transition-colors"
               >
                 Edit
               </button>
             ) : (
               <div className="flex gap-3">
-                <button onClick={handleCancelEdit} className="px-4 py-2 border rounded-lg">
+                <button 
+                  onClick={handleCancelEdit} 
+                  className="px-4 py-2 border rounded-lg hover:bg-gray-50 transition-colors"
+                >
                   Cancel
                 </button>
                 <button
                   onClick={handleSaveProfile}
                   disabled={isSaving}
-                  className="px-5 py-2 bg-green-600 text-white rounded-lg"
+                  className="px-5 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50"
                 >
                   {isSaving ? "Saving..." : "Save"}
                 </button>
@@ -252,16 +276,52 @@ export default function ProfilePage() {
           </div>
 
           <div className="p-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Input label="Full Name" name="full_name" value={formData.full_name} onChange={handleChange} disabled={!isEditing} />
-            <Input label="Mobile" name="mobile_number" value={formData.mobile_number} onChange={handleChange} disabled={!isEditing} />
-            <Input label="Email" name="email" value={formData.email} onChange={handleChange} disabled={!isEditing} />
-            <Input label="City" name="city" value={formData.city} onChange={handleChange} disabled={!isEditing} />
-            <Input label="Annual Income (₹)" name="annual_income" type="number" value={formData.annual_income} onChange={handleChange} disabled={!isEditing} />
+            <Input 
+              label="Full Name" 
+              name="full_name" 
+              value={formData.full_name} 
+              onChange={handleChange} 
+              disabled={!isEditing} 
+            />
+            <Input 
+              label="Mobile" 
+              name="mobile_number" 
+              value={formData.mobile_number} 
+              onChange={handleChange} 
+              disabled={!isEditing} 
+            />
+            <Input 
+              label="Email" 
+              name="email" 
+              value={formData.email} 
+              onChange={handleChange} 
+              disabled={!isEditing} 
+            />
+            <Input 
+              label="City" 
+              name="city" 
+              value={formData.city} 
+              onChange={handleChange} 
+              disabled={!isEditing} 
+            />
+            <Input 
+              label="Annual Income (₹)" 
+              name="annual_income" 
+              type="number" 
+              value={formData.annual_income} 
+              onChange={handleChange} 
+              disabled={!isEditing} 
+            />
+            <Input 
+              label="Employment Type" 
+              name="employment_type" 
+              value={formData.employment_type} 
+              onChange={handleChange} 
+              disabled={!isEditing}
+              placeholder="e.g., Salaried, Self-Employed"
+            />
           </div>
         </section>
-{/* )} */}
-
-
 
         {/* ================= LOAN TOGGLE ================= */}
         <div className="bg-indigo-600 p-8 rounded-[2.5rem] text-white flex justify-between items-center">
@@ -270,16 +330,22 @@ export default function ProfilePage() {
           <div className="flex bg-white/10 p-1.5 rounded-2xl">
             <button
               onClick={() => setHasLoan(true)}
-              className={`px-6 py-2 rounded-xl ${hasLoan ? "bg-white text-indigo-600" : "text-white/70"
-                }`}
+              className={`px-6 py-2 rounded-xl transition-all ${
+                hasLoan 
+                  ? "bg-white text-indigo-600" 
+                  : "text-white/70 hover:text-white"
+              }`}
             >
               YES
             </button>
 
             <button
               onClick={() => setHasLoan(false)}
-              className={`px-6 py-2 rounded-xl ${!hasLoan ? "bg-white text-indigo-600" : "text-white/70"
-                }`}
+              className={`px-6 py-2 rounded-xl transition-all ${
+                !hasLoan 
+                  ? "bg-white text-indigo-600" 
+                  : "text-white/70 hover:text-white"
+              }`}
             >
               NO
             </button>
@@ -294,32 +360,83 @@ export default function ProfilePage() {
             </div>
 
             <div className="p-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-              <Input label="Bank Name" name="bank_name" value={formData.bank_name} onChange={handleChange} />
-              <Input label="Loan Amount (₹)" name="loan_amount" type="number" value={formData.loan_amount} onChange={handleChange} />
-              <Input label="Interest Rate (%)" name="interest_rate" type="number" value={formData.interest_rate} onChange={handleChange} />
-              <Input label="Tenure (Months)" name="tenure" type="number" value={formData.tenure} onChange={handleChange} />
-              <Input label="EMI (₹)" name="emi" type="number" value={formData.emi} onChange={handleChange} />
-              <Input label="Loan Start Date" name="loan_start_date" type="date" value={formData.loan_start_date} onChange={handleChange} />
+              <Input 
+                label="Bank Name" 
+                name="bank_name" 
+                value={formData.bank_name} 
+                onChange={handleChange} 
+                disabled={!isEditing}
+              />
+              <Input 
+                label="Loan Type" 
+                name="loan_type" 
+                value={formData.loan_type} 
+                onChange={handleChange} 
+                disabled={!isEditing}
+              />
+              <Input 
+                label="Loan Amount (₹)" 
+                name="loan_amount" 
+                type="number" 
+                value={formData.loan_amount} 
+                onChange={handleChange} 
+                disabled={!isEditing}
+              />
+              <Input 
+                label="Interest Rate (%)" 
+                name="interest_rate" 
+                type="number" 
+                value={formData.interest_rate} 
+                onChange={handleChange} 
+                disabled={!isEditing}
+              />
+              <Input 
+                label="Tenure (Months)" 
+                name="tenure" 
+                type="number" 
+                value={formData.tenure} 
+                onChange={handleChange} 
+                disabled={!isEditing}
+              />
+              <Input 
+                label="EMI (₹)" 
+                name="emi" 
+                type="number" 
+                value={formData.emi} 
+                onChange={handleChange} 
+                disabled={!isEditing}
+              />
+              <Input 
+                label="Loan Start Date" 
+                name="loan_start_date" 
+                type="date" 
+                value={formData.loan_start_date} 
+                onChange={handleChange} 
+                disabled={!isEditing}
+              />
             </div>
           </section>
         )}
 
-        <CommunicationHistoryTimeline/>
+        <CommunicationHistoryTimeline />
 
         {/* ================= SAVE BUTTON ================= */}
         <div className="flex justify-end">
-          <button className="px-10 py-4 bg-indigo-600 text-white rounded-2xl font-black">
-            Save Profile Changes
+          <button 
+            onClick={handleSaveAllChanges}
+            disabled={isSaving}
+            className="px-10 py-4 bg-indigo-600 text-white rounded-2xl font-black hover:bg-indigo-700 transition-colors disabled:opacity-50"
+          >
+            {isSaving ? "Saving..." : "Save Profile Changes"}
           </button>
         </div>
-
       </div>
     </div>
   );
 }
 
 /* ================= INPUT COMPONENT ================= */
-function Input({ label, name, type = "text", value, onChange, disabled }) {
+function Input({ label, name, type = "text", value, onChange, disabled, placeholder = "" }) {
   return (
     <div className="space-y-2">
       <label className="text-xs font-black uppercase tracking-widest text-slate-400">
@@ -331,10 +448,12 @@ function Input({ label, name, type = "text", value, onChange, disabled }) {
         value={value ?? ""}
         onChange={onChange}
         disabled={disabled}
-        className={`w-full px-5 py-4 border rounded-2xl ${disabled
-            ? "bg-gray-100 text-gray-500"
-            : "bg-white border-slate-300 focus:ring-2 focus:ring-indigo-600"
-          }`}
+        placeholder={placeholder}
+        className={`w-full px-5 py-4 border rounded-2xl transition-all ${
+          disabled
+            ? "bg-gray-100 text-gray-500 cursor-not-allowed"
+            : "bg-white border-slate-300 focus:ring-2 focus:ring-indigo-600 focus:border-transparent"
+        }`}
       />
     </div>
   );

@@ -5,6 +5,7 @@ import {
   ArrowRight, Clock as ClockIcon, Lock, Shield, Scale, Landmark
 } from 'lucide-react';
 import axios from 'axios';
+import { BASE_URL } from '../../../api'; // Adjust path as needed
 
 const HiddenCostsAudit = () => {
   const [isProUser, setIsProUser] = useState(false);
@@ -73,9 +74,9 @@ const HiddenCostsAudit = () => {
         return;
       }
       
-      // Verify with API
+      // Verify with API using BASE_URL
       const response = await axios.get(
-        "https://backend.quickhomeloan.in/public/api/check-access",
+        `${BASE_URL}/check-access`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -185,7 +186,7 @@ const HiddenCostsAudit = () => {
   // Handle audit button click
   const handleAuditClick = () => {
     if (!isProUser) {
-      alert("This feature requires a Pro subscription. Please upgrade to continue.");
+      window.dispatchEvent(new CustomEvent("openProModal"));
       return;
     }
     calculateMetrics();
@@ -345,7 +346,7 @@ const HiddenCostsAudit = () => {
         </div>
 
         {/* Show upgrade banner for non-pro users */}
-        {/* {!isProUser && !isCheckingAccess && <UpgradeBanner />} */}
+        {!isProUser && !isCheckingAccess && <UpgradeBanner />}
 
         {/* Main Audit Card */}
         <div className="animate-in fade-in duration-500">

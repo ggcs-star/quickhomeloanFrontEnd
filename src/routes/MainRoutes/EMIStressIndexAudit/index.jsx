@@ -6,6 +6,7 @@ import {
   Clock as ClockIcon, Lock, Shield, Activity, AlertCircle
 } from 'lucide-react';
 import axios from 'axios';
+import { BASE_URL } from '../../../api'; // Adjust path as needed
 
 const EMIStressIndexAudit = () => {
   const [isProUser, setIsProUser] = useState(false);
@@ -66,9 +67,9 @@ const EMIStressIndexAudit = () => {
         return;
       }
       
-      // Verify with API
+      // Verify with API using BASE_URL
       const response = await axios.get(
-        "https://backend.quickhomeloan.in/public/api/check-access",
+        `${BASE_URL}/check-access`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -185,7 +186,7 @@ const EMIStressIndexAudit = () => {
   // Handle audit button click
   const handleAuditClick = () => {
     if (!isProUser) {
-      alert("This feature requires a Pro subscription. Please upgrade to continue.");
+      window.dispatchEvent(new CustomEvent("openProModal"));
       return;
     }
     calculateMetrics();

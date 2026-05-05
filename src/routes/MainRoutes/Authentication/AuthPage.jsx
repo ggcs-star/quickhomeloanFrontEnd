@@ -8,7 +8,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { generateFCMToken } from "../../../firebase";
 
 // API Helper
-import { saveFCMTokenToBackend } from "../../../api";
+import { saveFCMTokenToBackend, BASE_URL } from "../../../api";
 
 export default function AuthPage() {
 
@@ -35,8 +35,7 @@ export default function AuthPage() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // ✅ Correct Base URL
-  const BASE_URL = "https://backend.quickhomeloan.in/public/api";
+  // ✅ Using BASE_URL from api.js - no need to redeclare
 
   const [isAuth, setIsAuth] = useState(
     localStorage.getItem("isAuthenticated") === "true"
@@ -404,145 +403,154 @@ export default function AuthPage() {
   };
 
   /* ===================== LOGIN HANDLER ===================== */
-const handleLoginSubmit = async (e) => {
-  e.preventDefault();
-  setLoginError("");
-  setIsLoggingIn(true);
+  const handleLoginSubmit = async (e) => {
+    e.preventDefault();
+    setLoginError("");
+    setIsLoggingIn(true);
 
-  if (!loginEmail || !loginPassword) {
-    setLoginError("Please enter both email and password");
-    setIsLoggingIn(false);
-    return;
-  }
-
-  try {
-    const apiClient = axios.create({
-      baseURL: BASE_URL,
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        // Add CSRF token if you have one from meta tag
-        "X-CSRF-TOKEN": getCsrfTokenFromMeta(),
-      },
-    });
-
-    console.log("🔐 Attempting Login...");
-
-    const res = await apiClient.post("/login", {
-      email: loginEmail,
-      password: loginPassword,
-    });
-
-    console.log("✅ Login API Response:", res.data);
-
-    if (res.data.success === true) {
-      /* ===============================
-         🔑 EXTRACT TOKEN SAFELY
-      =============================== */
-
-      const token =
-        res.data.token ||
-        res.data.access_token ||
-        res.data.data?.token ||
-        res.data.data?.access_token;
-
-      if (!token) {
-        console.error("❌ TOKEN NOT FOUND IN RESPONSE:", res.data);
-        setLoginError("Authentication failed. Token missing.");
-        setIsLoggingIn(false);
-        return;
-      }
-
-      /* ===============================
-         💾 STORE AUTH DATA
-      =============================== */
-
-      localStorage.setItem("token", token);
-      localStorage.setItem("isAuthenticated", "true");
-
-      console.log("🔑 Token Stored:", token);
-
-      /* ===============================
-         👤 STORE USER DATA
-      =============================== */
-
-      const user =
-        res.data.user ||
-        res.data.data?.user ||
-        res.data.data ||
-        {};
-
-      if (user.id) {
-        localStorage.setItem("user_id", user.id);
-        console.log("✅ User ID stored:", user.id);
-      }
-
-      if (user.full_name) {
-        localStorage.setItem("user_name", user.full_name);
-        console.log("✅ Name stored:", user.full_name);
-      }
-
-      if (user.email) {
-        localStorage.setItem("user_email", user.email);
-        console.log("✅ Email stored:", user.email);
-      }
-
-      /* ===============================
-         🔔 DISPATCH AUTH EVENT
-      =============================== */
-
-      window.dispatchEvent(new Event("authStateChanged"));
-
-      toast.success("Logged in successfully");
-
-      /* ===============================
-         🔄 REDIRECT
-      =============================== */
-
-      setIsAuth(true);
-
-      setTimeout(() => {
-        navigate("/dashboard", { replace: true });
-      }, 500);
-
-    } else {
-      setLoginError(res.data.message || "Invalid credentials");
+    if (!loginEmail || !loginPassword) {
+      setLoginError("Please enter both email and password");
+      setIsLoggingIn(false);
+      return;
     }
 
-  } catch (err) {
-    console.error("❌ LOGIN ERROR:", err);
+    try {
+      const apiClient = axios.create({
+        baseURL: BASE_URL, // Using BASE_URL from api.js
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          // Add CSRF token if you have one from meta tag
+          "X-CSRF-TOKEN": getCsrfTokenFromMeta(),
+        },
+      });
 
-    if (err.response?.status === 419) {
-      // CSRF token mismatch
-      setLoginError("Session expired. Please refresh the page and try again.");
-    } else if (err.response?.status === 422) {
-      const errors = err.response.data.errors;
-      const firstError = errors
-        ? Object.values(errors)[0][0]
-        : "Validation error";
-      setLoginError(firstError);
-    } else if (err.response?.status === 401) {
-      setLoginError("Invalid email or password");
-    } else if (err.response?.status === 404) {
-      setLoginError("User not found");
-    } else if (err.response?.status === 500) {
-      setLoginError("Server error. Please try again later.");
-    } else {
-      setLoginError(
-        err.response?.data?.message ||
-        "An error occurred. Please try again."
-      );
+      console.log("🔐 Attempting Login...");
+
+      const res = await apiClient.post("/login", {
+        email: loginEmail,
+        password: loginPassword,
+      });
+
+      console.log("✅ Login API Response:", res.data);
+
+      if (res.data.success === true) {
+        /* ===============================
+           🔑 EXTRACT TOKEN SAFELY
+        =============================== */
+
+        const token =
+          res.data.token ||
+          res.data.access_token ||
+          res.data.data?.token ||
+          res.data.data?.access_token;
+
+        if (!token) {
+          console.error("❌ TOKEN NOT FOUND IN RESPONSE:", res.data);
+          setLoginError("Authentication failed. Token missing.");
+          setIsLoggingIn(false);
+          return;
+        }
+
+        /* ===============================
+           💾 STORE AUTH DATA
+        =============================== */
+
+        localStorage.setItem("token", token);
+        localStorage.setItem("isAuthenticated", "true");
+
+        console.log("🔑 Token Stored:", token);
+
+        /* ===============================
+           👤 STORE USER DATA
+        =============================== */
+
+        const user =
+          res.data.user ||
+          res.data.data?.user ||
+          res.data.data ||
+          {};
+
+        if (user.id) {
+          localStorage.setItem("user_id", user.id.toString());
+          console.log("✅ User ID stored:", user.id);
+        }
+
+        if (user.full_name) {
+          localStorage.setItem("user_name", user.full_name);
+          console.log("✅ Name stored:", user.full_name);
+        }
+
+        if (user.email) {
+          localStorage.setItem("user_email", user.email);
+          console.log("✅ Email stored:", user.email);
+        }
+
+        if (user.mobile_number) {
+          localStorage.setItem("user_mobile", user.mobile_number);
+        }
+
+        // Save FCM token after successful login
+        if (user.id && fcmToken) {
+          await saveFCMTokenForUser(user.id);
+        }
+
+        /* ===============================
+           🔔 DISPATCH AUTH EVENT
+        =============================== */
+
+        window.dispatchEvent(new Event("authStateChanged"));
+
+        toast.success("Logged in successfully");
+
+        /* ===============================
+           🔄 REDIRECT
+        =============================== */
+
+        setIsAuth(true);
+
+        setTimeout(() => {
+          navigate("/dashboard", { replace: true });
+        }, 500);
+
+      } else {
+        setLoginError(res.data.message || "Invalid credentials");
+      }
+
+    } catch (err) {
+      console.error("❌ LOGIN ERROR:", err);
+
+      if (err.response?.status === 419) {
+        // CSRF token mismatch
+        setLoginError("Session expired. Please refresh the page and try again.");
+      } else if (err.response?.status === 422) {
+        const errors = err.response.data.errors;
+        const firstError = errors
+          ? Object.values(errors)[0][0]
+          : "Validation error";
+        setLoginError(firstError);
+      } else if (err.response?.status === 401) {
+        setLoginError("Invalid email or password");
+      } else if (err.response?.status === 404) {
+        setLoginError("User not found");
+      } else if (err.response?.status === 500) {
+        setLoginError("Server error. Please try again later.");
+      } else {
+        setLoginError(
+          err.response?.data?.message ||
+          "An error occurred. Please try again."
+        );
+      }
+    } finally {
+      setIsLoggingIn(false);
     }
-  } finally {
-    setIsLoggingIn(false);
-  }
-};
+  };
 
-// Helper function to get CSRF token from meta tag
-const getCsrfTokenFromMeta = () => {
-  const metaTag = document.querySelector('meta[name="csrf-token"]');
-  return metaTag ? metaTag.getAttribute('content') : '';
-};
+  // Helper function to get CSRF token from meta tag
+  const getCsrfTokenFromMeta = () => {
+    const metaTag = document.querySelector('meta[name="csrf-token"]');
+    return metaTag ? metaTag.getAttribute('content') : '';
+  };
 
   /* ===================== REGISTER HANDLER ===================== */
   const handleRegister = async (e) => {
@@ -571,9 +579,9 @@ const getCsrfTokenFromMeta = () => {
     }
 
     try {
-      // Create axios instance with CORS headers
+      // Create axios instance with CORS headers using BASE_URL
       const apiClient = axios.create({
-        baseURL: BASE_URL,
+        baseURL: BASE_URL, // Using BASE_URL from api.js
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
@@ -618,7 +626,7 @@ const getCsrfTokenFromMeta = () => {
         setRegError("Session expired. Please refresh the page and try again.");
       } else if (err.code === 'ERR_NETWORK') {
         // CORS error
-        setRegError("CORS issue: Please contact admin to add 'http://localhost:5173' to allowed origins.");
+        setRegError("CORS issue: Please contact admin to add your domain to allowed origins.");
       } else if (err.response?.status === 422) {
         const errors = err.response.data.errors;
         if (errors && typeof errors === 'object') {
@@ -693,7 +701,12 @@ const getCsrfTokenFromMeta = () => {
           {!isFCMInitialized && fcmPermission !== "granted" && (
             <div className="mt-4 text-sm text-yellow-300">
               <p>🔔 Enable notifications for loan status updates</p>
-              <p className="text-xs mt-1">Click "Manually Generate Token" button above</p>
+              <button
+                onClick={manuallyGenerateFCMToken}
+                className="mt-2 px-3 py-1.5 bg-yellow-600 text-white rounded-lg text-xs font-semibold hover:bg-yellow-700 transition"
+              >
+                Manually Generate Token
+              </button>
             </div>
           )}
         </div>
@@ -805,6 +818,7 @@ const getCsrfTokenFromMeta = () => {
               )}
 
               <form onSubmit={handleRegister}>
+                {/* Required Fields */}
                 {[
                   ["Full Name", "full_name", "text"],
                   ["Email", "email", "email"],
@@ -820,6 +834,26 @@ const getCsrfTokenFromMeta = () => {
                         updateRegField(field, e.target.value)
                       }
                       required
+                      disabled={isRegistering}
+                    />
+                  </div>
+                ))}
+
+                {/* Optional Fields */}
+                {[
+                  ["Channel Name (Optional)", "channel_name", "text"],
+                  ["Channel URL (Optional)", "channel_url", "url"],
+                  ["Address (Optional)", "address", "text"],
+                ].map(([label, field, type]) => (
+                  <div key={field} className="mb-3">
+                    <input
+                      type={type}
+                      placeholder={label}
+                      className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
+                      value={regData[field]}
+                      onChange={(e) =>
+                        updateRegField(field, e.target.value)
+                      }
                       disabled={isRegistering}
                     />
                   </div>
@@ -899,3 +933,4 @@ const getCsrfTokenFromMeta = () => {
     </div>
   );
 }
+
