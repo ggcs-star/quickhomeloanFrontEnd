@@ -125,7 +125,7 @@ const FaqPage = () => {
 
             <div className="mt-6 flex justify-center gap-3 flex-wrap">
               <Link
-                to="/contact"
+                to="/contact-us"
                 className="px-6 py-3 bg-white text-neutral-900 rounded-md font-semibold hover:bg-neutral-100 transition-colors"
               >
                 Contact Support

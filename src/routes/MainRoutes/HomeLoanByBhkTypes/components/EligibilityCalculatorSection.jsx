@@ -83,9 +83,20 @@ const EligibilityCalculatorSection = ({ data }) => {
 
           {/* Header */}
           <div className="p-6 border-b border-neutral-300">
-            <h2 className="text-xl md:text-2xl font-bold text-neutral-800">
-              {data.title}
+            <h2
+              className="text-xl md:text-2xl font-bold text-neutral-800"
+              id="eligibility-calculator-heading"
+            >
+              {data?.bankName
+                ? `${data.bankName
+                  .replace(
+                    /– Interest Rates, Eligibility & Benefits \(\d{4}\)/,
+                    ""
+                  )
+                  .trim()} Eligibility Calculator`
+                : data?.title || "Home Loan Eligibility Calculator"}
             </h2>
+
           </div>
 
           {/* Body */}
@@ -209,40 +220,40 @@ const EligibilityCalculatorSection = ({ data }) => {
             </div>
 
             {/* RIGHT: Result */}
-       <div className="bg-gray-100 text-neutral-900 p-8 rounded-md shadow-sm border border-neutral-300 flex flex-col justify-center">
+            <div className="bg-gray-100 text-neutral-900 p-8 rounded-md shadow-sm border border-neutral-300 flex flex-col justify-center">
 
-  <div className="text-center pb-6 border-b border-neutral-300">
-    <p className="text-neutral-600 uppercase tracking-wide text-xs font-semibold">
-      Maximum Loan Eligibility
-    </p>
-    <h3 className="text-4xl md:text-5xl font-bold mt-2">
-      ₹ {formatINR(eligibleAmount)}
-    </h3>
-  </div>
+              <div className="text-center pb-6 border-b border-neutral-300">
+                <p className="text-neutral-600 uppercase tracking-wide text-xs font-semibold">
+                  Maximum Loan Eligibility
+                </p>
+                <h3 className="text-4xl md:text-5xl font-bold mt-2">
+                  ₹ {formatINR(eligibleAmount)}
+                </h3>
+              </div>
 
-  <div className="pt-6 space-y-4 text-sm md:text-base">
+              <div className="pt-6 space-y-4 text-sm md:text-base">
 
-    <div className="flex justify-between">
-      <span className="text-neutral-600">Max Affordable EMI</span>
-      <span className="font-semibold text-neutral-900">
-        ₹ {formatINR(maxAffordableEmi)}
-      </span>
-    </div>
+                <div className="flex justify-between">
+                  <span className="text-neutral-600">Max Affordable EMI</span>
+                  <span className="font-semibold text-neutral-900">
+                    ₹ {formatINR(maxAffordableEmi)}
+                  </span>
+                </div>
 
-    <p className="text-xs text-neutral-500 mt-4 leading-relaxed">
-      {data.note}
-    </p>
+                <p className="text-xs text-neutral-500 mt-4 leading-relaxed">
+                  {data.note}
+                </p>
 
-    <a
-      href="#apply-now"
-      className="mt-6 block w-full text-center border border-neutral-300 bg-white text-neutral-900 px-6 py-3 rounded-md font-semibold hover:bg-neutral-100 transition"
-    >
-      {data.ctaLabel} →
-    </a>
+                <a
+                  // href="#apply-now"
+                  className="mt-6 block w-full text-center border border-neutral-300 bg-white text-neutral-900 px-6 py-3 rounded-md font-semibold hover:bg-neutral-100 transition"
+                >
+                  {data.ctaLabel} →
+                </a>
 
-  </div>
+              </div>
 
-</div>
+            </div>
 
 
           </div>

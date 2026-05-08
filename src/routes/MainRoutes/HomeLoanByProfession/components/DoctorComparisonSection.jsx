@@ -12,7 +12,7 @@ const DoctorComparisonSection = ({ data }) => {
           <h2 className="text-3xl font-extrabold text-gray-900">
             {data.title}
           </h2>
-          <p className="mt-2 text-lg text-gray-500">{data.subtitle}</p>
+          <h3 className="mt-2 text-lg text-gray-500">{data.subtitle}</h3>
         </div>
 
         {/* Table */}

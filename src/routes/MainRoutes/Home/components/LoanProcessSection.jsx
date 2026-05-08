@@ -37,11 +37,9 @@ const LoanProcessSection = () => {
         {/* HEADER */}
         <div className="text-center mb-16 max-w-2xl mx-auto">
           <h2 className="text-3xl font-bold text-slate-900">
-            Getting Your Loan is Easy
-          </h2>
-          <p className="mt-4 text-lg text-slate-600">
-            Follow our simple 4-step process to get your home loan approved quickly.
-          </p>
+Home Loan Process Made Simple          </h2>
+          <h3 className="mt-4 text-lg text-slate-600">
+Fast Approval with Minimal Documentation          </h3>
         </div>
 
         {/* STEPS GRID */}

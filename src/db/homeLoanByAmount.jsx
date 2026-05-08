@@ -27,11 +27,11 @@ buttons: [
     href: "/apply-loan?category=Home Loan By Amount&subcategory=50 Lakh Home Loan EMI",
     variant: "primary",
   },
-  {
-    label: "Compare Banks",
-    href: "/compare/50-lakh-home-loan",
-    variant: "secondary",
-  }
+  // {
+  //   label: "Compare Banks",
+  //   href: "/compare/50-lakh-home-loan",
+  //   variant: "secondary",
+  // }
 ]
 
 },
@@ -308,11 +308,11 @@ buttons: [
       href: "/apply-loan?category=Home Loan By Amount&subcategory=20 Lakh Home Loan EMI",
       variant: "primary",
     },
-    {
-      label: "Compare Banks",
-      href: "/compare/20-lakh-home-loan",
-      variant: "secondary",
-    }
+    // {
+    //   label: "Compare Banks",
+    //   href: "/compare/20-lakh-home-loan",
+    //   variant: "secondary",
+    // }
   ]
 },
 
@@ -559,11 +559,11 @@ buttons: [
       href: "/apply-loan?category=Home Loan By Amount&subcategory=25 Lakh Home Loan EMI",
       variant: "primary",
     },
-    {
-      label: "Compare Banks",
-      href: "/compare/25-lakh-home-loan",
-      variant: "secondary",
-    }
+    // {
+    //   label: "Compare Banks",
+    //   href: "/compare/25-lakh-home-loan",
+    //   variant: "secondary",
+    // }
   ]
 },
 
@@ -811,11 +811,11 @@ heroSection: {
       href: "/apply-loan?category=Home Loan By Amount&subcategory=30 Lakh Home Loan EMI",
       variant: "primary"
     },
-    {
-      label: "Compare Banks",
-      href: "/compare/30-lakh-home-loan",
-      variant: "secondary"
-    }
+    // {
+    //   label: "Compare Banks",
+    //   href: "/compare/30-lakh-home-loan",
+    //   variant: "secondary"
+    // }
   ]
 },
 
@@ -1062,11 +1062,11 @@ heroSection: {
       href: "/apply-loan?category=Home Loan By Amount&subcategory=40 Lakh Home Loan EMI",
       variant: "primary",
     },
-    {
-      label: "Compare Banks",
-      href: "/compare/40-lakh-home-loan",
-      variant: "secondary",
-    }
+    // {
+    //   label: "Compare Banks",
+    //   href: "/compare/40-lakh-home-loan",
+    //   variant: "secondary",
+    // }
   ]
 },
 
@@ -1313,11 +1313,11 @@ heroSection: {
       href: "/apply-loan?category=Home Loan By Amount&subcategory=1 Crore Home Loan EMI",
       variant: "primary",
     },
-    {
-      label: "Compare Banks",
-      href: "/compare/1-crore-home-loan",
-      variant: "secondary",
-    }
+    // {
+    //   label: "Compare Banks",
+    //   href: "/compare/1-crore-home-loan",
+    //   variant: "secondary",
+    // }
   ]
 },
 

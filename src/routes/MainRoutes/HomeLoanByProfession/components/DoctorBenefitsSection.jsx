@@ -11,9 +11,9 @@ const DoctorBenefitsSection = ({ data }) => {
           <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl mb-6">
             {data.title}
           </h2>
-          <p className="text-lg text-gray-500 leading-relaxed">
+          <h3 className="text-lg text-gray-500 leading-relaxed">
             {data.description}
-          </p>
+          </h3>
         </div>
 
         {/* Subheading */}
@@ -21,9 +21,9 @@ const DoctorBenefitsSection = ({ data }) => {
           <h2 className="text-base text-gray-900 font-semibold tracking-wide uppercase">
             {data.subtitle}
           </h2>
-          <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-500">
+          <h3 className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-500">
             {data.subtext}
-          </p>
+          </h3>
         </div>
 
         {/* Benefits Grid */}

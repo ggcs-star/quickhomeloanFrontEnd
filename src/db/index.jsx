@@ -384,7 +384,7 @@ export const navMenu = [
                             { id: 4, label: "Home Loan for Teachers", slug: "/home-loan/profession/teacher" },
                             { id: 5, label: "Home Loan for Lawyers", slug: "/home-loan/profession/lawyer" },
                             { id: 6, label: "Home Loan for IT Professionals", slug: "/home-loan/profession/it-professionals" },
-                            { id: 7, label: "Home Loan for Influencers", slug: "/home-loan/profession/influencers" },
+                            // { id: 7, label: "Home Loan for Influencers", slug: "/home-loan/profession/influencers" },
                             { id: 8, label: "Home Loan for NRI'S", slug: "/home-loan/profession/nris" },
                             { id: 9, label: "Home Loan for Business Owners", slug: "/home-loan/profession/business-owners" },
                             { id: 10, label: "Home Loan for Defense Personnel", slug: "/home-loan/profession/defense-personnel" },
@@ -427,7 +427,7 @@ export const navMenu = [
                             { id: 2, label: "Home Loan for Independent House / Villa", slug: "/home-loan/property/independent-house" },
                             { id: 3, label: "Home Loan for Plot / Land Purchase", slug: "/home-loan/property/plot" },
                             { id: 4, label: "Home Loan for Under-Construction Property", slug: "/home-loan/property/under-construction" },
-                            { id: 5, label: "Home Loan for Ready-to-Move Property", slug: "/home-loan/property/ready-to-move" },
+                            // { id: 5, label: "Home Loan for Ready-to-Move Property", slug: "/home-loan/property/ready-to-move" },
                         ]
                     },
                     {

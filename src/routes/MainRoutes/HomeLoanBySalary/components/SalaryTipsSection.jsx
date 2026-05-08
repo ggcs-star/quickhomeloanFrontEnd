@@ -25,9 +25,9 @@ const SalaryTipsSection = () => {
               {tipsSection.title}
             </h2>
             {tipsSection.subtitle && (
-              <p className="text-neutral-600 text-sm mt-2 text-center md:text-left">
+              <h3 className="text-neutral-600 text-sm mt-2 text-center md:text-left">
                 {tipsSection.subtitle}
-              </p>
+              </h3>
             )}
           </div>
 

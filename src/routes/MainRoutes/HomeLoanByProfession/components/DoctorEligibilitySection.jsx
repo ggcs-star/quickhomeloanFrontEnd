@@ -33,9 +33,9 @@ const DoctorEligibilitySection = ({ data }) => {
           {data.title}
         </h2>
 
-        <p className="text-gray-400 max-w-2xl mx-auto mb-12">
+        <h3 className="text-gray-400 max-w-2xl mx-auto mb-12">
           {data.description}
-        </p>
+        </h3>
 
         {/* Grid with dynamic (safe) columns */}
         <div className={`grid grid-cols-2 sm:grid-cols-3 ${gridCols} gap-6`}>

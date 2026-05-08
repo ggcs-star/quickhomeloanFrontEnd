@@ -26,12 +26,25 @@ const InterestRatesSection = ({ data }) => {
         <div className="bg-white rounded-md border border-neutral-300 overflow-hidden">
 
           {/* Header */}
+          {/* Header */}
+          {/* Header */}
           <div className="p-6 border-b border-neutral-300">
-            <h2 className="text-xl md:text-2xl font-bold text-neutral-800">
-              {data.title}
+            <h2
+              className="text-xl md:text-2xl font-bold text-neutral-800"
+              id="interest-rates-heading"
+            >
+              {`${data?.bankName
+                ?.replace(
+                  /– Interest Rates, Eligibility & Benefits \(\d{4}\)/,
+                  ""
+                )
+                ?.trim() || "Home Loan"} Interest Rates (Updated ${new Date().getFullYear()})`}
             </h2>
-            <p className="text-neutral-600 text-sm mt-1">
-              {data.description}
+
+            <p className="text-neutral-600 text-sm mt-2 leading-relaxed">
+              {data?.description ||
+                `Compare the latest ${data?.bankName || "home loan"
+                } interest rates, EMI options, eligibility criteria, processing fees, and lender offers available in ${new Date().getFullYear()}.`}
             </p>
           </div>
 
@@ -46,33 +59,30 @@ const InterestRatesSection = ({ data }) => {
               {/* Buttons */}
               <button
                 onClick={() => handleHighlight("rate")}
-                className={`px-4 py-2 rounded-full text-sm font-medium border transition ${
-                  highlightType === "rate"
+                className={`px-4 py-2 rounded-full text-sm font-medium border transition ${highlightType === "rate"
                     ? "border-black text-black bg-white"
                     : "border-neutral-300 text-neutral-700 hover:border-black"
-                }`}
+                  }`}
               >
                 Lowest Interest Rate
               </button>
 
               <button
                 onClick={() => handleHighlight("fee")}
-                className={`px-4 py-2 rounded-full text-sm font-medium border transition ${
-                  highlightType === "fee"
+                className={`px-4 py-2 rounded-full text-sm font-medium border transition ${highlightType === "fee"
                     ? "border-black text-black bg-white"
                     : "border-neutral-300 text-neutral-700 hover:border-black"
-                }`}
+                  }`}
               >
                 Lowest Processing Fee
               </button>
 
               <button
                 onClick={() => handleHighlight("emi")}
-                className={`px-4 py-2 rounded-full text-sm font-medium border transition ${
-                  highlightType === "emi"
+                className={`px-4 py-2 rounded-full text-sm font-medium border transition ${highlightType === "emi"
                     ? "border-black text-black bg-white"
                     : "border-neutral-300 text-neutral-700 hover:border-black"
-                }`}
+                  }`}
               >
                 Lowest EMI
               </button>
@@ -112,9 +122,8 @@ const InterestRatesSection = ({ data }) => {
                   return (
                     <tr
                       key={i}
-                      className={`border-b border-neutral-200 transition ${
-                        isBest ? "bg-yellow-50" : "hover:bg-neutral-50"
-                      }`}
+                      className={`border-b border-neutral-200 transition ${isBest ? "bg-yellow-50" : "hover:bg-neutral-50"
+                        }`}
                     >
                       {/* Name + Tag */}
                       <td className="p-5 align-top">

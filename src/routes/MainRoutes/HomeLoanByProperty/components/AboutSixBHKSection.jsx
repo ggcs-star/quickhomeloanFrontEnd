@@ -12,9 +12,9 @@ const AboutSixBHKSection = ({ data }) => {
           <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">
             {data.title}
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+          <h3 className="text-lg text-gray-600 max-w-3xl mx-auto">
             {data.subtitle}
-          </p>
+          </h3>
         </div>
 
         {/* 📘 Content Box */}

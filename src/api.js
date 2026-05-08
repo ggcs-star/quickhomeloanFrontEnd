@@ -58,3 +58,52 @@ export const getLenderBySlug = async (slug) => {
   const lenders = await getLenders();
   return lenders.find((item) => item.slug === slug);
 };
+
+export const submitContactForm = async (formData) => {
+  try {
+    console.log("Sending contact form data:", formData);
+    
+    const response = await axios.post(`${BASE_URL}/contact`, {
+      full_name: formData.full_name,
+      email: formData.email,
+      subject: formData.subject,
+      message: formData.message,
+    }, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    console.log("Response:", response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Error submitting contact form:", error);
+    console.error("Error response data:", error.response?.data);
+    throw error;
+  }
+};
+
+// ⭐ Submit Loan Inquiry
+export const submitLoanInquiry = async (formData) => {
+  try {
+    console.log("Sending loan inquiry data:", formData);
+    
+    const response = await axios.post(`${BASE_URL}/loan-inquiries`, {
+      full_name: formData.full_name,
+      mobile_number: formData.mobile_number,
+      email: formData.email,
+      loan_purpose: formData.loan_purpose,
+    }, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    console.log("Loan inquiry response:", response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Error submitting loan inquiry:", error);
+    console.error("Error response data:", error.response?.data);
+    throw error;
+  }
+};

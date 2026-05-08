@@ -26,11 +26,9 @@ const TrustedPartners = () => {
       {/* Heading */}
       <div className="text-center mb-4">
         <h1 className="text-xl font-bold text-slate-900 mb-3">
-          Our Trusted Lending Partners
-        </h1>
-        <p className="text-slate-600 max-w-2xl mx-auto">
-          We've partnered with India's leading banks to bring you the best home loan offers.
-        </p>
+Best Banks for Home Loan in India        </h1>
+        <h2 className="text-slate-600 max-w-2xl mx-auto">
+Compare Bank-Wise Home Loan Offers        </h2>
       </div>
 
       {/* 🔥 Smooth scroll + pause on hover */}

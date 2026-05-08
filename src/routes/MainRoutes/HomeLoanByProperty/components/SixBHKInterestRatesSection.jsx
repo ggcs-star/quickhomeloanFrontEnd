@@ -18,7 +18,7 @@ const SixBHKInterestRatesSection = ({ data }) => {
             </h2>
 
             {data.subtitle && (
-              <p className="text-neutral-600 text-sm mt-1">{data.subtitle}</p>
+              <h3 className="text-neutral-600 text-sm mt-1">{data.subtitle}</h3>
             )}
           </div>
 

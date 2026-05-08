@@ -142,73 +142,79 @@ export default function TransferHomeLoanComponent() {
       </section>
 
       {/* ================= CTA FORM ================= */}
-      <section className="bg-black text-white py-12 px-6 text-center rounded-t-3xl shadow-inner">
-        <h2 className="text-3xl font-bold mb-4">Switch Smartly & Save More</h2>
+    <section className="bg-black text-white py-12 px-6 text-center rounded-t-3xl shadow-inner">
+  <h2 className="text-3xl font-bold mb-4">
+    Switch Smartly & Save More
+  </h2>
 
-        <p className="mb-8 text-lg max-w-2xl mx-auto text-gray-300">
-          Submit your details to compare the best balance transfer offers and
-          reduce your EMI instantly.
-        </p>
+  <p className="mb-8 text-lg max-w-2xl mx-auto text-gray-300">
+    Submit your details to compare the best balance transfer offers and
+    reduce your EMI instantly.
+  </p>
 
-        <form
-          onSubmit={handleSubmit}
-          className="max-w-2xl mx-auto grid md:grid-cols-3 gap-4"
-        >
-          <div className="flex flex-col">
-            <label className="text-left text-sm mb-1 text-gray-300">
-              Full Name
-            </label>
-            <input
-              name="name"
-              type="text"
-              placeholder="John Doe"
-              value={formData.name}
-              onChange={handleChange}
-              className="p-3 rounded border border-gray-600 bg-white text-black focus:outline-none focus:ring-2 focus:ring-white"
-              required
-            />
-          </div>
+  <form
+    onSubmit={handleSubmit}
+    className="max-w-2xl mx-auto grid md:grid-cols-3 gap-4"
+  >
+    <div className="flex flex-col">
+      <label className="text-left text-sm mb-1 text-gray-300">
+        Full Name
+      </label>
 
-          <div className="flex flex-col">
-            <label className="text-left text-sm mb-1 text-gray-300">
-              Email
-            </label>
-            <input
-              name="email"
-              type="email"
-              placeholder="john@example.com"
-              value={formData.email}
-              onChange={handleChange}
-              className="p-3 rounded border border-gray-600 bg-white text-black focus:outline-none focus:ring-2 focus:ring-white"
-              required
-            />
-          </div>
+      <input
+        name="name"
+        type="text"
+        placeholder="John Doe"
+        value={formData.name}
+        onChange={handleChange}
+        className="p-3 rounded border border-gray-600 bg-white text-black focus:outline-none focus:ring-2 focus:ring-white"
+        required
+      />
+    </div>
 
-          <div className="flex flex-col">
-            <label className="text-left text-sm mb-1 text-gray-300">
-              Phone
-            </label>
-            <input
-              name="phone"
-              type="tel"
-              placeholder="+91 XXXXX XXXXX"
-              value={formData.phone}
-              onChange={handleChange}
-              className="p-3 rounded border border-gray-600 bg-white text-black focus:outline-none focus:ring-2 focus:ring-white"
-              required
-            />
-          </div>
+    <div className="flex flex-col">
+      <label className="text-left text-sm mb-1 text-gray-300">
+        Email
+      </label>
 
-          <div className="md:col-span-3">
-            <button
-              type="submit"
-              className="w-full py-3 px-6 bg-white text-black font-semibold rounded-lg border border-gray-900 hover:bg-gray-200 transition"
-            >
-              Get Free Quote
-            </button>
-          </div>
-        </form>
-      </section>
+      <input
+        name="email"
+        type="email"
+        placeholder="john@example.com"
+        value={formData.email}
+        onChange={handleChange}
+        className="p-3 rounded border border-gray-600 bg-white text-black focus:outline-none focus:ring-2 focus:ring-white"
+        required
+      />
+    </div>
+
+    <div className="flex flex-col">
+      <label className="text-left text-sm mb-1 text-gray-300">
+        Phone
+      </label>
+
+      <input
+        name="phone"
+        type="tel"
+        placeholder="+91 XXXXX XXXXX"
+        value={formData.phone}
+        onChange={handleChange}
+        className="p-3 rounded border border-gray-600 bg-white text-black focus:outline-none focus:ring-2 focus:ring-white"
+        required
+      />
+    </div>
+
+    <div className="md:col-span-3">
+      <button
+        type="submit"
+        disabled
+        className="w-full py-3 px-6 bg-gray-400 text-white font-semibold rounded-lg cursor-not-allowed opacity-70"
+      >
+        Get Free Quote
+      </button>
+    </div>
+  </form>
+</section>
     </div>
   );
 }

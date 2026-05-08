@@ -156,9 +156,9 @@ export default function HomeLoanCategories() {
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-900">
             Premium Home Loan Categories
           </h2>
-          <p className="mt-4 text-lg text-slate-600">
+          <h3 className="mt-4 text-lg text-slate-600">
             Tailored home loan solutions designed for every profession and need.
-          </p>
+          </h3>
         </div>
 
         {/* Grid */}

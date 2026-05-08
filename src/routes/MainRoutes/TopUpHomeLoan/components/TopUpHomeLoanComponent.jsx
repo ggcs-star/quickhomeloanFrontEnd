@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Container } from '../../../../components/Layout';
 import FAQSection from './FaqSection';
+import { Link } from "react-router-dom";
 
 const TopUpHomeLoanComponent = () => {
     const [formData, setFormData] = useState({
@@ -124,13 +125,13 @@ const TopUpHomeLoanComponent = () => {
                         {/* Buttons */}
                         <div className="mt-6 flex gap-3">
                             <a
-                                href="#apply"
+                                // href="#apply"
                                 className="w-[50%] lg:w-[280px] text-center text-sm lg:text-lg inline-block lg:px-5 py-3 bg-black !text-white rounded-md hover:bg-gray-900 transition"
                             >
                                 Get Personalized Quote
                             </a>
                             <a
-                                href="#compare"
+                                // href="#compare"
                                 className="w-[50%] lg:w-[280px] text-center text-sm lg:text-lg inline-block px-3 lg:px-5 py-3 border border-gray-400 rounded-md hover:bg-gray-100 transition"
                             >
                                 Compare Rates
@@ -324,19 +325,14 @@ const TopUpHomeLoanComponent = () => {
                         </p>
 
                         <div className="mt-5 flex justify-center gap-4">
-                            <a
-                                href="#apply"
-                                className="w-[50%] lg:w-[250px] text-sm lg:text-lg lg:px-6 py-3 bg-white text-black rounded-md hover:bg-gray-100 transition"
+                            <Link
+                                to="/contact-us"
+                                className="w-[50%] lg:w-[250px] text-sm lg:text-lg lg:px-6 py-3 bg-white text-black rounded-md hover:bg-gray-100 transition text-center"
                             >
                                 Enquire Now
-                            </a>
+                            </Link>
 
-                            <a
-                                href="#compare"
-                                className="w-[50%] lg:w-[250px] text-sm lg:text-lg lg:px-6 py-3 border border-white/40 rounded-md hover:bg-white hover:text-black transition"
-                            >
-                                See Example Offers
-                            </a>
+
                         </div>
                     </div>
                 </section>

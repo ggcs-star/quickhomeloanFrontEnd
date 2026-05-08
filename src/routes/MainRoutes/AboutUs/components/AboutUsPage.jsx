@@ -1,4 +1,6 @@
 import { Container } from "../../../../components/Layout";
+import herosectionimage from '../../../../assets/about/herosection.png'
+import { Link } from "react-router-dom";
 
 const AboutUsPage = () => {
   return (
@@ -30,9 +32,9 @@ const AboutUsPage = () => {
           {/* Mission Image */}
           <div className="flex justify-center">
             <img
-              src="/images/about-home-loan.jpg"
+              src={herosectionimage}
               alt="About QuickHomeLoan"
-              className="rounded-2xl shadow-md w-full max-w-md object-cover grayscale"
+              className="rounded-2xl shadow-md w-full max-w-2xl h-96 object-cover grayscale"
             />
           </div>
         </section>
@@ -119,7 +121,7 @@ const AboutUsPage = () => {
         </section>
 
         {/* Team Section */}
-        <section className="mt-16">
+        {/* <section className="mt-16">
           <h3 className="text-2xl font-bold text-center text-neutral-900">
             Meet Our Leadership
           </h3>
@@ -159,7 +161,7 @@ const AboutUsPage = () => {
               </div>
             ))}
           </div>
-        </section>
+        </section> */}
 
         {/* CTA Section */}
         <section className="mt-20 bg-neutral-900 text-white rounded-md p-4 lg:p-10 text-center">
@@ -171,18 +173,25 @@ const AboutUsPage = () => {
             one borrower at a time.
           </p>
           <div className="mt-6 flex justify-center gap-3">
-            <a
-              href="/contact"
-              className="w-[50%] lg:w-auto lg:px-6 py-3 text-sm bg-white text-neutral-900 rounded-md hover:bg-neutral-100 transition-colors"
+            <Link
+              to="/contact-us"
+              className="w-[50%] lg:w-auto lg:px-6 py-3 text-sm bg-white text-neutral-900 rounded-md hover:bg-neutral-100 transition-colors text-center"
             >
               Contact Us
-            </a>
-            <a
-              href="/apply"
-              className="w-[50%] lg:w-auto lg:px-6 py-3 text-sm border border-neutral-300 hover:bg-white hover:text-black rounded-md transition-colors text-white"
+            </Link>
+
+            <Link
+              to="/"
+              onClick={() => {
+                setTimeout(() => {
+                  const section = document.getElementById("categories-section");
+                  section?.scrollIntoView({ behavior: "smooth" });
+                }, 100);
+              }}
+              className="w-[50%] lg:w-auto lg:px-6 py-3 text-sm border border-neutral-300 hover:bg-white hover:text-black rounded-md transition-colors text-white text-center"
             >
               Explore Loan Options
-            </a>
+            </Link>
           </div>
         </section>
       </main>

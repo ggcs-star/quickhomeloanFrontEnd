@@ -14,9 +14,9 @@ const SixBHKHeroSection = ({ data }) => {
           </h1>
 
           {/* Description */}
-          <p className="text-base md:text-lg lg:text-xl text-gray-700 mb-8 max-w-3xl mx-auto">
+          <h2 className="text-base md:text-lg lg:text-xl text-gray-700 mb-8 max-w-3xl mx-auto">
             {data.description}
-          </p>
+          </h2>
 
           {/* Buttons */}
           <div className="flex flex-row justify-center items-center gap-2 lg:gap-4 mt-5">

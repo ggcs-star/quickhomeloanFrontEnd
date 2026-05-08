@@ -1,7 +1,24 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const HeroSection = ({ data }) => {
+const HeroSection = ({ data, profession }) => {
   if (!data) return null;
+
+  const currentYear = new Date().getFullYear();
+
+  // Convert profession slug/text into proper title
+  const formattedProfession =
+    profession
+      ?.replace(/-/g, " ")
+      ?.replace(/\b\w/g, (char) => char.toUpperCase()) || "Professionals";
+
+  // Dynamic SEO Title
+  const heroTitle = `Home Loan for ${formattedProfession} - Eligibility, EMI & Interest Rate (${currentYear})`;
+
+  // Dynamic SEO Description
+  const heroDescription =
+    data?.description ||
+    `Check eligibility, EMI calculator, interest rates, maximum loan amount, processing fees, and required documents for home loans for ${formattedProfession.toLowerCase()}. Compare top lenders and apply online in ${currentYear}.`;
 
   return (
     <section className="bg-gray-50 text-gray-900 pt-20 lg:py-32">
@@ -30,6 +47,7 @@ const HeroSection = ({ data }) => {
                 {data.tag.icon.svgPath?.map((path, i) => (
                   <path key={i} d={path}></path>
                 ))}
+
                 {data.tag.icon.circle && (
                   <circle
                     cx={data.tag.icon.circle.cx}
@@ -38,29 +56,27 @@ const HeroSection = ({ data }) => {
                   ></circle>
                 )}
               </svg>
+
               {data.tag.text}
             </span>
           </div>
         )}
 
-        {/* Title */}
+        {/* Dynamic SEO Title */}
         <h1 className="text-4xl tracking-tight font-extrabold sm:text-5xl md:text-6xl">
-          <span className="block">{data.title?.line1}</span>{" "}
-          <span className={`block ${data.title?.colorLine2}`}>
-            {data.title?.line2}
-          </span>
+          {heroTitle}
         </h1>
 
-        {/* Description */}
-        <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-          {data.description}
-        </p>
+        {/* Dynamic SEO Description */}
+        <h2 className="mt-3 text-base text-gray-500 sm:mt-5 sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+          {heroDescription}
+        </h2>
 
         {/* Buttons */}
         {data.buttons && (
           <div className="mx-auto mt-5 sm:mt-8 flex justify-center items-center gap-4">
             {data.buttons.map((btn, index) => (
-              <a key={index} href={btn.href}>
+              <Link key={index} to={btn.href || "/"}>
                 <button
                   className={`
                     w-[150px] lg:w-[200px]
@@ -68,15 +84,16 @@ const HeroSection = ({ data }) => {
                     transition-all duration-200 ease-in-out
                     inline-flex items-center justify-center
                     px-4 lg:px-8 py-3 text-sm lg:text-lg
-                    ${index === 0
-                      ? "bg-gray-300 text-black hover:text-white hover:bg-neutral-800"
-                      : "bg-white text-black border border-neutral-300 hover:bg-black hover:text-white"
+                    ${
+                      index === 0
+                        ? "bg-gray-300 text-black hover:text-white hover:bg-neutral-800"
+                        : "bg-white text-black border border-neutral-300 hover:bg-black hover:text-white"
                     }
                   `}
                 >
                   {btn.label}
                 </button>
-              </a>
+              </Link>
             ))}
           </div>
         )}

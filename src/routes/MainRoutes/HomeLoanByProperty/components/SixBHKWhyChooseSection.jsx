@@ -19,9 +19,9 @@ const SixBHKWhyChooseSection = ({ data }) => {
             <h2 className="text-xl md:text-2xl font-bold text-neutral-800">
               {data.whyChoose.title}
             </h2>
-            <p className="text-neutral-600 text-sm mt-1">
+            <h3 className="text-neutral-600 text-sm mt-1">
               {data.whyChoose.subtitle}
-            </p>
+            </h3>
           </div>
 
           {/* Points */}

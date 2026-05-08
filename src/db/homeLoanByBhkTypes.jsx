@@ -5,21 +5,22 @@ export const homeLoanByBhkTypes = [
   {
     id: 1,
     slug: "plot",
-heroSection: {
-  title: "Plot Loan / Land Loan – Interest Rates, Eligibility & Benefits (2025)",
-  description:
-    "Finance your dream land today and build your home tomorrow with India’s trusted loan partners.",
-  buttons: [
-    {
-      label: "Apply Instantly",
-      href: "/apply-loan?category=Home Loan By BHK Types&subcategory=Home Loan for Plot",
+    title: "Plot Loan / Land Loan",
+    heroSection: {
+      title: "Plot Loan / Land Loan – Interest Rates, Eligibility & Benefits (2025)",
+      description:
+        "Finance your dream land today and build your home tomorrow with India’s trusted loan partners.",
+      buttons: [
+        {
+          label: "Apply Instantly",
+          href: "/apply-loan?category=Home Loan By BHK Types&subcategory=Home Loan for Plot",
+        },
+        // {
+        //   label: "Calculate EMI",
+        //   href: "#emi-calculator",
+        // },
+      ],
     },
-    {
-      label: "Calculate EMI",
-      href: "#emi-calculator",
-    },
-  ],
-},
 
     introSection: {
       title: "What is a Plot Loan?",
@@ -184,7 +185,7 @@ heroSection: {
         ],
       },
       benefits: {
-        title: "Key Benefits",
+        title: "Features & Benefits",
         items: [
           {
             title: "Ownership of Land",
@@ -219,7 +220,7 @@ heroSection: {
         ],
         cta: {
           label: "Compare Lenders Now",
-          link: "#apply-now",
+          // link: "#apply-now",
         },
       },
     },
@@ -346,13 +347,15 @@ heroSection: {
         "Apply online today at QuickHomeLoan.in. We compare offers from India's top lenders to get you the lowest interest rates with minimal paperwork.",
       steps: ["Enter Details", "Compare Offers", "Instant Approval"],
       buttonLabel: "Apply Online Now",
+      ctaLink: "/apply-loan",
+
       footerNote: "100% Digital Process • No Hidden Charges",
     },
     contactSupport: {
       title: "Contact & Support",
       branch: {
         title: "Nearest Branch",
-        address: "Mumbai Main Branch, Fort, Mumbai, Maharashtra 400001",
+        address: "4th Floor, The Grand Emporio, Motera Stadium Rd, Motera, Ahmedabad, Gujarat 380005",
       },
       phone: {
         title: "Phone",
@@ -360,7 +363,7 @@ heroSection: {
       },
       hours: {
         title: "Business Hours",
-        details: "Mon-Fri: 10am - 4pm",
+        details: "Mon-Fri: 9am - 6pm",
       },
       buttons: {
         talkToOfficer: "Talk to a Loan Officer",
@@ -421,52 +424,52 @@ heroSection: {
   {
     id: 2,
     slug: "construction",
-heroSection: {
-  title: "Commercial Property Loan – Interest Rates, Eligibility & Benefits (2025)",
-  description:
-    "Finance the purchase, expansion, or construction of commercial real estate with flexible loan plans tailored for business growth.",
-  buttons: [
-    {
-      label: "Apply Instantly",
-      href: "/apply-loan?category=Home Loan By BHK Types&subcategory=Commercial Property Loan",
+    heroSection: {
+      title: "Commercial Property Loan – Interest Rates, Eligibility & Benefits (2025)",
+      description:
+        "Finance the purchase, expansion, or construction of commercial real estate with flexible loan plans tailored for business growth.",
+      buttons: [
+        {
+          label: "Apply Instantly",
+          href: "/apply-loan?category=Home Loan By BHK Types&subcategory=Commercial Property Loan",
+        },
+        // {
+        //   label: "Calculate EMI",
+        //   href: "#emi-calculator",
+        // },
+      ],
     },
-    {
-      label: "Calculate EMI",
-      href: "#emi-calculator",
-    },
-  ],
-},
 
 
 
- introSection: {
-  title: "What is a Construction Loan?",
-  subtitle:
-    "A construction loan helps you fund the building of your house in a structured, stage-wise manner.",
-  highlightedTerm: "Construction Loan",
-  altTerm: "Home Construction Finance",
+    introSection: {
+      title: "What is a Construction Loan?",
+      subtitle:
+        "A construction loan helps you fund the building of your house in a structured, stage-wise manner.",
+      highlightedTerm: "Construction Loan",
+      altTerm: "Home Construction Finance",
 
-  paragraphs: [
-    {
-      text:
-        "A Construction Loan (or Home Construction Finance) is a specialized type of home loan designed to help you build a house on a plot you already own or are purchasing. Unlike a regular home loan, the loan amount is disbursed in stages based on construction progress and approved project milestones.",
-      highlight: false,
-    },
-    {
-      text:
-        "A construction loan is typically released as your project moves from one phase to another — such as foundation, plinth, slab, brickwork, roofing, and finishing. This ensures proper utilization while reducing unnecessary interest, as you pay interest only on the disbursed amount.",
-      highlight: false,
-    },
-    {
-      text:
-        "Lenders require a sanctioned building plan and a detailed construction cost estimate from a licensed architect or engineer before approving the loan.",
-      highlight: false,
-    },
-  ],
+      paragraphs: [
+        {
+          text:
+            "A Construction Loan (or Home Construction Finance) is a specialized type of home loan designed to help you build a house on a plot you already own or are purchasing. Unlike a regular home loan, the loan amount is disbursed in stages based on construction progress and approved project milestones.",
+          highlight: false,
+        },
+        {
+          text:
+            "A construction loan is typically released as your project moves from one phase to another — such as foundation, plinth, slab, brickwork, roofing, and finishing. This ensures proper utilization while reducing unnecessary interest, as you pay interest only on the disbursed amount.",
+          highlight: false,
+        },
+        {
+          text:
+            "Lenders require a sanctioned building plan and a detailed construction cost estimate from a licensed architect or engineer before approving the loan.",
+          highlight: false,
+        },
+      ],
 
-  note:
-    "Start your home construction journey confidently — check eligibility, compare top lenders, and get pre-approved with QuickHomeLoan.in.",
-},
+      note:
+        "Start your home construction journey confidently — check eligibility, compare top lenders, and get pre-approved with QuickHomeLoan.in.",
+    },
 
 
     interestRatesSection: {
@@ -615,7 +618,7 @@ heroSection: {
         ],
       },
       benefits: {
-        title: "Key Benefits",
+        title: "Features & Benefits",
         items: [
           {
             title: "Tailored Disbursement",
@@ -645,7 +648,7 @@ heroSection: {
         ],
         cta: {
           label: "Compare Construction Loans",
-          link: "#apply-now",
+          // link: "#apply-now",
         },
       },
     },
@@ -774,13 +777,15 @@ heroSection: {
         "Apply for a construction loan today with QuickHomeLoan.in — compare top lenders, low EMIs, and fast disbursals in one place.",
       steps: ["Check Eligibility", "Upload Documents", "Get Instant Approval"],
       buttonLabel: "Apply for Construction Loan",
+      ctaLink: "/apply-loan",
+
       footerNote: "100% Online Application • Hassle-Free Process",
     },
     contactSupport: {
       title: "Contact & Support",
       branch: {
         title: "Nearest Branch",
-        address: "Mumbai Main Branch, Fort, Mumbai, Maharashtra 400001",
+        address: "4th Floor, The Grand Emporio, Motera Stadium Rd, Motera, Ahmedabad, Gujarat 380005",
       },
       phone: {
         title: "Phone",
@@ -788,7 +793,7 @@ heroSection: {
       },
       hours: {
         title: "Business Hours",
-        details: "Mon-Fri: 10am - 4pm",
+        details: "Mon-Fri: 9am - 6pm",
       },
       buttons: {
         talkToOfficer: "Talk to a Loan Officer",
@@ -851,48 +856,48 @@ heroSection: {
   {
     id: 3,
     slug: "commercial",
-heroSection: {
-  title: "Commercial Property Loan – Interest Rates, Eligibility & Benefits (2025)",
-  description:
-    "Empower your business expansion with tailored commercial property loans. Get the best interest rates for office, retail, or industrial space financing.",
-  buttons: [
-    { 
-      label: "Apply Instantly", 
-      href: "/apply-loan?category=Home Loan By BHK Types&subcategory=Commercial Property Loan",
+    heroSection: {
+      title: "Commercial Property Loan – Interest Rates, Eligibility & Benefits (2025)",
+      description:
+        "Empower your business expansion with tailored commercial property loans. Get the best interest rates for office, retail, or industrial space financing.",
+      buttons: [
+        {
+          label: "Apply Instantly",
+          href: "/apply-loan?category=Home Loan By BHK Types&subcategory=Commercial Property Loan",
+        },
+        // { label: "Calculate EMI", href: "#emi-calculator" }
+      ]
     },
-    { label: "Calculate EMI", href: "#emi-calculator" }
-  ]
-},
 
-  introSection: {
-  title: "What is a Commercial Property Loan?",
-  subtitle:
-    "A commercial property loan helps individuals and businesses purchase or construct property meant for business use such as offices, shops, showrooms, or warehouses.",
+    introSection: {
+      title: "What is a Commercial Property Loan?",
+      subtitle:
+        "A commercial property loan helps individuals and businesses purchase or construct property meant for business use such as offices, shops, showrooms, or warehouses.",
 
-  highlightedTerm: "Commercial Property Loan",
-  altTerm: "Business Mortgage Loan",
+      highlightedTerm: "Commercial Property Loan",
+      altTerm: "Business Mortgage Loan",
 
-  paragraphs: [
-    {
-      text:
-        "A Commercial Property Loan (also known as a Business Mortgage Loan) is a secured loan that enables individuals, professionals, and companies to purchase or construct property for business use. It is commonly used for offices, retail shops, showrooms, warehouses, and other income-generating commercial spaces.",
-      highlight: false,
+      paragraphs: [
+        {
+          text:
+            "A Commercial Property Loan (also known as a Business Mortgage Loan) is a secured loan that enables individuals, professionals, and companies to purchase or construct property for business use. It is commonly used for offices, retail shops, showrooms, warehouses, and other income-generating commercial spaces.",
+          highlight: false,
+        },
+        {
+          text:
+            "These loans typically offer high loan amounts—often up to 70% of the property’s market value—based on business turnover, financial strength, and property valuation. Repayment tenures generally range from 10 to 20 years.",
+          highlight: false,
+        },
+        {
+          text:
+            "Commercial loans also allow tax benefits, as interest paid can be treated as a business expense under applicable sections of the Income Tax Act, making them highly beneficial for growing businesses.",
+          highlight: false,
+        },
+      ],
+
+      note:
+        "Compare top banks and NBFCs to find the best commercial loan offers with flexible repayment and tax-deductible benefits for your business.",
     },
-    {
-      text:
-        "These loans typically offer high loan amounts—often up to 70% of the property’s market value—based on business turnover, financial strength, and property valuation. Repayment tenures generally range from 10 to 20 years.",
-      highlight: false,
-    },
-    {
-      text:
-        "Commercial loans also allow tax benefits, as interest paid can be treated as a business expense under applicable sections of the Income Tax Act, making them highly beneficial for growing businesses.",
-      highlight: false,
-    },
-  ],
-
-  note:
-    "Compare top banks and NBFCs to find the best commercial loan offers with flexible repayment and tax-deductible benefits for your business.",
-},
 
 
     interestRatesSection: {
@@ -1041,7 +1046,7 @@ heroSection: {
         ],
       },
       benefits: {
-        title: "Key Benefits",
+        title: "Features & Benefits",
         items: [
           {
             title: "Expand Business Ownership",
@@ -1066,7 +1071,7 @@ heroSection: {
         ],
         cta: {
           label: "Compare Commercial Loan Offers",
-          link: "#apply-now",
+          // link: "#apply-now",
         },
       },
     },
@@ -1198,13 +1203,15 @@ heroSection: {
         "Apply for a commercial property loan today and take your business to the next level with QuickHomeLoan.in.",
       steps: ["Share Your Business Details", "Compare Bank Offers", "Get Quick Sanction"],
       buttonLabel: "Apply for Commercial Loan",
+      ctaLink: "/apply-loan",
+
       footerNote: "Fast Processing • Transparent Terms • Trusted Lenders",
     },
     contactSupport: {
       title: "Contact & Support",
       branch: {
         title: "Nearest Branch",
-        address: "Mumbai Main Branch, Fort, Mumbai, Maharashtra 400001",
+        address: "4th Floor, The Grand Emporio, Motera Stadium Rd, Motera, Ahmedabad, Gujarat 380005",
       },
       phone: {
         title: "Phone",
@@ -1212,7 +1219,7 @@ heroSection: {
       },
       hours: {
         title: "Business Hours",
-        details: "Mon-Fri: 10am - 4pm",
+        details: "Mon-Fri: 9am - 6pm",
       },
       buttons: {
         talkToOfficer: "Talk to a Loan Officer",
@@ -1274,52 +1281,52 @@ heroSection: {
   {
     id: 4,
     slug: "renovation",
-heroSection: {
-  title: "Home Renovation Loan – Interest Rates, Eligibility & Benefits (2025)",
-  description:
-    "Upgrade, repair, or remodel your home easily with India’s leading renovation loan providers offering flexible EMIs and quick approvals.",
-  buttons: [
-    {
-      label: "Apply Instantly",
-      href: "/apply-loan?category=Home Loan By BHK Types&subcategory=Home Loan for Renovation",
+    heroSection: {
+      title: "Home Renovation Loan – Interest Rates, Eligibility & Benefits (2025)",
+      description:
+        "Upgrade, repair, or remodel your home easily with India’s leading renovation loan providers offering flexible EMIs and quick approvals.",
+      buttons: [
+        {
+          label: "Apply Instantly",
+          href: "/apply-loan?category=Home Loan By BHK Types&subcategory=Home Loan for Renovation",
+        },
+        // {
+        //   label: "Calculate EMI",
+        //   href: "#emi-calculator",
+        // },
+      ],
     },
-    {
-      label: "Calculate EMI",
-      href: "#emi-calculator",
-    },
-  ],
-},
 
 
     introSection: {
-  title: "What is a Home Renovation Loan?",
-  subtitle:
-    "A home renovation loan helps you upgrade, repair, or remodel your existing home without dipping into your savings.",
+      title: "What is a Home Renovation Loan?",
+      subtitle:
+        "A home renovation loan helps you upgrade, repair, or remodel your existing home without dipping into your savings.",
 
-  highlightedTerm: "Home Renovation Loan",
-  altTerm: "Home Improvement Loan",
+      highlightedTerm: "Home Renovation Loan",
+      altTerm: "Home Improvement Loan",
 
-  paragraphs: [
-    {
-      text:
-        "A Home Renovation Loan (or Home Improvement Loan) is designed to help homeowners fund repairs, remodeling, upgrades, and extensions. It covers common expenses like painting, plumbing, tiling, kitchen remodeling, electrical rewiring, waterproofing, and adding new rooms or floors.",
-      highlight: false,
-    },
-    {
-      text:
-        "These loans are ideal when you want to enhance the comfort, safety, or aesthetics of your home while spreading the cost over flexible EMIs. Depending on the lender, renovation loans may be offered as secured loans against property or as smaller unsecured personal home improvement loans.",
-      highlight: false,
-    },
-    {
-      text:
-        "Renovation loans come with simple documentation, quick disbursal, and lower interest rates compared to regular personal loans, making them a popular choice for home upgrades.",
-      highlight: false,
-    },
-  ],
+      paragraphs: [
+        {
+          text:
+            "A Home Renovation Loan (or Home Improvement Loan) is designed to help homeowners fund repairs, remodeling, upgrades, and extensions. It covers common expenses like painting, plumbing, tiling, kitchen remodeling, electrical rewiring, waterproofing, and adding new rooms or floors.",
+          highlight: false,
+        },
+        {
+          text:
+            "These loans are ideal when you want to enhance the comfort, safety, or aesthetics of your home while spreading the cost over flexible EMIs. Depending on the lender, renovation loans may be offered as secured loans against property or as smaller unsecured personal home improvement loans.",
+          highlight: false,
+        },
+        {
+          text:
+            "Renovation loans come with simple documentation, quick disbursal, and lower interest rates compared to regular personal loans, making them a popular choice for home upgrades.",
+          highlight: false,
+        },
+      ],
 
-  note:
-    "Compare home renovation loan rates, check eligibility instantly, and get pre-approved offers online at QuickHomeLoan.in.",
-},
+      note:
+        "Compare home renovation loan rates, check eligibility instantly, and get pre-approved offers online at QuickHomeLoan.in.",
+    },
 
 
     interestRatesSection: {
@@ -1468,7 +1475,7 @@ heroSection: {
         ],
       },
       benefits: {
-        title: "Key Benefits",
+        title: "Features & Benefits",
         items: [
           {
             title: "Low Interest Rates",
@@ -1498,7 +1505,7 @@ heroSection: {
         ],
         cta: {
           label: "Compare Home Renovation Offers",
-          link: "#apply-now",
+          // link: "#apply-now",
         },
       },
     },
@@ -1627,6 +1634,7 @@ heroSection: {
         "Apply now for a home renovation loan and enjoy quick approvals, minimal paperwork, and flexible EMIs — all online.",
       steps: ["Enter Loan Details", "Compare Offers", "Get Quick Approval"],
       buttonLabel: "Apply for Renovation Loan",
+      ctaLink: "/apply-loan",
       footerNote: "Fast Processing • Affordable EMIs • Trusted Lenders",
     },
 
@@ -1634,7 +1642,7 @@ heroSection: {
       title: "Contact & Support",
       branch: {
         title: "Nearest Branch",
-        address: "Mumbai Main Branch, Fort, Mumbai, Maharashtra 400001",
+        address: "4th Floor, The Grand Emporio, Motera Stadium Rd, Motera, Ahmedabad, Gujarat 380005",
       },
       phone: {
         title: "Phone",
@@ -1642,7 +1650,7 @@ heroSection: {
       },
       hours: {
         title: "Business Hours",
-        details: "Mon-Fri: 10am - 4pm",
+        details: "Mon-Fri: 9am - 6pm",
       },
       buttons: {
         talkToOfficer: "Talk to a Loan Officer",

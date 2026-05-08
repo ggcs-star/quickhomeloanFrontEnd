@@ -16,7 +16,11 @@ const HowToApply = ({ data }) => {
       {/* Header */}
       <div className="p-6 border-b border-neutral-300">
         <h2 className="text-xl md:text-2xl font-bold text-neutral-800">
-          {data.title}
+          {`How to Apply for ${data.bankName
+              ?.replace("Interest Rate, EMI Calculator & Eligibility", "")
+              ?.replace(/\(\d{4}\)/, "")
+              ?.trim() || "Home Loan"
+            } Online`}
         </h2>
       </div>
 

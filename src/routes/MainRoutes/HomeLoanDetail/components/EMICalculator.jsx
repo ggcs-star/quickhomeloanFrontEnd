@@ -47,7 +47,11 @@ const EMICalculator = ({ data }) => {
     <div className="bg-white text-black rounded-md border border-neutral-300 overflow-hidden">
       {/* Header */}
       <div className="p-6 border-b border-neutral-300">
-        <h2 className="text-2xl font-bold">{data.title}</h2>
+<h2 className="text-2xl font-bold">
+{`${data.bankName
+  ?.replace("Interest Rate, EMI Calculator & Eligibility", "")
+  ?.replace(/\(\d{4}\)/, "")
+  ?.trim() || "Home Loan"} EMI Calculator`}</h2>
       </div>
 
       {/* Body */}
@@ -159,27 +163,27 @@ const EMICalculator = ({ data }) => {
 
         {/* EMI Result */}
         <div className="text-center">
-  <div className="flex flex-col md:flex-row items-center justify-center gap-10">
-    {/* EMI, Interest, Payable - Uniform styling */}
-    {[ 
-      { label: "Monthly EMI", value: formatCurrency(emi) },
-      { label: "Total Interest", value: formatCurrency(totalInterest) },
-      { label: "Total Payable", value: formatCurrency(totalPayable) }
-    ].map((item, index) => (
-      <React.Fragment key={index}>
-        <div className="text-center">
-          <p className="text-sm md:text-base text-neutral-500">{item.label}</p>
-          <p className="text-2xl md:text-3xl font-bold text-black">{item.value}</p>
-        </div>
+          <div className="flex flex-col md:flex-row items-center justify-center gap-10">
+            {/* EMI, Interest, Payable - Uniform styling */}
+            {[
+              { label: "Monthly EMI", value: formatCurrency(emi) },
+              { label: "Total Interest", value: formatCurrency(totalInterest) },
+              { label: "Total Payable", value: formatCurrency(totalPayable) }
+            ].map((item, index) => (
+              <React.Fragment key={index}>
+                <div className="text-center">
+                  <p className="text-sm md:text-base text-neutral-500">{item.label}</p>
+                  <p className="text-2xl md:text-3xl font-bold text-black">{item.value}</p>
+                </div>
 
-        {/* Divider between columns (only for desktop) */}
-        {index < 2 && (
-          <div className="hidden md:block w-px h-10 bg-neutral-300"></div>
-        )}
-      </React.Fragment>
-    ))}
-  </div>
-</div>
+                {/* Divider between columns (only for desktop) */}
+                {index < 2 && (
+                  <div className="hidden md:block w-px h-10 bg-neutral-300"></div>
+                )}
+              </React.Fragment>
+            ))}
+          </div>
+        </div>
 
 
       </div>

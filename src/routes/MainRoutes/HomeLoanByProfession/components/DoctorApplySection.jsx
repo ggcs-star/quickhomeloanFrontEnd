@@ -1,7 +1,15 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const DoctorApplySection = ({ data }) => {
+  const navigate = useNavigate();
+
   if (!data) return null;
+
+  const handleClick = (e) => {
+    e.preventDefault(); // 🔥 prevents any accidental refresh
+    navigate(data.button?.href || "/apply-loan");
+  };
 
   return (
     <section
@@ -12,17 +20,17 @@ const DoctorApplySection = ({ data }) => {
         {data.title || "Empowering Doctors to Own Their Dream Home"}
       </h2>
 
-      <p className="text-gray-300 mb-8 max-w-2xl mx-auto text-lg">
+      <h3 className="text-gray-300 mb-8 max-w-2xl mx-auto text-lg">
         {data.description ||
           "We value your dedication. Let us handle the complexities of financing while you focus on your patients."}
-      </p>
+      </h3>
 
-      <a
-        // href={data.button?.href || "#"}
-        className="bg-white text-gray-900 px-10 py-4 rounded-md font-bold text-lg hover:bg-gray-100 inline-block"
+      <button
+        onClick={handleClick}
+        className="bg-white text-gray-900 px-10 py-4 rounded-md font-bold text-lg hover:bg-gray-100"
       >
         {data.button?.label || "Apply Now"}
-      </a>
+      </button>
     </section>
   );
 };

@@ -17,9 +17,9 @@ export const premiumHomeLoanCategoriesDetails = [
       description:
         "Tailored home loan solutions for professionals working in private companies, MNCs, and startups. Compare 30+ lenders, reduce your EMI, and get end-to-end support until disbursal.",
       ctas: [
-        { label: "Apply Now", href: "#apply", type: "primary" },
-        { label: "Compare Rates", href: "#compare", type: "outline" },
-        { label: "Try Calculators", href: "#calculators", type: "text" },
+        { label: "Apply Now", type: "primary" },
+        { label: "Compare Rates", type: "outline" },
+        { label: "Try Calculators", type: "text" },
       ],
       offerSubtitle: "Pre-approved offers",
       offerTitle: "For reputed private firms",
