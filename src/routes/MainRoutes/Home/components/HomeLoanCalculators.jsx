@@ -127,9 +127,9 @@ const HomeLoanCalculators = () => {
           <h2 className="text-3xl font-bold sm:text-4xl">
             Home Loan Calculators
           </h2>
-          <p className="mt-4 text-lg text-slate-300">
+          <h3 className="mt-4 text-lg text-slate-300">
             Simplify your home loan journey with smart calculators.
-          </p>
+          </h3>
         </div>
 
         {/* DESKTOP GRID */}

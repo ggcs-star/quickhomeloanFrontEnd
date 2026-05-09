@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { Container } from "../../../../components/Layout";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, CheckCircle, XCircle } from "lucide-react";
+import { submitContactForm } from "../../../../api";
+import { Link } from "react-router-dom";
 
 const ContactUsPage = () => {
   const [formData, setFormData] = useState({
-    name: "",
+    full_name: "",
     email: "",
     subject: "",
     message: "",
@@ -12,18 +14,22 @@ const ContactUsPage = () => {
 
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
+  const [apiError, setApiError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
     setErrors((prev) => ({ ...prev, [name]: "" }));
+    setApiError("");
+    setSuccessMessage("");
   };
 
   // Validation
   const validateForm = () => {
     const newErrors = {};
-    if (!formData.name.trim()) newErrors.name = "Full name is required.";
+    if (!formData.full_name.trim()) newErrors.full_name = "Full name is required.";
     if (!formData.email.trim()) {
       newErrors.email = "Email address is required.";
     } else if (!/^[\w.-]+@([\w-]+\.)+[\w-]{2,4}$/i.test(formData.email)) {
@@ -36,16 +42,75 @@ const ContactUsPage = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  // Handle submit
-  const handleSubmit = (e) => {
+  // Handle submit with API call
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setApiError("");
+    setSuccessMessage("");
+
     if (validateForm()) {
       setSubmitted(true);
-      setTimeout(() => {
-        alert("✅ Message sent successfully!");
-        setFormData({ name: "", email: "", subject: "", message: "" });
+
+      try {
+        const response = await submitContactForm(formData);
+
+        // Check if API returns success
+        if (response?.success === true) {
+          setSuccessMessage("✅ Message sent successfully! Our team will get back to you within 24 hours.");
+          setFormData({ full_name: "", email: "", subject: "", message: "" });
+          setErrors({});
+
+          setTimeout(() => {
+            setSuccessMessage("");
+          }, 5000);
+        } else {
+          throw new Error(response?.message || "Failed to send message");
+        }
+      } catch (error) {
+        console.error("Error sending message:", error);
+
+        // Handle 422 validation errors from server
+        if (error.response?.status === 422) {
+          const validationErrors = error.response?.data?.errors || error.response?.data?.error;
+
+          if (validationErrors && typeof validationErrors === 'object') {
+            // Map server validation errors to form fields
+            const newErrors = {};
+
+            Object.keys(validationErrors).forEach(key => {
+              const errorMsg = Array.isArray(validationErrors[key])
+                ? validationErrors[key][0]
+                : validationErrors[key];
+
+              // Map 'full_name' field if server returns it
+              const fieldKey = key === 'full_name' ? 'full_name' : key;
+              newErrors[fieldKey] = errorMsg;
+            });
+
+            setErrors(newErrors);
+            setApiError("Please check the form for errors.");
+          } else {
+            setApiError(error.response?.data?.message || "Validation failed. Please check your input.");
+          }
+        }
+        // Handle other errors
+        else if (error.response) {
+          const errorMessage = error.response.data?.message ||
+            error.response.data?.error ||
+            "Server error. Please try again later.";
+          setApiError(errorMessage);
+        } else if (error.request) {
+          setApiError("Network error. Please check your internet connection.");
+        } else {
+          setApiError(error.message || "An unexpected error occurred.");
+        }
+
+        setTimeout(() => {
+          setApiError("");
+        }, 5000);
+      } finally {
         setSubmitted(false);
-      }, 800);
+      }
     }
   };
 
@@ -64,39 +129,72 @@ const ContactUsPage = () => {
             </p>
           </section>
 
-          {/* Contact Info */}
-          <section className="mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
-            {[
-              {
-                icon: <Phone className="w-7 h-7 text-neutral-900 mx-auto" />,
-                title: "Phone Support",
-                detail: "+91 98765 43210",
-                desc: "Mon - Sat, 9 AM - 7 PM",
-              },
-              {
-                icon: <Mail className="w-7 h-7 text-neutral-900 mx-auto" />,
-                title: "Email Us",
-                detail: "support@quickhomeloan.in",
-                desc: "Usually responds within 24 hours",
-              },
-              {
-                icon: <MapPin className="w-7 h-7 text-neutral-900 mx-auto" />,
-                title: "Our Office",
-                detail: "3rd Floor, Sunrise Towers, MG Road",
-                desc: "Bengaluru, Karnataka 560001",
-              },
-            ].map((item, i) => (
-              <div
-                key={i}
-                className="bg-white rounded-md p-6 border border-neutral-300"
-              >
-                {item.icon}
-                <h4 className="font-semibold text-neutral-900 mt-3">{item.title}</h4>
-                <p className="mt-2 text-neutral-800 font-medium">{item.detail}</p>
-                <p className="text-sm text-neutral-500">{item.desc}</p>
-              </div>
-            ))}
-          </section>
+         {/* Contact Info */}
+<section className="mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
+  {[
+    {
+      icon: <Phone className="w-7 h-7 text-neutral-900 mx-auto" />,
+      title: "Phone Support",
+      detail: (
+        <a
+          href="tel:+919876543210"
+          className="hover:text-blue-600 transition"
+        >
+          +91 98765 43210
+        </a>
+      ),
+      desc: "Mon - Sat, 9 AM - 6 PM",
+    },
+    {
+      icon: <Mail className="w-7 h-7 text-neutral-900 mx-auto" />,
+      title: "Email Us",
+      detail: (
+        <a
+          href="mailto:support@quickhomeloan.in"
+          className="hover:text-blue-600 transition"
+        >
+          support@quickhomeloan.in
+        </a>
+      ),
+      desc: "Usually responds within 24 hours",
+    },
+    {
+      icon: <MapPin className="w-7 h-7 text-neutral-900 mx-auto" />,
+      title: "Our Office",
+      detail: (
+        <a
+          href="https://www.google.com/maps?q=The+Grand+Emporio+Motera+Ahmedabad"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-blue-600 transition"
+        >
+          4th Floor, The Grand Emporio, Motera Stadium Rd
+        </a>
+      ),
+      desc: "Motera, Ahmedabad, Gujarat 380005",
+    },
+  ].map((item, i) => (
+    <div
+      key={i}
+      className="bg-white rounded-md p-6 border border-neutral-300"
+    >
+      {item.icon}
+
+      <h4 className="font-semibold text-neutral-900 mt-3">
+        {item.title}
+      </h4>
+
+      <div className="mt-2 text-neutral-800 font-medium">
+        {item.detail}
+      </div>
+
+      <p className="text-sm text-neutral-500">
+        {item.desc}
+      </p>
+    </div>
+  ))}
+</section>
+``
 
           {/* Contact Form */}
           <section className="mt-8 lg:mt-20 bg-white rounded-md p-10 max-w-4xl mx-auto border border-neutral-300">
@@ -104,6 +202,22 @@ const ContactUsPage = () => {
             <p className="text-center text-neutral-600 mt-2 mb-10">
               Fill out the form below and our support team will reach out soon.
             </p>
+
+            {/* Success Message */}
+            {successMessage && (
+              <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-md flex items-center gap-3">
+                <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
+                <p className="text-green-700 text-sm">{successMessage}</p>
+              </div>
+            )}
+
+            {/* Error Message */}
+            {apiError && (
+              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-md flex items-center gap-3">
+                <XCircle className="w-5 h-5 text-red-600 flex-shrink-0" />
+                <p className="text-red-600 text-sm">{apiError}</p>
+              </div>
+            )}
 
             <form onSubmit={handleSubmit} noValidate className="grid md:grid-cols-2 gap-6">
               {/* Full Name */}
@@ -113,17 +227,16 @@ const ContactUsPage = () => {
                 </label>
                 <input
                   type="text"
-                  name="name"
+                  name="full_name"
                   placeholder="Your full name"
-                  value={formData.name}
+                  value={formData.full_name}
                   onChange={handleChange}
-                  required
-                  className={`w-full border rounded-md px-4 py-2 text-sm focus:outline-none focus:ring-2 ${errors.name
+                  className={`w-full border rounded-md px-4 py-2 text-sm focus:outline-none focus:ring-2 ${errors.full_name
                     ? "border-red-500 ring-red-100"
                     : "border-neutral-300 focus:ring-neutral-900"
                     }`}
                 />
-                {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
+                {errors.full_name && <p className="text-red-500 text-xs mt-1">{errors.full_name}</p>}
               </div>
 
               {/* Email */}
@@ -137,7 +250,6 @@ const ContactUsPage = () => {
                   placeholder="you@example.com"
                   value={formData.email}
                   onChange={handleChange}
-                  required
                   className={`w-full border rounded-md px-4 py-2 text-sm focus:outline-none focus:ring-2 ${errors.email
                     ? "border-red-500 ring-red-100"
                     : "border-neutral-300 focus:ring-neutral-900"
@@ -157,7 +269,6 @@ const ContactUsPage = () => {
                   placeholder="Message subject"
                   value={formData.subject}
                   onChange={handleChange}
-                  required
                   className={`w-full border rounded-md px-4 py-2 text-sm focus:outline-none focus:ring-2 ${errors.subject
                     ? "border-red-500 ring-red-100"
                     : "border-neutral-300 focus:ring-neutral-900"
@@ -177,7 +288,6 @@ const ContactUsPage = () => {
                   placeholder="Write your message here..."
                   value={formData.message}
                   onChange={handleChange}
-                  required
                   className={`w-full border rounded-md px-4 py-2 text-sm focus:outline-none focus:ring-2 resize-none ${errors.message
                     ? "border-red-500 ring-red-100"
                     : "border-neutral-300 focus:ring-neutral-900"
@@ -192,8 +302,8 @@ const ContactUsPage = () => {
                   type="submit"
                   disabled={submitted}
                   className={`cursor-pointer px-8 py-3 rounded-md font-semibold shadow-sm hover:shadow-md transition-all ${submitted
-                    ? "bg-neutral-400 cursor-not-allowed text-white"
-                    : "bg-neutral-900 text-white hover:bg-neutral-800"
+                      ? "bg-neutral-400 cursor-not-allowed text-white"
+                      : "bg-neutral-900 text-white hover:bg-neutral-800"
                     }`}
                 >
                   {submitted ? "Sending..." : "Send Message"}
@@ -212,21 +322,21 @@ const ContactUsPage = () => {
               Ready to take the next step? Our team will help you find the best plan for your dream home.
             </p>
             <div className="mt-8 flex justify-center gap-4 relative z-10 flex-wrap">
-              <a
-                href="/apply"
+              <Link
+                to="/apply-loan"
                 className="px-6 py-3 bg-white text-black rounded-md hover:bg-white transition-colors"
               >
                 Apply Now
-              </a>
-              <a
-                href="/faq"
+              </Link>
+
+              <Link
+                to="/faq"
                 className="px-6 py-3 border border-neutral-300 rounded-md 
-             hover:bg-white hover:text-black hover:border-black 
-             transition-colors"
+    hover:bg-white hover:text-black hover:border-black 
+    transition-colors"
               >
                 View FAQs
-              </a>
-
+              </Link>
             </div>
           </section>
         </main>

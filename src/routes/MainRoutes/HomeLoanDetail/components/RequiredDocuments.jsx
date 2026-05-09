@@ -19,7 +19,11 @@ const RequiredDocuments = ({ data }) => {
       {/* Header */}
       <div className="p-6 border-b border-neutral-300">
         <h2 className="text-xl md:text-2xl font-bold text-neutral-800">
-          {data.title}
+          {`Documents Required for ${data.bankName
+              ?.replace("Interest Rate, EMI Calculator & Eligibility", "")
+              ?.replace(/\(\d{4}\)/, "")
+              ?.trim() || "Home Loan"
+            }`}
         </h2>
       </div>
 
@@ -31,11 +35,10 @@ const RequiredDocuments = ({ data }) => {
               <button
                 key={tab.key}
                 onClick={() => setActiveTab(tab.key)}
-                className={`flex items-center px-4 py-3 text-sm font-medium -mb-px border-b-2 transition-colors ${
-                  activeTab === tab.key
+                className={`flex items-center px-4 py-3 text-sm font-medium -mb-px border-b-2 transition-colors ${activeTab === tab.key
                     ? "border-black text-black"
                     : "border-transparent text-neutral-500 hover:text-neutral-700 hover:border-neutral-300"
-                }`}
+                  }`}
               >
                 {iconMap[tab.icon]}
                 {tab.label}

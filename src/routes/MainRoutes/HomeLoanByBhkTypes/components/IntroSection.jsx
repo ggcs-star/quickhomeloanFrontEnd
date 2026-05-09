@@ -14,9 +14,9 @@ const IntroSection = ({ data }) => {
             {data.title}
           </h2>
           {data.subtitle && (
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            <h3 className="text-lg text-gray-600 max-w-3xl mx-auto">
               {data.subtitle}
-            </p>
+            </h3>
           )}
         </div>
 

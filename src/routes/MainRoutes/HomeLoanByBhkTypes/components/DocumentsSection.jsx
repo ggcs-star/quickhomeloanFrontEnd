@@ -11,9 +11,19 @@ const DocumentsSection = ({ data }) => {
 
           {/* Header */}
           <div className="p-6 border-b border-neutral-300">
-            <h2 className="text-xl md:text-2xl font-bold text-neutral-800">
-              {data.title}
-            </h2>
+  <h2
+  className="text-xl md:text-2xl font-bold text-neutral-800"
+  id="documents-required-heading"
+>
+  {data?.bankName
+    ? `Documents Required for ${data.bankName
+        .replace(
+          /– Interest Rates, Eligibility & Benefits \(\d{4}\)/,
+          ""
+        )
+        .trim()}`
+    : data?.title || "Documents Required"}
+</h2>
           </div>
 
           {/* Sections */}

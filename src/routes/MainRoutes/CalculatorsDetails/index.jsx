@@ -123,6 +123,8 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
+
 // Loan Calculators
 // import LoanInterestVsFdInterest from "./components/LoanCalculators/LoanInterestVsFdInterest/LoanInterestVsFdInterest";
 import LoanInterestSWP from "./components/LoanCalculators/LoanInterestSWP/LoanInterestSWP";
@@ -211,6 +213,183 @@ import LoanInterestVsFdInterest from "./components/LoanCalculators/LoanInterestV
 // import Lifecycle_Health_ROI from "./components/ExperimentalCalculators/Lifecycle_Health_ROI";
 // import Higher_Education from "./components/ExperimentalCalculators/Higher_Education";
 
+// SEO Metadata for each calculator
+const calculatorSEOData = {
+  // Loan Calculators
+  "loan-vs-fd": {
+    title: "Loan vs Fixed Deposit Calculator | Compare Returns & Interest Rates",
+    description: "Compare loan interest payments against fixed deposit returns. Make informed decisions on whether to take a loan or invest in FD.",
+    keywords: "loan vs fd, fixed deposit calculator, loan interest comparison, investment returns",
+    ogImage: "/images/loan-vs-fd-og.jpg",
+  },
+  "loan-interest-vs-fd-interest": {
+    title: "Loan Interest vs FD Interest Calculator | Compare Interest Rates",
+    description: "Compare loan interest rates with fixed deposit returns. Calculate which option gives you better financial benefits.",
+    keywords: "loan interest, fd interest, interest rate comparison, financial planning",
+    ogImage: "/images/loan-interest-vs-fd-og.jpg",
+  },
+  "loan-interest-vs-swp-interest": {
+    title: "Loan Interest vs SWP Interest Calculator | SWP vs Loan Comparison",
+    description: "Compare loan interest payments with Systematic Withdrawal Plan returns. Optimize your financial strategy.",
+    keywords: "loan interest, SWP calculator, systematic withdrawal plan, investment comparison",
+    ogImage: "/images/loan-interest-vs-swp-og.jpg",
+  },
+  "loan-vs-fd-mf-sip": {
+    title: "Loan vs FD vs MF SIP Calculator | Best Investment Option",
+    description: "Compare loans, fixed deposits, and mutual fund SIPs. Find the best financial strategy for your money.",
+    keywords: "loan vs fd vs sip, mutual fund calculator, investment comparison, SIP returns",
+    ogImage: "/images/loan-vs-fd-vs-sip-og.jpg",
+  },
+  "loan-basic": {
+    title: "Basic Loan Calculator | EMI, Interest & Tenure Calculator",
+    description: "Calculate your loan EMI, total interest payable, and loan tenure with our easy-to-use basic loan calculator.",
+    keywords: "basic loan calculator, EMI calculator, loan interest calculator, monthly payment",
+    ogImage: "/images/basic-loan-og.jpg",
+  },
+  "emi-interest-loan-finder": {
+    title: "EMI & Interest Loan Finder | Best Loan Options Calculator",
+    description: "Find the best loan options based on your EMI and interest rate preferences. Compare different loan scenarios.",
+    keywords: "emi finder, loan finder, interest calculator, best loan options",
+    ogImage: "/images/emi-loan-finder-og.jpg",
+  },
+  "emi-vs-rent": {
+    title: "EMI vs Rent Calculator | Buy vs Rent Property Decision Tool",
+    description: "Compare monthly EMI payments with rent expenses. Decide whether buying a property or renting is better for you.",
+    keywords: "emi vs rent, buy vs rent calculator, home loan EMI, rental property comparison",
+    ogImage: "/images/emi-vs-rent-og.jpg",
+  },
+  "loan-tenure": {
+    title: "Loan Tenure Calculator | Optimize Your Loan Duration",
+    description: "Calculate optimal loan tenure based on your EMI capacity and interest rates. Minimize total interest payout.",
+    keywords: "loan tenure calculator, loan duration, EMI planning, loan optimization",
+    ogImage: "/images/loan-tenure-og.jpg",
+  },
+  "mutual-fund-loan-vs-swp": {
+    title: "Mutual Fund Loan vs SWP Calculator | Smart Investment Strategy",
+    description: "Compare taking a loan against mutual funds versus Systematic Withdrawal Plan. Optimize your investment strategy.",
+    keywords: "mutual fund loan, SWP calculator, investment strategy, fund withdrawal",
+    ogImage: "/images/mf-loan-vs-swp-og.jpg",
+  },
+  "loan-extra-repayment": {
+    title: "Loan Extra Repayment Calculator | Save Interest & Reduce Tenure",
+    description: "Calculate how extra repayments can reduce your loan tenure and save interest. Plan your loan prepayment strategy.",
+    keywords: "loan extra repayment, prepayment calculator, save loan interest, reduce loan tenure",
+    ogImage: "/images/loan-extra-repayment-og.jpg",
+  },
+  "debt-avalanche-vs-snowball": {
+    title: "Debt Avalanche vs Snowball Calculator | Best Debt Repayment Strategy",
+    description: "Compare debt avalanche and debt snowball methods. Find the fastest and most cost-effective way to pay off debt.",
+    keywords: "debt avalanche, debt snowball, debt repayment calculator, pay off debt",
+    ogImage: "/images/debt-avalanche-snowball-og.jpg",
+  },
+  "home-loan-eligibility": {
+    title: "Home Loan Eligibility Calculator | Check Your Loan Qualification",
+    description: "Calculate your home loan eligibility based on income, expenses, and existing obligations. Know how much loan you can get.",
+    keywords: "home loan eligibility, loan qualification, home loan calculator, maximum loan amount",
+    ogImage: "/images/home-loan-eligibility-og.jpg",
+  },
+  "home-loan-prepay": {
+    title: "Home Loan Prepayment Calculator | Save Interest on Your Home Loan",
+    description: "Calculate savings from home loan prepayment. Plan partial or full prepayment to reduce interest burden.",
+    keywords: "home loan prepayment, prepayment calculator, save home loan interest, loan closure",
+    ogImage: "/images/home-loan-prepay-og.jpg",
+  },
+  "loan-extra-repayments": {
+    title: "Loan Extra Repayments Calculator | Advanced Loan Planning Tool",
+    description: "Advanced calculator for planning extra loan repayments. Optimize your loan repayment strategy.",
+    keywords: "extra repayments, loan planning, advance loan calculator, repayment strategy",
+    ogImage: "/images/loan-extra-repayments-og.jpg",
+  },
+  "stamp-duty": {
+    title: "Stamp Duty Calculator | Property Registration Charges",
+    description: "Calculate stamp duty and property registration charges for your property purchase. Plan your home buying budget.",
+    keywords: "stamp duty calculator, property registration, home buying cost, stamp duty charges",
+    ogImage: "/images/stamp-duty-og.jpg",
+  },
+  
+  // Investment Calculators
+  "sip-systematic-investment-plan": {
+    title: "SIP Calculator | Systematic Investment Plan Returns Calculator",
+    description: "Calculate returns on your mutual fund SIP investments. Plan your wealth creation journey with our SIP calculator.",
+    keywords: "SIP calculator, mutual fund returns, systematic investment plan, wealth creation",
+    ogImage: "/images/sip-calculator-og.jpg",
+  },
+  "swp-systematic-withdrawal-plan": {
+    title: "SWP Calculator | Systematic Withdrawal Plan Returns Calculator",
+    description: "Calculate regular income from your mutual fund investments through Systematic Withdrawal Plan. Plan your retirement income.",
+    keywords: "SWP calculator, systematic withdrawal plan, retirement income, mutual fund withdrawal",
+    ogImage: "/images/swp-calculator-og.jpg",
+  },
+  "property-investment": {
+    title: "Property Investment Calculator | Real Estate ROI Calculator",
+    description: "Calculate returns on property investments. Evaluate rental yield, capital appreciation, and overall ROI.",
+    keywords: "property investment, real estate calculator, ROI calculator, rental yield",
+    ogImage: "/images/property-investment-og.jpg",
+  },
+  "real-returns-after-tax": {
+    title: "Real Returns After Tax Calculator | Post-Tax Investment Returns",
+    description: "Calculate your real investment returns after accounting for taxes and inflation. Make informed investment decisions.",
+    keywords: "real returns, after tax returns, inflation adjusted returns, investment calculator",
+    ogImage: "/images/real-returns-og.jpg",
+  },
+  "tax-savings-vs-investment-returns": {
+    title: "Tax Savings vs Investment Returns Calculator | Optimize Your Finances",
+    description: "Compare tax-saving investments with regular investment returns. Find the balance between tax efficiency and returns.",
+    keywords: "tax savings, investment returns, tax planning calculator, tax efficient investing",
+    ogImage: "/images/tax-savings-vs-returns-og.jpg",
+  },
+  "emi-interest-rate-finder": {
+    title: "EMI Interest Rate Finder | Best Interest Rates for Your Loan",
+    description: "Find the best interest rates for your loan based on EMI amount and tenure. Compare different rate scenarios.",
+    keywords: "interest rate finder, EMI calculator, best loan rates, rate comparison",
+    ogImage: "/images/emi-interest-rate-og.jpg",
+  },
+
+  // Housing Calculators
+  "under-construction": {
+    title: "Under Construction Property Calculator | Home Buying Guide",
+    description: "Calculate costs and returns for under construction properties. Plan your investment in upcoming real estate projects.",
+    keywords: "under construction property, real estate investment, property calculator, home buying",
+    ogImage: "/images/under-construction-og.jpg",
+  },
+  "rent-vs-buy": {
+    title: "Rent vs Buy Calculator | Should You Rent or Buy a Home?",
+    description: "Compare renting vs buying a home. Make informed decision based on your financial situation and market conditions.",
+    keywords: "rent vs buy, home buying decision, renting calculator, property purchase",
+    ogImage: "/images/rent-vs-buy-og.jpg",
+  },
+};
+
+// Helper function to format calculator name for title
+const formatCalculatorName = (slug) => {
+  const nameMap = {
+    "loan-vs-fd": "Loan vs FD",
+    "loan-interest-vs-fd-interest": "Loan Interest vs FD Interest",
+    "loan-interest-vs-swp-interest": "Loan Interest vs SWP Interest",
+    "loan-vs-fd-mf-sip": "Loan vs FD vs MF SIP",
+    "loan-basic": "Basic Loan",
+    "emi-interest-loan-finder": "EMI & Interest Loan Finder",
+    "emi-vs-rent": "EMI vs Rent",
+    "loan-tenure": "Loan Tenure",
+    "mutual-fund-loan-vs-swp": "Mutual Fund Loan vs SWP",
+    "loan-extra-repayment": "Loan Extra Repayment",
+    "debt-avalanche-vs-snowball": "Debt Avalanche vs Snowball",
+    "home-loan-eligibility": "Home Loan Eligibility",
+    "home-loan-prepay": "Home Loan Prepayment",
+    "loan-extra-repayments": "Loan Extra Repayments",
+    "stamp-duty": "Stamp Duty",
+    "sip-systematic-investment-plan": "SIP Calculator",
+    "swp-systematic-withdrawal-plan": "SWP Calculator",
+    "property-investment": "Property Investment",
+    "real-returns-after-tax": "Real Returns After Tax",
+    "tax-savings-vs-investment-returns": "Tax Savings vs Investment Returns",
+    "emi-interest-rate-finder": "EMI Interest Rate Finder",
+    "under-construction": "Under Construction Property",
+    "rent-vs-buy": "Rent vs Buy",
+  };
+  return nameMap[slug] || slug.replace(/-/g, " ").replace(/\b\w/g, l => l.toUpperCase());
+};
+
 const calculatorMap = {
   // Loan Calculators
   "loan-vs-fd": LoanVsFdorg,
@@ -288,9 +467,44 @@ const calculatorMap = {
   // "lifestyle-health-roi": Lifecycle_Health_ROI,
 };
 
+// Generate JSON-LD structured data for better SEO
+const generateStructuredData = (slug, calculatorName, seoData) => {
+  return {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": calculatorName,
+    "description": seoData?.description || `Calculate ${calculatorName} online for free. Easy-to-use financial calculator.`,
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "interactionStatistic": {
+      "@type": "InteractionCounter",
+      "interactionType": "https://schema.org/UseAction",
+      "userInteractionCount": "1000"
+    }
+  };
+};
+
 export default function CalculatorsDetails() {
   const { slug } = useParams();
   const CalculatorComponent = calculatorMap[slug];
+  const seoData = calculatorSEOData[slug];
+  const calculatorName = formatCalculatorName(slug);
+  
+  // Default SEO for unknown calculators
+  const defaultTitle = `${calculatorName} | Financial Calculator | QuickHomeLoan.in`;
+  const defaultDescription = `Free online ${calculatorName} calculator at QuickHomeLoan.in. Calculate and compare financial scenarios easily.`;
+  
+  const finalTitle = seoData?.title || defaultTitle;
+  const finalDescription = seoData?.description || defaultDescription;
+  const finalKeywords = seoData?.keywords || `financial calculator, ${calculatorName.toLowerCase()}, finance tool, investment calculator, quickhomeloan`;
+  const finalOgImage = seoData?.ogImage || "/images/default-calculator-og.jpg";
+  
+  const structuredData = generateStructuredData(slug, calculatorName, seoData);
 
   useEffect(() => {
     window.scrollTo({
@@ -302,17 +516,137 @@ export default function CalculatorsDetails() {
 
   if (!CalculatorComponent) {
     return (
-      <h2 className="text-center text-red-500 mt-10">
-        Calculator not found
-      </h2>
+      <>
+        <Helmet>
+          <title>Calculator Not Found | QuickHomeLoan.in</title>
+          <meta name="description" content="The requested calculator could not be found. Please check the URL or browse our other financial calculators at QuickHomeLoan.in." />
+          <meta name="robots" content="noindex, follow" />
+          <link rel="canonical" href="https://quickhomeloan.in/calculators" />
+        </Helmet>
+        <h2 className="text-center text-red-500 mt-20">
+          Calculator not found
+        </h2>
+      </>
     );
   }
 
+  // Construct the full canonical URL
+  const canonicalUrl = `https://quickhomeloan.in/calculators/${slug}`;
+
   return (
-    <div className="font-proximaNova mt-20">
-      <CalculatorComponent />
-    </div>
+    <>
+      <Helmet>
+        {/* Basic Meta Tags */}
+        <title>{finalTitle}</title>
+        <meta name="description" content={finalDescription} />
+        <meta name="keywords" content={finalKeywords} />
+        <meta name="author" content="QuickHomeLoan.in" />
+        
+        {/* Canonical URL - Updated to quickhomeloan.in */}
+        <link rel="canonical" href={canonicalUrl} />
+        
+        {/* Open Graph / Facebook Meta Tags */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:title" content={finalTitle} />
+        <meta property="og:description" content={finalDescription} />
+        <meta property="og:image" content={finalOgImage} />
+        <meta property="og:site_name" content="QuickHomeLoan.in - Financial Calculators" />
+        <meta property="og:locale" content="en_IN" />
+        
+        {/* Twitter Card Meta Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content={canonicalUrl} />
+        <meta name="twitter:title" content={finalTitle} />
+        <meta name="twitter:description" content={finalDescription} />
+        <meta name="twitter:image" content={finalOgImage} />
+        <meta name="twitter:site" content="@QuickHomeLoan" />
+        
+        {/* Additional SEO Meta Tags */}
+        <meta name="robots" content="index, follow" />
+        <meta name="googlebot" content="index, follow" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        
+        {/* Language and Region - India specific */}
+        <meta httpEquiv="Content-Language" content="en" />
+        <meta name="geo.region" content="IN" />
+        <meta name="geo.placename" content="India" />
+        <meta name="geo.position" content="20.5937;78.9629" />
+        <meta name="ICBM" content="20.5937, 78.9629" />
+        
+        {/* Mobile Optimization */}
+        <meta name="apple-mobile-web-app-title" content={calculatorName} />
+        <meta name="application-name" content={calculatorName} />
+        <meta name="mobile-web-app-capable" content="yes" />
+        
+        {/* Site Verification (optional - add your verification codes) */}
+        {/* <meta name="google-site-verification" content="your-code" /> */}
+        
+        {/* JSON-LD Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
+        
+        {/* BreadcrumbList Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://quickhomeloan.in/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Calculators",
+                "item": "https://quickhomeloan.in/calculators"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": calculatorName,
+                "item": canonicalUrl
+              }
+            ]
+          })}
+        </script>
+      </Helmet>
+      
+      <div className="font-proximaNova mt-20">
+        {/* Breadcrumb navigation for better SEO and user experience */}
+        <nav aria-label="Breadcrumb" className="container mx-auto px-4 py-2 text-sm text-gray-600">
+          <ol className="flex flex-wrap gap-2" itemScope itemType="https://schema.org/BreadcrumbList">
+            <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+              <a href="https://quickhomeloan.in/" className="hover:text-blue-600" itemProp="item">
+                <span itemProp="name">Home</span>
+              </a>
+              <span className="mx-2">/</span>
+              <meta itemProp="position" content="1" />
+            </li>
+            <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+              <a href="/calculators" className="hover:text-blue-600" itemProp="item">
+                <span itemProp="name">Calculators</span>
+              </a>
+              <span className="mx-2">/</span>
+              <meta itemProp="position" content="2" />
+            </li>
+            <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+              <span itemProp="name" className="text-gray-900 font-medium">{calculatorName}</span>
+              <meta itemProp="position" content="3" />
+              <meta itemProp="item" content={canonicalUrl} />
+            </li>
+          </ol>
+        </nav>
+        
+        {/* Hidden H1 for SEO */}
+        <h1 className="sr-only">{finalTitle}</h1>
+        
+        <CalculatorComponent />
+      </div>
+    </>
   );
 }
-
-

@@ -8,7 +8,10 @@ const FeesAndCharges = ({ data }) => {
       {/* Header */}
       <div className="p-6 border-b border-neutral-300">
         <h2 className="text-xl md:text-2xl font-bold text-black">
-          {data.title}
+          {`${data.bankName
+            ?.replace("Interest Rate, EMI Calculator & Eligibility", "")
+            ?.replace(/\(\d{4}\)/, "")
+            ?.trim() || "Home Loan"} Processing Fees & Charges`}
         </h2>
       </div>
 

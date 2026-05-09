@@ -16,7 +16,7 @@ const SixBHKTaxBenefitsSection = ({ data }) => {
             <h2 className="text-xl md:text-2xl font-bold text-neutral-800">
               {data.title}
             </h2>
-            <p className="text-neutral-600 text-sm mt-1">{data.subtitle}</p>
+            <h3 className="text-neutral-600 text-sm mt-1">{data.subtitle}</h3>
           </div>
 
           {/* Benefit Cards (2 columns) */}

@@ -6,13 +6,14 @@ import {
   MessageSquare,
   CalendarPlus,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const ContactSupport = ({ data }) => {
   if (!data) return null;
 
   return (
     <div className="my-6 bg-white text-black rounded-md border border-neutral-300 overflow-hidden">
-      
+
       {/* Header */}
       <div className="p-6 border-b border-gray-300">
         <h2 className="text-xl md:text-2xl font-bold">{data.title}</h2>
@@ -56,29 +57,35 @@ const ContactSupport = ({ data }) => {
 
           {/* Buttons */}
           <div className="border-t border-gray-300 pt-6 space-y-3">
-
             {/* Talk to Officer */}
-            <button
-              className="cursor-pointer w-full px-5 py-2.5 text-base font-semibold bg-black text-white rounded-md hover:bg-gray-900 transition"
-              // onClick={() => alert("Connecting you to a loan officer...")}
+            <Link
+              to="tel:9876543210"
+              className="block"
             >
-              <div className="flex items-center justify-center">
-                <MessageSquare className="w-4 h-4 mr-2" />
-                {data.buttons.talkToOfficer}
-              </div>
-            </button>
+              <button
+                className="cursor-pointer w-full px-5 py-2.5 text-base font-semibold bg-black text-white rounded-md hover:bg-gray-900 transition"
+              >
+                <div className="flex items-center justify-center">
+                  <MessageSquare className="w-4 h-4 mr-2" />
+                  {data.buttons.talkToOfficer}
+                </div>
+              </button>
+            </Link>
 
             {/* Book a Callback */}
-            <button
-              className="cursor-pointer w-full px-5 py-2.5 text-base font-semibold bg-white text-black border border-neutral-300 rounded-md hover:bg-gray-100 transition"
-              // onClick={() => alert("Callback request initiated!")}
+            <Link
+              to="/contact-us"
+              className="block"
             >
-              <div className="flex items-center justify-center">
-                <CalendarPlus className="w-4 h-4 mr-2" />
-                {data.buttons.bookCallback}
-              </div>
-            </button>
-
+              <button
+                className="cursor-pointer w-full px-5 py-2.5 text-base font-semibold bg-white text-black border border-neutral-300 rounded-md hover:bg-gray-100 transition"
+              >
+                <div className="flex items-center justify-center">
+                  <CalendarPlus className="w-4 h-4 mr-2" />
+                  {data.buttons.bookCallback}
+                </div>
+              </button>
+            </Link>
           </div>
 
         </div>

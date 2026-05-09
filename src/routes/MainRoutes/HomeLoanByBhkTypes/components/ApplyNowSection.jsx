@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const ApplyNowSection = ({ data }) => {
   if (!data) return null;
@@ -16,9 +17,9 @@ const ApplyNowSection = ({ data }) => {
           </h2>
 
           {/* Description */}
-          <p className="text-neutral-600 text-lg text-center max-w-2xl mx-auto mb-10">
+          <h3 className="text-neutral-600 text-lg text-center max-w-2xl mx-auto mb-10">
             {data.description}
-          </p>
+          </h3>
 
           {/* Steps */}
           <div className="grid sm:grid-cols-3 gap-6 max-w-3xl mx-auto mb-10">
@@ -38,14 +39,14 @@ const ApplyNowSection = ({ data }) => {
           </div>
 
           {/* CTA Button */}
-          <div className="text-center">
-            <a
-              href={data.ctaLink || "#"}
-              className="inline-block bg-black text-white px-8 py-4 rounded-md font-bold text-lg hover:bg-neutral-800 transition cursor-pointer"
-            >
-              {data.buttonLabel} →
-            </a>
-          </div>
+      <div className="text-center">
+  <Link
+    to={data.ctaLink || "/apply-loan"}
+    className="inline-block bg-black text-white px-8 py-4 rounded-md font-bold text-lg hover:bg-neutral-800 transition cursor-pointer"
+  >
+    {data.buttonLabel} →
+  </Link>
+</div>
 
           {/* Footer Note */}
           <p className="text-neutral-500 text-sm text-center mt-6">

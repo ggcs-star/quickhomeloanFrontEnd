@@ -10,23 +10,23 @@ export const homeLoanByProperty = [
         loanTenure: "Up to 30 years",
 
         heroSection: {
-  title: "Own Your Dream Apartment with Ease",
-  description:
-    "QuickHomeLoan helps you finance your ideal apartment effortlessly with top banks and NBFCs. Whether it’s your first home or a smart investment, we simplify your loan journey with the best offers and digital convenience.",
+            title: "Own Your Dream Apartment with Ease",
+            description:
+                "QuickHomeLoan helps you finance your ideal apartment effortlessly with top banks and NBFCs. Whether it’s your first home or a smart investment, we simplify your loan journey with the best offers and digital convenience.",
 
-  buttons: [
-    {
-      label: "Apply Instantly",
-      link: "/apply-loan?category=Home Loan By Property&subcategory=Home Loan for Apartment / Flat",
-      variant: "primary",
-    },
-    {
-      label: "Calculate EMI",
-      link: "#emi-calculator",
-      variant: "secondary",
-    },
-  ],
-},
+            buttons: [
+                {
+                    label: "Apply Instantly",
+                    link: "/apply-loan?category=Home Loan By Property&subcategory=Home Loan for Apartment / Flat",
+                    variant: "primary",
+                },
+                // {
+                //   label: "Calculate EMI",
+                //   link: "#emi-calculator",
+                //   variant: "secondary",
+                // },
+            ],
+        },
 
         aboutSection: {
             title: "What Is a Home Loan for Apartments?",
@@ -356,7 +356,7 @@ export const homeLoanByProperty = [
             title: "Contact & Support",
             branch: {
                 title: "Nearest Branch",
-                address: "Mumbai Main Branch, Fort, Mumbai, Maharashtra 400001",
+                address: "4th Floor, The Grand Emporio, Motera Stadium Rd, Motera, Ahmedabad, Gujarat 380005",
             },
             phone: {
                 title: "Phone",
@@ -364,7 +364,7 @@ export const homeLoanByProperty = [
             },
             hours: {
                 title: "Business Hours",
-                details: "Mon-Fri: 10am - 4pm",
+                details: "Mon-Fri: 9am - 6pm",
             },
             buttons: {
                 talkToOfficer: "Talk to a Loan Officer",
@@ -435,24 +435,24 @@ export const homeLoanByProperty = [
         processingFee: "0.35% of loan amount + GST",
         loanTenure: "Up to 30 years",
 
-    heroSection: {
-  title: "Build or Buy Your Dream Independent House with Ease",
-  description:
-    "QuickHomeLoan helps you finance your dream independent home or villa through top banks and NBFCs. Whether constructing on your plot or buying a ready home, we bring you the best loan offers at competitive rates.",
+        heroSection: {
+            title: "Build or Buy Your Dream Independent House with Ease",
+            description:
+                "QuickHomeLoan helps you finance your dream independent home or villa through top banks and NBFCs. Whether constructing on your plot or buying a ready home, we bring you the best loan offers at competitive rates.",
 
-  buttons: [
-    {
-      label: "Apply Instantly",
-      link: "/apply-loan?category=Home Loan By Property&subcategory=Home Loan for Independent House / Villa",
-      variant: "primary",
-    },
-    {
-      label: "Calculate EMI",
-      link: "#emi-calculator",
-      variant: "secondary",
-    },
-  ],
-},
+            buttons: [
+                {
+                    label: "Apply Instantly",
+                    link: "/apply-loan?category=Home Loan By Property&subcategory=Home Loan for Independent House / Villa",
+                    variant: "primary",
+                },
+                // {
+                //   label: "Calculate EMI",
+                //   link: "#emi-calculator",
+                //   variant: "secondary",
+                // },
+            ],
+        },
 
         aboutSection: {
             title: "What Is a Home Loan for Independent Houses?",
@@ -778,46 +778,46 @@ export const homeLoanByProperty = [
             ],
         },
 
-          contactSupport: {
-      title: "Contact & Support",
-      branch: {
-        title: "Nearest Branch",
-        address: "Mumbai Main Branch, Fort, Mumbai, Maharashtra 400001",
-      },
-      phone: {
-        title: "Phone",
-        number: "98765 43210",
-      },
-      hours: {
-        title: "Business Hours",
-        details: "Mon-Fri: 10am - 4pm",
-      },
-      buttons: {
-        talkToOfficer: "Talk to a Loan Officer",
-        bookCallback: "Book a Callback",
-      },
-    },
-    customerTestimonials: {
-      title: "What Our Customers Say",
-      testimonials: [
-        {
-          rating: 5,
-          title: "Got ₹45 lakh approved within 2 days!",
-          feedback:
-            "The process was incredibly smooth and the interest rate was the best I could find. QuickHomeLoan handled everything with SBI. Highly recommended!",
-          author: "Amit S.",
-          location: "Pune",
+        contactSupport: {
+            title: "Contact & Support",
+            branch: {
+                title: "Nearest Branch",
+                address: "4th Floor, The Grand Emporio, Motera Stadium Rd, Motera, Ahmedabad, Gujarat 380005",
+            },
+            phone: {
+                title: "Phone",
+                number: "98765 43210",
+            },
+            hours: {
+                title: "Business Hours",
+                details: "Mon-Fri: 9am - 6pm",
+            },
+            buttons: {
+                talkToOfficer: "Talk to a Loan Officer",
+                bookCallback: "Book a Callback",
+            },
         },
-        {
-          rating: 5,
-          title: "Transferred my old loan and saved ₹3,000 per month.",
-          feedback:
-            "I was paying a high EMI with my previous bank. Transferring to SBI was seamless and the savings are significant. The team was very helpful.",
-          author: "Sneha R.",
-          location: "Delhi",
+        customerTestimonials: {
+            title: "What Our Customers Say",
+            testimonials: [
+                {
+                    rating: 5,
+                    title: "Got ₹45 lakh approved within 2 days!",
+                    feedback:
+                        "The process was incredibly smooth and the interest rate was the best I could find. QuickHomeLoan handled everything with SBI. Highly recommended!",
+                    author: "Amit S.",
+                    location: "Pune",
+                },
+                {
+                    rating: 5,
+                    title: "Transferred my old loan and saved ₹3,000 per month.",
+                    feedback:
+                        "I was paying a high EMI with my previous bank. Transferring to SBI was seamless and the savings are significant. The team was very helpful.",
+                    author: "Sneha R.",
+                    location: "Delhi",
+                },
+            ],
         },
-      ],
-    },
 
         faqSection: {
             title: "Frequently Asked Questions",
@@ -861,24 +861,24 @@ export const homeLoanByProperty = [
         processingFee: "0.35% of loan amount + GST",
         loanTenure: "Up to 15 years",
 
-      heroSection: {
-  title: "Buy Your Perfect Plot with Ease and Confidence",
-  description:
-    "QuickHomeLoan helps you secure financing to purchase residential plots or land in approved areas. Choose from top banks and NBFCs offering the best rates and simple documentation for your future home investment.",
+        heroSection: {
+            title: "Buy Your Perfect Plot with Ease and Confidence",
+            description:
+                "QuickHomeLoan helps you secure financing to purchase residential plots or land in approved areas. Choose from top banks and NBFCs offering the best rates and simple documentation for your future home investment.",
 
-  buttons: [
-    {
-      label: "Apply Instantly",
-      link: "/apply-loan?category=Home Loan By Property&subcategory=Home Loan for Plot / Land Purchase",
-      variant: "primary",
-    },
-    {
-      label: "Calculate EMI",
-      link: "#emi-calculator",
-      variant: "secondary",
-    },
-  ],
-},
+            buttons: [
+                {
+                    label: "Apply Instantly",
+                    link: "/apply-loan?category=Home Loan By Property&subcategory=Home Loan for Plot / Land Purchase",
+                    variant: "primary",
+                },
+                // {
+                //   label: "Calculate EMI",
+                //   link: "#emi-calculator",
+                //   variant: "secondary",
+                // },
+            ],
+        },
 
         aboutSection: {
             title: "What Is a Plot Purchase Loan?",
@@ -1204,46 +1204,46 @@ export const homeLoanByProperty = [
             ],
         },
 
-          contactSupport: {
-      title: "Contact & Support",
-      branch: {
-        title: "Nearest Branch",
-        address: "Mumbai Main Branch, Fort, Mumbai, Maharashtra 400001",
-      },
-      phone: {
-        title: "Phone",
-        number: "98765 43210",
-      },
-      hours: {
-        title: "Business Hours",
-        details: "Mon-Fri: 10am - 4pm",
-      },
-      buttons: {
-        talkToOfficer: "Talk to a Loan Officer",
-        bookCallback: "Book a Callback",
-      },
-    },
-    customerTestimonials: {
-      title: "What Our Customers Say",
-      testimonials: [
-        {
-          rating: 5,
-          title: "Got ₹45 lakh approved within 2 days!",
-          feedback:
-            "The process was incredibly smooth and the interest rate was the best I could find. QuickHomeLoan handled everything with SBI. Highly recommended!",
-          author: "Amit S.",
-          location: "Pune",
+        contactSupport: {
+            title: "Contact & Support",
+            branch: {
+                title: "Nearest Branch",
+                address: "4th Floor, The Grand Emporio, Motera Stadium Rd, Motera, Ahmedabad, Gujarat 380005",
+            },
+            phone: {
+                title: "Phone",
+                number: "98765 43210",
+            },
+            hours: {
+                title: "Business Hours",
+                details: "Mon-Fri: 9am - 6pm",
+            },
+            buttons: {
+                talkToOfficer: "Talk to a Loan Officer",
+                bookCallback: "Book a Callback",
+            },
         },
-        {
-          rating: 5,
-          title: "Transferred my old loan and saved ₹3,000 per month.",
-          feedback:
-            "I was paying a high EMI with my previous bank. Transferring to SBI was seamless and the savings are significant. The team was very helpful.",
-          author: "Sneha R.",
-          location: "Delhi",
+        customerTestimonials: {
+            title: "What Our Customers Say",
+            testimonials: [
+                {
+                    rating: 5,
+                    title: "Got ₹45 lakh approved within 2 days!",
+                    feedback:
+                        "The process was incredibly smooth and the interest rate was the best I could find. QuickHomeLoan handled everything with SBI. Highly recommended!",
+                    author: "Amit S.",
+                    location: "Pune",
+                },
+                {
+                    rating: 5,
+                    title: "Transferred my old loan and saved ₹3,000 per month.",
+                    feedback:
+                        "I was paying a high EMI with my previous bank. Transferring to SBI was seamless and the savings are significant. The team was very helpful.",
+                    author: "Sneha R.",
+                    location: "Delhi",
+                },
+            ],
         },
-      ],
-    },
 
         faqSection: {
             title: "Frequently Asked Questions",
@@ -1287,24 +1287,24 @@ export const homeLoanByProperty = [
         processingFee: "0.35% of loan amount + GST",
         loanTenure: "Up to 30 years",
 
-      heroSection: {
-  title: "Turn Your Under-Construction Property into Reality",
-  description:
-    "QuickHomeLoan connects you with top banks and NBFCs offering specialized home loans for under-construction properties. Get easy stage-wise disbursement, competitive rates, and digital processing — all under one roof.",
+        heroSection: {
+            title: "Turn Your Under-Construction Property into Reality",
+            description:
+                "QuickHomeLoan connects you with top banks and NBFCs offering specialized home loans for under-construction properties. Get easy stage-wise disbursement, competitive rates, and digital processing — all under one roof.",
 
-  buttons: [
-    {
-      label: "Apply Instantly",
-      link: "/apply-loan?category=Home Loan By Property&subcategory=Home Loan for Under-Construction Property",
-      variant: "primary",
-    },
-    {
-      label: "Calculate EMI",
-      link: "#emi-calculator",
-      variant: "secondary",
-    },
-  ],
-},
+            buttons: [
+                {
+                    label: "Apply Instantly",
+                    link: "/apply-loan?category=Home Loan By Property&subcategory=Home Loan for Under-Construction Property",
+                    variant: "primary",
+                },
+                // {
+                //   label: "Calculate EMI",
+                //   link: "#emi-calculator",
+                //   variant: "secondary",
+                // },
+            ],
+        },
 
         aboutSection: {
             title: "What Is an Under-Construction Home Loan?",
@@ -1631,46 +1631,46 @@ export const homeLoanByProperty = [
             ],
         },
 
-          contactSupport: {
-      title: "Contact & Support",
-      branch: {
-        title: "Nearest Branch",
-        address: "Mumbai Main Branch, Fort, Mumbai, Maharashtra 400001",
-      },
-      phone: {
-        title: "Phone",
-        number: "98765 43210",
-      },
-      hours: {
-        title: "Business Hours",
-        details: "Mon-Fri: 10am - 4pm",
-      },
-      buttons: {
-        talkToOfficer: "Talk to a Loan Officer",
-        bookCallback: "Book a Callback",
-      },
-    },
-    customerTestimonials: {
-      title: "What Our Customers Say",
-      testimonials: [
-        {
-          rating: 5,
-          title: "Got ₹45 lakh approved within 2 days!",
-          feedback:
-            "The process was incredibly smooth and the interest rate was the best I could find. QuickHomeLoan handled everything with SBI. Highly recommended!",
-          author: "Amit S.",
-          location: "Pune",
+        contactSupport: {
+            title: "Contact & Support",
+            branch: {
+                title: "Nearest Branch",
+                address: "4th Floor, The Grand Emporio, Motera Stadium Rd, Motera, Ahmedabad, Gujarat 380005",
+            },
+            phone: {
+                title: "Phone",
+                number: "98765 43210",
+            },
+            hours: {
+                title: "Business Hours",
+                details: "Mon-Fri: 9am - 6pm",
+            },
+            buttons: {
+                talkToOfficer: "Talk to a Loan Officer",
+                bookCallback: "Book a Callback",
+            },
         },
-        {
-          rating: 5,
-          title: "Transferred my old loan and saved ₹3,000 per month.",
-          feedback:
-            "I was paying a high EMI with my previous bank. Transferring to SBI was seamless and the savings are significant. The team was very helpful.",
-          author: "Sneha R.",
-          location: "Delhi",
+        customerTestimonials: {
+            title: "What Our Customers Say",
+            testimonials: [
+                {
+                    rating: 5,
+                    title: "Got ₹45 lakh approved within 2 days!",
+                    feedback:
+                        "The process was incredibly smooth and the interest rate was the best I could find. QuickHomeLoan handled everything with SBI. Highly recommended!",
+                    author: "Amit S.",
+                    location: "Pune",
+                },
+                {
+                    rating: 5,
+                    title: "Transferred my old loan and saved ₹3,000 per month.",
+                    feedback:
+                        "I was paying a high EMI with my previous bank. Transferring to SBI was seamless and the savings are significant. The team was very helpful.",
+                    author: "Sneha R.",
+                    location: "Delhi",
+                },
+            ],
         },
-      ],
-    },
 
         faqSection: {
             title: "Frequently Asked Questions",

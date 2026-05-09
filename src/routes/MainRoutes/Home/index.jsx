@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
+
 // import Solutions from "./components/Solutions";
 // import Companies from "./components/Companies";
 // import Largest from "./components/Largest";
@@ -7,6 +9,7 @@ import React, { useEffect, useState } from "react";
 // import Collaboration from "./components/Collaboration";
 // import WhyChoose from "./components/WhyChoose"
 // import BestSuitable from './components/BestSuitable'
+
 import EmiCalculator from "./components/EmiCalculator";
 import Compare from "./components/Compare";
 import Tools from "./components/Tools";
@@ -42,15 +45,97 @@ import HeroSection4 from "./components/HeroSection4";
 export default function Home(props) {
   const [scrollPercentage, setScrollPercentage] = useState(0);
 
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Quick Home Loan",
+    url: "https://quickhomeloan.in/",
+    logo: "https://quickhomeloan.in/assets/images/logo.png",
+    sameAs: [],
+  };
+
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Quick Home Loan",
+    url: "https://quickhomeloan.in/",
+    potentialAction: {
+      "@type": "SearchAction",
+      target:
+        "https://quickhomeloan.in/search?q={search_term_string}",
+      "query-input": "required name=search_term_string",
+    },
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://quickhomeloan.in/",
+      },
+    ],
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "What is the current home loan interest rate in India?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Home loan interest rates in India typically start from around 7% onwards depending on the bank, applicant profile, income, and credit score.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How can I compare home loan offers online?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "You can compare home loan offers online by checking interest rates, EMI, processing fees, eligibility, and loan tenure across multiple banks.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What documents are required for a home loan?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Common documents include identity proof, address proof, income proof, bank statements, property papers, and employment details.",
+        },
+      },
+    ],
+  };
+
+  const financialServiceSchema = {
+    "@context": "https://schema.org",
+    "@type": "FinancialService",
+    name: "Quick Home Loan",
+    url: "https://quickhomeloan.in/",
+    description:
+      "Compare home loan interest rates, EMI, eligibility, and apply online from top banks in India.",
+    areaServed: "IN",
+    serviceType: "Home Loan Comparison",
+  };
+
   const handleScroll = () => {
     const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const docHeight =
+      document.documentElement.scrollHeight -
+      window.innerHeight;
+
     const scrolled = (scrollTop / docHeight) * 100;
+
     setScrollPercentage(scrolled);
   };
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -62,7 +147,11 @@ export default function Home(props) {
 
   const getStrokeDashoffset = () => {
     const circleLength = 2 * Math.PI * 24;
-    return circleLength - (circleLength * scrollPercentage) / 100;
+
+    return (
+      circleLength -
+      (circleLength * scrollPercentage) / 100
+    );
   };
 
   const scrollToTop = () => {
@@ -77,41 +166,212 @@ export default function Home(props) {
   };
 
   return (
-    <div className="font-proximaNova">
-      <HeroSection4 {...props} />
-      <TrustedPartners />
-      <CategoriesSection />
-      <WhyChooseUs />
-      {/* <StatsRow/> */}
-      {/* <HomeLoanCards/> */}
-      {/* <HomeLoanCategories/> */}
-      <HomeLoanCalculators />
-      <LoanProcessSection />
-      <RealEstatePosts/>
-      <ContactSection />
+    <>
+      <Helmet>
+        {/* Primary SEO Meta Tags */}
+        <title>
+          Home Loan in India – Compare Interest Rates, EMI &
+          Eligibility (2026)
+        </title>
 
-      {/* <QuickHomeLoan />
+        <meta
+          name="description"
+          content="Compare home loan interest rates from top banks in India. Check EMI, eligibility, processing fees, and apply online for the best home loan offers in 2026."
+        />
+
+        <meta
+          name="keywords"
+          content="home loan in India, home loan interest rates, compare home loan, best home loan in India, home loan EMI calculator, home loan eligibility, apply home loan online"
+        />
+
+        <link
+          rel="canonical"
+          href="https://quickhomeloan.in/"
+        />
+
+        <meta
+          name="robots"
+          content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+        />
+
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+
+        <meta
+          property="og:url"
+          content="https://quickhomeloan.in/"
+        />
+
+        <meta
+          property="og:title"
+          content="Home Loan in India – Compare Interest Rates, EMI & Eligibility (2026)"
+        />
+
+        <meta
+          property="og:description"
+          content="Compare home loan interest rates from top banks in India. Check EMI, eligibility, and apply online for the best home loan offers in 2026."
+        />
+
+        <meta
+          property="og:site_name"
+          content="Quick Home Loan"
+        />
+
+        <meta
+          property="og:locale"
+          content="en_IN"
+        />
+
+        {/* Twitter */}
+        <meta
+          name="twitter:card"
+          content="summary_large_image"
+        />
+
+        <meta
+          name="twitter:title"
+          content="Home Loan in India – Compare Interest Rates, EMI & Eligibility (2026)"
+        />
+
+        <meta
+          name="twitter:description"
+          content="Compare home loan interest rates from top banks in India. Check EMI, eligibility, and apply online for the best home loan offers in 2026."
+        />
+
+        {/* Schema Markup */}
+        <script type="application/ld+json">
+          {JSON.stringify(organizationSchema)}
+        </script>
+
+        <script type="application/ld+json">
+          {JSON.stringify(websiteSchema)}
+        </script>
+
+        <script type="application/ld+json">
+          {JSON.stringify(breadcrumbSchema)}
+        </script>
+
+        <script type="application/ld+json">
+          {JSON.stringify(faqSchema)}
+        </script>
+
+        <script type="application/ld+json">
+          {JSON.stringify(financialServiceSchema)}
+        </script>
+      </Helmet>
+
+      <div className="font-proximaNova">
+        {/* Suggested Heading Structure */}
+        <h1 className="sr-only">
+          Compare Home Loan Interest Rates from Top Banks in India
+        </h1>
+
+        <h2 className="sr-only">
+          Compare Latest Home Loan Interest Rates
+        </h2>
+
+        <h3 className="sr-only">
+          Lowest Home Loan Interest Rates in 2026
+        </h3>
+
+        <h2 className="sr-only">
+          Home Loan EMI Calculator
+        </h2>
+
+        <h3 className="sr-only">
+          Calculate Your Monthly Home Loan EMI
+        </h3>
+
+        <h2 className="sr-only">
+          Check Home Loan Eligibility Online
+        </h2>
+
+        <h3 className="sr-only">
+          Check Eligibility in Minutes
+        </h3>
+
+        <h2 className="sr-only">
+          Best Banks for Home Loan in India
+        </h2>
+
+        <h3 className="sr-only">
+          Compare Bank-Wise Home Loan Offers
+        </h3>
+
+        <h2 className="sr-only">
+          Home Loan Process Made Simple
+        </h2>
+
+        <h3 className="sr-only">
+          Fast Approval with Minimal Documentation
+        </h3>
+
+        <h2 className="sr-only">
+          Why Choose Quick Home Loan
+        </h2>
+
+        <h3 className="sr-only">
+          Trusted by Thousands of Home Buyers
+        </h3>
+
+        <h2 className="sr-only">
+          Frequently Asked Questions
+        </h2>
+
+        <h3 className="sr-only">
+          Common Questions About Home Loans
+        </h3>
+
+        <HeroSection4 {...props} />
+
+        <TrustedPartners />
+
+        <div id="categories-section">
+          <CategoriesSection />
+        </div>
+        <WhyChooseUs />
+
+        {/* <StatsRow/> */}
+
+        {/* <HomeLoanCards/> */}
+
+        {/* <HomeLoanCategories/> */}
+
+        <HomeLoanCalculators />
+
+        <LoanProcessSection />
+
+        <RealEstatePosts />
+
+        <ContactSection />
+
+        {/* <QuickHomeLoan />
       <EmiCalculator />
       <HowItWorks />
       <TestimonialsSection />
       <FAQSection />
       <CallToActionSection/> */}
 
-      {/* <AppPromoSection/>
+        {/* <AppPromoSection/>
       <TrendingLoans/>
       <LoanCalculators/> */}
-      {/* <FinancialCalculators/> */}
-      {/* <CreditCardSection/>
+
+        {/* <FinancialCalculators/> */}
+
+        {/* <CreditCardSection/>
       <LoanSteps/>
       <FeaturedBlogs/> */}
-      {/* <LoanVsFd/> */}
 
-      {/* <Compare />
+        {/* <LoanVsFd/> */}
+
+        {/* <Compare />
       <Tools />
       <LoanVsFd/> */}
-      {/* <Blogs/>
+
+        {/* <Blogs/>
       <FAQ/> */}
-      {/* <Solutions />
+
+        {/* <Solutions />
       <Companies />
       <Largest />
       <Transformation />
@@ -120,7 +380,7 @@ export default function Home(props) {
       <BestSuitable />
       <Collaboration /> */}
 
-      {/* {scrollPercentage > 0 && (
+        {/* {scrollPercentage > 0 && (
         <div
           className="back-to-top right-aligned primary-color scroll-position-style active"
           onClick={scrollToTop}
@@ -160,7 +420,8 @@ export default function Home(props) {
                 strokeWidth: "2",
                 strokeDasharray: `${2 * Math.PI * 24}`,
                 strokeDashoffset: getStrokeDashoffset(),
-                transition: "stroke-dashoffset 0.3s ease, stroke 0.3s ease",
+                transition:
+                  "stroke-dashoffset 0.3s ease, stroke 0.3s ease",
                 transform: "rotate(-90deg)",
                 transformOrigin: "center",
               }}
@@ -178,7 +439,7 @@ export default function Home(props) {
           </svg>
         </div>
       )} */}
-
-    </div>
+      </div>
+    </>
   );
 }

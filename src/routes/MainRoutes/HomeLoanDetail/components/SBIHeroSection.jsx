@@ -1,15 +1,24 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { ShieldCheck, Star } from "lucide-react";
 import { Container } from "../../../../components/Layout";
 
 const SBIHeroSection = ({ data }) => {
   if (!data) return null;
 
+  const currentYear = new Date().getFullYear();
+
+  const cleanBankName =
+    data?.title?.replace("Home Loan", "").trim() || "Home Loan";
+
+  const seoTitle = `${cleanBankName} Home Loan Interest Rate, EMI Calculator & Eligibility (${currentYear})`;
+
+  const seoDescription = `Check ${cleanBankName} Home Loan interest rates, EMI calculator, eligibility, processing fees, and required documents. Compare ${cleanBankName} housing loan offers and apply online in ${currentYear}.`;
+
   return (
     <div className="bg-white">
       <Container>
         <header className="lg:py-20 pt-20 text-black text-center">
-
           {/* Badges */}
           {data.badges && (
             <div className="flex justify-center items-center flex-wrap gap-3 mb-6">
@@ -23,11 +32,16 @@ const SBIHeroSection = ({ data }) => {
                   )}
 
                   {badge.icon === "star" && (
-                    <Star className="w-4 h-4 mr-2" style={{ color: "#d4a017" }} />
+                    <Star
+                      className="w-4 h-4 mr-2"
+                      style={{ color: "#d4a017" }}
+                    />
                   )}
 
                   <span
-                    dangerouslySetInnerHTML={{ __html: badge.text }}
+                    dangerouslySetInnerHTML={{
+                      __html: badge.text,
+                    }}
                     className="text-xs lg:text-sm"
                   />
                 </div>
@@ -35,23 +49,22 @@ const SBIHeroSection = ({ data }) => {
             </div>
           )}
 
-          {/* Title */}
+          {/* SEO Optimized Title */}
           <h1 className="text-2xl md:text-6xl font-extrabold text-black tracking-tight leading-tight">
-            {data.title}
+            {seoTitle}
           </h1>
 
-          {/* Description */}
+          {/* SEO Optimized Description */}
           <p className="mt-6 max-w-3xl mx-auto text-lg md:text-xl text-gray-600">
-            {data.description}
+            {seoDescription}
           </p>
 
-          {/* Buttons (UPDATED to match reference structure) */}
+          {/* Buttons */}
           {data.buttons && (
             <div className="flex flex-row justify-center items-center gap-4 mt-5">
-
               {/* Button 1 */}
               {data.buttons[0] && (
-                <a href={data.buttons[0].href}>
+                <Link to={data.buttons[0].href || "/"}>
                   <button
                     className="
                       w-[150px] lg:w-[250px]
@@ -65,12 +78,12 @@ const SBIHeroSection = ({ data }) => {
                   >
                     {data.buttons[0].label}
                   </button>
-                </a>
+                </Link>
               )}
 
               {/* Button 2 */}
               {data.buttons[1] && (
-                <a href={data.buttons[1].href}>
+                <Link to={data.buttons[1].href || "/"}>
                   <button
                     className="
                       w-[150px] lg:w-[250px]
@@ -84,9 +97,8 @@ const SBIHeroSection = ({ data }) => {
                   >
                     {data.buttons[1].label}
                   </button>
-                </a>
+                </Link>
               )}
-
             </div>
           )}
 
@@ -103,7 +115,6 @@ const SBIHeroSection = ({ data }) => {
               ))}
             </div>
           )}
-
         </header>
       </Container>
     </div>

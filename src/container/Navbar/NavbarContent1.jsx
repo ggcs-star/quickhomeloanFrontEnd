@@ -11,7 +11,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import NavbarAuthActions from "./NavbarAuthActions";
 import ProModal from "./ProModal";
-import { BASE_URL } from "../../api"; // Adjust path as needed
+import { BASE_URL } from "../../api";
 
 // Create axios instance with interceptors
 const api = axios.create({
@@ -41,7 +41,6 @@ api.interceptors.response.use(
     (response) => response,
     (error) => {
         if (error.response?.status === 401) {
-            // Token expired or invalid
             localStorage.removeItem("token");
             localStorage.removeItem("isAuthenticated");
             localStorage.removeItem("user_id");
@@ -50,12 +49,9 @@ api.interceptors.response.use(
             localStorage.removeItem("is_pro_user");
             localStorage.removeItem("subscription_id");
 
-            // Dispatch event to update UI
             window.dispatchEvent(new Event("authStateChanged"));
 
             toast.error("Session expired. Please login again.");
-
-            // Redirect to login
             window.location.href = "/login";
         }
         return Promise.reject(error);
@@ -101,6 +97,11 @@ export default function NavbarContent1(props) {
     const [showProfileDropdown, setShowProfileDropdown] = useState(false);
     const profileDropdownRef = useRef(null);
     const profileButtonRef = useRef(null);
+    
+    // Add refs for mega menu timeout and elements
+    const megaMenuTimeoutRef = useRef(null);
+    const currentMegaMenuRef = useRef(null);
+    const currentMenuItemRef = useRef(null);
 
     const profileMenuItems = useMemo(() => [
         { label: "Profile", path: "/profile" },
@@ -147,13 +148,21 @@ export default function NavbarContent1(props) {
     // Mobile stack: array of panels, each { title: string, items: array }
     const [mobileStack, setMobileStack] = useState([]);
 
-    // Function to check pro access - SAME LOGIC AS HOMEDASHBOARD
+    // Cleanup timeout on unmount
+    useEffect(() => {
+        return () => {
+            if (megaMenuTimeoutRef.current) {
+                clearTimeout(megaMenuTimeoutRef.current);
+            }
+        };
+    }, []);
+
+    // Function to check pro access
     const checkProAccess = async () => {
         setIsCheckingAccess(true);
         try {
             const token = localStorage.getItem("token");
 
-            // Check local storage first
             const isProLocal = localStorage.getItem("is_pro_user") === "true";
             if (isProLocal) {
                 setIsProUser(true);
@@ -167,7 +176,6 @@ export default function NavbarContent1(props) {
                 return;
             }
 
-            // Verify with API using BASE_URL
             const response = await axios.get(
                 `${BASE_URL}/check-access`,
                 {
@@ -206,15 +214,12 @@ export default function NavbarContent1(props) {
             setUserEmail(email);
             setUserName(name);
 
-            // Fetch user completion percentage if authenticated
             if (authStatus && token) {
                 fetchUserCompletion();
-                // Check pro access
                 await checkProAccess();
             }
         };
 
-        // Listen for user profile updates
         const handleProfileUpdate = (e) => {
             const updatedUser = e.detail?.user;
             if (updatedUser) {
@@ -232,7 +237,6 @@ export default function NavbarContent1(props) {
             }
         };
 
-        // Listen for auth state changes
         const handleAuthChange = async (e) => {
             await checkAuth();
             if (e.detail?.user) {
@@ -246,27 +250,20 @@ export default function NavbarContent1(props) {
             }
         };
 
-        // Listen for subscription updates
         const handleSubscriptionUpdate = async (event) => {
             if (event.detail?.isPro === true) {
-                // Check pro access again after subscription update
                 await checkProAccess();
                 toast.success("Pro features unlocked!");
             }
         };
 
-        // Listen for open pro modal event
         const handleOpenProModal = () => {
             setShowProModal(true);
         };
 
-        // Initial check
         checkAuth();
-
-        // Load Razorpay script on component mount
         loadRazorpayScript();
 
-        // Add event listeners
         window.addEventListener("authStateChanged", handleAuthChange);
         window.addEventListener("userProfileUpdated", handleProfileUpdate);
         window.addEventListener("storage", checkAuth);
@@ -282,14 +279,13 @@ export default function NavbarContent1(props) {
         };
     }, []);
 
-    // Handle subscription payment - FIXED to show full Razorpay UI
+    // Handle subscription payment
     const handleSubscriptionPayment = async () => {
         if (isProcessingPayment) return;
 
         setIsProcessingPayment(true);
 
         try {
-            // Check if Razorpay is loaded
             if (!window.Razorpay) {
                 const scriptLoaded = await loadRazorpayScript();
                 if (!scriptLoaded) {
@@ -299,7 +295,6 @@ export default function NavbarContent1(props) {
                 }
             }
 
-            // Get auth token and validate
             const token = localStorage.getItem("token");
             const userId = localStorage.getItem("user_id");
 
@@ -317,10 +312,8 @@ export default function NavbarContent1(props) {
                 return;
             }
 
-            // Show loading toast
             toast.info("Creating subscription...");
 
-            // Call the create-subscription API using our api instance
             const response = await api.post("/create-subscription", {
                 user_id: parseInt(userId)
             });
@@ -333,12 +326,10 @@ export default function NavbarContent1(props) {
                 return;
             }
 
-            // Get user details
             const user_name = localStorage.getItem("user_name") || "";
             const user_email_final = localStorage.getItem("user_email") || "";
             const user_phone = localStorage.getItem("user_phone") || "9999999999";
 
-            // Razorpay options
             const options = {
                 key: key,
                 subscription_id: subscription_id,
@@ -419,13 +410,10 @@ export default function NavbarContent1(props) {
                 handler: async function (response) {
                     console.log("Payment successful:", response);
 
-                    // ✅ CLOSE MODAL IMMEDIATELY - First thing!
                     setShowProModal(false);
 
-                    // Show verifying toast
                     const verifyingToast = toast.loading("Verifying your subscription...");
 
-                    // Verify subscription immediately
                     const verificationResult = await verifySubscription(response, subscription_id);
 
                     if (verificationResult) {
@@ -436,14 +424,10 @@ export default function NavbarContent1(props) {
                             autoClose: 3000
                         });
 
-                        // Reset processing state
                         setIsProcessingPayment(false);
-
-                        // Force immediate UI update
                         setIsProUser(true);
                         localStorage.setItem("is_pro_user", "true");
 
-                        // Dispatch event for other components
                         window.dispatchEvent(new CustomEvent("subscriptionUpdated", {
                             detail: {
                                 isPro: true,
@@ -477,13 +461,11 @@ export default function NavbarContent1(props) {
 
             const razorpay = new window.Razorpay(options);
 
-            // Add event listeners for better UX
             razorpay.on('payment.failed', function (response) {
                 console.error("Payment failed:", response);
                 const error = response.error;
                 toast.error(`Payment failed: ${error.description || "Please try again"}`);
                 setIsProcessingPayment(false);
-                // Don't close the pro modal on payment failure
             });
 
             razorpay.on('payment.success', function (response) {
@@ -536,24 +518,19 @@ export default function NavbarContent1(props) {
                 return false;
             }
 
-            // Call verification API
             const response = await api.post("/verify-subscription", {
                 razorpay_payment_id: paymentResponse.razorpay_payment_id,
                 razorpay_subscription_id: subscription_id,
                 razorpay_signature: paymentResponse.razorpay_signature
             });
 
-            // Update local storage based on verification response
             if (response.data && response.data.success) {
                 localStorage.setItem("is_pro_user", "true");
                 if (response.data.subscription_id) {
                     localStorage.setItem("subscription_id", response.data.subscription_id);
                 }
 
-                // Update state immediately
                 setIsProUser(true);
-
-                // Refresh user completion data
                 await fetchUserCompletion();
 
                 return true;
@@ -564,7 +541,6 @@ export default function NavbarContent1(props) {
         } catch (error) {
             console.error("Subscription verification failed:", error);
 
-            // Even if verification fails, try to check status after delay
             setTimeout(async () => {
                 await checkProAccess();
             }, 3000);
@@ -677,7 +653,7 @@ export default function NavbarContent1(props) {
         }
     };
 
-    // Helpers for desktop mega menu behavior
+    // Helpers for desktop mega menu behavior with improved hover handling
     const handleMenuToggle = (name) => {
         setExpandedItem(expandedItem === name ? null : name);
     };
@@ -698,16 +674,104 @@ export default function NavbarContent1(props) {
         setMegaMenuOpen(false);
     };
 
-    const handleMegaMenuEnter = (index) => {
-        if (navMenu[index]?.isMegaMenu) {
-            setMegaMenuOpen(true);
-            setActiveMegaMenu(index);
+    // Improved hover handlers with delay for better UX
+    const handleMenuItemMouseEnter = (index, item) => {
+        // Clear any pending timeout
+        if (megaMenuTimeoutRef.current) {
+            clearTimeout(megaMenuTimeoutRef.current);
+            megaMenuTimeoutRef.current = null;
         }
+        
+        // Check if the item has a submenu
+        const hasSubmenu = item?.submenu && item.submenu.length > 0;
+        
+        if (!hasSubmenu) {
+            // If no submenu, immediately close any open mega menu
+            setActiveMegaMenu(null);
+            setMegaMenuOpen(false);
+            return;
+        }
+        
+        // If we're already showing this menu, don't do anything
+        if (activeMegaMenu === index) return;
+        
+        // Show the menu with a small delay (improves UX by preventing accidental triggers)
+        megaMenuTimeoutRef.current = setTimeout(() => {
+            if (item?.submenu) {
+                setActiveMegaMenu(index);
+                if (item.isMegaMenu) {
+                    setMegaMenuOpen(true);
+                }
+            }
+            megaMenuTimeoutRef.current = null;
+        }, 100);
     };
 
-    const handleMegaMenuLeave = () => {
-        setActiveMegaMenu(null);
-        setMegaMenuOpen(false);
+    const handleMenuItemMouseLeave = (index, item) => {
+        // Clear any pending timeout
+        if (megaMenuTimeoutRef.current) {
+            clearTimeout(megaMenuTimeoutRef.current);
+            megaMenuTimeoutRef.current = null;
+        }
+        
+        // Only handle leave for items with submenus
+        const hasSubmenu = item?.submenu && item.submenu.length > 0;
+        if (!hasSubmenu) return;
+        
+        // Don't close immediately - give time to move to menu
+        megaMenuTimeoutRef.current = setTimeout(() => {
+            // Check if we're already hovering over the mega menu
+            if (!currentMegaMenuRef.current && !currentMenuItemRef.current) {
+                setActiveMegaMenu(null);
+                setMegaMenuOpen(false);
+            }
+            megaMenuTimeoutRef.current = null;
+        }, 200);
+    };
+
+    const handleMegaMenuMouseEnter = (index) => {
+        // Clear any pending timeout
+        if (megaMenuTimeoutRef.current) {
+            clearTimeout(megaMenuTimeoutRef.current);
+            megaMenuTimeoutRef.current = null;
+        }
+        
+        currentMegaMenuRef.current = true;
+        setActiveMegaMenu(index);
+        setMegaMenuOpen(true);
+    };
+
+    const handleMegaMenuMouseLeave = () => {
+        currentMegaMenuRef.current = false;
+        
+        // Clear any pending timeout
+        if (megaMenuTimeoutRef.current) {
+            clearTimeout(megaMenuTimeoutRef.current);
+            megaMenuTimeoutRef.current = null;
+        }
+        
+        // Add delay before closing to allow moving back to menu item
+        megaMenuTimeoutRef.current = setTimeout(() => {
+            if (!currentMenuItemRef.current && !currentMegaMenuRef.current) {
+                setActiveMegaMenu(null);
+                setMegaMenuOpen(false);
+            }
+            megaMenuTimeoutRef.current = null;
+        }, 200);
+    };
+
+    const handleMenuItemRef = (element, index, item) => {
+        if (element) {
+            const hasSubmenu = item?.submenu && item.submenu.length > 0;
+            if (hasSubmenu) {
+                element.addEventListener('mouseenter', () => {
+                    currentMenuItemRef.current = true;
+                });
+                element.addEventListener('mouseleave', () => {
+                    currentMenuItemRef.current = false;
+                });
+            }
+        }
     };
 
     const hasMegaMenu = (item) =>
@@ -730,18 +794,21 @@ export default function NavbarContent1(props) {
 
         return (
             <div
+                ref={(el) => {
+                    if (el) {
+                        el.addEventListener('mouseenter', () => handleMegaMenuMouseEnter(index));
+                        el.addEventListener('mouseleave', handleMegaMenuMouseLeave);
+                    }
+                }}
                 className="fixed left-1/2 transform -translate-x-1/2 top-16 min-h-[500px] min-w-[1200px] w-fit border-radius-0 border-b-5 border-solid border-b-black bg-white shadow-lg z-50 border border-neutral-300 border-t-0 rounded-b-lg overflow-y-auto"
                 style={{
                     boxShadow: "-10px 40px 20px 0 rgba(30,30,30,.05)",
                     borderBottom: "5px solid black",
                     height: "500px",
-                        paddingTop: "-60px", // 🔥 increase this to move underline down
-
+                    paddingTop: "-60px",
                     scrollbarWidth: "thin",
                     scrollbarColor: "#9CA3AF #F3F4F6",
                 }}
-                onMouseEnter={() => handleMegaMenuEnter(index)}
-                onMouseLeave={handleMegaMenuLeave}
             >
                 <div className="p-8 h-full">
                     <div className="flex h-full">
@@ -804,12 +871,16 @@ export default function NavbarContent1(props) {
     const renderRegularDropdown = (item, index) => {
         return (
             <div
+                ref={(el) => {
+                    if (el) {
+                        el.addEventListener('mouseenter', () => handleMegaMenuMouseEnter(index));
+                        el.addEventListener('mouseleave', handleMegaMenuMouseLeave);
+                    }
+                }}
                 className="absolute top-28 left-0 bg-white shadow-lg z-50 border border-neutral-300 min-w-[200px] border-b-5 border-solid border-b-black border-t-0 rounded-b-lg"
                 style={{
                     boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
                 }}
-                onMouseEnter={() => setActiveMegaMenu(index)}
-                onMouseLeave={() => setActiveMegaMenu(null)}
             >
                 <div className="py-2">
                     {item.submenu.map((subItem) => (
@@ -938,6 +1009,7 @@ export default function NavbarContent1(props) {
                                 ))}
                             </div>
 
+                            {/* Keeping your commented code as requested */}
                             {/* <div className="px-4 py-5 bg-white flex gap-3">
                                 {isAuthenticated ? (
                                     <>
@@ -1036,7 +1108,6 @@ export default function NavbarContent1(props) {
                         </div>
 
                         <div className="flex items-center gap-3">
-                            {/* Pro Button - Changes based on subscription status */}
                             {isCheckingAccess ? (
                                 <button
                                     className="cursor-pointer bg-gray-400 text-white px-6 py-2.5 rounded-lg text-[14px] font-semibold tracking-wide flex items-center gap-2"
@@ -1257,34 +1328,30 @@ export default function NavbarContent1(props) {
                                     <li
                                         key={item.id}
                                         className="relative flex items-center group lg:text-lg underline-hover"
-                                        onMouseEnter={() => item?.submenu && handleMegaMenuEnter(index)}
-                                        onMouseLeave={() => item?.submenu && handleMegaMenuLeave()}
+                                        ref={(el) => handleMenuItemRef(el, index, item)}
+                                        onMouseEnter={() => handleMenuItemMouseEnter(index, item)}
+                                        onMouseLeave={() => handleMenuItemMouseLeave(index, item)}
                                     >
-                                        <Link
-                                            to={item.slug || "#"}
-                                            draggable="false"
+                                        <div
                                             onClick={() => {
-                                                if (!item.submenu) {
+                                                if (!item.submenu && item.slug) {
                                                     navigate(item.slug);
                                                     handleSubmenuClose();
                                                 }
                                             }}
-                                            className={`-px-2 text-base flex items-center text-black hover:text-gray-800 transition-colors duration-300 h-28`}
+                                            className={`-px-2 text-base flex items-center text-black hover:text-gray-800 transition-colors duration-300 h-28 cursor-pointer ${!item.submenu ? 'hover:cursor-pointer' : ''}`}
                                         >
                                             {item.label}
                                             {item.submenu && (
                                                 <span className="ml-2 pt-2">
-                                                    <span className="inline-block group-hover:hidden">
+                                                    <span className={`inline-block transition-transform duration-200 ${activeMegaMenu === index ? 'rotate-180' : 'rotate-0'}`}>
                                                         <FaAngleDown />
-                                                    </span>
-                                                    <span className="hidden group-hover:inline-block">
-                                                        <FaAngleUp />
                                                     </span>
                                                 </span>
                                             )}
-                                        </Link>
+                                        </div>
 
-                                        {item.submenu && megaMenuOpen && activeMegaMenu === index && hasMegaMenu(item) && renderHomeLoanMegaMenu(item, index)}
+                                        {item.submenu && activeMegaMenu === index && hasMegaMenu(item) && renderHomeLoanMegaMenu(item, index)}
                                         {item.submenu && activeMegaMenu === index && !hasMegaMenu(item) && renderRegularDropdown(item, index)}
                                     </li>
                                 ))}
@@ -1304,7 +1371,9 @@ export default function NavbarContent1(props) {
                                 </span>
                             </div>
                         </div>
-{/* 
+
+                        {/* Keeping your commented code as requested */}
+                        {/* 
                         <div className="hidden lg:flex items-center gap-4">
                             <button
                                 onClick={() => navigate("/login")}
@@ -1318,7 +1387,8 @@ export default function NavbarContent1(props) {
                             >
                                 Sign Up
                             </button>
-                        </div> */}
+                        </div>
+                        */}
                     </div>
 
                     {menuOpen && (

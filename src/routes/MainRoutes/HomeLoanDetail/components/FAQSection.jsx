@@ -14,9 +14,14 @@ const FAQSection = ({ data }) => {
     <div className="bg-white rounded-md border border-neutral-300 overflow-hidden">
       {/* Header */}
       <div className="p-6 border-b border-neutral-300">
-        <h2 className="text-xl md:text-2xl font-bold text-neutral-800">
-          {data.title}
-        </h2>
+       <h2 className="text-xl md:text-2xl font-bold text-neutral-800">
+  {`${
+    data.bankName
+      ?.replace("Interest Rate, EMI Calculator & Eligibility", "")
+      ?.replace(/\(\d{4}\)/, "")
+      ?.trim() || "Home Loan"
+  } FAQs`}
+</h2>
       </div>
 
       {/* FAQs */}

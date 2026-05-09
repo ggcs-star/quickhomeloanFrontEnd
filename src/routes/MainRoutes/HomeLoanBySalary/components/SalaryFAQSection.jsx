@@ -8,11 +8,16 @@ const SalaryFAQSection = () => {
   const [openIndex, setOpenIndex] = useState(null);
 
   const { slug } = useParams();
-  const pageData =
-    homeLoanBySalary.find((item) => item.slug === slug) || homeLoanBySalary[0];
 
-  const { faqSection } = pageData;
+  const pageData =
+    homeLoanBySalary.find((item) => item.slug === slug) ||
+    homeLoanBySalary[0];
+
+  const { faqSection, heroSection } = pageData;
+
   if (!faqSection) return null;
+
+  const faqTitle = `FAQs on Home Loan for Salary ₹${heroSection?.salary}`;
 
   const toggleFAQ = (index) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -22,13 +27,13 @@ const SalaryFAQSection = () => {
     <section id="faqs" className="">
       <Container className="max-w-4xl mx-auto">
 
-        {/* Entire Card (Matches Provided Component) */}
+        {/* FAQ Card */}
         <div className="bg-white rounded-md border border-neutral-300 overflow-hidden">
 
           {/* Header */}
           <div className="p-6 border-b border-neutral-300">
             <h2 className="text-xl md:text-2xl font-bold text-neutral-800 text-center md:text-left">
-              {faqSection.title}
+              {faqTitle}
             </h2>
           </div>
 
@@ -52,15 +57,18 @@ const SalaryFAQSection = () => {
                       <span className="text-base md:text-lg">
                         {faq.question}
                       </span>
+
                       <ChevronDown
                         className={`w-5 h-5 transition-transform duration-300 ${
-                          isOpen ? "rotate-180 text-black" : "text-black"
+                          isOpen
+                            ? "rotate-180 text-black"
+                            : "text-black"
                         }`}
                       />
                     </button>
                   </h3>
 
-                  {/* Animated dropdown */}
+                  {/* Answer */}
                   <div
                     className={`grid transition-all duration-300 ease-in-out ${
                       isOpen
@@ -74,6 +82,7 @@ const SalaryFAQSection = () => {
                       </div>
                     </div>
                   </div>
+
                 </div>
               );
             })}

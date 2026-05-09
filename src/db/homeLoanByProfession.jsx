@@ -3,6 +3,7 @@ export const homeLoanByProfession = [
   {
     id: 1,
     slug: "doctor",
+    profession: "doctor",
     title: "Home Loan for Doctors - QuickHomeLoan",
     description:
       "Specialised home loans for doctors with high eligibility, fast approvals, and flexible tenure. Perfect for medical professionals looking to buy, build, or refinance a home.",
@@ -40,10 +41,10 @@ export const homeLoanByProfession = [
           label: "Apply Instantly",
           href: "/apply-loan?category=Home Loan By Professions&subcategory=Home Loan for Doctors",
         },
-        {
-          label: "View Rates",
-          href: "#rates",
-        },
+        // {
+        //   label: "View Rates",
+        //   href: "#rates",
+        // },
       ],
 
 
@@ -463,7 +464,7 @@ export const homeLoanByProfession = [
         "We value your dedication. Let us handle the complexities of financing while you focus on your patients.",
       button: {
         label: "Apply Now",
-        href: "#eligibility",
+        href: "/apply-loan",
       },
     },
 
@@ -480,6 +481,7 @@ export const homeLoanByProfession = [
   {
     id: 2,
     slug: "chartered-accountants",
+    profession: "chartered accountants",
     title: "Home Loan for Chartered Accountants - QuickHomeLoan",
     description:
       "Specialised home loans for Chartered Accountants with high eligibility, fast approvals, and flexible repayment options. Designed for finance professionals looking to buy, build, or refinance a home or office space.",
@@ -522,10 +524,10 @@ export const homeLoanByProfession = [
           label: "Apply Instantly",
           href: "/apply-loan?category=Home Loan By Professions&subcategory=Home Loan for Chartered Accountants (CA)",
         },
-        {
-          label: "View Rates",
-          href: "#rates",
-        },
+        // {
+        //   label: "View Rates",
+        //   href: "#rates",
+        // },
       ],
     },
 
@@ -907,7 +909,7 @@ export const homeLoanByProfession = [
         "Leverage your financial expertise and let QuickHomeLoan handle the rest — from application to approval.",
       button: {
         label: "Apply Now",
-        href: "#eligibility",
+        href: "/apply-loan",
       },
     },
   },
@@ -916,6 +918,8 @@ export const homeLoanByProfession = [
   {
     id: 3,
     slug: "engineer",
+    profession: "engineer",
+
     title: "Home Loan for Engineers - QuickHomeLoan",
     description:
       "Exclusive home loans for Engineers with high eligibility, low interest rates, and faster approvals. Ideal for civil, mechanical, software, and electrical engineers looking to buy, build, or renovate a home.",
@@ -954,10 +958,10 @@ export const homeLoanByProfession = [
           label: "Apply Instantly",
           href: "/apply-loan?category=Home Loan By Professions&subcategory=Home Loan for Engineers",
         },
-        {
-          label: "View Rates",
-          href: "#rates",
-        },
+        // {
+        //   label: "View Rates",
+        //   href: "#rates",
+        // },
       ],
     },
 
@@ -1307,7 +1311,7 @@ export const homeLoanByProfession = [
       title: "Empowering Engineers to Build Their Dream Home",
       description:
         "We value your expertise in building the world — now let us help you build your dream home with ease.",
-      button: { label: "Apply Now", href: "#eligibility" },
+      button: { label: "Apply Now", href: "/apply-loan" },
     },
   },
 
@@ -1315,6 +1319,8 @@ export const homeLoanByProfession = [
   {
     id: 4,
     slug: "teacher",
+    profession: "teacher",
+
     title: "Home Loan for Teachers - QuickHomeLoan",
     description:
       "Exclusive home loans for Teachers, Professors, and Educators with lower rates, flexible EMIs, and fast approvals. Ideal for educators looking to buy, build, or renovate a home.",
@@ -1354,10 +1360,10 @@ export const homeLoanByProfession = [
           label: "Apply Instantly",
           href: "/apply-loan?category=Home Loan By Professions&subcategory=Home Loan for Teachers",
         },
-        {
-          label: "View Rates",
-          href: "#rates",
-        },
+        // {
+        //   label: "View Rates",
+        //   href: "#rates",
+        // },
       ],
     },
 
@@ -1685,7 +1691,7 @@ export const homeLoanByProfession = [
       title: "Empowering Teachers to Own Their Dream Home",
       description:
         "Your dedication shapes the nation — let QuickHomeLoan reward it with affordable and flexible home loans.",
-      button: { label: "Apply Now", href: "#eligibility" },
+      button: { label: "Apply Now", href: "/apply-loan" },
     },
   },
 
@@ -1693,6 +1699,8 @@ export const homeLoanByProfession = [
   {
     id: 5,
     slug: "lawyer",
+    profession: "lawyer",
+
     title: "Home Loan for Lawyers - QuickHomeLoan",
     description:
       "Tailored home loans for Advocates, Legal Consultants, and Lawyers with exclusive benefits, lower rates, and higher eligibility. Ideal for professionals in legal practice or corporate law.",
@@ -1728,10 +1736,10 @@ export const homeLoanByProfession = [
           label: "Apply Instantly",
           href: "/apply-loan?category=Home Loan By Professions&subcategory=Home Loan for Lawyers",
         },
-        {
-          label: "View Rates",
-          href: "#rates",
-        },
+        // {
+        //   label: "View Rates",
+        //   href: "/apply-loan",
+        // },
       ],
     },
 
@@ -2064,7 +2072,9 @@ export const homeLoanByProfession = [
       title: "Empowering Lawyers to Own Their Dream Home",
       description:
         "Your commitment to justice deserves financial ease. QuickHomeLoan ensures your home loan journey is fair, fast, and flexible.",
-      button: { label: "Apply Now", href: "#eligibility" },
+      button: {
+        label: "Apply Now", href: "/apply-loan",
+      },
     },
   },
 
@@ -2072,6 +2082,8 @@ export const homeLoanByProfession = [
   {
     id: 6,
     slug: "it-professionals",
+    profession: "it professionals",
+
     title: "Home Loan for IT Professionals - QuickHomeLoan",
     description:
       "Exclusive home loans for Software Engineers, Developers, and IT Professionals. Enjoy lower rates, faster approvals, and flexible EMI options tailored for tech professionals.",
@@ -2111,10 +2123,10 @@ export const homeLoanByProfession = [
           label: "Apply Instantly",
           href: "/apply-loan?category=Home Loan By Professions&subcategory=Home Loan for IT Professionals",
         },
-        {
-          label: "View Rates",
-          href: "#rates",
-        },
+        // {
+        //   label: "View Rates",
+        //   href: "#rates",
+        // },
       ],
     },
 
@@ -2436,1475 +2448,1483 @@ export const homeLoanByProfession = [
       title: "Empowering IT Professionals to Own Smart Homes",
       description:
         "Whether you're a coder or a cloud architect, QuickHomeLoan helps you secure your dream home faster, smarter, and simpler.",
-      button: { label: "Apply Now", href: "#eligibility" },
+      button: {
+        label: "Apply Now", href: "/apply-loan",
+      },
     },
   },
 
   {
-  id: 7,
-  slug: "influencers",
-  title: "Home Loan for Influencers & Content Creators - QuickHomeLoan",
-  description:
-    "Specialised home loans for Influencers, YouTubers, Bloggers, and Digital Creators with high eligibility, flexible income assessment, and fast approvals. Designed for modern professionals with digital income streams.",
-  interestRate: "8.60% - 10.75% p.a.",
-  processingFee: "Up to 1% of loan amount (varies by lender)",
-  loanTenure: "Up to 30 years",
+    id: 7,
+    slug: "influencers",
+    profession: "influencers",
 
-  heroSection: {
-    tag: {
-      icon: {
-        name: "camera",
-        svgPath: [
-          "M23 7h-3l-2-3H6L4 7H1v13h22z",
-          "M12 17a4 4 0 1 0 0-8 4 4 0 0 0 0 8"
-        ]
-      },
-      text: "Exclusive for Influencers & Creators",
-      
-    },
-
-    title: {
-      line1: "Turn Your Digital Success Into",
-      line2: "A Home You Truly Own.",
-    },
-
+    title: "Home Loan for Influencers & Content Creators - QuickHomeLoan",
     description:
-      "Designed for Influencers, YouTubers, Bloggers, and Digital Entrepreneurs. Enjoy flexible income evaluation, attractive interest rates, and quick digital approvals.",
+      "Specialised home loans for Influencers, YouTubers, Bloggers, and Digital Creators with high eligibility, flexible income assessment, and fast approvals. Designed for modern professionals with digital income streams.",
+    interestRate: "8.60% - 10.75% p.a.",
+    processingFee: "Up to 1% of loan amount (varies by lender)",
+    loanTenure: "Up to 30 years",
 
-    buttons: [
-      {
-        label: "Apply Instantly",
-        href: "/apply-loan?category=Home Loan By Professions&subcategory=Home Loan for Influencers"
-      },
-      {
-        label: "Check Eligibility",
-        href: "#eligibility"
-      }
-    ]
-  },
-
-  doctorBenefitsSection: {
-    title: "What Is an Influencer Home Loan?",
-    description:
-      "A customised home loan solution for individuals earning through digital platforms such as YouTube, Instagram, brand collaborations, ads, and online businesses. Lenders assess income holistically rather than traditional salary slips.",
-    subtitle: "Key Benefits",
-    subtext: "Designed for the Creator Economy",
-    benefits: [
-      {
-        title: "Flexible Income Assessment",
-        description:
-          "Multiple income sources like ads, sponsorships, and affiliate earnings considered.",
-        icon: { paths: ["M12 1v22", "M5 6h14", "M7 12h10", "M9 18h6"] }
-      },
-      {
-        title: "High Loan Eligibility",
-        description:
-          "Loan amount based on average monthly digital income and account stability.",
-        icon: { paths: ["M16 7h6v6", "m22 7-8.5 8.5-5-5L2 17"] }
-      },
-      {
-        title: "Quick Digital Processing",
-        description:
-          "Paperless application with online income verification.",
-        icon: { paths: ["M4 14l8-8 8 8", "M12 6v12"] }
-      },
-      {
-        title: "Flexible Repayment Tenure",
-        description:
-          "Choose a repayment period of up to 30 years for manageable EMIs.",
+    heroSection: {
+      tag: {
         icon: {
-          circles: [{ cx: 12, cy: 12, r: 10 }],
-          polylines: [{ points: "12 6 12 12 16 14" }]
-        }
-      },
-      {
-        title: "No Salary Slip Required",
-        description:
-          "Loans approved without traditional payslips or employer proof.",
-        icon: { paths: ["M6 18L18 6", "M6 6h12v12H6z"] }
-      },
-      {
-        title: "Home + Studio Financing",
-        description:
-          "Option to fund home setups, recording studios, or workspaces.",
-        icon: { paths: ["M3 3h18v18H3z", "M8 8h8v8H8z"] }
-      }
-    ]
-  },
-
-  doctorEligibilitySection: {
-    title: "Who Is Eligible?",
-    columns: 4,
-    description:
-      "Home loans are available for digital professionals with stable online income and verified platforms.",
-    professionals: [
-      {
-        title: "Social Media Influencers",
-        degree: "Instagram, Facebook, or LinkedIn creators",
-        icon: { paths: ["M12 2a10 10 0 1 0 10 10"] }
-      },
-      {
-        title: "YouTubers & Streamers",
-        degree: "YouTube monetisation or streaming income proof",
-        icon: { paths: ["M10 8l6 4-6 4z", "M2 6h20v12H2z"] }
-      },
-      {
-        title: "Bloggers & Content Writers",
-        degree: "AdSense / affiliate earnings",
-        icon: { paths: ["M4 4h16v16H4z", "M8 8h8"] }
-      },
-      {
-        title: "Digital Entrepreneurs",
-        degree: "Online course creators & solopreneurs",
-        icon: { paths: ["M12 2l4 4H8l4-4z", "M4 10h16v10H4z"] }
-      }
-    ]
-  },
-
-  doctorComparisonSection: {
-    title: "Influencer Loan vs Regular Loan",
-    subtitle: "Why creators get an edge.",
-    headers: {
-      parameter: "Parameter",
-      doctorLoan: "Influencer Home Loan",
-      regularLoan: "Standard Home Loan"
-    },
-    rows: [
-      {
-        parameter: "Income Proof",
-        doctorLoan: "Digital earnings & bank statements",
-        regularLoan: "Salary slips required"
-      },
-      {
-        parameter: "Eligibility",
-        doctorLoan: "High (multiple income streams)",
-        regularLoan: "Moderate"
-      },
-      {
-        parameter: "Processing",
-        doctorLoan: "Fast-track",
-        regularLoan: "Standard"
-      },
-      {
-        parameter: "Flexibility",
-        doctorLoan: "High",
-        regularLoan: "Limited"
-      }
-    ]
-  },
-
-  doctorRatesSection: {
-    title: "Latest Interest Rates (2025)",
-    subtitle:
-      "Rates depend on income stability, follower base, and platform diversification.",
-    headers: [
-      { label: "Lender" },
-      { label: "Interest Rate (p.a.)", highlight: true },
-      { label: "Proc. Fee", hidden: "hidden sm:table-cell" },
-      { label: "Tenure", hidden: "hidden md:table-cell" },
-      { label: "Special Benefits" }
-    ],
-    lenders: [
-      {
-        name: "HDFC Bank",
-        interestRate: "8.60% – 9.50%",
-        processingFee: "0.50%",
-        tenure: "30 yrs",
-        benefit: "Digital income programs"
-      },
-      {
-        name: "ICICI Bank",
-        interestRate: "8.70% – 9.60%",
-        processingFee: "0.50%",
-        tenure: "30 yrs",
-        benefit: "Fast approvals for self-employed"
-      },
-      {
-        name: "Axis Bank",
-        interestRate: "8.75% – 9.80%",
-        processingFee: "0.40%",
-        tenure: "30 yrs",
-        benefit: "Flexible income averaging"
-      }
-    ]
-  },
-
-  doctorEmiCalculatorSection: {
-    title: "EMI Calculator",
-    subtitle: "Plan your EMIs with confidence.",
-    labels: {
-      loanAmount: "Loan Amount",
-      interestRate: "Interest Rate (p.a.)",
-      loanTenure: "Tenure (Years)",
-      emi: "Monthly EMI",
-      principal: "Principal",
-      totalInterest: "Interest Payable",
-      totalAmount: "Total Payable"
-    },
-    defaults: {
-      loanAmount: 5000000,
-      interestRate: 8.75,
-      loanTenure: 25
-    },
-    ranges: {
-      loanAmount: { min: 1000000, max: 30000000, step: 100000 },
-      interestRate: { min: 7.5, max: 15, step: 0.05 },
-      loanTenure: { min: 5, max: 30, step: 1 }
-    }
-  },
-
-  doctorFaqSection: {
-    title: "Frequently Asked Questions",
-    items: [
-      {
-        question: "Can influencers get home loans without salary slips?",
-        answer:
-          "Yes. Digital income, bank statements, and platform analytics are considered."
-      },
-      {
-        question: "Is minimum follower count required?",
-        answer:
-          "No fixed number, but stable income history and engagement matter."
-      },
-      {
-        question: "Can new influencers apply?",
-        answer:
-          "Yes, with at least 1–2 years of consistent income proof."
-      },
-      {
-        question: "Is this available across India?",
-        answer:
-          "Yes, in all major cities and towns."
-      }
-    ]
-  },
-
-  doctorApplySection: {
-    title: "Turn Your Digital Influence Into a Dream Home",
-    description:
-      "Let your online success open the doors to homeownership with QuickHomeLoan.",
-    button: {
-      label: "Apply Now",
-      href: "#eligibility"
-    }
-  }
-},
-{
-  id: 8,
-  slug: "nris",
-  title: "Home Loan for NRIs - QuickHomeLoan",
-  description:
-    "Specialised home loans for Non-Resident Indians (NRIs) with attractive interest rates, high eligibility, and simplified documentation. Designed for overseas Indians looking to buy, build, or invest in property in India.",
-  interestRate: "8.50% - 10.50% p.a.",
-  processingFee: "Up to 1% of loan amount (varies by lender)",
-  loanTenure: "Up to 30 years",
-
-  heroSection: {
-    tag: {
-      icon: {
-        name: "globe",
-        svgPath: [
-          "M12 2a10 10 0 1 0 10 10",
-          "M2 12h20",
-          "M12 2c2.5 3 2.5 17 0 20"
-        ]
-      },
-      text: "Exclusive for NRIs",
-    style: {
+          name: "sparkles",
+          svgPath: [
+            "M12 2l1.8 5.2L19 9l-5.2 1.8L12 16l-1.8-5.2L5 9l5.2-1.8L12 2z",
+            "M19 15l.9 2.6L22.5 18l-2.6.9L19 21l-.9-2.1L15.5 18l2.6-.4L19 15z",
+            "M5 15l.9 2.6L8.5 18l-2.6.9L5 21l-.9-2.1L1.5 18l2.6-.4L5 15z",
+          ],
+        },
+        text: "Exclusive for Digital Creators",
+        style: {
           bg: "bg-gray-100",
           text: "text-gray-900",
           border: "border-gray-200",
         },
+      },
+
+      title: {
+        line1: "Turn Your Digital Success Into",
+        line2: "A Home You Truly Own.",
+      },
+
+      description:
+        "Designed for Influencers, YouTubers, Bloggers, and Digital Entrepreneurs. Enjoy flexible income evaluation, attractive interest rates, and quick digital approvals.",
+
+      buttons: [
+        {
+          label: "Apply Instantly",
+          href: "/apply-loan?category=Home Loan By Professions&subcategory=Home Loan for Influencers"
+        },
+        // {
+        //   label: "Check Eligibility",
+        //   href: "#eligibility"
+        // }
+      ]
     },
 
-    title: {
-      line1: "Own a Home in India",
-      line2: "Even While Living Abroad"
-    },
-
-    description:
-      "Designed for NRIs and PIOs working overseas. Get flexible repayment options, foreign income consideration, and seamless digital processing from anywhere in the world.",
-
-    buttons: [
-      {
-        label: "Apply Instantly",
-        href: "/apply-loan?category=Home Loan By Professions&subcategory=Home Loan for NRIs"
-      },
-      {
-        label: "Check Eligibility",
-        href: "#eligibility"
-      }
-    ]
-  },
-
-  doctorBenefitsSection: {
-    title: "What Is an NRI Home Loan?",
-    description:
-      "An NRI home loan enables Non-Resident Indians to purchase, construct, or invest in residential property in India using foreign income while residing abroad.",
-    subtitle: "Key Benefits",
-    subtext: "Designed for Global Indians",
-    benefits: [
-      {
-        title: "Foreign Income Considered",
-        description:
-          "Salary earned abroad is considered for loan eligibility.",
-        icon: { paths: ["M12 1v22", "M4 8h16", "M6 16h12"] }
-      },
-      {
-        title: "High Loan Eligibility",
-        description:
-          "Higher eligibility based on stable overseas employment.",
-        icon: { paths: ["M16 7h6v6", "m22 7-8.5 8.5-5-5L2 17"] }
-      },
-      {
-        title: "Long Repayment Tenure",
-        description:
-          "Choose a repayment period of up to 30 years.",
-        icon: {
-          circles: [{ cx: 12, cy: 12, r: 10 }],
-          polylines: [{ points: "12 6 12 12 16 14" }]
+    doctorBenefitsSection: {
+      title: "What Is an Influencer Home Loan?",
+      description:
+        "A customised home loan solution for individuals earning through digital platforms such as YouTube, Instagram, brand collaborations, ads, and online businesses. Lenders assess income holistically rather than traditional salary slips.",
+      subtitle: "Key Benefits",
+      subtext: "Designed for the Creator Economy",
+      benefits: [
+        {
+          title: "Flexible Income Assessment",
+          description:
+            "Multiple income sources like ads, sponsorships, and affiliate earnings considered.",
+          icon: { paths: ["M12 1v22", "M5 6h14", "M7 12h10", "M9 18h6"] }
+        },
+        {
+          title: "High Loan Eligibility",
+          description:
+            "Loan amount based on average monthly digital income and account stability.",
+          icon: { paths: ["M16 7h6v6", "m22 7-8.5 8.5-5-5L2 17"] }
+        },
+        {
+          title: "Quick Digital Processing",
+          description:
+            "Paperless application with online income verification.",
+          icon: { paths: ["M4 14l8-8 8 8", "M12 6v12"] }
+        },
+        {
+          title: "Flexible Repayment Tenure",
+          description:
+            "Choose a repayment period of up to 30 years for manageable EMIs.",
+          icon: {
+            circles: [{ cx: 12, cy: 12, r: 10 }],
+            polylines: [{ points: "12 6 12 12 16 14" }]
+          }
+        },
+        {
+          title: "No Salary Slip Required",
+          description:
+            "Loans approved without traditional payslips or employer proof.",
+          icon: { paths: ["M6 18L18 6", "M6 6h12v12H6z"] }
+        },
+        {
+          title: "Home + Studio Financing",
+          description:
+            "Option to fund home setups, recording studios, or workspaces.",
+          icon: { paths: ["M3 3h18v18H3z", "M8 8h8v8H8z"] }
         }
-      },
-      {
-        title: "Online Processing",
-        description:
-          "Apply and track your loan digitally from abroad.",
-        icon: { paths: ["M4 14l8-8 8 8", "M12 6v12"] }
-      },
-      {
-        title: "Tax Benefits in India",
-        description:
-          "Avail tax deductions under Indian income tax laws.",
-        icon: { paths: ["M6 6h12v12H6z", "M9 9h6v6H9z"] }
-      },
-      {
-        title: "Joint Loan with Resident Indian",
-        description:
-          "Apply jointly with a resident Indian family member.",
-        icon: { paths: ["M8 8a4 4 0 1 0 0-8", "M16 16a4 4 0 1 0 0-8"] }
-      }
-    ]
-  },
-
-  doctorEligibilitySection: {
-    title: "Who Is Eligible?",
-    columns: 4,
-    description:
-      "NRI home loans are available for Indians working abroad with stable income and valid residency status.",
-    professionals: [
-      {
-        title: "Salaried NRIs",
-        degree: "Working in MNCs, government or private firms abroad",
-        icon: { paths: ["M4 6h16v12H4z", "M8 18h8"] }
-      },
-      {
-        title: "Self-Employed NRIs",
-        degree: "Business owners or consultants overseas",
-        icon: { paths: ["M3 3h18v18H3z"] }
-      },
-      {
-        title: "PIOs & OCIs",
-        degree: "Persons of Indian Origin with valid documents",
-        icon: { paths: ["M12 2a10 10 0 1 0 10 10"] }
-      },
-      {
-        title: "Joint Applicants",
-        degree: "Co-applicant resident in India",
-        icon: { paths: ["M8 8a4 4 0 1 0 0-8", "M16 16a4 4 0 1 0 0-8"] }
-      }
-    ]
-  },
-
-  doctorComparisonSection: {
-    title: "NRI Home Loan vs Regular Home Loan",
-    subtitle: "Key differences you should know",
-    headers: {
-      parameter: "Parameter",
-      doctorLoan: "NRI Home Loan",
-      regularLoan: "Resident Home Loan"
+      ]
     },
-    rows: [
-      {
-        parameter: "Income Source",
-        doctorLoan: "Foreign income",
-        regularLoan: "Indian income"
-      },
-      {
-        parameter: "Documentation",
-        doctorLoan: "Passport, visa, overseas salary proof",
-        regularLoan: "Salary slips & Form 16"
-      },
-      {
-        parameter: "Processing",
-        doctorLoan: "Mostly digital",
-        regularLoan: "Standard"
-      },
-      {
-        parameter: "Eligibility",
-        doctorLoan: "High (foreign income based)",
-        regularLoan: "Moderate"
-      }
-    ]
-  },
 
-  doctorRatesSection: {
-    title: "Latest NRI Home Loan Interest Rates (2025)",
-    subtitle:
-      "Rates vary based on country of residence, income, and credit profile.",
-    headers: [
-      { label: "Lender" },
-      { label: "Interest Rate (p.a.)", highlight: true },
-      { label: "Proc. Fee" },
-      { label: "Tenure" },
-      { label: "Special Benefits" }
-    ],
-    lenders: [
-      {
-        name: "HDFC Bank",
-        interestRate: "8.50% – 9.60%",
-        processingFee: "0.50%",
-        tenure: "30 yrs",
-        benefit: "Strong NRI programs"
-      },
-      {
-        name: "ICICI Bank",
-        interestRate: "8.60% – 9.80%",
-        processingFee: "0.50%",
-        tenure: "30 yrs",
-        benefit: "Global NRI presence"
-      },
-      {
-        name: "Axis Bank",
-        interestRate: "8.70% – 10.00%",
-        processingFee: "0.50%",
-        tenure: "30 yrs",
-        benefit: "Fast overseas processing"
-      }
-    ]
-  },
+    doctorEligibilitySection: {
+      title: "Who Is Eligible?",
+      columns: 4,
+      description:
+        "Home loans are available for digital professionals with stable online income and verified platforms.",
+      professionals: [
+        {
+          title: "Social Media Influencers",
+          degree: "Instagram, Facebook, or LinkedIn creators",
+          icon: { paths: ["M12 2a10 10 0 1 0 10 10"] }
+        },
+        {
+          title: "YouTubers & Streamers",
+          degree: "YouTube monetisation or streaming income proof",
+          icon: { paths: ["M10 8l6 4-6 4z", "M2 6h20v12H2z"] }
+        },
+        {
+          title: "Bloggers & Content Writers",
+          degree: "AdSense / affiliate earnings",
+          icon: { paths: ["M4 4h16v16H4z", "M8 8h8"] }
+        },
+        {
+          title: "Digital Entrepreneurs",
+          degree: "Online course creators & solopreneurs",
+          icon: { paths: ["M12 2l4 4H8l4-4z", "M4 10h16v10H4z"] }
+        }
+      ]
+    },
 
-  doctorEmiCalculatorSection: {
-    title: "EMI Calculator",
-    subtitle: "Estimate your EMIs before you apply",
-    defaults: {
-      loanAmount: 7500000,
-      interestRate: 8.75,
-      loanTenure: 25
+    doctorComparisonSection: {
+      title: "Influencer Loan vs Regular Loan",
+      subtitle: "Why creators get an edge.",
+      headers: {
+        parameter: "Parameter",
+        doctorLoan: "Influencer Home Loan",
+        regularLoan: "Standard Home Loan"
+      },
+      rows: [
+        {
+          parameter: "Income Proof",
+          doctorLoan: "Digital earnings & bank statements",
+          regularLoan: "Salary slips required"
+        },
+        {
+          parameter: "Eligibility",
+          doctorLoan: "High (multiple income streams)",
+          regularLoan: "Moderate"
+        },
+        {
+          parameter: "Processing",
+          doctorLoan: "Fast-track",
+          regularLoan: "Standard"
+        },
+        {
+          parameter: "Flexibility",
+          doctorLoan: "High",
+          regularLoan: "Limited"
+        }
+      ]
+    },
+
+    doctorRatesSection: {
+      title: "Latest Interest Rates (2025)",
+      subtitle:
+        "Rates depend on income stability, follower base, and platform diversification.",
+      headers: [
+        { label: "Lender" },
+        { label: "Interest Rate (p.a.)", highlight: true },
+        { label: "Proc. Fee", hidden: "hidden sm:table-cell" },
+        { label: "Tenure", hidden: "hidden md:table-cell" },
+        { label: "Special Benefits" }
+      ],
+      lenders: [
+        {
+          name: "HDFC Bank",
+          interestRate: "8.60% – 9.50%",
+          processingFee: "0.50%",
+          tenure: "30 yrs",
+          benefit: "Digital income programs"
+        },
+        {
+          name: "ICICI Bank",
+          interestRate: "8.70% – 9.60%",
+          processingFee: "0.50%",
+          tenure: "30 yrs",
+          benefit: "Fast approvals for self-employed"
+        },
+        {
+          name: "Axis Bank",
+          interestRate: "8.75% – 9.80%",
+          processingFee: "0.40%",
+          tenure: "30 yrs",
+          benefit: "Flexible income averaging"
+        }
+      ]
+    },
+
+    doctorEmiCalculatorSection: {
+      title: "EMI Calculator",
+      subtitle: "Plan your EMIs with confidence.",
+      labels: {
+        loanAmount: "Loan Amount",
+        interestRate: "Interest Rate (p.a.)",
+        loanTenure: "Tenure (Years)",
+        emi: "Monthly EMI",
+        principal: "Principal",
+        totalInterest: "Interest Payable",
+        totalAmount: "Total Payable"
+      },
+      defaults: {
+        loanAmount: 5000000,
+        interestRate: 8.75,
+        loanTenure: 25
+      },
+      ranges: {
+        loanAmount: { min: 1000000, max: 30000000, step: 100000 },
+        interestRate: { min: 7.5, max: 15, step: 0.05 },
+        loanTenure: { min: 5, max: 30, step: 1 }
+      }
+    },
+
+    doctorFaqSection: {
+      title: "Frequently Asked Questions",
+      items: [
+        {
+          question: "Can influencers get home loans without salary slips?",
+          answer:
+            "Yes. Digital income, bank statements, and platform analytics are considered."
+        },
+        {
+          question: "Is minimum follower count required?",
+          answer:
+            "No fixed number, but stable income history and engagement matter."
+        },
+        {
+          question: "Can new influencers apply?",
+          answer:
+            "Yes, with at least 1–2 years of consistent income proof."
+        },
+        {
+          question: "Is this available across India?",
+          answer:
+            "Yes, in all major cities and towns."
+        }
+      ]
+    },
+
+    doctorApplySection: {
+      title: "Turn Your Digital Influence Into a Dream Home",
+      description:
+        "Let your online success open the doors to homeownership with QuickHomeLoan.",
+      button: {
+        label: "Apply Now",
+        href: "/apply-loan",
+      }
     }
   },
-
-  doctorFaqSection: {
-    title: "Frequently Asked Questions",
-    items: [
-      {
-        question: "Can NRIs apply for home loans from abroad?",
-        answer:
-          "Yes. Most banks allow complete digital processing from overseas."
-      },
-      {
-        question: "Is joint application mandatory?",
-        answer:
-          "Not mandatory, but some lenders may require a resident Indian co-applicant."
-      },
-      {
-        question: "Is rental income considered?",
-        answer:
-          "Yes, rental income from Indian property can be considered."
-      },
-      {
-        question: "Is this available across India?",
-        answer:
-          "Yes, for properties located in approved cities and projects."
-      }
-    ]
-  },
-
-  doctorApplySection: {
-    title: "Buy Your Dream Home in India from Anywhere",
+  {
+    id: 8,
+    slug: "nris",
+    profession: "nris",
+    title: "Home Loan for NRIs - QuickHomeLoan",
     description:
-      "Let distance not stop you from owning a home in India with QuickHomeLoan.",
-    button: {
-      label: "Apply Now",
-      href: "#eligibility"
-    }
-  }
-},
-{
-  id: 9,
-  slug: "business-owners",
-  title: "Home Loan for Business Owners & Entrepreneurs - QuickHomeLoan",
-  description:
-    "Tailored home loans for Business Owners, Entrepreneurs, and Self-Employed Professionals with high eligibility, flexible income assessment, and fast approvals. Ideal for individuals running profitable businesses.",
-  interestRate: "8.50% - 10.50% p.a.",
-  processingFee: "Up to 1% of loan amount (varies by lender)",
-  loanTenure: "Up to 30 years",
+      "Specialised home loans for Non-Resident Indians (NRIs) with attractive interest rates, high eligibility, and simplified documentation. Designed for overseas Indians looking to buy, build, or invest in property in India.",
+    interestRate: "8.50% - 10.50% p.a.",
+    processingFee: "Up to 1% of loan amount (varies by lender)",
+    loanTenure: "Up to 30 years",
 
-  heroSection: {
-    tag: {
-      icon: {
-        name: "store",
-        svgPath: [
-          "M3 9l1-5h16l1 5",
-          "M5 22V9",
-          "M19 22V9",
-          "M9 22V14h6v8"
-        ]
-      },
-      text: "Exclusive for Business Owners",
-      style: {
-      }
-    },
-
-    title: {
-      line1: "Build Wealth Through Business.",
-      line2: "Own Your Dream Home.",
-    },
-
-    description:
-      "Designed for business owners, MSMEs, and entrepreneurs. Get higher loan eligibility, customised repayment options, and seamless approvals based on business cash flows.",
-
-    buttons: [
-      {
-        label: "Apply Instantly",
-        href: "/apply-loan?category=Home Loan By Professions&subcategory=Home Loan for Business Owners"
-      },
-      {
-        label: "View Rates",
-        href: "#rates"
-      }
-    ]
-  },
-
-  doctorBenefitsSection: {
-    title: "What Is a Business Owner Home Loan?",
-    description:
-      "A specialised home loan for self-employed individuals and entrepreneurs where lenders assess income based on business turnover, profit, and cash flow instead of fixed salaries.",
-    subtitle: "Key Benefits",
-    subtext: "Built for Entrepreneurs",
-    benefits: [
-      {
-        title: "Higher Loan Eligibility",
-        description:
-          "Loan amount based on business turnover and net profit.",
-        icon: { paths: ["M3 12h18", "M12 3v18"] }
-      },
-      {
-        title: "Flexible Income Assessment",
-        description:
-          "ITR, GST returns, and bank statements considered.",
-        icon: { paths: ["M4 4h16v16H4z", "M8 12h8"] }
-      },
-      {
-        title: "Faster Approvals",
-        description:
-          "Priority processing for established businesses.",
+    heroSection: {
+      tag: {
         icon: {
-          paths: [
-            "M4 14a1 1 0 0 1-.78-1.63l9.9-10.2",
-            "M13 10h7"
+          name: "globe",
+          svgPath: [
+            "M12 2a10 10 0 1 0 10 10",
+            "M2 12h20",
+            "M12 2c2.5 3 2.5 17 0 20"
           ]
-        }
+        },
+        text: "Exclusive for NRIs",
+        style: {
+          bg: "bg-gray-100",
+          text: "text-gray-900",
+          border: "border-gray-200",
+        },
       },
-      {
-        title: "Flexible Tenure",
-        description:
-          "Repay comfortably over 10–30 years.",
-        icon: {
-          circles: [{ cx: 12, cy: 12, r: 10 }],
-          polylines: [{ points: "12 6 12 12 16 14" }]
-        }
-      },
-      {
-        title: "No Salary Slip Required",
-        description:
-          "Business income replaces traditional payslips.",
-        icon: { paths: ["M6 18L18 6", "M6 6h12v12H6z"] }
-      },
-      {
-        title: "Home + Office Funding",
-        description:
-          "Option to buy residential or mixed-use property.",
-        icon: {
-          paths: ["M3 3h18v18H3z", "M9 9h6v6H9z"]
-        }
-      }
-    ]
-  },
 
-  doctorEligibilitySection: {
-    title: "Who Is Eligible?",
-    columns: 4,
-    description:
-      "Home loans are available for business owners with stable income and compliant financial records.",
-    professionals: [
-      {
-        title: "Sole Proprietors",
-        degree: "Business registration & ITR proof",
-        icon: { paths: ["M12 2l10 6v12l-10 6-10-6V8z"] }
+      title: {
+        line1: "Own a Home in India",
+        line2: "Even While Living Abroad"
       },
-      {
-        title: "Partnership Firms",
-        degree: "Partnership deed & financials",
-        icon: { paths: ["M16 11V7", "M8 11V7", "M4 21h16"] }
-      },
-      {
-        title: "Company Directors",
-        degree: "Private Ltd / LLP ownership proof",
-        icon: {
-          paths: ["M3 3h18v6H3z", "M7 9v12", "M17 9v12"]
-        }
-      },
-      {
-        title: "MSME Owners",
-        degree: "GST registration & turnover proof",
-        icon: { paths: ["M2 12h20", "M6 6h12v12H6z"] }
-      }
-    ]
-  },
 
-  doctorComparisonSection: {
-    title: "Business Loan vs Regular Loan",
-    subtitle: "Why entrepreneurs get better flexibility.",
-    headers: {
-      parameter: "Parameter",
-      doctorLoan: "Business Owner Home Loan",
-      regularLoan: "Standard Home Loan"
+      description:
+        "Designed for NRIs and PIOs working overseas. Get flexible repayment options, foreign income consideration, and seamless digital processing from anywhere in the world.",
+
+      buttons: [
+        {
+          label: "Apply Instantly",
+          href: "/apply-loan?category=Home Loan By Professions&subcategory=Home Loan for NRIs"
+        },
+        {
+          label: "Check Eligibility",
+          href: "#eligibility"
+        }
+      ]
     },
-    rows: [
-      {
-        parameter: "Income Proof",
-        doctorLoan: "ITR, GST, Cash Flow",
-        regularLoan: "Salary slips"
-      },
-      {
-        parameter: "Eligibility",
-        doctorLoan: "Higher (Turnover based)",
-        regularLoan: "Limited"
-      },
-      {
-        parameter: "Processing",
-        doctorLoan: "Priority",
-        regularLoan: "Standard"
-      },
-      {
-        parameter: "Flexibility",
-        doctorLoan: "High",
-        regularLoan: "Low"
-      }
-    ]
-  },
 
-  doctorRatesSection: {
-    title: "Latest Interest Rates (2025)",
-    subtitle:
-      "Rates depend on business stability, turnover, and credit profile.",
-    headers: [
-      { label: "Lender" },
-      { label: "Interest Rate (p.a.)", highlight: true },
-      { label: "Proc. Fee", hidden: "hidden sm:table-cell" },
-      { label: "Tenure", hidden: "hidden md:table-cell" },
-      { label: "Special Benefits" }
-    ],
-    lenders: [
-      {
-        name: "HDFC Bank",
-        interestRate: "8.50% – 9.40%",
-        processingFee: "0.50%",
-        tenure: "30 yrs",
-        benefit: "Higher eligibility for MSMEs"
-      },
-      {
-        name: "ICICI Bank",
-        interestRate: "8.60% – 9.60%",
-        processingFee: "0.50%",
-        tenure: "30 yrs",
-        benefit: "Flexible income averaging"
-      },
-      {
-        name: "Axis Bank",
-        interestRate: "8.65% – 9.70%",
-        processingFee: "0.40%",
-        tenure: "30 yrs",
-        benefit: "Fast approvals for profitable firms"
-      }
-    ]
-  },
+    doctorBenefitsSection: {
+      title: "What Is an NRI Home Loan?",
+      description:
+        "An NRI home loan enables Non-Resident Indians to purchase, construct, or invest in residential property in India using foreign income while residing abroad.",
+      subtitle: "Key Benefits",
+      subtext: "Designed for Global Indians",
+      benefits: [
+        {
+          title: "Foreign Income Considered",
+          description:
+            "Salary earned abroad is considered for loan eligibility.",
+          icon: { paths: ["M12 1v22", "M4 8h16", "M6 16h12"] }
+        },
+        {
+          title: "High Loan Eligibility",
+          description:
+            "Higher eligibility based on stable overseas employment.",
+          icon: { paths: ["M16 7h6v6", "m22 7-8.5 8.5-5-5L2 17"] }
+        },
+        {
+          title: "Long Repayment Tenure",
+          description:
+            "Choose a repayment period of up to 30 years.",
+          icon: {
+            circles: [{ cx: 12, cy: 12, r: 10 }],
+            polylines: [{ points: "12 6 12 12 16 14" }]
+          }
+        },
+        {
+          title: "Online Processing",
+          description:
+            "Apply and track your loan digitally from abroad.",
+          icon: { paths: ["M4 14l8-8 8 8", "M12 6v12"] }
+        },
+        {
+          title: "Tax Benefits in India",
+          description:
+            "Avail tax deductions under Indian income tax laws.",
+          icon: { paths: ["M6 6h12v12H6z", "M9 9h6v6H9z"] }
+        },
+        {
+          title: "Joint Loan with Resident Indian",
+          description:
+            "Apply jointly with a resident Indian family member.",
+          icon: { paths: ["M8 8a4 4 0 1 0 0-8", "M16 16a4 4 0 1 0 0-8"] }
+        }
+      ]
+    },
 
-  doctorEmiCalculatorSection: {
-    title: "EMI Calculator",
-    subtitle: "Estimate EMIs based on your business income.",
-    labels: {
-      loanAmount: "Loan Amount",
-      interestRate: "Interest Rate (p.a.)",
-      loanTenure: "Tenure (Years)",
-      emi: "Monthly EMI",
-      principal: "Principal",
-      totalInterest: "Interest Payable",
-      totalAmount: "Total Payable"
+    doctorEligibilitySection: {
+      title: "Who Is Eligible?",
+      columns: 4,
+      description:
+        "NRI home loans are available for Indians working abroad with stable income and valid residency status.",
+      professionals: [
+        {
+          title: "Salaried NRIs",
+          degree: "Working in MNCs, government or private firms abroad",
+          icon: { paths: ["M4 6h16v12H4z", "M8 18h8"] }
+        },
+        {
+          title: "Self-Employed NRIs",
+          degree: "Business owners or consultants overseas",
+          icon: { paths: ["M3 3h18v18H3z"] }
+        },
+        {
+          title: "PIOs & OCIs",
+          degree: "Persons of Indian Origin with valid documents",
+          icon: { paths: ["M12 2a10 10 0 1 0 10 10"] }
+        },
+        {
+          title: "Joint Applicants",
+          degree: "Co-applicant resident in India",
+          icon: { paths: ["M8 8a4 4 0 1 0 0-8", "M16 16a4 4 0 1 0 0-8"] }
+        }
+      ]
     },
-    defaults: {
-      loanAmount: 6000000,
-      interestRate: 8.6,
-      loanTenure: 25
+
+    doctorComparisonSection: {
+      title: "NRI Home Loan vs Regular Home Loan",
+      subtitle: "Key differences you should know",
+      headers: {
+        parameter: "Parameter",
+        doctorLoan: "NRI Home Loan",
+        regularLoan: "Resident Home Loan"
+      },
+      rows: [
+        {
+          parameter: "Income Source",
+          doctorLoan: "Foreign income",
+          regularLoan: "Indian income"
+        },
+        {
+          parameter: "Documentation",
+          doctorLoan: "Passport, visa, overseas salary proof",
+          regularLoan: "Salary slips & Form 16"
+        },
+        {
+          parameter: "Processing",
+          doctorLoan: "Mostly digital",
+          regularLoan: "Standard"
+        },
+        {
+          parameter: "Eligibility",
+          doctorLoan: "High (foreign income based)",
+          regularLoan: "Moderate"
+        }
+      ]
     },
-    ranges: {
-      loanAmount: { min: 1000000, max: 50000000, step: 100000 },
-      interestRate: { min: 7.5, max: 15, step: 0.05 },
-      loanTenure: { min: 5, max: 30, step: 1 }
+
+    doctorRatesSection: {
+      title: "Latest NRI Home Loan Interest Rates (2025)",
+      subtitle:
+        "Rates vary based on country of residence, income, and credit profile.",
+      headers: [
+        { label: "Lender" },
+        { label: "Interest Rate (p.a.)", highlight: true },
+        { label: "Proc. Fee" },
+        { label: "Tenure" },
+        { label: "Special Benefits" }
+      ],
+      lenders: [
+        {
+          name: "HDFC Bank",
+          interestRate: "8.50% – 9.60%",
+          processingFee: "0.50%",
+          tenure: "30 yrs",
+          benefit: "Strong NRI programs"
+        },
+        {
+          name: "ICICI Bank",
+          interestRate: "8.60% – 9.80%",
+          processingFee: "0.50%",
+          tenure: "30 yrs",
+          benefit: "Global NRI presence"
+        },
+        {
+          name: "Axis Bank",
+          interestRate: "8.70% – 10.00%",
+          processingFee: "0.50%",
+          tenure: "30 yrs",
+          benefit: "Fast overseas processing"
+        }
+      ]
+    },
+
+    doctorEmiCalculatorSection: {
+      title: "EMI Calculator",
+      subtitle: "Estimate your EMIs before you apply",
+      defaults: {
+        loanAmount: 7500000,
+        interestRate: 8.75,
+        loanTenure: 25
+      }
+    },
+
+    doctorFaqSection: {
+      title: "Frequently Asked Questions",
+      items: [
+        {
+          question: "Can NRIs apply for home loans from abroad?",
+          answer:
+            "Yes. Most banks allow complete digital processing from overseas."
+        },
+        {
+          question: "Is joint application mandatory?",
+          answer:
+            "Not mandatory, but some lenders may require a resident Indian co-applicant."
+        },
+        {
+          question: "Is rental income considered?",
+          answer:
+            "Yes, rental income from Indian property can be considered."
+        },
+        {
+          question: "Is this available across India?",
+          answer:
+            "Yes, for properties located in approved cities and projects."
+        }
+      ]
+    },
+
+    doctorApplySection: {
+      title: "Buy Your Dream Home in India from Anywhere",
+      description:
+        "Let distance not stop you from owning a home in India with QuickHomeLoan.",
+      button: {
+        label: "Apply Now",
+        href: "/apply-loan",
+      }
     }
   },
-
-  doctorFaqSection: {
-    title: "Frequently Asked Questions",
-    items: [
-      {
-        question: "Can business owners get home loans without salary slips?",
-        answer:
-          "Yes. Loans are approved based on ITR, GST returns, and bank statements."
-      },
-      {
-        question: "Is GST mandatory?",
-        answer:
-          "Not always, but GST registration improves eligibility."
-      },
-      {
-        question: "How much loan can I get?",
-        answer:
-          "Up to ₹5 Crore, depending on turnover and profitability."
-      },
-      {
-        question: "Can startups apply?",
-        answer:
-          "Yes, with at least 2 years of stable business operations."
-      }
-    ]
-  },
-
-  doctorApplySection: {
-    title: "Helping Business Owners Move Into Their Dream Home",
+  {
+    id: 9,
+    slug: "business-owners",
+    profession: "Business Owners",
+    title: "Home Loan for Business Owners & Entrepreneurs - QuickHomeLoan",
     description:
-      "Your business success deserves a home that reflects it. Let QuickHomeLoan simplify the journey.",
-    button: {
-      label: "Apply Now",
-      href: "#eligibility"
+      "Tailored home loans for Business Owners, Entrepreneurs, and Self-Employed Professionals with high eligibility, flexible income assessment, and fast approvals. Ideal for individuals running profitable businesses.",
+    interestRate: "8.50% - 10.50% p.a.",
+    processingFee: "Up to 1% of loan amount (varies by lender)",
+    loanTenure: "Up to 30 years",
+
+    heroSection: {
+      tag: {
+        icon: {
+          name: "store",
+          svgPath: [
+            "M3 9l1-5h16l1 5",
+            "M5 22V9",
+            "M19 22V9",
+            "M9 22V14h6v8"
+          ]
+        },
+        text: "Exclusive for Business Owners",
+        style: {
+        }
+      },
+
+      title: {
+        line1: "Build Wealth Through Business.",
+        line2: "Own Your Dream Home.",
+      },
+
+      description:
+        "Designed for business owners, MSMEs, and entrepreneurs. Get higher loan eligibility, customised repayment options, and seamless approvals based on business cash flows.",
+
+      buttons: [
+        {
+          label: "Apply Instantly",
+          href: "/apply-loan?category=Home Loan By Professions&subcategory=Home Loan for Business Owners"
+        },
+        // {
+        //   label: "View Rates",
+        //   href: "#rates"
+        // }
+      ]
+    },
+
+    doctorBenefitsSection: {
+      title: "What Is a Business Owner Home Loan?",
+      description:
+        "A specialised home loan for self-employed individuals and entrepreneurs where lenders assess income based on business turnover, profit, and cash flow instead of fixed salaries.",
+      subtitle: "Key Benefits",
+      subtext: "Built for Entrepreneurs",
+      benefits: [
+        {
+          title: "Higher Loan Eligibility",
+          description:
+            "Loan amount based on business turnover and net profit.",
+          icon: { paths: ["M3 12h18", "M12 3v18"] }
+        },
+        {
+          title: "Flexible Income Assessment",
+          description:
+            "ITR, GST returns, and bank statements considered.",
+          icon: { paths: ["M4 4h16v16H4z", "M8 12h8"] }
+        },
+        {
+          title: "Faster Approvals",
+          description:
+            "Priority processing for established businesses.",
+          icon: {
+            paths: [
+              "M4 14a1 1 0 0 1-.78-1.63l9.9-10.2",
+              "M13 10h7"
+            ]
+          }
+        },
+        {
+          title: "Flexible Tenure",
+          description:
+            "Repay comfortably over 10–30 years.",
+          icon: {
+            circles: [{ cx: 12, cy: 12, r: 10 }],
+            polylines: [{ points: "12 6 12 12 16 14" }]
+          }
+        },
+        {
+          title: "No Salary Slip Required",
+          description:
+            "Business income replaces traditional payslips.",
+          icon: { paths: ["M6 18L18 6", "M6 6h12v12H6z"] }
+        },
+        {
+          title: "Home + Office Funding",
+          description:
+            "Option to buy residential or mixed-use property.",
+          icon: {
+            paths: ["M3 3h18v18H3z", "M9 9h6v6H9z"]
+          }
+        }
+      ]
+    },
+
+    doctorEligibilitySection: {
+      title: "Who Is Eligible?",
+      columns: 4,
+      description:
+        "Home loans are available for business owners with stable income and compliant financial records.",
+      professionals: [
+        {
+          title: "Sole Proprietors",
+          degree: "Business registration & ITR proof",
+          icon: { paths: ["M12 2l10 6v12l-10 6-10-6V8z"] }
+        },
+        {
+          title: "Partnership Firms",
+          degree: "Partnership deed & financials",
+          icon: { paths: ["M16 11V7", "M8 11V7", "M4 21h16"] }
+        },
+        {
+          title: "Company Directors",
+          degree: "Private Ltd / LLP ownership proof",
+          icon: {
+            paths: ["M3 3h18v6H3z", "M7 9v12", "M17 9v12"]
+          }
+        },
+        {
+          title: "MSME Owners",
+          degree: "GST registration & turnover proof",
+          icon: { paths: ["M2 12h20", "M6 6h12v12H6z"] }
+        }
+      ]
+    },
+
+    doctorComparisonSection: {
+      title: "Business Loan vs Regular Loan",
+      subtitle: "Why entrepreneurs get better flexibility.",
+      headers: {
+        parameter: "Parameter",
+        doctorLoan: "Business Owner Home Loan",
+        regularLoan: "Standard Home Loan"
+      },
+      rows: [
+        {
+          parameter: "Income Proof",
+          doctorLoan: "ITR, GST, Cash Flow",
+          regularLoan: "Salary slips"
+        },
+        {
+          parameter: "Eligibility",
+          doctorLoan: "Higher (Turnover based)",
+          regularLoan: "Limited"
+        },
+        {
+          parameter: "Processing",
+          doctorLoan: "Priority",
+          regularLoan: "Standard"
+        },
+        {
+          parameter: "Flexibility",
+          doctorLoan: "High",
+          regularLoan: "Low"
+        }
+      ]
+    },
+
+    doctorRatesSection: {
+      title: "Latest Interest Rates (2025)",
+      subtitle:
+        "Rates depend on business stability, turnover, and credit profile.",
+      headers: [
+        { label: "Lender" },
+        { label: "Interest Rate (p.a.)", highlight: true },
+        { label: "Proc. Fee", hidden: "hidden sm:table-cell" },
+        { label: "Tenure", hidden: "hidden md:table-cell" },
+        { label: "Special Benefits" }
+      ],
+      lenders: [
+        {
+          name: "HDFC Bank",
+          interestRate: "8.50% – 9.40%",
+          processingFee: "0.50%",
+          tenure: "30 yrs",
+          benefit: "Higher eligibility for MSMEs"
+        },
+        {
+          name: "ICICI Bank",
+          interestRate: "8.60% – 9.60%",
+          processingFee: "0.50%",
+          tenure: "30 yrs",
+          benefit: "Flexible income averaging"
+        },
+        {
+          name: "Axis Bank",
+          interestRate: "8.65% – 9.70%",
+          processingFee: "0.40%",
+          tenure: "30 yrs",
+          benefit: "Fast approvals for profitable firms"
+        }
+      ]
+    },
+
+    doctorEmiCalculatorSection: {
+      title: "EMI Calculator",
+      subtitle: "Estimate EMIs based on your business income.",
+      labels: {
+        loanAmount: "Loan Amount",
+        interestRate: "Interest Rate (p.a.)",
+        loanTenure: "Tenure (Years)",
+        emi: "Monthly EMI",
+        principal: "Principal",
+        totalInterest: "Interest Payable",
+        totalAmount: "Total Payable"
+      },
+      defaults: {
+        loanAmount: 6000000,
+        interestRate: 8.6,
+        loanTenure: 25
+      },
+      ranges: {
+        loanAmount: { min: 1000000, max: 50000000, step: 100000 },
+        interestRate: { min: 7.5, max: 15, step: 0.05 },
+        loanTenure: { min: 5, max: 30, step: 1 }
+      }
+    },
+
+    doctorFaqSection: {
+      title: "Frequently Asked Questions",
+      items: [
+        {
+          question: "Can business owners get home loans without salary slips?",
+          answer:
+            "Yes. Loans are approved based on ITR, GST returns, and bank statements."
+        },
+        {
+          question: "Is GST mandatory?",
+          answer:
+            "Not always, but GST registration improves eligibility."
+        },
+        {
+          question: "How much loan can I get?",
+          answer:
+            "Up to ₹5 Crore, depending on turnover and profitability."
+        },
+        {
+          question: "Can startups apply?",
+          answer:
+            "Yes, with at least 2 years of stable business operations."
+        }
+      ]
+    },
+
+    doctorApplySection: {
+      title: "Helping Business Owners Move Into Their Dream Home",
+      description:
+        "Your business success deserves a home that reflects it. Let QuickHomeLoan simplify the journey.",
+      button: {
+        label: "Apply Now",
+        href: "/apply-loan"
+      }
+    }
+  },
+  {
+    id: 10,
+    slug: "defense-personnel",
+    profession: "Defense Personnel",
+
+    title: "Home Loan for Defense Personnel - QuickHomeLoan",
+    description:
+      "Special home loans for Indian Defense Personnel including Army, Navy, Air Force, and Paramilitary forces. Enjoy lower interest rates, high eligibility, priority processing, and flexible repayment options.",
+    interestRate: "8.25% - 9.90% p.a.",
+    processingFee: "Nil to 0.50% (varies by lender)",
+    loanTenure: "Up to 30 years",
+
+    heroSection: {
+      tag: {
+        icon: {
+          name: "shield",
+          svgPath: [
+            "M12 2l8 4v6c0 5-3.5 9.5-8 12-4.5-2.5-8-7-8-12V6l8-4z"
+          ]
+        },
+        text: "Exclusive for Defense Personnel",
+        style: {
+
+        }
+      },
+
+      title: {
+        line1: "Secure Your Family’s Future",
+        line2: "With a Home You Can Call Your Own"
+      },
+
+      description:
+        "Tailored home loan solutions for serving and retired defense personnel with special concessions, faster approvals, and minimal documentation.",
+
+      buttons: [
+        {
+          label: "Apply Instantly",
+          href: "/apply-loan?category=Home Loan By Professions&subcategory=Home Loan for Defense Personnel"
+        },
+        {
+          label: "Check Eligibility",
+          href: "#eligibility"
+        }
+      ]
+    },
+
+    doctorBenefitsSection: {
+      title: "What Is a Defense Personnel Home Loan?",
+      description:
+        "A specially designed home loan for individuals serving or retired from the Indian Armed Forces and Paramilitary services, offering preferential terms and benefits.",
+      subtitle: "Key Benefits",
+      subtext: "Honouring Those Who Serve",
+      benefits: [
+        {
+          title: "Lower Interest Rates",
+          description:
+            "Special interest rate concessions for defense personnel.",
+          icon: { paths: ["M12 1v22", "M6 8h12", "M6 16h12"] }
+        },
+        {
+          title: "High Loan Eligibility",
+          description:
+            "Loan eligibility based on rank, salary, and pension income.",
+          icon: { paths: ["M16 7h6v6", "m22 7-8.5 8.5-5-5L2 17"] }
+        },
+        {
+          title: "Priority Processing",
+          description:
+            "Fast-track loan approvals and disbursals.",
+          icon: { paths: ["M4 14l8-8 8 8", "M12 6v12"] }
+        },
+        {
+          title: "Flexible Repayment Options",
+          description:
+            "Long repayment tenure of up to 30 years.",
+          icon: {
+            circles: [{ cx: 12, cy: 12, r: 10 }],
+            polylines: [{ points: "12 6 12 12 16 14" }]
+          }
+        },
+        {
+          title: "Pension Income Accepted",
+          description:
+            "Retired defense personnel can apply using pension income.",
+          icon: { paths: ["M6 6h12v12H6z", "M9 9h6v6H9z"] }
+        },
+        {
+          title: "Minimal Documentation",
+          description:
+            "Simplified paperwork with service ID and income proof.",
+          icon: { paths: ["M3 3h18v18H3z", "M8 8h8v8H8z"] }
+        }
+      ]
+    },
+
+    doctorEligibilitySection: {
+      title: "Who Is Eligible?",
+      columns: 4,
+      description:
+        "Home loans are available for both serving and retired defense personnel across India.",
+      professionals: [
+        {
+          title: "Indian Army",
+          degree: "Serving & retired army personnel",
+          icon: { paths: ["M12 2l8 4v6"] }
+        },
+        {
+          title: "Indian Navy",
+          degree: "Serving & retired navy personnel",
+          icon: { paths: ["M2 12h20", "M12 2v20"] }
+        },
+        {
+          title: "Indian Air Force",
+          degree: "Serving & retired air force personnel",
+          icon: { paths: ["M2 12h20", "M12 6l4 6-4 6-4-6z"] }
+        },
+        {
+          title: "Paramilitary Forces",
+          degree: "BSF, CRPF, CISF, ITBP, Coast Guard",
+          icon: { paths: ["M12 2a10 10 0 1 0 10 10"] }
+        }
+      ]
+    },
+
+    doctorComparisonSection: {
+      title: "Defense Home Loan vs Regular Home Loan",
+      subtitle: "Why defense personnel get special benefits",
+      headers: {
+        parameter: "Parameter",
+        doctorLoan: "Defense Home Loan",
+        regularLoan: "Standard Home Loan"
+      },
+      rows: [
+        {
+          parameter: "Interest Rate",
+          doctorLoan: "Lower (special concession)",
+          regularLoan: "Standard rates"
+        },
+        {
+          parameter: "Processing Fee",
+          doctorLoan: "Nil / Minimal",
+          regularLoan: "Up to 1%"
+        },
+        {
+          parameter: "Processing Speed",
+          doctorLoan: "Priority",
+          regularLoan: "Standard"
+        },
+        {
+          parameter: "Income Considered",
+          doctorLoan: "Salary + Pension",
+          regularLoan: "Salary only"
+        }
+      ]
+    },
+
+    doctorRatesSection: {
+      title: "Latest Defense Home Loan Interest Rates (2025)",
+      subtitle:
+        "Rates depend on rank, income stability, and lender-specific defense schemes.",
+      headers: [
+        { label: "Lender" },
+        { label: "Interest Rate (p.a.)", highlight: true },
+        { label: "Proc. Fee" },
+        { label: "Tenure" },
+        { label: "Special Benefits" }
+      ],
+      lenders: [
+        {
+          name: "SBI",
+          interestRate: "8.25% – 9.30%",
+          processingFee: "Nil",
+          tenure: "30 yrs",
+          benefit: "Special defense schemes"
+        },
+        {
+          name: "PNB",
+          interestRate: "8.35% – 9.50%",
+          processingFee: "0.25%",
+          tenure: "30 yrs",
+          benefit: "Lower EMIs"
+        },
+        {
+          name: "HDFC Bank",
+          interestRate: "8.50% – 9.80%",
+          processingFee: "0.50%",
+          tenure: "30 yrs",
+          benefit: "Fast approvals"
+        }
+      ]
+    },
+
+    doctorEmiCalculatorSection: {
+      title: "EMI Calculator",
+      subtitle: "Plan your home loan with confidence",
+      defaults: {
+        loanAmount: 6000000,
+        interestRate: 8.50,
+        loanTenure: 25
+      }
+    },
+
+    doctorFaqSection: {
+      title: "Frequently Asked Questions",
+      items: [
+        {
+          question: "Can retired defense personnel apply for home loans?",
+          answer:
+            "Yes. Retired personnel can apply using pension income."
+        },
+        {
+          question: "Is posting location a problem?",
+          answer:
+            "No. Loans are available regardless of current posting."
+        },
+        {
+          question: "Are processing fees waived?",
+          answer:
+            "Many lenders offer zero or discounted processing fees."
+        },
+        {
+          question: "Is this available across India?",
+          answer:
+            "Yes, for properties across approved cities and towns."
+        }
+      ]
+    },
+
+    doctorApplySection: {
+      title: "A Home Loan That Salutes Your Service",
+      description:
+        "Secure a home for your family with exclusive benefits for defense personnel.",
+      button: {
+        label: "Apply Now",
+        href: "/apply-loan",
+      }
+    }
+  },
+  {
+    id: 11,
+    slug: "private-sector",
+    profession: "Private Sector",
+    title: "Home Loan for Private Sector Employees - QuickHomeLoan",
+    description:
+      "Specialised home loans for Private Sector employees working in corporates, MNCs, startups, and private organisations. Enjoy high eligibility, attractive interest rates, and fast digital approvals.",
+    interestRate: "8.45% - 10.50% p.a.",
+    processingFee: "Up to 1% of loan amount (varies by lender)",
+    loanTenure: "Up to 30 years",
+
+    heroSection: {
+      tag: {
+        icon: {
+          name: "briefcase",
+          svgPath: [
+            "M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2",
+            "M4 6h16v14H4z"
+          ]
+        },
+        text: "Exclusive for Private Sector Employees",
+        style: {
+
+        }
+      },
+
+      title: {
+        line1: "Turn Your Corporate Career Into",
+        line2: "A Place You Call Home"
+      },
+
+      description:
+        "Designed for salaried professionals working in private companies, MNCs, and startups. Get higher loan eligibility, flexible repayment options, and quick approvals.",
+
+      buttons: [
+        {
+          label: "Apply Instantly",
+          href: "/apply-loan?category=Home Loan By Professions&subcategory=Home Loan for Private Sector"
+        },
+        {
+          label: "Check Eligibility",
+          href: "#eligibility"
+        }
+      ]
+    },
+
+    doctorBenefitsSection: {
+      title: "What Is a Private Sector Home Loan?",
+      description:
+        "A home loan tailored for salaried professionals employed in private sector organisations, with income-based eligibility and competitive interest rates.",
+      subtitle: "Key Benefits",
+      subtext: "Built for Corporate Professionals",
+      benefits: [
+        {
+          title: "High Loan Eligibility",
+          description:
+            "Eligibility based on stable monthly salary and employer profile.",
+          icon: { paths: ["M16 7h6v6", "m22 7-8.5 8.5-5-5L2 17"] }
+        },
+        {
+          title: "Attractive Interest Rates",
+          description:
+            "Lower interest rates for employees of reputed private firms.",
+          icon: { paths: ["M12 1v22", "M6 8h12", "M6 16h12"] }
+        },
+        {
+          title: "Quick Loan Approvals",
+          description:
+            "Fast-track processing with minimal documentation.",
+          icon: { paths: ["M4 14l8-8 8 8", "M12 6v12"] }
+        },
+        {
+          title: "Long Repayment Tenure",
+          description:
+            "Repayment tenure of up to 30 years for lower EMIs.",
+          icon: {
+            circles: [{ cx: 12, cy: 12, r: 10 }],
+            polylines: [{ points: "12 6 12 12 16 14" }]
+          }
+        },
+        {
+          title: "Employer-Based Benefits",
+          description:
+            "Special benefits for employees of approved corporate employers.",
+          icon: { paths: ["M4 4h16v16H4z", "M8 8h8"] }
+        },
+        {
+          title: "Top-Up & Balance Transfer",
+          description:
+            "Option to transfer loans and avail top-up facilities.",
+          icon: { paths: ["M3 3h18v18H3z", "M8 8h8v8H8z"] }
+        }
+      ]
+    },
+
+    doctorEligibilitySection: {
+      title: "Who Is Eligible?",
+      columns: 4,
+      description:
+        "Home loans are available for salaried professionals working in private sector organisations across India.",
+      professionals: [
+        {
+          title: "Corporate Employees",
+          degree: "Working in private limited companies",
+          icon: { paths: ["M4 6h16v12H4z"] }
+        },
+        {
+          title: "MNC Professionals",
+          degree: "Employees of multinational corporations",
+          icon: { paths: ["M12 2a10 10 0 1 0 10 10"] }
+        },
+        {
+          title: "Startup Employees",
+          degree: "Professionals working in funded startups",
+          icon: { paths: ["M12 2l4 4H8l4-4z", "M4 10h16v10H4z"] }
+        },
+        {
+          title: "IT & Tech Professionals",
+          degree: "Software, IT, and tech sector employees",
+          icon: { paths: ["M3 3h18v18H3z"] }
+        }
+      ]
+    },
+
+    doctorComparisonSection: {
+      title: "Private Sector Loan vs Regular Loan",
+      subtitle: "Why salaried professionals get better terms",
+      headers: {
+        parameter: "Parameter",
+        doctorLoan: "Private Sector Home Loan",
+        regularLoan: "Standard Home Loan"
+      },
+      rows: [
+        {
+          parameter: "Income Proof",
+          doctorLoan: "Salary slips & bank statements",
+          regularLoan: "Salary slips only"
+        },
+        {
+          parameter: "Eligibility",
+          doctorLoan: "High (stable salary)",
+          regularLoan: "Moderate"
+        },
+        {
+          parameter: "Processing Speed",
+          doctorLoan: "Fast",
+          regularLoan: "Standard"
+        },
+        {
+          parameter: "Flexibility",
+          doctorLoan: "High",
+          regularLoan: "Limited"
+        }
+      ]
+    },
+
+    doctorRatesSection: {
+      title: "Latest Private Sector Home Loan Interest Rates (2025)",
+      subtitle:
+        "Rates depend on employer profile, income, and credit score.",
+      headers: [
+        { label: "Lender" },
+        { label: "Interest Rate (p.a.)", highlight: true },
+        { label: "Proc. Fee" },
+        { label: "Tenure" },
+        { label: "Special Benefits" }
+      ],
+      lenders: [
+        {
+          name: "HDFC Bank",
+          interestRate: "8.45% – 9.50%",
+          processingFee: "0.50%",
+          tenure: "30 yrs",
+          benefit: "Corporate salary programs"
+        },
+        {
+          name: "ICICI Bank",
+          interestRate: "8.55% – 9.65%",
+          processingFee: "0.50%",
+          tenure: "30 yrs",
+          benefit: "Fast-track approvals"
+        },
+        {
+          name: "Axis Bank",
+          interestRate: "8.60% – 9.80%",
+          processingFee: "0.50%",
+          tenure: "30 yrs",
+          benefit: "Employer-based discounts"
+        }
+      ]
+    },
+
+    doctorEmiCalculatorSection: {
+      title: "EMI Calculator",
+      subtitle: "Estimate your monthly EMIs easily",
+      defaults: {
+        loanAmount: 6500000,
+        interestRate: 8.60,
+        loanTenure: 25
+      }
+    },
+
+    doctorFaqSection: {
+      title: "Frequently Asked Questions",
+      items: [
+        {
+          question: "Can private sector employees get high home loan eligibility?",
+          answer:
+            "Yes. Stable salary and employer profile significantly increase eligibility."
+        },
+        {
+          question: "Is Form 16 mandatory?",
+          answer:
+            "Usually yes, along with salary slips and bank statements."
+        },
+        {
+          question: "Are interest rates lower for MNC employees?",
+          answer:
+            "Many lenders offer preferential rates for employees of reputed firms."
+        },
+        {
+          question: "Is this available across India?",
+          answer:
+            "Yes, across all major cities and approved locations."
+        }
+      ]
+    },
+
+    doctorApplySection: {
+      title: "Make Your Corporate Career Count",
+      description:
+        "Turn your stable income into homeownership with QuickHomeLoan.",
+      button: {
+        label: "Apply Now",
+        href: "/apply-loan",
+      }
+    }
+  },
+  {
+    id: 12,
+    slug: "retired",
+    profession: "Retired",
+    title: "Home Loan for Retired Individuals - QuickHomeLoan",
+    description:
+      "Specialised home loans for retired individuals and senior citizens using pension income, rental income, or co-applicant support. Designed to help retirees own, upgrade, or transfer a home with flexible terms.",
+    interestRate: "8.75% - 11.00% p.a.",
+    processingFee: "Up to 1% of loan amount (varies by lender)",
+    loanTenure: "Up to 20 years (subject to age norms)",
+
+    heroSection: {
+      tag: {
+        icon: {
+          name: "home-heart",
+          svgPath: [
+            "M3 9l9-7 9 7v11a2 2 0 0 1-2 2h-4",
+            "M9 22V12h6v10"
+          ]
+        },
+        text: "Exclusive for Retired Individuals",
+        style: {
+
+        }
+      },
+
+      title: {
+        line1: "Because Retirement Deserves",
+        line2: "A Home Full of Comfort & Security"
+      },
+
+      description:
+        "Tailored home loan solutions for pensioners and senior citizens with simplified documentation, flexible repayment structures, and co-applicant options.",
+
+      buttons: [
+        {
+          label: "Apply Instantly",
+          href: "/apply-loan?category=Home Loan By Professions&subcategory=Home Loan for Retired Individuals"
+        },
+        {
+          label: "Check Eligibility",
+          href: "#eligibility"
+        }
+      ]
+    },
+
+    doctorBenefitsSection: {
+      title: "What Is a Retired Person Home Loan?",
+      description:
+        "A home loan designed for retired individuals where pension income, rental income, or a co-applicant’s income is considered for eligibility.",
+      subtitle: "Key Benefits",
+      subtext: "Designed for Peaceful Retirement",
+      benefits: [
+        {
+          title: "Pension Income Accepted",
+          description:
+            "Monthly pension is considered as stable income.",
+          icon: { paths: ["M12 1v22", "M6 8h12", "M6 16h12"] }
+        },
+        {
+          title: "Joint Loan Option",
+          description:
+            "Apply with a working spouse or earning family member.",
+          icon: { paths: ["M8 8a4 4 0 1 0 0-8", "M16 16a4 4 0 1 0 0-8"] }
+        },
+        {
+          title: "Flexible Repayment Structure",
+          description:
+            "Lower EMIs with customised tenure options.",
+          icon: {
+            circles: [{ cx: 12, cy: 12, r: 10 }],
+            polylines: [{ points: "12 6 12 12 16 14" }]
+          }
+        },
+        {
+          title: "Rental Income Considered",
+          description:
+            "Income from rented properties can boost eligibility.",
+          icon: { paths: ["M3 3h18v18H3z", "M8 8h8v8H8z"] }
+        },
+        {
+          title: "Property Transfer & Upgrade",
+          description:
+            "Loans for resale property or home upgrades.",
+          icon: { paths: ["M4 14l8-8 8 8", "M12 6v12"] }
+        },
+        {
+          title: "Minimal Documentation",
+          description:
+            "Simplified paperwork for senior citizens.",
+          icon: { paths: ["M6 6h12v12H6z"] }
+        }
+      ]
+    },
+
+    doctorEligibilitySection: {
+      title: "Who Is Eligible?",
+      columns: 4,
+      description:
+        "Home loans are available for retired individuals with stable pension or alternative income sources.",
+      professionals: [
+        {
+          title: "Government Pensioners",
+          degree: "Central & state government retirees",
+          icon: { paths: ["M4 6h16v12H4z"] }
+        },
+        {
+          title: "PSU Retirees",
+          degree: "Retired PSU & public sector employees",
+          icon: { paths: ["M12 2a10 10 0 1 0 10 10"] }
+        },
+        {
+          title: "Defense Pensioners",
+          degree: "Retired Army, Navy & Air Force personnel",
+          icon: { paths: ["M12 2l8 4v6"] }
+        },
+        {
+          title: "Senior Citizens",
+          degree: "Age 60+ with pension or rental income",
+          icon: { paths: ["M8 2v20", "M16 2v20"] }
+        }
+      ]
+    },
+
+    doctorComparisonSection: {
+      title: "Retired Home Loan vs Regular Home Loan",
+      subtitle: "Key differences explained",
+      headers: {
+        parameter: "Parameter",
+        doctorLoan: "Retired Home Loan",
+        regularLoan: "Standard Home Loan"
+      },
+      rows: [
+        {
+          parameter: "Income Source",
+          doctorLoan: "Pension / rental / co-applicant",
+          regularLoan: "Salary or business income"
+        },
+        {
+          parameter: "Tenure",
+          doctorLoan: "Shorter (age-based)",
+          regularLoan: "Up to 30 years"
+        },
+        {
+          parameter: "Eligibility",
+          doctorLoan: "Moderate",
+          regularLoan: "High"
+        },
+        {
+          parameter: "Flexibility",
+          doctorLoan: "High with co-applicant",
+          regularLoan: "Standard"
+        }
+      ]
+    },
+
+    doctorRatesSection: {
+      title: "Latest Home Loan Interest Rates for Retired Individuals (2025)",
+      subtitle:
+        "Rates depend on age, pension amount, co-applicant, and property profile.",
+      headers: [
+        { label: "Lender" },
+        { label: "Interest Rate (p.a.)", highlight: true },
+        { label: "Proc. Fee" },
+        { label: "Tenure" },
+        { label: "Special Benefits" }
+      ],
+      lenders: [
+        {
+          name: "SBI",
+          interestRate: "8.75% – 9.90%",
+          processingFee: "Nil",
+          tenure: "20 yrs",
+          benefit: "Strong pensioner schemes"
+        },
+        {
+          name: "PNB",
+          interestRate: "8.85% – 10.10%",
+          processingFee: "0.25%",
+          tenure: "20 yrs",
+          benefit: "Lower pension-linked EMIs"
+        },
+        {
+          name: "HDFC Bank",
+          interestRate: "9.00% – 10.50%",
+          processingFee: "0.50%",
+          tenure: "20 yrs",
+          benefit: "Joint loan flexibility"
+        }
+      ]
+    },
+
+    doctorEmiCalculatorSection: {
+      title: "EMI Calculator",
+      subtitle: "Plan your retirement finances wisely",
+      defaults: {
+        loanAmount: 4000000,
+        interestRate: 9.00,
+        loanTenure: 15
+      }
+    },
+
+    doctorFaqSection: {
+      title: "Frequently Asked Questions",
+      items: [
+        {
+          question: "Can retired individuals get a home loan?",
+          answer:
+            "Yes. Pension income, rental income, or a co-applicant’s income can be considered."
+        },
+        {
+          question: "Is there an age limit?",
+          answer:
+            "Most banks require loan closure before 75–80 years of age."
+        },
+        {
+          question: "Is co-applicant mandatory?",
+          answer:
+            "Not mandatory, but it significantly improves eligibility."
+        },
+        {
+          question: "Is this available across India?",
+          answer:
+            "Yes, subject to lender and property approval."
+        }
+      ]
+    },
+
+    doctorApplySection: {
+      title: "A Peaceful Retirement Begins With a Secure Home",
+      description:
+        "Make your retirement years comfortable with a home loan designed just for you.",
+      button: {
+        label: "Apply Now",
+        href: "/apply-loan",
+      }
     }
   }
-},
-{
-  id: 10,
-  slug: "defense-personnel",
-  title: "Home Loan for Defense Personnel - QuickHomeLoan",
-  description:
-    "Special home loans for Indian Defense Personnel including Army, Navy, Air Force, and Paramilitary forces. Enjoy lower interest rates, high eligibility, priority processing, and flexible repayment options.",
-  interestRate: "8.25% - 9.90% p.a.",
-  processingFee: "Nil to 0.50% (varies by lender)",
-  loanTenure: "Up to 30 years",
-
-  heroSection: {
-    tag: {
-      icon: {
-        name: "shield",
-        svgPath: [
-          "M12 2l8 4v6c0 5-3.5 9.5-8 12-4.5-2.5-8-7-8-12V6l8-4z"
-        ]
-      },
-      text: "Exclusive for Defense Personnel",
-      style: {
-  
-      }
-    },
-
-    title: {
-      line1: "Secure Your Family’s Future",
-      line2: "With a Home You Can Call Your Own"
-    },
-
-    description:
-      "Tailored home loan solutions for serving and retired defense personnel with special concessions, faster approvals, and minimal documentation.",
-
-    buttons: [
-      {
-        label: "Apply Instantly",
-        href: "/apply-loan?category=Home Loan By Professions&subcategory=Home Loan for Defense Personnel"
-      },
-      {
-        label: "Check Eligibility",
-        href: "#eligibility"
-      }
-    ]
-  },
-
-  doctorBenefitsSection: {
-    title: "What Is a Defense Personnel Home Loan?",
-    description:
-      "A specially designed home loan for individuals serving or retired from the Indian Armed Forces and Paramilitary services, offering preferential terms and benefits.",
-    subtitle: "Key Benefits",
-    subtext: "Honouring Those Who Serve",
-    benefits: [
-      {
-        title: "Lower Interest Rates",
-        description:
-          "Special interest rate concessions for defense personnel.",
-        icon: { paths: ["M12 1v22", "M6 8h12", "M6 16h12"] }
-      },
-      {
-        title: "High Loan Eligibility",
-        description:
-          "Loan eligibility based on rank, salary, and pension income.",
-        icon: { paths: ["M16 7h6v6", "m22 7-8.5 8.5-5-5L2 17"] }
-      },
-      {
-        title: "Priority Processing",
-        description:
-          "Fast-track loan approvals and disbursals.",
-        icon: { paths: ["M4 14l8-8 8 8", "M12 6v12"] }
-      },
-      {
-        title: "Flexible Repayment Options",
-        description:
-          "Long repayment tenure of up to 30 years.",
-        icon: {
-          circles: [{ cx: 12, cy: 12, r: 10 }],
-          polylines: [{ points: "12 6 12 12 16 14" }]
-        }
-      },
-      {
-        title: "Pension Income Accepted",
-        description:
-          "Retired defense personnel can apply using pension income.",
-        icon: { paths: ["M6 6h12v12H6z", "M9 9h6v6H9z"] }
-      },
-      {
-        title: "Minimal Documentation",
-        description:
-          "Simplified paperwork with service ID and income proof.",
-        icon: { paths: ["M3 3h18v18H3z", "M8 8h8v8H8z"] }
-      }
-    ]
-  },
-
-  doctorEligibilitySection: {
-    title: "Who Is Eligible?",
-    columns: 4,
-    description:
-      "Home loans are available for both serving and retired defense personnel across India.",
-    professionals: [
-      {
-        title: "Indian Army",
-        degree: "Serving & retired army personnel",
-        icon: { paths: ["M12 2l8 4v6"] }
-      },
-      {
-        title: "Indian Navy",
-        degree: "Serving & retired navy personnel",
-        icon: { paths: ["M2 12h20", "M12 2v20"] }
-      },
-      {
-        title: "Indian Air Force",
-        degree: "Serving & retired air force personnel",
-        icon: { paths: ["M2 12h20", "M12 6l4 6-4 6-4-6z"] }
-      },
-      {
-        title: "Paramilitary Forces",
-        degree: "BSF, CRPF, CISF, ITBP, Coast Guard",
-        icon: { paths: ["M12 2a10 10 0 1 0 10 10"] }
-      }
-    ]
-  },
-
-  doctorComparisonSection: {
-    title: "Defense Home Loan vs Regular Home Loan",
-    subtitle: "Why defense personnel get special benefits",
-    headers: {
-      parameter: "Parameter",
-      doctorLoan: "Defense Home Loan",
-      regularLoan: "Standard Home Loan"
-    },
-    rows: [
-      {
-        parameter: "Interest Rate",
-        doctorLoan: "Lower (special concession)",
-        regularLoan: "Standard rates"
-      },
-      {
-        parameter: "Processing Fee",
-        doctorLoan: "Nil / Minimal",
-        regularLoan: "Up to 1%"
-      },
-      {
-        parameter: "Processing Speed",
-        doctorLoan: "Priority",
-        regularLoan: "Standard"
-      },
-      {
-        parameter: "Income Considered",
-        doctorLoan: "Salary + Pension",
-        regularLoan: "Salary only"
-      }
-    ]
-  },
-
-  doctorRatesSection: {
-    title: "Latest Defense Home Loan Interest Rates (2025)",
-    subtitle:
-      "Rates depend on rank, income stability, and lender-specific defense schemes.",
-    headers: [
-      { label: "Lender" },
-      { label: "Interest Rate (p.a.)", highlight: true },
-      { label: "Proc. Fee" },
-      { label: "Tenure" },
-      { label: "Special Benefits" }
-    ],
-    lenders: [
-      {
-        name: "SBI",
-        interestRate: "8.25% – 9.30%",
-        processingFee: "Nil",
-        tenure: "30 yrs",
-        benefit: "Special defense schemes"
-      },
-      {
-        name: "PNB",
-        interestRate: "8.35% – 9.50%",
-        processingFee: "0.25%",
-        tenure: "30 yrs",
-        benefit: "Lower EMIs"
-      },
-      {
-        name: "HDFC Bank",
-        interestRate: "8.50% – 9.80%",
-        processingFee: "0.50%",
-        tenure: "30 yrs",
-        benefit: "Fast approvals"
-      }
-    ]
-  },
-
-  doctorEmiCalculatorSection: {
-    title: "EMI Calculator",
-    subtitle: "Plan your home loan with confidence",
-    defaults: {
-      loanAmount: 6000000,
-      interestRate: 8.50,
-      loanTenure: 25
-    }
-  },
-
-  doctorFaqSection: {
-    title: "Frequently Asked Questions",
-    items: [
-      {
-        question: "Can retired defense personnel apply for home loans?",
-        answer:
-          "Yes. Retired personnel can apply using pension income."
-      },
-      {
-        question: "Is posting location a problem?",
-        answer:
-          "No. Loans are available regardless of current posting."
-      },
-      {
-        question: "Are processing fees waived?",
-        answer:
-          "Many lenders offer zero or discounted processing fees."
-      },
-      {
-        question: "Is this available across India?",
-        answer:
-          "Yes, for properties across approved cities and towns."
-      }
-    ]
-  },
-
-  doctorApplySection: {
-    title: "A Home Loan That Salutes Your Service",
-    description:
-      "Secure a home for your family with exclusive benefits for defense personnel.",
-    button: {
-      label: "Apply Now",
-      href: "#eligibility"
-    }
-  }
-},
-{
-  id: 11,
-  slug: "private-sector",
-  title: "Home Loan for Private Sector Employees - QuickHomeLoan",
-  description:
-    "Specialised home loans for Private Sector employees working in corporates, MNCs, startups, and private organisations. Enjoy high eligibility, attractive interest rates, and fast digital approvals.",
-  interestRate: "8.45% - 10.50% p.a.",
-  processingFee: "Up to 1% of loan amount (varies by lender)",
-  loanTenure: "Up to 30 years",
-
-  heroSection: {
-    tag: {
-      icon: {
-        name: "briefcase",
-        svgPath: [
-          "M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2",
-          "M4 6h16v14H4z"
-        ]
-      },
-      text: "Exclusive for Private Sector Employees",
-      style: {
-     
-      }
-    },
-
-    title: {
-      line1: "Turn Your Corporate Career Into",
-      line2: "A Place You Call Home"
-    },
-
-    description:
-      "Designed for salaried professionals working in private companies, MNCs, and startups. Get higher loan eligibility, flexible repayment options, and quick approvals.",
-
-    buttons: [
-      {
-        label: "Apply Instantly",
-        href: "/apply-loan?category=Home Loan By Professions&subcategory=Home Loan for Private Sector"
-      },
-      {
-        label: "Check Eligibility",
-        href: "#eligibility"
-      }
-    ]
-  },
-
-  doctorBenefitsSection: {
-    title: "What Is a Private Sector Home Loan?",
-    description:
-      "A home loan tailored for salaried professionals employed in private sector organisations, with income-based eligibility and competitive interest rates.",
-    subtitle: "Key Benefits",
-    subtext: "Built for Corporate Professionals",
-    benefits: [
-      {
-        title: "High Loan Eligibility",
-        description:
-          "Eligibility based on stable monthly salary and employer profile.",
-        icon: { paths: ["M16 7h6v6", "m22 7-8.5 8.5-5-5L2 17"] }
-      },
-      {
-        title: "Attractive Interest Rates",
-        description:
-          "Lower interest rates for employees of reputed private firms.",
-        icon: { paths: ["M12 1v22", "M6 8h12", "M6 16h12"] }
-      },
-      {
-        title: "Quick Loan Approvals",
-        description:
-          "Fast-track processing with minimal documentation.",
-        icon: { paths: ["M4 14l8-8 8 8", "M12 6v12"] }
-      },
-      {
-        title: "Long Repayment Tenure",
-        description:
-          "Repayment tenure of up to 30 years for lower EMIs.",
-        icon: {
-          circles: [{ cx: 12, cy: 12, r: 10 }],
-          polylines: [{ points: "12 6 12 12 16 14" }]
-        }
-      },
-      {
-        title: "Employer-Based Benefits",
-        description:
-          "Special benefits for employees of approved corporate employers.",
-        icon: { paths: ["M4 4h16v16H4z", "M8 8h8"] }
-      },
-      {
-        title: "Top-Up & Balance Transfer",
-        description:
-          "Option to transfer loans and avail top-up facilities.",
-        icon: { paths: ["M3 3h18v18H3z", "M8 8h8v8H8z"] }
-      }
-    ]
-  },
-
-  doctorEligibilitySection: {
-    title: "Who Is Eligible?",
-    columns: 4,
-    description:
-      "Home loans are available for salaried professionals working in private sector organisations across India.",
-    professionals: [
-      {
-        title: "Corporate Employees",
-        degree: "Working in private limited companies",
-        icon: { paths: ["M4 6h16v12H4z"] }
-      },
-      {
-        title: "MNC Professionals",
-        degree: "Employees of multinational corporations",
-        icon: { paths: ["M12 2a10 10 0 1 0 10 10"] }
-      },
-      {
-        title: "Startup Employees",
-        degree: "Professionals working in funded startups",
-        icon: { paths: ["M12 2l4 4H8l4-4z", "M4 10h16v10H4z"] }
-      },
-      {
-        title: "IT & Tech Professionals",
-        degree: "Software, IT, and tech sector employees",
-        icon: { paths: ["M3 3h18v18H3z"] }
-      }
-    ]
-  },
-
-  doctorComparisonSection: {
-    title: "Private Sector Loan vs Regular Loan",
-    subtitle: "Why salaried professionals get better terms",
-    headers: {
-      parameter: "Parameter",
-      doctorLoan: "Private Sector Home Loan",
-      regularLoan: "Standard Home Loan"
-    },
-    rows: [
-      {
-        parameter: "Income Proof",
-        doctorLoan: "Salary slips & bank statements",
-        regularLoan: "Salary slips only"
-      },
-      {
-        parameter: "Eligibility",
-        doctorLoan: "High (stable salary)",
-        regularLoan: "Moderate"
-      },
-      {
-        parameter: "Processing Speed",
-        doctorLoan: "Fast",
-        regularLoan: "Standard"
-      },
-      {
-        parameter: "Flexibility",
-        doctorLoan: "High",
-        regularLoan: "Limited"
-      }
-    ]
-  },
-
-  doctorRatesSection: {
-    title: "Latest Private Sector Home Loan Interest Rates (2025)",
-    subtitle:
-      "Rates depend on employer profile, income, and credit score.",
-    headers: [
-      { label: "Lender" },
-      { label: "Interest Rate (p.a.)", highlight: true },
-      { label: "Proc. Fee" },
-      { label: "Tenure" },
-      { label: "Special Benefits" }
-    ],
-    lenders: [
-      {
-        name: "HDFC Bank",
-        interestRate: "8.45% – 9.50%",
-        processingFee: "0.50%",
-        tenure: "30 yrs",
-        benefit: "Corporate salary programs"
-      },
-      {
-        name: "ICICI Bank",
-        interestRate: "8.55% – 9.65%",
-        processingFee: "0.50%",
-        tenure: "30 yrs",
-        benefit: "Fast-track approvals"
-      },
-      {
-        name: "Axis Bank",
-        interestRate: "8.60% – 9.80%",
-        processingFee: "0.50%",
-        tenure: "30 yrs",
-        benefit: "Employer-based discounts"
-      }
-    ]
-  },
-
-  doctorEmiCalculatorSection: {
-    title: "EMI Calculator",
-    subtitle: "Estimate your monthly EMIs easily",
-    defaults: {
-      loanAmount: 6500000,
-      interestRate: 8.60,
-      loanTenure: 25
-    }
-  },
-
-  doctorFaqSection: {
-    title: "Frequently Asked Questions",
-    items: [
-      {
-        question: "Can private sector employees get high home loan eligibility?",
-        answer:
-          "Yes. Stable salary and employer profile significantly increase eligibility."
-      },
-      {
-        question: "Is Form 16 mandatory?",
-        answer:
-          "Usually yes, along with salary slips and bank statements."
-      },
-      {
-        question: "Are interest rates lower for MNC employees?",
-        answer:
-          "Many lenders offer preferential rates for employees of reputed firms."
-      },
-      {
-        question: "Is this available across India?",
-        answer:
-          "Yes, across all major cities and approved locations."
-      }
-    ]
-  },
-
-  doctorApplySection: {
-    title: "Make Your Corporate Career Count",
-    description:
-      "Turn your stable income into homeownership with QuickHomeLoan.",
-    button: {
-      label: "Apply Now",
-      href: "#eligibility"
-    }
-  }
-},
-{
-  id: 12,
-  slug: "retired",
-  title: "Home Loan for Retired Individuals - QuickHomeLoan",
-  description:
-    "Specialised home loans for retired individuals and senior citizens using pension income, rental income, or co-applicant support. Designed to help retirees own, upgrade, or transfer a home with flexible terms.",
-  interestRate: "8.75% - 11.00% p.a.",
-  processingFee: "Up to 1% of loan amount (varies by lender)",
-  loanTenure: "Up to 20 years (subject to age norms)",
-
-  heroSection: {
-    tag: {
-      icon: {
-        name: "home-heart",
-        svgPath: [
-          "M3 9l9-7 9 7v11a2 2 0 0 1-2 2h-4",
-          "M9 22V12h6v10"
-        ]
-      },
-      text: "Exclusive for Retired Individuals",
-      style: {
-       
-      }
-    },
-
-    title: {
-      line1: "Because Retirement Deserves",
-      line2: "A Home Full of Comfort & Security"
-    },
-
-    description:
-      "Tailored home loan solutions for pensioners and senior citizens with simplified documentation, flexible repayment structures, and co-applicant options.",
-
-    buttons: [
-      {
-        label: "Apply Instantly",
-        href: "/apply-loan?category=Home Loan By Professions&subcategory=Home Loan for Retired Individuals"
-      },
-      {
-        label: "Check Eligibility",
-        href: "#eligibility"
-      }
-    ]
-  },
-
-  doctorBenefitsSection: {
-    title: "What Is a Retired Person Home Loan?",
-    description:
-      "A home loan designed for retired individuals where pension income, rental income, or a co-applicant’s income is considered for eligibility.",
-    subtitle: "Key Benefits",
-    subtext: "Designed for Peaceful Retirement",
-    benefits: [
-      {
-        title: "Pension Income Accepted",
-        description:
-          "Monthly pension is considered as stable income.",
-        icon: { paths: ["M12 1v22", "M6 8h12", "M6 16h12"] }
-      },
-      {
-        title: "Joint Loan Option",
-        description:
-          "Apply with a working spouse or earning family member.",
-        icon: { paths: ["M8 8a4 4 0 1 0 0-8", "M16 16a4 4 0 1 0 0-8"] }
-      },
-      {
-        title: "Flexible Repayment Structure",
-        description:
-          "Lower EMIs with customised tenure options.",
-        icon: {
-          circles: [{ cx: 12, cy: 12, r: 10 }],
-          polylines: [{ points: "12 6 12 12 16 14" }]
-        }
-      },
-      {
-        title: "Rental Income Considered",
-        description:
-          "Income from rented properties can boost eligibility.",
-        icon: { paths: ["M3 3h18v18H3z", "M8 8h8v8H8z"] }
-      },
-      {
-        title: "Property Transfer & Upgrade",
-        description:
-          "Loans for resale property or home upgrades.",
-        icon: { paths: ["M4 14l8-8 8 8", "M12 6v12"] }
-      },
-      {
-        title: "Minimal Documentation",
-        description:
-          "Simplified paperwork for senior citizens.",
-        icon: { paths: ["M6 6h12v12H6z"] }
-      }
-    ]
-  },
-
-  doctorEligibilitySection: {
-    title: "Who Is Eligible?",
-    columns: 4,
-    description:
-      "Home loans are available for retired individuals with stable pension or alternative income sources.",
-    professionals: [
-      {
-        title: "Government Pensioners",
-        degree: "Central & state government retirees",
-        icon: { paths: ["M4 6h16v12H4z"] }
-      },
-      {
-        title: "PSU Retirees",
-        degree: "Retired PSU & public sector employees",
-        icon: { paths: ["M12 2a10 10 0 1 0 10 10"] }
-      },
-      {
-        title: "Defense Pensioners",
-        degree: "Retired Army, Navy & Air Force personnel",
-        icon: { paths: ["M12 2l8 4v6"] }
-      },
-      {
-        title: "Senior Citizens",
-        degree: "Age 60+ with pension or rental income",
-        icon: { paths: ["M8 2v20", "M16 2v20"] }
-      }
-    ]
-  },
-
-  doctorComparisonSection: {
-    title: "Retired Home Loan vs Regular Home Loan",
-    subtitle: "Key differences explained",
-    headers: {
-      parameter: "Parameter",
-      doctorLoan: "Retired Home Loan",
-      regularLoan: "Standard Home Loan"
-    },
-    rows: [
-      {
-        parameter: "Income Source",
-        doctorLoan: "Pension / rental / co-applicant",
-        regularLoan: "Salary or business income"
-      },
-      {
-        parameter: "Tenure",
-        doctorLoan: "Shorter (age-based)",
-        regularLoan: "Up to 30 years"
-      },
-      {
-        parameter: "Eligibility",
-        doctorLoan: "Moderate",
-        regularLoan: "High"
-      },
-      {
-        parameter: "Flexibility",
-        doctorLoan: "High with co-applicant",
-        regularLoan: "Standard"
-      }
-    ]
-  },
-
-  doctorRatesSection: {
-    title: "Latest Home Loan Interest Rates for Retired Individuals (2025)",
-    subtitle:
-      "Rates depend on age, pension amount, co-applicant, and property profile.",
-    headers: [
-      { label: "Lender" },
-      { label: "Interest Rate (p.a.)", highlight: true },
-      { label: "Proc. Fee" },
-      { label: "Tenure" },
-      { label: "Special Benefits" }
-    ],
-    lenders: [
-      {
-        name: "SBI",
-        interestRate: "8.75% – 9.90%",
-        processingFee: "Nil",
-        tenure: "20 yrs",
-        benefit: "Strong pensioner schemes"
-      },
-      {
-        name: "PNB",
-        interestRate: "8.85% – 10.10%",
-        processingFee: "0.25%",
-        tenure: "20 yrs",
-        benefit: "Lower pension-linked EMIs"
-      },
-      {
-        name: "HDFC Bank",
-        interestRate: "9.00% – 10.50%",
-        processingFee: "0.50%",
-        tenure: "20 yrs",
-        benefit: "Joint loan flexibility"
-      }
-    ]
-  },
-
-  doctorEmiCalculatorSection: {
-    title: "EMI Calculator",
-    subtitle: "Plan your retirement finances wisely",
-    defaults: {
-      loanAmount: 4000000,
-      interestRate: 9.00,
-      loanTenure: 15
-    }
-  },
-
-  doctorFaqSection: {
-    title: "Frequently Asked Questions",
-    items: [
-      {
-        question: "Can retired individuals get a home loan?",
-        answer:
-          "Yes. Pension income, rental income, or a co-applicant’s income can be considered."
-      },
-      {
-        question: "Is there an age limit?",
-        answer:
-          "Most banks require loan closure before 75–80 years of age."
-      },
-      {
-        question: "Is co-applicant mandatory?",
-        answer:
-          "Not mandatory, but it significantly improves eligibility."
-      },
-      {
-        question: "Is this available across India?",
-        answer:
-          "Yes, subject to lender and property approval."
-      }
-    ]
-  },
-
-  doctorApplySection: {
-    title: "A Peaceful Retirement Begins With a Secure Home",
-    description:
-      "Make your retirement years comfortable with a home loan designed just for you.",
-    button: {
-      label: "Apply Now",
-      href: "#eligibility"
-    }
-  }
-}
-
-
-
-
-
-
-
 ];

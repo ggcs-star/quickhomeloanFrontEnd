@@ -75,10 +75,10 @@ const WhatIsPlotLoanSection = ({ data }) => {
           <div className="bg-white rounded-md border border-neutral-300 overflow-hidden">
 
             {/* Header */}
-            <div className="p-6 border-b border-neutral-300 text-center">
-              <h3 className="text-xl font-bold text-neutral-900">
+            <div className="p-6 border-b border-neutral-300 text-start">
+              <h2 className="text-xl md:text-2xl font-bold text-neutral-800">
                 {data.comparison.title}
-              </h3>
+              </h2>
             </div>
 
             {/* Body */}

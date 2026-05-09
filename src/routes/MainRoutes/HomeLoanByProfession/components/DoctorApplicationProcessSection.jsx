@@ -28,9 +28,9 @@ const DoctorApplicationProcessSection = ({ data }) => {
           <h2 className="text-3xl font-extrabold text-gray-900">
             {data.title || "Step-by-Step Application Process"}
           </h2>
-          <p className="mt-2 text-lg text-gray-500">
+          <h3 className="mt-2 text-lg text-gray-500">
             {data.subtitle || "A seamless 100% digital journey."}
-          </p>
+          </h3>
         </div>
 
         {/* Process Steps */}

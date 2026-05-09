@@ -19,7 +19,7 @@ export const homeLoanData = [
         { icon: "shield-check", text: "India's #1 PSU Lender" },
         { icon: "star", text: "<strong>4.7</strong>/5 by 12,540 customers" },
       ],
-      title: "State Bank of India Trusted Home Loans for Your Dream Home",
+      title: "State Bank of India",
       description:
         "Flexible EMI options tailored to your needs. With you, right through.",
       buttons: [
@@ -33,16 +33,16 @@ export const homeLoanData = [
             border: "",
           },
         },
-        {
-          label: "Compare Loans",
-          href: "/compare/sbi-home-loan",
-          style: {
-            text: "text-primary",
-            bg: "bg-white",
-            hover: "hover:bg-blue-50",
-            border: "border border-primary",
-          },
-        },
+        // {
+        //   label: "Compare Loans",
+        //   href: "/compare/sbi-home-loan",
+        //   style: {
+        //     text: "text-primary",
+        //     bg: "bg-white",
+        //     hover: "hover:bg-blue-50",
+        //     border: "border border-primary",
+        //   },
+        // },
       ],
 
       loanTypes: [
@@ -102,7 +102,7 @@ export const homeLoanData = [
       title: "Contact & Support",
       branch: {
         title: "Nearest Branch",
-        address: "Mumbai Main Branch, Fort, Mumbai, Maharashtra 400001",
+        address: "4th Floor, The Grand Emporio, Motera Stadium Rd, Motera, Ahmedabad, Gujarat 380005",
       },
       phone: {
         title: "Phone",
@@ -110,7 +110,7 @@ export const homeLoanData = [
       },
       hours: {
         title: "Business Hours",
-        details: "Mon-Fri: 10am - 4pm",
+        details: "Mon-Fri: 9am - 6pm",
       },
       buttons: {
         talkToOfficer: "Talk to a Loan Officer",
@@ -356,7 +356,7 @@ export const homeLoanData = [
         { icon: "shield-check", text: "Trusted by 3M+ Families" },
         { icon: "star", text: "<strong>4.8</strong>/5 by 18,200 customers" },
       ],
-      title: "HDFC Ltd – Turning Your Home Dreams into Reality",
+      title: "HDFC Ltd",
       description:
         "Attractive interest rates and minimal documentation. Your trusted home loan partner for over four decades.",
       buttons: [
@@ -370,16 +370,16 @@ export const homeLoanData = [
             border: "",
           },
         },
-        {
-          label: "Compare Loans",
-          href: "/compare/hdfc-home-loan",
-          style: {
-            text: "text-primary",
-            bg: "bg-white",
-            hover: "hover:bg-blue-50",
-            border: "border border-primary",
-          },
-        },
+        // {
+        //   label: "Compare Loans",
+        //   href: "/compare/hdfc-home-loan",
+        //   style: {
+        //     text: "text-primary",
+        //     bg: "bg-white",
+        //     hover: "hover:bg-blue-50",
+        //     border: "border border-primary",
+        //   },
+        // },
       ],
       loanTypes: [
         "Regular Home Loan",
@@ -686,7 +686,7 @@ export const homeLoanData = [
         { icon: "shield-check", text: "Trusted by 30+ Lakh Customers" },
         { icon: "star", text: "<strong>4.6</strong>/5 by 9,870 customers" },
       ],
-      title: "LIC Housing Finance – Trusted Home Loans for Every Indian Dream",
+      title: "LIC Housing Finance",
       description:
         "Competitive interest rates, minimal paperwork, and flexible repayment options backed by LIC’s legacy of trust.",
       buttons: [
@@ -700,16 +700,16 @@ export const homeLoanData = [
             border: "",
           },
         },
-        {
-          label: "Compare Loans",
-          href: "/compare/lic-home-loan",
-          style: {
-            text: "text-primary",
-            bg: "bg-white",
-            hover: "hover:bg-blue-50",
-            border: "border border-primary",
-          },
-        },
+        // {
+        //   label: "Compare Loans",
+        //   href: "/compare/lic-home-loan",
+        //   style: {
+        //     text: "text-primary",
+        //     bg: "bg-white",
+        //     hover: "hover:bg-blue-50",
+        //     border: "border border-primary",
+        //   },
+        // },
       ],
       loanTypes: [
         "Regular Home Loan",
@@ -1016,7 +1016,7 @@ export const homeLoanData = [
         { icon: "shield-check", text: "India’s International Bank" },
         { icon: "star", text: "<strong>4.7</strong>/5 by 10,240 customers" },
       ],
-      title: "Bank of Baroda – Home Loans with Low EMI and Maximum Trust",
+      title: "Bank of Baroda",
       description:
 "Attractive interest rates with flexible EMIs. Simplified process and transparent terms.",
       buttons: [
@@ -1030,16 +1030,16 @@ export const homeLoanData = [
             border: "",
           },
         },
-        {
-          label: "Compare Loans",
-          href: "/compare/bob-home-loan",
-          style: {
-            text: "text-primary",
-            bg: "bg-white",
-            hover: "hover:bg-blue-50",
-            border: "border border-primary",
-          },
-        },
+        // {
+        //   label: "Compare Loans",
+        //   href: "/compare/bob-home-loan",
+        //   style: {
+        //     text: "text-primary",
+        //     bg: "bg-white",
+        //     hover: "hover:bg-blue-50",
+        //     border: "border border-primary",
+        //   },
+        // },
       ],
       loanTypes: [
         "Regular Home Loan",
@@ -1347,7 +1347,7 @@ export const homeLoanData = [
         { icon: "shield-check", text: "Trusted by 2.5M+ Homeowners" },
         { icon: "star", text: "<strong>4.8</strong>/5 by 15,430 customers" },
       ],
-      title: "Axis Bank – Home Loans Made Easy with Flexible EMIs",
+      title: "Axis Bank",
       description:
         "Get home loans starting at with zero prepayment charges on floating rate loans. Quick approval and transparent process guaranteed.",
       buttons: [
@@ -1361,16 +1361,16 @@ export const homeLoanData = [
             border: "",
           },
         },
-        {
-          label: "Compare Loans",
-          href: "/compare/axis-home-loan",
-          style: {
-            text: "text-primary",
-            bg: "bg-white",
-            hover: "hover:bg-blue-50",
-            border: "border border-primary",
-          },
-        },
+        // {
+        //   label: "Compare Loans",
+        //   href: "/compare/axis-home-loan",
+        //   style: {
+        //     text: "text-primary",
+        //     bg: "bg-white",
+        //     hover: "hover:bg-blue-50",
+        //     border: "border border-primary",
+        //   },
+        // },
       ],
       loanTypes: [
         "Regular Home Loan",
@@ -1677,7 +1677,7 @@ export const homeLoanData = [
         { icon: "shield-check", text: "Trusted by 4 Million+ Customers" },
         { icon: "star", text: "<strong>4.9</strong>/5 by 20,120 customers" },
       ],
-      title: "HDFC Bank – Smart Home Loans with Quick Approval",
+      title: "HDFC Bank",
       description:
         "Enjoy lower EMIs, doorstep documentation, and flexible tenures with India’s most trusted private lender.",
       buttons: [
@@ -1691,16 +1691,16 @@ export const homeLoanData = [
             border: "",
           },
         },
-        {
-          label: "Compare Loans",
-          href: "/compare/hdfc-home-loan",
-          style: {
-            text: "text-primary",
-            bg: "bg-white",
-            hover: "hover:bg-blue-50",
-            border: "border border-primary",
-          },
-        },
+        // {
+        //   label: "Compare Loans",
+        //   href: "/compare/hdfc-home-loan",
+        //   style: {
+        //     text: "text-primary",
+        //     bg: "bg-white",
+        //     hover: "hover:bg-blue-50",
+        //     border: "border border-primary",
+        //   },
+        // },
       ],
       loanTypes: [
         "Regular Home Loan",

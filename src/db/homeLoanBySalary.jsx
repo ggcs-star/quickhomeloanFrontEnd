@@ -29,16 +29,16 @@ export const homeLoanBySalary = [
             border: "",
           },
         },
-        {
-          label: "Compare Loans",
-          href: "/compare/salary-50000-home-loan",
-          style: {
-            text: "text-primary",
-            bg: "bg-white",
-            hover: "hover:bg-blue-50",
-            border: "border border-primary",
-          },
-        },
+        // {
+        //   label: "Compare Loans",
+        //   href: "/compare/salary-50000-home-loan",
+        //   style: {
+        //     text: "text-primary",
+        //     bg: "bg-white",
+        //     hover: "hover:bg-blue-50",
+        //     border: "border border-primary",
+        //   },
+        // },
       ],
       emiExample: {
         title: "At 8.5% for 20 Years",
@@ -194,7 +194,7 @@ export const homeLoanBySalary = [
       title: "Contact & Support",
       branch: {
         title: "Nearest Branch",
-        address: "Mumbai Main Branch, Fort, Mumbai, Maharashtra 400001",
+        address: "4th Floor, The Grand Emporio, Motera Stadium Rd, Motera, Ahmedabad, Gujarat 380005",
       },
       phone: {
         title: "Phone",
@@ -202,7 +202,7 @@ export const homeLoanBySalary = [
       },
       hours: {
         title: "Business Hours",
-        details: "Mon-Fri: 10am - 4pm",
+        details: "Mon-Fri: 9am - 6pm",
       },
       buttons: {
         talkToOfficer: "Talk to a Loan Officer",
@@ -316,16 +316,16 @@ export const homeLoanBySalary = [
             border: "",
           },
         },
-        {
-          label: "Compare Loans",
-          href: "/compare/salary-80000-home-loan",
-          style: {
-            text: "text-primary",
-            bg: "bg-white",
-            hover: "hover:bg-blue-50",
-            border: "border border-primary",
-          },
-        },
+        // {
+        //   label: "Compare Loans",
+        //   href: "/compare/salary-80000-home-loan",
+        //   style: {
+        //     text: "text-primary",
+        //     bg: "bg-white",
+        //     hover: "hover:bg-blue-50",
+        //     border: "border border-primary",
+        //   },
+        // },
       ],
     },
 
@@ -478,7 +478,7 @@ export const homeLoanBySalary = [
       title: "Contact & Support",
       branch: {
         title: "Nearest Branch",
-        address: "Mumbai Main Branch, Fort, Mumbai, Maharashtra 400001",
+        address: "4th Floor, The Grand Emporio, Motera Stadium Rd, Motera, Ahmedabad, Gujarat 380005",
       },
       phone: {
         title: "Phone",
@@ -486,7 +486,7 @@ export const homeLoanBySalary = [
       },
       hours: {
         title: "Business Hours",
-        details: "Mon-Fri: 10am - 4pm",
+        details: "Mon-Fri: 9am - 6pm",
       },
       buttons: {
         talkToOfficer: "Talk to a Loan Officer",
@@ -591,16 +591,16 @@ export const homeLoanBySalary = [
             border: "",
           },
         },
-        {
-          label: "Compare Loans",
-          href: "/compare/salary-110000-home-loan",
-          style: {
-            text: "text-primary",
-            bg: "bg-white",
-            hover: "hover:bg-blue-50",
-            border: "border border-primary",
-          },
-        },
+        // {
+        //   label: "Compare Loans",
+        //   href: "/compare/salary-110000-home-loan",
+        //   style: {
+        //     text: "text-primary",
+        //     bg: "bg-white",
+        //     hover: "hover:bg-blue-50",
+        //     border: "border border-primary",
+        //   },
+        // },
       ],
       emiExample: {
         title: "At 8.5% for 20 Years",
@@ -762,7 +762,7 @@ export const homeLoanBySalary = [
       title: "Contact & Support",
       branch: {
         title: "Nearest Branch",
-        address: "Mumbai Main Branch, Fort, Mumbai, Maharashtra 400001",
+        address: "4th Floor, The Grand Emporio, Motera Stadium Rd, Motera, Ahmedabad, Gujarat 380005",
       },
       phone: {
         title: "Phone",
@@ -770,7 +770,7 @@ export const homeLoanBySalary = [
       },
       hours: {
         title: "Business Hours",
-        details: "Mon-Fri: 10am - 4pm",
+        details: "Mon-Fri: 9am - 6pm",
       },
       buttons: {
         talkToOfficer: "Talk to a Loan Officer",
@@ -874,16 +874,16 @@ export const homeLoanBySalary = [
             border: "",
           },
         },
-        {
-          label: "Compare Loans",
-          href: "/compare/salary-150000-home-loan",
-          style: {
-            text: "text-primary",
-            bg: "bg-white",
-            hover: "hover:bg-blue-50",
-            border: "border border-primary",
-          },
-        },
+        // {
+        //   label: "Compare Loans",
+        //   href: "/compare/salary-150000-home-loan",
+        //   style: {
+        //     text: "text-primary",
+        //     bg: "bg-white",
+        //     hover: "hover:bg-blue-50",
+        //     border: "border border-primary",
+        //   },
+        // },
       ],
       emiExample: {
         title: "At 8.5% for 20 Years",
@@ -1045,7 +1045,7 @@ export const homeLoanBySalary = [
       title: "Contact & Support",
       branch: {
         title: "Nearest Branch",
-        address: "Mumbai Main Branch, Fort, Mumbai, Maharashtra 400001",
+        address: "4th Floor, The Grand Emporio, Motera Stadium Rd, Motera, Ahmedabad, Gujarat 380005",
       },
       phone: {
         title: "Phone",
@@ -1053,7 +1053,7 @@ export const homeLoanBySalary = [
       },
       hours: {
         title: "Business Hours",
-        details: "Mon-Fri: 10am - 4pm",
+        details: "Mon-Fri: 9am - 6pm",
       },
       buttons: {
         talkToOfficer: "Talk to a Loan Officer",
@@ -1158,16 +1158,16 @@ export const homeLoanBySalary = [
             border: "",
           },
         },
-        {
-          label: "Compare Loans",
-          href: "/compare/salary-200000-home-loan",
-          style: {
-            text: "text-primary",
-            bg: "bg-white",
-            hover: "hover:bg-blue-50",
-            border: "border border-primary",
-          },
-        },
+        // {
+        //   label: "Compare Loans",
+        //   href: "/compare/salary-200000-home-loan",
+        //   style: {
+        //     text: "text-primary",
+        //     bg: "bg-white",
+        //     hover: "hover:bg-blue-50",
+        //     border: "border border-primary",
+        //   },
+        // },
       ],
       emiExample: {
         title: "At 8.4% for 20 Years",
@@ -1329,7 +1329,7 @@ export const homeLoanBySalary = [
       title: "Contact & Support",
       branch: {
         title: "Nearest Branch",
-        address: "Mumbai Main Branch, Fort, Mumbai, Maharashtra 400001",
+        address: "4th Floor, The Grand Emporio, Motera Stadium Rd, Motera, Ahmedabad, Gujarat 380005",
       },
       phone: {
         title: "Phone",
@@ -1337,7 +1337,7 @@ export const homeLoanBySalary = [
       },
       hours: {
         title: "Business Hours",
-        details: "Mon-Fri: 10am - 4pm",
+        details: "Mon-Fri: 9am - 6pm",
       },
       buttons: {
         talkToOfficer: "Talk to a Loan Officer",
@@ -1442,16 +1442,16 @@ export const homeLoanBySalary = [
             border: "",
           },
         },
-        {
-          label: "Compare Loans",
-          href: "/compare/salary-210000+-home-loan",
-          style: {
-            text: "text-primary",
-            bg: "bg-white",
-            hover: "hover:bg-blue-50",
-            border: "border border-primary",
-          },
-        },
+        // {
+        //   label: "Compare Loans",
+        //   href: "/compare/salary-210000+-home-loan",
+        //   style: {
+        //     text: "text-primary",
+        //     bg: "bg-white",
+        //     hover: "hover:bg-blue-50",
+        //     border: "border border-primary",
+        //   },
+        // },
       ],
       emiExample: {
         title: "At 8.3% for 20 Years",
@@ -1613,7 +1613,7 @@ export const homeLoanBySalary = [
       title: "Contact & Support",
       branch: {
         title: "Nearest Branch",
-        address: "Mumbai Main Branch, Fort, Mumbai, Maharashtra 400001",
+        address: "4th Floor, The Grand Emporio, Motera Stadium Rd, Motera, Ahmedabad, Gujarat 380005",
       },
       phone: {
         title: "Phone",
@@ -1621,7 +1621,7 @@ export const homeLoanBySalary = [
       },
       hours: {
         title: "Business Hours",
-        details: "Mon-Fri: 10am - 4pm",
+        details: "Mon-Fri: 9am - 6pm",
       },
       buttons: {
         talkToOfficer: "Talk to a Loan Officer",

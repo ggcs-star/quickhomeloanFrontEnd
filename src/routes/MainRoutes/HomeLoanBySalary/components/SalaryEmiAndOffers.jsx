@@ -56,9 +56,9 @@ const SalaryEmiAndOffers = () => {
         {/* CARD 1 - EMI Calculator */}
         <div className="bg-white rounded-md border border-neutral-300 overflow-hidden">
           <div className="p-6 border-b border-neutral-300">
-            <h2 className="text-xl md:text-2xl font-bold text-neutral-800">
-              {emiAndOffersSection.title}
-            </h2>
+           <h2 className="text-xl md:text-2xl font-bold text-neutral-800">
+  {`EMI Calculator for Salary ₹${pageData?.heroSection?.salary}`}
+</h2>
           </div>
 
           <div className="p-6 md:p-8 space-y-12">

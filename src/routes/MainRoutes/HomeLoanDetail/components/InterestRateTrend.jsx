@@ -18,7 +18,11 @@ const InterestRateTrend = ({ data }) => {
       {/* Header */}
       <div className="p-6 border-b border-neutral-300">
         <h2 className="text-xl md:text-2xl font-bold text-neutral-800">
-          {data.title}
+          {`${data.bankName
+              ?.replace("Interest Rate, EMI Calculator & Eligibility", "")
+              ?.replace(/\(\d{4}\)/, "")
+              ?.trim() || "Home Loan"
+            } Interest Rates (Updated ${new Date().getFullYear()})`}
         </h2>
       </div>
 
@@ -45,14 +49,14 @@ const InterestRateTrend = ({ data }) => {
                 }}
               />
               <Legend />
-         <Line
-  type="monotone"
-  dataKey="rate"
-  name="Starting Rate (p.a.)"
-  stroke="#000"  // Change this to black (#000)
-  strokeWidth={2}
-  dot={{ r: 4, strokeWidth: 2, fill: "#fff" }}
-/>
+              <Line
+                type="monotone"
+                dataKey="rate"
+                name="Starting Rate (p.a.)"
+                stroke="#000"  // Change this to black (#000)
+                strokeWidth={2}
+                dot={{ r: 4, strokeWidth: 2, fill: "#fff" }}
+              />
 
             </LineChart>
           </ResponsiveContainer>

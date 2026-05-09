@@ -40,7 +40,7 @@ export default function EmiCalculator() {
   return (
     <section className="mb-12 sm:mb-16">
       <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 border-b-2 border-gray-800/50 pb-2 mb-6">
-        EMI Calculator
+Calculate EMI Based on Current Bank Rates
       </h2>
 
       <div className="bg-light-card dark:bg-dark-card/50">

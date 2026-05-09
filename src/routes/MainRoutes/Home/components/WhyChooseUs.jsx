@@ -9,15 +9,13 @@ const WhyChooseUs = () => {
         {/* HEADER */}
         <div className="text-center mb-16 max-w-3xl mx-auto">
           <h2 className="text-3xl font-bold text-slate-900">
-            Why Choose Us
-          </h2>
-          <p className="mt-2 text-xl font-semibold text-slate-700">
-            A Better Way to Secure Your Home Loan
-          </p>
-          <p className="mt-4 text-lg text-slate-600">
+Why Choose Quick Home Loan          </h2>
+          <h3 className="mt-2 text-xl font-semibold text-slate-700">
+Trusted by Thousands of Home Buyers          </h3>
+          <h3 className="mt-4 text-lg text-slate-600">
             We simplify the home loan process with technology and dedicated support,
             ensuring a seamless experience from application to disbursal.
-          </p>
+          </h3>
         </div>
 
         {/* GRID */}

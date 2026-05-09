@@ -1,8 +1,6 @@
 import React from "react";
 import {
   Facebook,
-  Twitter,
-  Linkedin,
   Instagram,
   House,
   MapPin,
@@ -12,11 +10,8 @@ import {
 import { Container } from "../../components/Layout";
 import { Link } from "react-router-dom";
 
-
-
 const Footer = () => {
   return (
-
     <footer className="bg-slate-900 text-slate-200 mt-auto">
       <Container>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -28,10 +23,12 @@ const Footer = () => {
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary">
                   <House className="h-6 w-6 text-white" />
                 </div>
+
                 <div className="text-white font-medium text-lg">
                   Quick Home Loan
                 </div>
               </div>
+
               <p className="text-sm text-slate-400 mb-4">
                 Making home ownership dreams come true with fast, reliable, and
                 transparent loan services across India.
@@ -41,13 +38,16 @@ const Footer = () => {
               <div className="flex gap-3">
                 {[
                   { Icon: Facebook, href: "#" },
-                  { Icon: Twitter, href: "#" },
-                  { Icon: Linkedin, href: "#" },
-                  { Icon: Instagram, href: "#" },
+                  {
+                    Icon: Instagram,
+                    href: "https://www.instagram.com/quickhomeloanoffical/",
+                  },
                 ].map(({ Icon, href }, index) => (
                   <a
                     key={index}
                     href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="p-2 rounded-full bg-slate-800 hover:bg-primary transition-colors"
                   >
                     <Icon className="h-4 w-4" />
@@ -57,42 +57,44 @@ const Footer = () => {
             </div>
 
             {/* Quick Links */}
-          <div>
-  <h3 className="text-white mb-4 font-semibold">Quick Links</h3>
-  <ul className="space-y-2">
-    {[
-      { label: "Home", slug: "/" },
-      { label: "Apply for Loan", slug: "/apply-loan" },
-      { label: "About Us", slug: "/about-us" },
-      { label: "FAQ", slug: "/faq" },
-      { label: "Contact", slug: "/contact-us" },
-    ].map((item, i) => (
-      <li key={i}>
-        <Link
-          to={item.slug}
-          className="text-sm text-slate-400 hover:text-white transition-colors"
-        >
-          {item.label}
-        </Link>
-      </li>
-    ))}
-  </ul>
-</div>
+            <div>
+              <h3 className="text-white mb-4 font-semibold">Quick Links</h3>
 
+              <ul className="space-y-2">
+                {[
+                  { label: "Home", slug: "/" },
+                  { label: "Apply for Loan", slug: "/apply-loan" },
+                  { label: "About Us", slug: "/about-us" },
+                  { label: "FAQ", slug: "/faq" },
+                  { label: "Contact", slug: "/contact-us" },
+                ].map((item, i) => (
+                  <li key={i}>
+                    <Link
+                      to={item.slug}
+                      className="text-sm text-slate-400 hover:text-white transition-colors"
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-            {/* Loan Services */}
             {/* Loan Services */}
             <div>
-              <h3 className="text-white mb-4 font-semibold">Loan Services</h3>
+              <h3 className="text-white mb-4 font-semibold">
+                Loan Services
+              </h3>
+
               <ul className="space-y-2 text-sm">
                 {[
                   {
                     label: "Top-Up Home Loan",
-                    slug: "top-up-home-loan",
+                    slug: "/top-up-home-loan",
                   },
                   {
                     label: "Transfer Home Loan",
-                    slug: "transfer-home-loan",
+                    slug: "/transfer-home-loan",
                   },
                   {
                     label: "SBI Home Loan",
@@ -110,7 +112,6 @@ const Footer = () => {
                     label: "Home Loan for Apartment",
                     slug: "/home-loan/property/apartment",
                   },
-
                 ].map((item, i) => (
                   <li key={i}>
                     <Link
@@ -124,26 +125,51 @@ const Footer = () => {
               </ul>
             </div>
 
-
             {/* Contact Section */}
             <div>
               <h3 className="text-white mb-4 font-semibold">Contact Us</h3>
+
               <ul className="space-y-3">
+                {/* Address */}
                 <li className="flex items-start gap-2 text-sm text-slate-400">
                   <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
-                  <span>
-                    4th Floor, The Grand Emporio, Motera Stadium Rd, Motera, Ahmedabad, Gujarat 380005
-                  </span>
+
+                  <a
+                    href="https://www.google.com/maps?q=The+Grand+Emporio+Motera+Ahmedabad"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-white transition"
+                  >
+                    4th Floor, The Grand Emporio, Motera Stadium Rd, Motera,
+                    Ahmedabad, Gujarat 380005
+                  </a>
                 </li>
+
+                {/* Phone */}
                 <li className="flex items-center gap-2 text-sm text-slate-400">
                   <Phone className="h-4 w-4 flex-shrink-0" />
-                  <span>+91 98765 43210</span>
+
+                  <a
+                    href="tel:+919876543210"
+                    className="hover:text-white transition"
+                  >
+                    +91 98765 43210
+                  </a>
                 </li>
+
+                {/* Email */}
                 <li className="flex items-center gap-2 text-sm text-slate-400">
                   <Mail className="h-4 w-4 flex-shrink-0" />
-                  <span>support@quickhomeloan.in</span>
+
+                  <a
+                    href="mailto:support@quickhomeloan.in"
+                    className="hover:text-white transition"
+                  >
+                    support@quickhomeloan.in
+                  </a>
                 </li>
               </ul>
+
               <div className="mt-4">
                 <p className="text-xs text-slate-400">
                   Mon - Sat: 9:00 AM - 6:00 PM
@@ -154,19 +180,49 @@ const Footer = () => {
 
           {/* Bottom Footer */}
           <div className="border-t border-slate-800 mt-8 pt-8 text-center text-sm text-slate-400">
-            <p>© 2025 Quick Home Loan. All rights reserved.</p>
-            <p className="mt-2">
-              <a href="#" className="hover:text-white transition-colors">
+            <p>
+              © {new Date().getFullYear()} Quick Home Loan. All rights reserved.
+            </p>
+
+            <p className="mt-2 flex flex-wrap items-center justify-center gap-2">
+              <Link
+                to="/privacy-policy"
+                onClick={() => {
+                  window.scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                  });
+                }}
+                className="hover:text-white"
+              >
                 Privacy Policy
-              </a>{" "}
-              |{" "}
-              <a href="#" className="hover:text-white transition-colors">
+              </Link>
+
+              <span>|</span>
+
+              <Link
+                to="/terms-and-conditions"
+                className="hover:text-white transition-colors"
+              >
                 Terms of Service
-              </a>{" "}
-              |{" "}
-              <a href="#" className="hover:text-white transition-colors">
+              </Link>
+
+              <span>|</span>
+
+
+              <Link
+                to="/disclaimer"
+                onClick={() => {
+                  window.scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                  });
+                }}
+                className="hover:text-white"
+              >
                 Disclaimer
-              </a>
+              </Link>
+
             </p>
           </div>
         </div>
