@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 // import Navbar from "./container/Navbar";
 import Navbar from "./container/Navbar/index";
@@ -6,18 +6,6 @@ import Routes from "./routes";
 import Footer from "./container/Footer/index";
 
 const MainApp = (props) => {
-
-    useEffect(() => {
-        const handleContextMenu = (e) => {
-            e.preventDefault();
-        };
-
-        document.addEventListener("contextmenu", handleContextMenu);
-
-        return () => {
-            document.removeEventListener("contextmenu", handleContextMenu);
-        };
-    }, []);
 
     return (
         <>

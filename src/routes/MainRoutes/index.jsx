@@ -32,6 +32,7 @@ import CommunicationCenter from "./CommunicationCenter";
 import TermsConditions from "./Terms&Conditions";
 import DisclaimerPage from "./Disclaimer/components/DisclaimerPage";
 import PrivacyPolicyPage from "./PrivacyPolicy/components/PrivacyPolicyPage";
+import NotFound from "../../components/NotFound";
 
 /* ✅ SEO Config */
 const SEO_DATA = {
@@ -267,6 +268,8 @@ export default function MainRoutes(props) {
     //     <RegisterPage {...props} />
     //   ),
     // },
+
+    { path: "*", element: <NotFound /> },
   ]);
 
   return (
