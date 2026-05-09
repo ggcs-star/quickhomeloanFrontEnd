@@ -9,6 +9,8 @@ import sbi from "../../../../assets/banklogo/sbi.png";
 import axis from "../../../../assets/banklogo/axis.png";
 import kotak from "../../../../assets/banklogo/kotak.png";
 import pnb from "../../../../assets/banklogo/pnb.png";
+import lic from "../../../../assets/banklogo/lic.png";
+import bob from "../../../../assets/banklogo/bob.png";
 
 // 🖼️ Bank Logos and URLs
 const banks = [
@@ -18,6 +20,8 @@ const banks = [
   { name: "Axis Bank", logo: axis, link: "/home-loan/details/axis" },
   { name: "Kotak Mahindra", logo: kotak, link: null },
   { name: "Punjab National Bank", logo: pnb, link: null },
+  { name: "LIC Housing Finance", logo: lic, link: "/home-loan/details/lic" },
+  { name: "Bank of Baroda", logo: bob, link: "/home-loan/details/bob" },
 ];
 
 const TrustedPartners = () => {
@@ -32,8 +36,8 @@ Compare Bank-Wise Home Loan Offers        </h2>
       </div>
 
       {/* 🔥 Smooth scroll + pause on hover */}
-      <Marquee speed={40} gradient={false} pauseOnHover={true}>
-        {banks.map((bank) => {
+      <Marquee speed={40} gradient={false} pauseOnHover={true} autoFill={true}>
+        {banks.filter((bank) => bank.link).map((bank) => {
           const content = (
             <>
               <div className="w-16 h-16 flex items-center justify-center">
@@ -49,18 +53,10 @@ Compare Bank-Wise Home Loan Offers        </h2>
             </>
           );
 
-          if (bank.link) {
-            return (
-              <Link to={bank.link} key={bank.name} className="p-6 transition-all duration-300 flex items-center justify-center group gap-4">
-                {content}
-              </Link>
-            );
-          }
-
           return (
-            <div key={bank.name} className="p-6 transition-all duration-300 flex items-center justify-center group gap-4 cursor-default">
+            <Link to={bank.link} key={bank.name} className="p-6 transition-all duration-300 flex items-center justify-center group gap-4">
               {content}
-            </div>
+            </Link>
           );
         })}
       </Marquee>
