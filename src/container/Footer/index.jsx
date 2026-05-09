@@ -37,7 +37,7 @@ const Footer = () => {
               {/* Social Links */}
               <div className="flex gap-3">
                 {[
-                  { Icon: Facebook, href: "#" },
+                  // { Icon: Facebook, href: "#" },
                   {
                     Icon: Instagram,
                     href: "https://www.instagram.com/quickhomeloanoffical/",
