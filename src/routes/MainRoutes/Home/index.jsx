@@ -49,8 +49,8 @@ export default function Home(props) {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Quick Home Loan",
-    url: "https://quickhomeloan.in/",
-    logo: "https://quickhomeloan.in/assets/images/logo.png",
+    url: "https://www.quickhomeloan.in/",
+    logo: "https://www.quickhomeloan.in/assets/images/logo.png",
     sameAs: [],
   };
 
@@ -58,11 +58,11 @@ export default function Home(props) {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "Quick Home Loan",
-    url: "https://quickhomeloan.in/",
+    url: "https://www.quickhomeloan.in/",
     potentialAction: {
       "@type": "SearchAction",
       target:
-        "https://quickhomeloan.in/search?q={search_term_string}",
+        "https://www.quickhomeloan.in/search?q={search_term_string}",
       "query-input": "required name=search_term_string",
     },
   };
@@ -75,7 +75,7 @@ export default function Home(props) {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://quickhomeloan.in/",
+        item: "https://www.quickhomeloan.in/",
       },
     ],
   };
@@ -115,7 +115,7 @@ export default function Home(props) {
     "@context": "https://schema.org",
     "@type": "FinancialService",
     name: "Quick Home Loan",
-    url: "https://quickhomeloan.in/",
+    url: "https://www.quickhomeloan.in/",
     description:
       "Compare home loan interest rates, EMI, eligibility, and apply online from top banks in India.",
     areaServed: "IN",
@@ -186,7 +186,7 @@ export default function Home(props) {
 
         <link
           rel="canonical"
-          href="https://quickhomeloan.in/"
+          href="https://www.quickhomeloan.in/"
         />
 
         <meta
@@ -199,7 +199,7 @@ export default function Home(props) {
 
         <meta
           property="og:url"
-          content="https://quickhomeloan.in/"
+          content="https://www.quickhomeloan.in/"
         />
 
         <meta

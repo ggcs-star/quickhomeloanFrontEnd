@@ -57,7 +57,7 @@ const HomeLoanByProfession = () => {
         const profession =
             professionData.profession || "Professionals";
 
-        const currentUrl = `https://quickhomeloan.in/home-loan-by-profession/${slug}`;
+        const currentUrl = `https://www.quickhomeloan.in/home-loan-by-profession/${slug}`;
 
         return {
             title: `Home Loan for ${profession} - Eligibility, EMI & Interest Rate (2026)`,
@@ -92,7 +92,7 @@ const HomeLoanByProfession = () => {
                 provider: {
                     "@type": "Organization",
                     name: "Quick Home Loan",
-                    url: "https://quickhomeloan.in",
+                    url: "https://www.quickhomeloan.in",
                 },
                 areaServed: {
                     "@type": "Country",
@@ -110,13 +110,13 @@ const HomeLoanByProfession = () => {
                         "@type": "ListItem",
                         position: 1,
                         name: "Home",
-                        item: "https://quickhomeloan.in/",
+                        item: "https://www.quickhomeloan.in/",
                     },
                     {
                         "@type": "ListItem",
                         position: 2,
                         name: "Home Loan By Profession",
-                        item: "https://quickhomeloan.in/home-loan-by-profession",
+                        item: "https://www.quickhomeloan.in/home-loan-by-profession",
                     },
                     {
                         "@type": "ListItem",

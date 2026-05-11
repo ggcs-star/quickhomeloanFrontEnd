@@ -112,7 +112,7 @@ function SEO() {
     keywords: "home loan, quick home loan, loan services india",
   };
 
-  const url = `https://quickhomeloan.in${location.pathname}`;
+  const url = `https://www.quickhomeloan.in${location.pathname}`;
 
   return (
     <Helmet>

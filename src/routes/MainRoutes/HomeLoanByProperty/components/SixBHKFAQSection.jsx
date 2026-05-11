@@ -14,14 +14,22 @@ const SixBHKFAQSection = ({ data }) => {
   return (
     <section className="">
       <Container className="max-w-4xl mx-auto">
-        
+
         {/* Entire Card */}
         <div className="bg-white rounded-md border border-neutral-300 overflow-hidden">
 
           {/* Header */}
           <div className="p-6 border-b border-neutral-300">
-            <h2 className="text-xl md:text-2xl font-bold text-neutral-800">
+            {/* <h2 className="text-xl md:text-2xl font-bold text-neutral-800">
               {data.title}
+            </h2> */}
+
+            <h2 className="text-xl md:text-2xl font-bold text-neutral-800">
+              {`${data.bankName
+                  ?.replace("Interest Rate, EMI Calculator & Eligibility", "")
+                  ?.replace(/\(\d{4}\)/, "")
+                  ?.trim() || "Home Loan"
+                } FAQs`}
             </h2>
 
             {/* Optional subtitle — uncomment if needed */}
@@ -49,20 +57,18 @@ const SixBHKFAQSection = ({ data }) => {
                     >
                       <span className="text-base md:text-lg">{faq.question}</span>
                       <ChevronDown
-                        className={`w-5 h-5 transition-transform duration-300 ${
-                          isOpen ? "rotate-180 text-black" : "text-black"
-                        }`}
+                        className={`w-5 h-5 transition-transform duration-300 ${isOpen ? "rotate-180 text-black" : "text-black"
+                          }`}
                       />
                     </button>
                   </h3>
 
                   {/* Animated dropdown answer */}
                   <div
-                    className={`grid transition-all duration-300 ease-in-out ${
-                      isOpen
+                    className={`grid transition-all duration-300 ease-in-out ${isOpen
                         ? "grid-rows-[1fr] opacity-100"
                         : "grid-rows-[0fr] opacity-0"
-                    }`}
+                      }`}
                   >
                     <div className="overflow-hidden">
                       <div className="pt-2 pb-5 px-5 text-neutral-600 space-y-2">

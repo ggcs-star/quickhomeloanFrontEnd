@@ -11,13 +11,13 @@ const Faq = () => {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://quickhomeloan.in/",
+        item: "https://www.quickhomeloan.in/",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "FAQ",
-        item: "https://quickhomeloan.in/faq",
+        item: "https://www.quickhomeloan.in/faq",
       },
     ],
   };
@@ -73,7 +73,7 @@ const Faq = () => {
     "@context": "https://schema.org",
     "@type": "WebPage",
     name: "Home Loan FAQs",
-    url: "https://quickhomeloan.in/faq",
+    url: "https://www.quickhomeloan.in/faq",
     description:
       "Frequently asked questions about home loans, EMI, eligibility, documents, tax benefits, and processing charges in India.",
   };
@@ -99,7 +99,7 @@ const Faq = () => {
 
         <link
           rel="canonical"
-          href="https://quickhomeloan.in/faq"
+          href="https://www.quickhomeloan.in/faq"
         />
 
         <meta
@@ -112,7 +112,7 @@ const Faq = () => {
 
         <meta
           property="og:url"
-          content="https://quickhomeloan.in/faq"
+          content="https://www.quickhomeloan.in/faq"
         />
 
         <meta

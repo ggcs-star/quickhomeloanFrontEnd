@@ -312,19 +312,19 @@ export const homeLoanData = [
       articles: [
         {
           title: "How SBI Home Loans Compare to HDFC in 2024",
-          link: "#",
+          // link: "#",
         },
         {
           title: "Top 5 Tips to Increase Your Home Loan Eligibility",
-          link: "#",
+          // link: "#",
         },
         {
           title: "Understanding Repo-Linked Lending Rate (RLLR)",
-          link: "#",
+          // link: "#",
         },
         {
           title: "A Guide to Home Loan Balance Transfers",
-          link: "#",
+          // link: "#",
         },
       ],
     },
@@ -636,19 +636,19 @@ export const homeLoanData = [
       articles: [
         {
           title: "HDFC Home Loan vs SBI – Which One Should You Choose?",
-          link: "#",
+          // link: "#",
         },
         {
           title: "Top 7 Factors That Affect Home Loan Eligibility",
-          link: "#",
+          // link: "#",
         },
         {
           title: "What Is the Repo Rate and How Does It Affect You?",
-          link: "#",
+          // link: "#",
         },
         {
           title: "Guide to Top-Up and Balance Transfer Loans",
-          link: "#",
+          // link: "#",
         },
       ],
     },
@@ -960,19 +960,19 @@ export const homeLoanData = [
       articles: [
         {
           title: "LIC HFL vs HDFC: Which Home Loan Suits You Best?",
-          link: "#",
+          // link: "#",
         },
         {
           title: "How to Improve Your CIBIL Score Before Applying for a Loan",
-          link: "#",
+          // link: "#",
         },
         {
           title: "Fixed vs Floating Rate: What’s Right for You?",
-          link: "#",
+          // link: "#",
         },
         {
           title: "Top Mistakes to Avoid During Home Loan Application",
-          link: "#",
+          // link: "#",
         },
       ],
     },
@@ -1285,19 +1285,19 @@ export const homeLoanData = [
       articles: [
         {
           title: "Why Choose Bank of Baroda Over Private Lenders?",
-          link: "#",
+          // link: "#",
         },
         {
           title: "Top 5 Benefits of Balance Transfer Loans",
-          link: "#",
+          // link: "#",
         },
         {
           title: "Understanding Home Loan EMIs and Interest Breakups",
-          link: "#",
+          // link: "#",
         },
         {
           title: "Tips to Improve Your Home Loan Eligibility",
-          link: "#",
+          // link: "#",
         },
       ],
     },
@@ -1609,19 +1609,19 @@ export const homeLoanData = [
       articles: [
         {
           title: "Axis Bank vs HDFC: Which Home Loan Should You Choose?",
-          link: "#",
+          // link: "#",
         },
         {
           title: "Top 5 Ways to Increase Your Home Loan Eligibility",
-          link: "#",
+          // link: "#",
         },
         {
           title: "Benefits of Fast Forward Home Loan",
-          link: "#",
+          // link: "#",
         },
         {
           title: "Fixed vs Floating Interest: Which One is Better?",
-          link: "#",
+          // link: "#",
         },
       ],
     },
@@ -1934,19 +1934,19 @@ export const homeLoanData = [
       articles: [
         {
           title: "Difference Between HDFC Ltd and HDFC Bank Home Loans",
-          link: "#",
+          // link: "#",
         },
         {
           title: "How to Reduce Your Home Loan Interest Burden",
-          link: "#",
+          // link: "#",
         },
         {
           title: "Top 10 Tips for First-Time Home Buyers",
-          link: "#",
+          // link: "#",
         },
         {
           title: "Understanding Floating vs Fixed Interest Rates",
-          link: "#",
+          // link: "#",
         },
       ],
     },

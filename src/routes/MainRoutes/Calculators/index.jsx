@@ -32,13 +32,13 @@ export default function Calculators() {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://quickhomeloan.in/",
+        item: "https://www.quickhomeloan.in/",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Calculators",
-        item: "https://quickhomeloan.in/calculators",
+        item: "https://www.quickhomeloan.in/calculators",
       },
     ],
   };
@@ -78,7 +78,7 @@ export default function Calculators() {
     "@context": "https://schema.org",
     "@type": "FinancialService",
     name: "Quick Home Loan Calculators",
-    url: "https://quickhomeloan.in/calculators",
+    url: "https://www.quickhomeloan.in/calculators",
     description:
       "Free online home loan calculators to check EMI, eligibility, affordability, and interest cost in India.",
     areaServed: "IN",
@@ -117,7 +117,7 @@ export default function Calculators() {
 
         <link
           rel="canonical"
-          href="https://quickhomeloan.in/calculators"
+          href="https://www.quickhomeloan.in/calculators"
         />
 
         <meta
@@ -130,7 +130,7 @@ export default function Calculators() {
 
         <meta
           property="og:url"
-          content="https://quickhomeloan.in/calculators"
+          content="https://www.quickhomeloan.in/calculators"
         />
 
         <meta

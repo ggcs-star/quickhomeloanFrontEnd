@@ -7,9 +7,9 @@ const ScoreImprovement = ({ data }) => {
       <h2 className="text-3xl font-bold text-neutral-900 mb-6">{data.title}</h2>
 
       {/* Description */}
-      <p className="text-neutral-700 mb-6 text-lg leading-relaxed">
+      <h3 className="text-neutral-700 mb-6 text-lg leading-relaxed">
         {data.description}
-      </p>
+      </h3>
 
       {/* Actionable Tips Section */}
       <div className="bg-white p-6 rounded-md border border-neutral-300 border-l-4 border-l-neutral-900">
