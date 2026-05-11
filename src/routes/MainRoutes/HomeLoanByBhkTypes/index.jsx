@@ -36,7 +36,7 @@ const generateStructuredData = (loanData, currentUrl) => {
         provider: {
             "@type": "Organization",
             name: "Quick Home Loan",
-            url: "https://quickhomeloan.in",
+            url: "https://www.quickhomeloan.in",
         },
 
         loanType: "Home Loan",
@@ -72,7 +72,7 @@ const HomeLoanByBhkTypes = () => {
                 ?.replace(/– Interest Rates, Eligibility & Benefits \(\d{4}\)/, "")
                 ?.trim() || "Home Loan";
 
-        const currentUrl = `https://quickhomeloan.in/home-loan/types/${slug}`;
+        const currentUrl = `https://www.quickhomeloan.in/home-loan/types/${slug}`;
 
         return {
             title: `${cleanTitle} – Interest Rates, Eligibility & Benefits (${currentYear})`,
@@ -118,13 +118,13 @@ const HomeLoanByBhkTypes = () => {
                         "@type": "ListItem",
                         position: 1,
                         name: "Home",
-                        item: "https://quickhomeloan.in/",
+                        item: "https://www.quickhomeloan.in/",
                     },
                     {
                         "@type": "ListItem",
                         position: 2,
                         name: "Home Loan",
-                        item: "https://quickhomeloan.in/",
+                        item: "https://www.quickhomeloan.in/",
                     },
                     {
                         "@type": "ListItem",

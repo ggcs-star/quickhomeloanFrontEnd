@@ -10,7 +10,7 @@ export const homeLoanByProperty = [
         loanTenure: "Up to 30 years",
 
         heroSection: {
-            title: "Own Your Dream Apartment with Ease",
+            title: "Apartment / Flat",
             description:
                 "QuickHomeLoan helps you finance your ideal apartment effortlessly with top banks and NBFCs. Whether it’s your first home or a smart investment, we simplify your loan journey with the best offers and digital convenience.",
 
@@ -436,7 +436,7 @@ export const homeLoanByProperty = [
         loanTenure: "Up to 30 years",
 
         heroSection: {
-            title: "Build or Buy Your Dream Independent House with Ease",
+            title: "Independent House / Villa",
             description:
                 "QuickHomeLoan helps you finance your dream independent home or villa through top banks and NBFCs. Whether constructing on your plot or buying a ready home, we bring you the best loan offers at competitive rates.",
 
@@ -862,7 +862,7 @@ export const homeLoanByProperty = [
         loanTenure: "Up to 15 years",
 
         heroSection: {
-            title: "Buy Your Perfect Plot with Ease and Confidence",
+            title: "Plot / Land Purchase",
             description:
                 "QuickHomeLoan helps you secure financing to purchase residential plots or land in approved areas. Choose from top banks and NBFCs offering the best rates and simple documentation for your future home investment.",
 
@@ -1288,7 +1288,7 @@ export const homeLoanByProperty = [
         loanTenure: "Up to 30 years",
 
         heroSection: {
-            title: "Turn Your Under-Construction Property into Reality",
+            title: "Under-Construction Property",
             description:
                 "QuickHomeLoan connects you with top banks and NBFCs offering specialized home loans for under-construction properties. Get easy stage-wise disbursement, competitive rates, and digital processing — all under one roof.",
 

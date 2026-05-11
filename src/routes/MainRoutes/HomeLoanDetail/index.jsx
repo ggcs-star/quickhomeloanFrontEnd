@@ -206,7 +206,7 @@ const HomeLoanDetail = () => {
             .replace("Home Loan", "")
             .trim();
 
-        const currentUrl = `https://quickhomeloan.in/home-loan/details/${slug}`;
+        const currentUrl = `https://www.quickhomeloan.in/home-loan/details/${slug}`;
 
         return {
             title: `${cleanBankName} Home Loan Interest Rate, EMI, Eligibility & Documents (2026)`,
@@ -247,13 +247,13 @@ const HomeLoanDetail = () => {
                         "@type": "ListItem",
                         position: 1,
                         name: "Home",
-                        item: "https://quickhomeloan.in/",
+                        item: "https://www.quickhomeloan.in/",
                     },
                     {
                         "@type": "ListItem",
                         position: 2,
                         name: "Home Loan",
-                        item: "https://quickhomeloan.in/",
+                        item: "https://www.quickhomeloan.in/",
                     },
                     {
                         "@type": "ListItem",
@@ -358,7 +358,7 @@ const HomeLoanDetail = () => {
                     property="og:image"
                     content={
                         loanData?.heroSection?.image ||
-                        "https://quickhomeloan.in/images/home-loan-og.jpg"
+                        "https://www.quickhomeloan.in/images/home-loan-og.jpg"
                     }
                 />
 

@@ -22,108 +22,108 @@ import ContactSupport from "./components/ContactSupport";
 
 // SEO Helper function to generate structured data
 const generateStructuredData = (propertyData, propertyName, propertyType, currentUrl) => {
-  if (!propertyData) return null;
+    if (!propertyData) return null;
 
-  return {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    "name": `${propertyName} Home Loan`,
-    "description": propertyData.heroSection?.description || `Get home loan for ${propertyName} property. Check eligibility, calculate EMI, and apply online for your dream ${propertyType} home.`,
-    "brand": {
-      "@type": "Brand",
-      "name": "QuickHomeLoan"
-    },
-    "offers": {
-      "@type": "AggregateOffer",
-      "priceCurrency": "INR",
-      "lowPrice": "0",
-      "highPrice": "0",
-      "offerCount": "1",
-      "availability": "https://schema.org/InStock",
-      "eligibleRegion": {
-        "@type": "Country",
-        "name": "India"
-      }
-    },
-    "category": "Home Loan",
-    "audience": {
-      "@type": "Audience",
-      "name": "Home Buyers",
-      "geographicArea": {
-        "@type": "Country",
-        "name": "India"
-      }
-    },
-    "areaServed": {
-      "@type": "Country",
-      "name": "India"
-    }
-  };
+    return {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": `${propertyName} Home Loan`,
+        "description": propertyData.heroSection?.description || `Get home loan for ${propertyName} property. Check eligibility, calculate EMI, and apply online for your dream ${propertyType} home.`,
+        "brand": {
+            "@type": "Brand",
+            "name": "QuickHomeLoan"
+        },
+        "offers": {
+            "@type": "AggregateOffer",
+            "priceCurrency": "INR",
+            "lowPrice": "0",
+            "highPrice": "0",
+            "offerCount": "1",
+            "availability": "https://schema.org/InStock",
+            "eligibleRegion": {
+                "@type": "Country",
+                "name": "India"
+            }
+        },
+        "category": "Home Loan",
+        "audience": {
+            "@type": "Audience",
+            "name": "Home Buyers",
+            "geographicArea": {
+                "@type": "Country",
+                "name": "India"
+            }
+        },
+        "areaServed": {
+            "@type": "Country",
+            "name": "India"
+        }
+    };
 };
 
 // Generate FAQ structured data
 const generateFAQStructuredData = (faqData) => {
-  if (!faqData || !faqData.items || faqData.items.length === 0) return null;
+    if (!faqData || !faqData.items || faqData.items.length === 0) return null;
 
-  return {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqData.items.map((item) => ({
-      "@type": "Question",
-      "name": item.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": item.answer
-      }
-    }))
-  };
+    return {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": faqData.items.map((item) => ({
+            "@type": "Question",
+            "name": item.question,
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": item.answer
+            }
+        }))
+    };
 };
 
 // Generate Breadcrumb structured data
 const generateBreadcrumbData = (propertyName, propertyType, currentUrl) => {
-  return {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://quickhomeloan.in/"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Home Loans by Property",
-        "item": "https://quickhomeloan.in/home-loan-by-property"
-      },
-      {
-        "@type": "ListItem",
-        "position": 3,
-        "name": `${propertyName} ${propertyType} Home Loan`,
-        "item": currentUrl
-      }
-    ]
-  };
+    return {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.quickhomeloan.in/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Home Loans by Property",
+                "item": "https://www.quickhomeloan.in/home-loan-by-property"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": `${propertyName} ${propertyType} Home Loan`,
+                "item": currentUrl
+            }
+        ]
+    };
 };
 
 // Generate HowTo structured data for loan application process
 const generateHowToStructuredData = (applySection) => {
-  if (!applySection || !applySection.steps) return null;
+    if (!applySection || !applySection.steps) return null;
 
-  return {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    "name": "How to Apply for Home Loan",
-    "description": "Step-by-step guide to apply for your home loan",
-    "step": applySection.steps.map((step, index) => ({
-      "@type": "HowToStep",
-      "position": index + 1,
-      "name": step.title,
-      "text": step.description,
-      "url": `https://quickhomeloan.in/how-to-apply#step-${index + 1}`
-    }))
-  };
+    return {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "How to Apply for Home Loan",
+        "description": "Step-by-step guide to apply for your home loan",
+        "step": applySection.steps.map((step, index) => ({
+            "@type": "HowToStep",
+            "position": index + 1,
+            "name": step.title,
+            "text": step.description,
+            "url": `https://www.quickhomeloan.in/how-to-apply#step-${index + 1}`
+        }))
+    };
 };
 
 const HomeLoanByProperty = () => {
@@ -132,23 +132,33 @@ const HomeLoanByProperty = () => {
     const [propertyData, setpropertyData] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    // Extract property info from slug or data
-    const getPropertyInfo = () => {
-        if (propertyData?.propertyType) {
-            return {
-                name: propertyData.propertyType.replace(/-/g, " "),
-                type: propertyData.propertyType
-            };
-        }
-        
-        // Parse slug like "2-bhk", "3-bhk", "villa", "penthouse"
-        const parts = slug?.split("-") || [];
-        const propertyType = slug?.replace(/-/g, " ").toUpperCase() || "Property";
+ const getPropertyInfo = () => {
+    if (propertyData?.propertyType) {
         return {
-            name: propertyType,
-            type: slug || "property"
+            name: propertyData.propertyType.replace(/-/g, " "),
+            type: propertyData.propertyType
         };
+    }
+
+    // Take title from heroSection DB
+    if (propertyData?.heroSection?.title) {
+        return {
+            name: propertyData.heroSection.title,
+            type: propertyData.heroSection.title
+                .toLowerCase()
+                .replace(/\s+/g, "-")
+        };
+    }
+
+    // Parse slug like "2-bhk", "3-bhk", "villa", "penthouse"
+    const propertyType =
+        slug?.replace(/-/g, " ") || "Property";
+
+    return {
+        name: propertyType,
+        type: slug || "property"
     };
+};
 
     // ✅ Fetch data based on slug
     useEffect(() => {
@@ -169,8 +179,8 @@ const HomeLoanByProperty = () => {
     const propertyInfo = getPropertyInfo();
     const propertyName = propertyInfo.name;
     const propertyType = propertyInfo.type;
-    const currentUrl = `https://quickhomeloan.in/home-loan-by-property/${slug}`;
-    
+    const currentUrl = `https://www.quickhomeloan.in/home-loan-by-property/${slug}`;
+
     const structuredData = generateStructuredData(propertyData, propertyName, propertyType, currentUrl);
     const faqStructuredData = generateFAQStructuredData(propertyData?.faqSection);
     const breadcrumbData = generateBreadcrumbData(propertyName, propertyType, currentUrl);
@@ -203,7 +213,7 @@ const HomeLoanByProperty = () => {
 
     // Generate title
     const getTitle = () => {
-        return `${propertyName} Home Loan - Check Eligibility & Calculate EMI | QuickHomeLoan.in`;
+        return `Home Loan for ${propertyName} - Eligibility, EMI & Interest Rate (2026)`;
     };
 
     // Generate OG image URL
@@ -211,7 +221,7 @@ const HomeLoanByProperty = () => {
         if (propertyData?.heroSection?.image) {
             return propertyData.heroSection.image;
         }
-        return `https://quickhomeloan.in/images/${propertyType}-home-loan-og.jpg`;
+        return `https://www.quickhomeloan.in/images/${propertyType}-home-loan-og.jpg`;
     };
 
     // 🕐 Loading state
@@ -251,10 +261,10 @@ const HomeLoanByProperty = () => {
                 <meta name="description" content={getMetaDescription()} />
                 <meta name="keywords" content={getMetaKeywords()} />
                 <meta name="author" content="QuickHomeLoan.in" />
-                
+
                 {/* Canonical URL */}
                 <link rel="canonical" href={currentUrl} />
-                
+
                 {/* Open Graph / Facebook Meta Tags */}
                 <meta property="og:type" content="product" />
                 <meta property="og:url" content={currentUrl} />
@@ -264,7 +274,7 @@ const HomeLoanByProperty = () => {
                 <meta property="og:image:alt" content={`${propertyName} Home Loan - Apply Online`} />
                 <meta property="og:site_name" content="QuickHomeLoan.in" />
                 <meta property="og:locale" content="en_IN" />
-                
+
                 {/* Twitter Card Meta Tags */}
                 <meta name="twitter:card" content="summary_large_image" />
                 <meta name="twitter:url" content={currentUrl} />
@@ -273,47 +283,47 @@ const HomeLoanByProperty = () => {
                 <meta name="twitter:image" content={getOGImage()} />
                 <meta name="twitter:site" content="@QuickHomeLoan" />
                 <meta name="twitter:creator" content="@QuickHomeLoan" />
-                
+
                 {/* Additional SEO Meta Tags */}
                 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
                 <meta name="googlebot" content="index, follow" />
                 <meta name="bingbot" content="index, follow" />
-                
+
                 {/* Geo Location for India */}
                 <meta name="geo.region" content="IN" />
                 <meta name="geo.placename" content="India" />
                 <meta name="geo.position" content="20.5937;78.9629" />
-                
+
                 {/* Mobile Optimization */}
                 <meta name="apple-mobile-web-app-title" content={`${propertyName} Home Loan`} />
                 <meta name="application-name" content={`${propertyName} Home Loan`} />
-                
+
                 {/* Structured Data - Main Product */}
                 {structuredData && (
                     <script type="application/ld+json">
                         {JSON.stringify(structuredData)}
                     </script>
                 )}
-                
+
                 {/* Structured Data - FAQ */}
                 {faqStructuredData && (
                     <script type="application/ld+json">
                         {JSON.stringify(faqStructuredData)}
                     </script>
                 )}
-                
+
                 {/* Structured Data - Breadcrumb */}
                 <script type="application/ld+json">
                     {JSON.stringify(breadcrumbData)}
                 </script>
-                
+
                 {/* Structured Data - HowTo (Application Process) */}
                 {howToStructuredData && (
                     <script type="application/ld+json">
                         {JSON.stringify(howToStructuredData)}
                     </script>
                 )}
-                
+
                 {/* Structured Data - Property-specific schema */}
                 <script type="application/ld+json">
                     {JSON.stringify({
@@ -338,18 +348,18 @@ const HomeLoanByProperty = () => {
                 <div className="min-h-screen font-proximaNova text-gray-900">
                     {/* Hidden H1 for SEO */}
                     <h1 className="sr-only">{getTitle()}</h1>
-
+                    {/* 
                     <nav aria-label="Breadcrumb" className="pt-20 max-w-7xl mx-auto px-4 py-3 text-sm text-gray-600">
                         <ol className="flex flex-wrap gap-2" itemScope itemType="https://schema.org/BreadcrumbList">
                             <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-                                <a href="https://quickhomeloan.in/" className="hover:text-blue-600" itemProp="item">
+                                <a href="https://www.quickhomeloan.in/" className="hover:text-blue-600" itemProp="item">
                                     <span itemProp="name">Home</span>
                                 </a>
                                 <span className="mx-2">/</span>
                                 <meta itemProp="position" content="1" />
                             </li>
                             <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-                                <a href="/home-loan-by-property" className="hover:text-blue-600" itemProp="item">
+                                <a href="https://www.quickhomeloan.in/home-loan-by-property" className="hover:text-blue-600" itemProp="item">
                                     <span itemProp="name">Home Loans by Property</span>
                                 </a>
                                 <span className="mx-2">/</span>
@@ -361,14 +371,14 @@ const HomeLoanByProperty = () => {
                                 <meta itemProp="item" content={currentUrl} />
                             </li>
                         </ol>
-                    </nav>
-                    
+                    </nav> */}
+
                     {/* 🏦 Hero Section */}
                     {propertyData.heroSection && <SixBHKHeroSection data={propertyData.heroSection} />}
-                    
+
                     {/* Breadcrumb navigation for users */}
-                    
-                    
+
+
                     <section className="my-12">
                         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[4fr_2fr] gap-6 items-start">
                             {/* 🧾 Left Column — EMI Calculator + Home Loan Products */}
@@ -410,8 +420,17 @@ const HomeLoanByProperty = () => {
                                     <CustomerTestimonials data={propertyData.customerTestimonials} />
                                 )}
                                 {propertyData.faqSection && (
-                                    <SixBHKFAQSection data={propertyData.faqSection} />
+                                    // <SixBHKFAQSection data={propertyData.faqSection} />
+                                         <SixBHKFAQSection
+                                                data={{
+                                                    ...propertyData.faqSection,
+                                                    bankName:
+                                                        propertyData?.heroSection?.title || "Home Loan",
+                                                }}
+                                            />
                                 )}
+
+                                
                             </div>
                         </div>
                     </section>

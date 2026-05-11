@@ -521,7 +521,7 @@ export default function CalculatorsDetails() {
           <title>Calculator Not Found | QuickHomeLoan.in</title>
           <meta name="description" content="The requested calculator could not be found. Please check the URL or browse our other financial calculators at QuickHomeLoan.in." />
           <meta name="robots" content="noindex, follow" />
-          <link rel="canonical" href="https://quickhomeloan.in/calculators" />
+          <link rel="canonical" href="https://www.quickhomeloan.in/calculators" />
         </Helmet>
         <h2 className="text-center text-red-500 mt-20">
           Calculator not found
@@ -531,7 +531,7 @@ export default function CalculatorsDetails() {
   }
 
   // Construct the full canonical URL
-  const canonicalUrl = `https://quickhomeloan.in/calculators/${slug}`;
+  const canonicalUrl = `https://www.quickhomeloan.in/calculators/${slug}`;
 
   return (
     <>
@@ -597,13 +597,13 @@ export default function CalculatorsDetails() {
                 "@type": "ListItem",
                 "position": 1,
                 "name": "Home",
-                "item": "https://quickhomeloan.in/"
+                "item": "https://www.quickhomeloan.in/"
               },
               {
                 "@type": "ListItem",
                 "position": 2,
                 "name": "Calculators",
-                "item": "https://quickhomeloan.in/calculators"
+                "item": "https://www.quickhomeloan.in/calculators"
               },
               {
                 "@type": "ListItem",
@@ -621,7 +621,7 @@ export default function CalculatorsDetails() {
         <nav aria-label="Breadcrumb" className="container mx-auto px-4 py-2 text-sm text-gray-600">
           <ol className="flex flex-wrap gap-2" itemScope itemType="https://schema.org/BreadcrumbList">
             <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-              <a href="https://quickhomeloan.in/" className="hover:text-blue-600" itemProp="item">
+              <a href="https://www.quickhomeloan.in/" className="hover:text-blue-600" itemProp="item">
                 <span itemProp="name">Home</span>
               </a>
               <span className="mx-2">/</span>

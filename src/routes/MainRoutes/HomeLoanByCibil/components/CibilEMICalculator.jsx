@@ -34,7 +34,7 @@ const CibilEMICalculator = ({ data }) => {
       {/* Title & Description */}
       <h2 className="text-3xl font-bold text-neutral-900 mb-6">{data.title}</h2>
 
-      <p className="text-neutral-700 mb-4 text-lg">{data.description}</p>
+      <h3 className="text-neutral-700 mb-4 text-lg">{data.description}</h3>
       <p className="text-neutral-600 mb-6">{data.emiDefinition}</p>
 
       {/* Interactive Calculator */}

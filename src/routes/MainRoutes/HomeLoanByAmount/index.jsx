@@ -27,7 +27,7 @@ const generateStructuredData = (loan, loanAmount, currentUrl) => {
     "provider": {
       "@type": "Organization",
       "name": "QuickHomeLoan",
-      "url": "https://quickhomeloan.in"
+      "url": "https://www.quickhomeloan.in"
     },
     "offers": {
       "@type": "AggregateOffer",
@@ -92,13 +92,13 @@ const generateBreadcrumbData = (loanAmount, currentUrl) => {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://quickhomeloan.in/"
+        "item": "https://www.quickhomeloan.in/"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Home Loans by Amount",
-        "item": "https://quickhomeloan.in/home-loan-by-amount"
+        "item": "https://www.quickhomeloan.in/home-loan-by-amount"
       },
       {
         "@type": "ListItem",
@@ -129,7 +129,7 @@ const generateHowToStructuredData = (actionPlan) => {
       "position": index + 1,
       "name": step.title,
       "text": step.description,
-      "url": `https://quickhomeloan.in/how-to-apply#step-${index + 1}`
+      "url": `https://www.quickhomeloan.in/how-to-apply#step-${index + 1}`
     }))
   };
 };
@@ -170,7 +170,7 @@ export default function HomeLoanByAmount() {
     const loan = homeLoanByAmount.find((l) => l.slug === slug);
     const loanAmount = formatLoanAmount(slug);
     const numericAmount = getNumericAmount(slug);
-    const currentUrl = `https://quickhomeloan.in/home-loan-by-amount/${slug}`;
+    const currentUrl = `https://www.quickhomeloan.in/home-loan-by-amount/${slug}`;
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -214,7 +214,7 @@ export default function HomeLoanByAmount() {
     // Generate title
     const getTitle = () => {
       if (numericAmount) {
-        return `₹${numericAmount.toLocaleString('en-IN')} Home Loan - Check Eligibility & EMI | QuickHomeLoan.in`;
+        return `₹${numericAmount.toLocaleString('en-IN')} Lakh Lakh Home Loan: Complete Guide & EMI Breakdown`;
       }
       return `Home Loan by Amount - Calculate EMI & Check Eligibility | QuickHomeLoan.in`;
     };
@@ -224,7 +224,7 @@ export default function HomeLoanByAmount() {
       if (loan?.heroSection?.image) {
         return loan.heroSection.image;
       }
-      return `https://quickhomeloan.in/images/home-loan-by-amount-og.jpg`;
+      return `https://www.quickhomeloan.in/images/home-loan-by-amount-og.jpg`;
     };
 
     if (!loan) {
@@ -234,7 +234,7 @@ export default function HomeLoanByAmount() {
                     <title>Home Loan Not Found | QuickHomeLoan.in</title>
                     <meta name="description" content="The requested home loan information could not be found. Browse our other home loan options by amount." />
                     <meta name="robots" content="noindex, follow" />
-                    <link rel="canonical" href="https://quickhomeloan.in/home-loan-by-amount" />
+                    <link rel="canonical" href="https://www.quickhomeloan.in/home-loan-by-amount" />
                 </Helmet>
                 <Container>
                     <div className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -260,7 +260,7 @@ export default function HomeLoanByAmount() {
                 <link rel="canonical" href={currentUrl} />
                 
                 {/* Alternate URLs for amount variations */}
-                <link rel="alternate" href={`https://quickhomeloan.in/home-loan-by-amount/${slug}`} hreflang="en-IN" />
+                <link rel="alternate" href={`https://www.quickhomeloan.in/home-loan-by-amount/${slug}`} hreflang="en-IN" />
                 
                 {/* Open Graph / Facebook Meta Tags */}
                 <meta property="og:type" content="product" />
@@ -366,10 +366,10 @@ export default function HomeLoanByAmount() {
                 </div>
                  */}
                 {/* Breadcrumb navigation */}
-                <nav aria-label="Breadcrumb" className="max-w-7xl mx-auto px-4 py-3 text-sm text-gray-600">
+                {/* <nav aria-label="Breadcrumb" className="max-w-7xl mx-auto px-4 py-3 text-sm text-gray-600">
                     <ol className="flex flex-wrap gap-2" itemScope itemType="https://schema.org/BreadcrumbList">
                         <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-                            <a href="https://quickhomeloan.in/" className="hover:text-blue-600" itemProp="item">
+                            <a href="https://www.quickhomeloan.in/" className="hover:text-blue-600" itemProp="item">
                                 <span itemProp="name">Home</span>
                             </a>
                             <span className="mx-2">/</span>
@@ -390,7 +390,7 @@ export default function HomeLoanByAmount() {
                             <meta itemProp="item" content={currentUrl} />
                         </li>
                     </ol>
-                </nav>
+                </nav> */}
 
                 {/* Hero Section */}
                 {loan.heroSection && <HeroSection data={loan.heroSection} />}

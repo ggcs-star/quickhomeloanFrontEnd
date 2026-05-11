@@ -31,7 +31,7 @@ const generateStructuredData = (loan, salaryRange, currentUrl) => {
     "provider": {
       "@type": "Organization",
       "name": "QuickHomeLoan",
-      "url": "https://quickhomeloan.in"
+      "url": "https://www.quickhomeloan.in"
     },
     "offers": {
       "@type": "AggregateOffer",
@@ -100,13 +100,13 @@ const generateBreadcrumbData = (salaryRange, currentUrl) => {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://quickhomeloan.in/"
+        "item": "https://www.quickhomeloan.in/"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Home Loans by Salary",
-        "item": "https://quickhomeloan.in/home-loan-by-salary"
+        "item": "https://www.quickhomeloan.in/home-loan-by-salary"
       },
       {
         "@type": "ListItem",
@@ -195,7 +195,7 @@ export default function HomeLoanBySalary() {
     const numericSalary = getNumericSalary(slug);
     const salaryCategory = getSalaryCategory(numericSalary);
     const formattedSalaryINR = formatIndianCurrency(numericSalary);
-    const currentUrl = `https://quickhomeloan.in/home-loan-by-salary/${slug}`;
+    const currentUrl = `https://www.quickhomeloan.in/home-loan-by-salary/${slug}`;
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -254,7 +254,7 @@ export default function HomeLoanBySalary() {
       if (loan?.heroSection?.image) {
         return loan.heroSection.image;
       }
-      return `https://quickhomeloan.in/images/salary-home-loan-og.jpg`;
+      return `https://www.quickhomeloan.in/images/salary-home-loan-og.jpg`;
     };
 
     // Calculate estimated loan amount
@@ -285,7 +285,7 @@ export default function HomeLoanBySalary() {
                     <title>Home Loan Not Found | QuickHomeLoan.in</title>
                     <meta name="description" content="The requested home loan information based on salary could not be found. Browse our other home loan options by salary range." />
                     <meta name="robots" content="noindex, follow" />
-                    <link rel="canonical" href="https://quickhomeloan.in/home-loan-by-salary" />
+                    <link rel="canonical" href="https://www.quickhomeloan.in/home-loan-by-salary" />
                 </Helmet>
                 <Container>
                     <div className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -311,7 +311,7 @@ export default function HomeLoanBySalary() {
                 <link rel="canonical" href={currentUrl} />
                 
                 {/* Alternate URLs */}
-                <link rel="alternate" href={`https://quickhomeloan.in/home-loan-by-salary/${slug}`} hreflang="en-IN" />
+                <link rel="alternate" href={`https://www.quickhomeloan.in/home-loan-by-salary/${slug}`} hreflang="en-IN" />
                 
                 {/* Open Graph / Facebook Meta Tags */}
                 <meta property="og:type" content="product" />
@@ -420,7 +420,7 @@ export default function HomeLoanBySalary() {
                 <nav aria-label="Breadcrumb" className="max-w-7xl mx-auto px-4 py-3 text-sm text-gray-600">
                     <ol className="flex flex-wrap gap-2" itemScope itemType="https://schema.org/BreadcrumbList">
                         <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-                            <a href="https://quickhomeloan.in/" className="hover:text-green-600" itemProp="item">
+                            <a href="https://www.quickhomeloan.in/" className="hover:text-green-600" itemProp="item">
                                 <span itemProp="name">Home</span>
                             </a>
                             <span className="mx-2">/</span>

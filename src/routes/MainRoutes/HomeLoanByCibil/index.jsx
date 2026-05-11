@@ -30,7 +30,7 @@ const generateStructuredData = (loan, cibilScore, currentUrl) => {
     "provider": {
       "@type": "Organization",
       "name": "QuickHomeLoan",
-      "url": "https://quickhomeloan.in"
+      "url": "https://www.quickhomeloan.in"
     },
     "offers": {
       "@type": "AggregateOffer",
@@ -80,13 +80,13 @@ const generateBreadcrumbData = (cibilScore, currentUrl) => {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://quickhomeloan.in/"
+        "item": "https://www.quickhomeloan.in/"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Home Loans by CIBIL Score",
-        "item": "https://quickhomeloan.in/home-loan-by-cibil"
+        "item": "https://www.quickhomeloan.in/home-loan-by-cibil"
       },
       {
         "@type": "ListItem",
@@ -117,7 +117,7 @@ const generateHowToStructuredData = (scoreImprovement) => {
       "position": index + 1,
       "name": tip.title,
       "text": tip.description,
-      "url": `https://quickhomeloan.in/improve-cibil-score#step-${index + 1}`
+      "url": `https://www.quickhomeloan.in/improve-cibil-score#step-${index + 1}`
     }))
   };
 };
@@ -176,7 +176,7 @@ export default function HomeLoanByCibil() {
     const cibilScore = formatCibilScore(slug);
     const scoreRange = getScoreRange(slug);
     const eligibilityStatus = getEligibilityStatus(scoreRange.min);
-    const currentUrl = `https://quickhomeloan.in/home-loan-by-cibil/${slug}`;
+    const currentUrl = `https://www.quickhomeloan.in/home-loan-by-cibil/${slug}`;
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -241,11 +241,11 @@ export default function HomeLoanByCibil() {
       }
       const { min } = scoreRange;
       if (min >= 750) {
-        return "https://quickhomeloan.in/images/excellent-cibil-home-loan-og.jpg";
+        return "https://www.quickhomeloan.in/images/excellent-cibil-home-loan-og.jpg";
       } else if (min >= 650) {
-        return "https://quickhomeloan.in/images/good-cibil-home-loan-og.jpg";
+        return "https://www.quickhomeloan.in/images/good-cibil-home-loan-og.jpg";
       }
-      return "https://quickhomeloan.in/images/cibil-home-loan-og.jpg";
+      return "https://www.quickhomeloan.in/images/cibil-home-loan-og.jpg";
     };
 
     if (!loan) {
@@ -255,7 +255,7 @@ export default function HomeLoanByCibil() {
                     <title>Home Loan Not Found | QuickHomeLoan.in</title>
                     <meta name="description" content="The requested home loan information based on CIBIL score could not be found. Browse our other home loan options by credit score." />
                     <meta name="robots" content="noindex, follow" />
-                    <link rel="canonical" href="https://quickhomeloan.in/home-loan-by-cibil" />
+                    <link rel="canonical" href="https://www.quickhomeloan.in/home-loan-by-cibil" />
                 </Helmet>
                 <Container>
                     <div className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -281,7 +281,7 @@ export default function HomeLoanByCibil() {
                 <link rel="canonical" href={currentUrl} />
                 
                 {/* Alternate URLs */}
-                <link rel="alternate" href={`https://quickhomeloan.in/home-loan-by-cibil/${slug}`} hreflang="en-IN" />
+                <link rel="alternate" href={`https://www.quickhomeloan.in/home-loan-by-cibil/${slug}`} hreflang="en-IN" />
                 
                 {/* Open Graph / Facebook Meta Tags */}
                 <meta property="og:type" content="website" />
@@ -376,10 +376,10 @@ export default function HomeLoanByCibil() {
          
                 
                 {/* Breadcrumb navigation */}
-                <nav aria-label="Breadcrumb" className="max-w-7xl mx-auto px-4 py-3 text-sm text-gray-600">
+                {/* <nav aria-label="Breadcrumb" className="max-w-7xl mx-auto px-4 py-3 text-sm text-gray-600">
                     <ol className="flex flex-wrap gap-2" itemScope itemType="https://schema.org/BreadcrumbList">
                         <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-                            <a href="https://quickhomeloan.in/" className="hover:text-blue-600" itemProp="item">
+                            <a href="https://www.quickhomeloan.in/" className="hover:text-blue-600" itemProp="item">
                                 <span itemProp="name">Home</span>
                             </a>
                             <span className="mx-2">/</span>
@@ -400,7 +400,7 @@ export default function HomeLoanByCibil() {
                             <meta itemProp="item" content={currentUrl} />
                         </li>
                     </ol>
-                </nav>
+                </nav> */}
 
                 <Container>
                     {/* Hero Section - Commented but can be enabled */}

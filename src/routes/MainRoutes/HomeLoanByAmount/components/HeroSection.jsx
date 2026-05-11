@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Container } from "../../../../components/Layout";
 
 const HeroSection = ({ data }) => {
@@ -13,22 +14,22 @@ const HeroSection = ({ data }) => {
           </h1>
 
           {/* Description */}
-          <p className="text-lg md:text-xl mb-8 leading-relaxed text-neutral-600">
+          <h2 className="text-lg md:text-xl mb-8 leading-relaxed text-neutral-600">
             {data.description}
-          </p>
+          </h2>
 
           {/* Buttons */}
           {data.buttons && (
             <div className="flex justify-center items-center gap-4 mt-4 mb-10">
 
               {data.buttons.map((btn, index) => (
-                <a key={index} href={btn.href}>   {/* UPDATED: using btn.href */}
+                <Link key={index} to={btn.href}>
                   <button
                     className={`
                       w-[150px] lg:w-[220px]
-                      rounded-md cursor-pointer focus:outline-none 
-                      transition-all duration-200 ease-in-out 
-                      inline-flex items-center justify-center 
+                      rounded-md cursor-pointer focus:outline-none
+                      transition-all duration-200 ease-in-out
+                      inline-flex items-center justify-center
                       px-4 lg:px-8 py-3 text-sm lg:text-lg
                       ${
                         btn.variant === "primary"
@@ -39,7 +40,7 @@ const HeroSection = ({ data }) => {
                   >
                     {btn.label}
                   </button>
-                </a>
+                </Link>
               ))}
 
             </div>

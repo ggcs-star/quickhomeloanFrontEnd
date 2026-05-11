@@ -5,7 +5,7 @@ export default function TermsAndConditions() {
     {
       title: "Acceptance of Terms",
       content:
-        "By accessing or using the services provided by Quick Home Loan (https://quickhomeloan.in), you agree to comply with and be bound by the following terms and conditions. If you do not agree, please do not use our services.",
+        "By accessing or using the services provided by Quick Home Loan (https://www.quickhomeloan.in), you agree to comply with and be bound by the following terms and conditions. If you do not agree, please do not use our services.",
     },
     {
       title: "Nature of Services",
