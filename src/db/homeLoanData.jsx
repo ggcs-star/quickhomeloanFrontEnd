@@ -13,12 +13,6 @@ export const homeLoanData = [
         src: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/State_Bank_of_India_logo.svg/1200px-State_Bank_of_India_logo.svg.png",
         alt: "State Bank of India Logo",
       },
-      badges: [
-        { icon: "shield-check", text: "RBI Registered" },
-        { icon: "shield-check", text: "Founded 1955" },
-        { icon: "shield-check", text: "India's #1 PSU Lender" },
-        { icon: "star", text: "<strong>4.7</strong>/5 by 12,540 customers" },
-      ],
       title: "State Bank of India",
       description:
         "Flexible EMI options tailored to your needs. With you, right through.",
@@ -350,12 +344,6 @@ export const homeLoanData = [
         src: "https://upload.wikimedia.org/wikipedia/commons/6/64/HDFC_Bank_Logo.svg",
         alt: "HDFC Ltd Logo",
       },
-      badges: [
-        { icon: "shield-check", text: "RBI Registered" },
-        { icon: "shield-check", text: "Founded 1977" },
-        { icon: "shield-check", text: "Trusted by 3M+ Families" },
-        { icon: "star", text: "<strong>4.8</strong>/5 by 18,200 customers" },
-      ],
       title: "HDFC Ltd",
       description:
         "Attractive interest rates and minimal documentation. Your trusted home loan partner for over four decades.",
@@ -680,12 +668,6 @@ export const homeLoanData = [
         src: "https://upload.wikimedia.org/wikipedia/en/5/5e/LIC_Housing_Finance_Limited_Logo.png",
         alt: "LIC Housing Finance Logo",
       },
-      badges: [
-        { icon: "shield-check", text: "RBI Registered" },
-        { icon: "shield-check", text: "Founded 1989" },
-        { icon: "shield-check", text: "Trusted by 30+ Lakh Customers" },
-        { icon: "star", text: "<strong>4.6</strong>/5 by 9,870 customers" },
-      ],
       title: "LIC Housing Finance",
       description:
         "Competitive interest rates, minimal paperwork, and flexible repayment options backed by LIC’s legacy of trust.",
@@ -1010,12 +992,6 @@ export const homeLoanData = [
         src: "https://upload.wikimedia.org/wikipedia/en/3/3b/Bank_of_Baroda_logo.svg",
         alt: "Bank of Baroda Logo",
       },
-      badges: [
-        { icon: "shield-check", text: "RBI Registered" },
-        { icon: "shield-check", text: "Founded 1908" },
-        { icon: "shield-check", text: "India’s International Bank" },
-        { icon: "star", text: "<strong>4.7</strong>/5 by 10,240 customers" },
-      ],
       title: "Bank of Baroda",
       description:
 "Attractive interest rates with flexible EMIs. Simplified process and transparent terms.",
@@ -1341,12 +1317,6 @@ export const homeLoanData = [
         src: "https://upload.wikimedia.org/wikipedia/en/1/1c/Axis_Bank_logo.svg",
         alt: "Axis Bank Logo",
       },
-      badges: [
-        { icon: "shield-check", text: "RBI Registered" },
-        { icon: "shield-check", text: "Founded 1993" },
-        { icon: "shield-check", text: "Trusted by 2.5M+ Homeowners" },
-        { icon: "star", text: "<strong>4.8</strong>/5 by 15,430 customers" },
-      ],
       title: "Axis Bank",
       description:
         "Get home loans starting at with zero prepayment charges on floating rate loans. Quick approval and transparent process guaranteed.",
@@ -1671,12 +1641,6 @@ export const homeLoanData = [
         src: "https://upload.wikimedia.org/wikipedia/en/8/87/HDFC_Bank_Logo.svg",
         alt: "HDFC Bank Logo",
       },
-      badges: [
-        { icon: "shield-check", text: "RBI Registered" },
-        { icon: "shield-check", text: "Founded 1994" },
-        { icon: "shield-check", text: "Trusted by 4 Million+ Customers" },
-        { icon: "star", text: "<strong>4.9</strong>/5 by 20,120 customers" },
-      ],
       title: "HDFC Bank",
       description:
         "Enjoy lower EMIs, doorstep documentation, and flexible tenures with India’s most trusted private lender.",

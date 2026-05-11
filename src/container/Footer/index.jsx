@@ -33,27 +33,6 @@ const Footer = () => {
                 Making home ownership dreams come true with fast, reliable, and
                 transparent loan services across India.
               </p>
-
-              {/* Social Links */}
-              <div className="flex gap-3">
-                {[
-                  { Icon: Facebook, href: "#" },
-                  {
-                    Icon: Instagram,
-                    href: "https://www.instagram.com/quickhomeloanoffical/",
-                  },
-                ].map(({ Icon, href }, index) => (
-                  <a
-                    key={index}
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 rounded-full bg-slate-800 hover:bg-primary transition-colors"
-                  >
-                    <Icon className="h-4 w-4" />
-                  </a>
-                ))}
-              </div>
             </div>
 
             {/* Quick Links */}
@@ -71,6 +50,12 @@ const Footer = () => {
                   <li key={i}>
                     <Link
                       to={item.slug}
+                      onClick={() => {
+                        window.scrollTo({
+                          top: 0,
+                          behavior: "smooth",
+                        });
+                      }}
                       className="text-sm text-slate-400 hover:text-white transition-colors"
                     >
                       {item.label}
@@ -116,6 +101,12 @@ const Footer = () => {
                   <li key={i}>
                     <Link
                       to={item.slug}
+                      onClick={() => {
+                        window.scrollTo({
+                          top: 0,
+                          behavior: "smooth",
+                        });
+                      }}
                       className="text-slate-400 hover:text-white transition-colors"
                     >
                       {item.label}
@@ -179,12 +170,12 @@ const Footer = () => {
           </div>
 
           {/* Bottom Footer */}
-          <div className="border-t border-slate-800 mt-8 pt-8 text-center text-sm text-slate-400">
+          <div className="border-t border-slate-800 mt-8 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left text-sm text-slate-400">
             <p>
               © {new Date().getFullYear()} Quick Home Loan. All rights reserved.
             </p>
 
-            <p className="mt-2 flex flex-wrap items-center justify-center gap-2">
+            <p className="flex flex-wrap items-center justify-center gap-2">
               <Link
                 to="/privacy-policy"
                 onClick={() => {
@@ -224,6 +215,26 @@ const Footer = () => {
               </Link>
 
             </p>
+
+            {/* Social Links */}
+            <div className="flex gap-3">
+              {[
+                {
+                  Icon: Instagram,
+                  href: "https://www.instagram.com/quickhomeloanoffical/",
+                },
+              ].map(({ Icon, href }, index) => (
+                <a
+                  key={index}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-800 text-slate-400 hover:bg-primary hover:text-white transition-all duration-300"
+                >
+                  <Icon className="h-5 w-5" />
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </Container>
