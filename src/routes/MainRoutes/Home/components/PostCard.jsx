@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
 
 export default function PostCard({ post }) {
-  const postUrl = `/${post.title_slug}`;
+
+  // Generate full external URL
+  const postUrl = `https://news.quickhomeloan.in/${post.title_slug
+    ?.replace(/^\/+/, "")
+    ?.replace(/\/+$/, "")}`;
 
   const date = new Date(post.created_at).toLocaleDateString("en-IN", {
     day: "2-digit",
@@ -14,45 +18,77 @@ export default function PostCard({ post }) {
     : "";
 
   return (
-    <Link
-      to={postUrl}
-      className="flex flex-col gap-4 p-4 rounded-2xl border border-gray-200 transition bg-white h-full"
+    <a
+      href={postUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="
+        group flex flex-col h-full
+        bg-white border border-gray-200
+        rounded-2xl overflow-hidden
+        hover:shadow-xl transition-all duration-300
+      "
     >
       {/* Image */}
-      <div className="overflow-hidden rounded-xl bg-gray-100 aspect-[16/9]">
+      <div className="relative overflow-hidden aspect-[16/9] bg-gray-100">
         {imageUrl && (
           <img
             src={imageUrl}
             alt={post.title}
-            className="w-full h-full object-cover"
+            className="
+              w-full h-full object-cover
+              group-hover:scale-105
+              transition-transform duration-500
+            "
           />
         )}
       </div>
 
       {/* Content */}
-      <div className="flex flex-col flex-1 min-w-0">
-        <div>
-          {/* Category */}
+      <div className="flex flex-col flex-1 p-5">
+
+        {/* Category */}
+        <div className="mb-3">
           <span
-            className="inline-block px-3 py-1 text-xs font-semibold rounded text-white mb-2"
-            style={{ backgroundColor: post.category_color }}
+            className="
+              inline-flex items-center
+              px-3 py-1
+              text-xs font-semibold
+              rounded-full text-white
+            "
+            style={{
+              backgroundColor: post.category_color || "#111827",
+            }}
           >
             {post.category_name}
           </span>
-
-          {/* Title */}
-          <h3 className="text-gray-900 text-lg font-semibold line-clamp-2">
-            {post.title}
-          </h3>
         </div>
 
+        {/* Title */}
+        <h3
+          className="
+            text-gray-900 text-lg md:text-xl
+            font-semibold leading-7
+            line-clamp-2
+            group-hover:text-[#0E7A53]
+            transition-colors duration-300
+          "
+        >
+          {post.title}
+        </h3>
+
         {/* Meta */}
-        <div className="mt-auto pt-3 text-xs text-gray-500 flex gap-2">
-          <span>{post.author_username}</span>
+        <div className="mt-auto pt-5 flex items-center gap-2 text-sm text-gray-500">
+
+          <span className="truncate">
+            {post.author_username}
+          </span>
+
           <span>•</span>
+
           <span>{date}</span>
         </div>
       </div>
-    </Link>
+    </a>
   );
 }
