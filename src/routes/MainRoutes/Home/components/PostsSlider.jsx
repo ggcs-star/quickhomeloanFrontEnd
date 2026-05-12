@@ -18,7 +18,7 @@ export default function PostsSlider({ posts }) {
         ref={prevRef}
         className="absolute -left-4 top-1/2 -translate-y-1/2 z-20
                    w-10 h-10 rounded-full bg-white shadow
-                   flex items-center justify-center text-black"
+                   flex items-center justify-center text-black cursor-pointer"
       >
         <FaChevronLeft />
       </button>
@@ -28,7 +28,7 @@ export default function PostsSlider({ posts }) {
         ref={nextRef}
         className="absolute -right-4 top-1/2 -translate-y-1/2 z-20
                    w-10 h-10 rounded-full bg-white shadow
-                   flex items-center justify-center text-black"
+                   flex items-center justify-center text-black cursor-pointer"
       >
         <FaChevronRight />
       </button>
