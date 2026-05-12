@@ -27,7 +27,6 @@ export default function InterestRatesSnapshot() {
         emi: b.emi,
         amount: b.loan,
         tenure: b.tenure,
-        applyLink: "/apply-loan",
       }))
     },
 
@@ -49,6 +48,136 @@ export default function InterestRatesSnapshot() {
   const [activeFilter, setActiveFilter] = useState("ALL")
 
   const selectAllRef = useRef(null)
+
+  /* ---------------- HELPER FUNCTION TO MAP BANK TO CATEGORY ---------------- */
+  const getCategoryForBank = (bankName) => {
+    // Complete mapping for Home Loan By Banks
+    const bankSubcategories = [
+      "SBI Home Loan",
+      "HDFC Ltd Home Loan",
+      "LIC Housing Finance Home Loan",
+      "Bank of Baroda Home Loan",
+      "Axis Bank Home Loan",
+      "HDFC Home Loan",
+      "ICICI Bank Home Loan",
+      "PNB Home Loan",
+      "Canara Bank Home Loan",
+      "Union Bank Home Loan"
+    ]
+
+    // Check if it's in bank subcategories
+    if (bankSubcategories.includes(bankName)) {
+      return { main: "Home Loan By Banks", sub: bankName }
+    }
+
+    // Check for profession-based loans
+    const professionLoans = [
+      "Home Loan for Doctors",
+      "Home Loan for Chartered Accountants (CA)",
+      "Home Loan for Engineers",
+      "Home Loan for Teachers",
+      "Home Loan for Lawyers",
+      "Home Loan for IT Professionals"
+    ]
+    
+    if (professionLoans.includes(bankName)) {
+      return { main: "Home Loan By Professions", sub: bankName }
+    }
+
+    // Check for amount-based loans
+    const amountLoans = [
+      "20 Lakh Home Loan EMI",
+      "25 Lakh Home Loan EMI",
+      "30 Lakh Home Loan EMI",
+      "40 Lakh Home Loan EMI",
+      "50 Lakh Home Loan EMI",
+      "1 Crore Home Loan EMI"
+    ]
+    
+    if (amountLoans.includes(bankName)) {
+      return { main: "Home Loan By Amount", sub: bankName }
+    }
+
+    // Check for BHK types
+    const bhkLoans = [
+      "Home Loan for Plot",
+      "Home Loan for Renovation",
+      "Home Loan for Construction",
+      "Commercial Property Loan"
+    ]
+    
+    if (bhkLoans.includes(bankName)) {
+      return { main: "Home Loan By BHK Types", sub: bankName }
+    }
+
+    // Check for property types
+    const propertyLoans = [
+      "Home Loan for Apartment / Flat",
+      "Home Loan for Independent House / Villa",
+      "Home Loan for Plot / Land Purchase",
+      "Home Loan for Under-Construction Property",
+      "Home Loan for Ready-to-Move Property"
+    ]
+    
+    if (propertyLoans.includes(bankName)) {
+      return { main: "Home Loan By Property", sub: bankName }
+    }
+
+    // Check for salary-based loans
+    const salaryLoans = [
+      "Salary 50000",
+      "Salary 80000",
+      "Salary 110000",
+      "Salary 150000",
+      "Salary 200000",
+      "Salary 210000+"
+    ]
+    
+    if (salaryLoans.includes(bankName)) {
+      return { main: "Home Loan By Salary", sub: bankName }
+    }
+
+    // Check for CIBIL score loans
+    const cibilLoans = [
+      "CIBIL Score 650",
+      "CIBIL Score 700",
+      "CIBIL Score 750",
+      "CIBIL Score 800"
+    ]
+    
+    if (cibilLoans.includes(bankName)) {
+      return { main: "Home Loan By CIBIL Score", sub: bankName }
+    }
+
+    // Default fallback
+    return { main: "Home Loan By Banks", sub: bankName }
+  }
+
+  /* ---------------- HANDLE APPLY NOW CLICK ---------------- */
+  const handleApplyNow = (bank) => {
+    // Get category information for the bank
+    const categoryInfo = getCategoryForBank(bank.name)
+    
+    // Create lender slug from name
+    const lenderSlug = bank.name
+      .toLowerCase()
+      .replace(/\s+/g, '-')
+      .replace(/[^\w\-]+/g, '')
+      .replace(/\-\-+/g, '-')
+      .replace(/^-+/, '')
+      .replace(/-+$/, '')
+    
+    // Build URL with query parameters
+    const params = new URLSearchParams({
+      lender: lenderSlug,
+      lender_id: bank.id,
+      category: categoryInfo.main,
+      subcategory: categoryInfo.sub
+    })
+    
+    // Redirect to apply-loan page with params
+    window.location.href = `/apply-loan?${params.toString()}`
+  }
 
   /* ---------------- DYNAMIC FILTERS ---------------- */
   const filters = useMemo(() => {
@@ -125,7 +254,8 @@ export default function InterestRatesSnapshot() {
     return (
       <section className="mb-16">
         <h2 className="text-3xl font-bold border-b-2 border-gray-800/50 pb-2 mb-6">
-Bank-Wise Home Loan Interest Rates (Updated {new Date().getFullYear()})        </h2>
+          Bank-Wise Home Loan Interest Rates (Updated {new Date().getFullYear()})
+        </h2>
 
         <div className="bg-light-card rounded-lg shadow-md p-6">
           <TableShimmer rows={6} />
@@ -139,7 +269,8 @@ Bank-Wise Home Loan Interest Rates (Updated {new Date().getFullYear()})        <
     return (
       <section className="mb-16">
         <h2 className="text-3xl font-bold border-b-2 border-gray-800/50 pb-2 mb-6">
-Bank-Wise Home Loan Interest Rates (Updated {new Date().getFullYear()})        </h2>
+          Bank-Wise Home Loan Interest Rates (Updated {new Date().getFullYear()})
+        </h2>
 
         <div className="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
           <p className="text-red-600">
@@ -166,7 +297,8 @@ Bank-Wise Home Loan Interest Rates (Updated {new Date().getFullYear()})        <
       {banks.length > 0 && (
         <section className="mb-16">
           <h2 className="text-3xl font-bold border-b-2 border-gray-800/50 pb-2 mb-6">
-Bank-Wise Home Loan Interest Rates (Updated {new Date().getFullYear()})          </h2>
+            Bank-Wise Home Loan Interest Rates (Updated {new Date().getFullYear()})
+          </h2>
 
           <div className="bg-light-card rounded-lg shadow-md p-6">
             {/* FILTERS */}
@@ -295,12 +427,12 @@ Bank-Wise Home Loan Interest Rates (Updated {new Date().getFullYear()})         
                         </td>
 
                         <td className="px-6 py-4 text-center">
-                          <a
-                            href={bank.applyLink}
+                          <button
+                            onClick={() => handleApplyNow(bank)}
                             className="inline-flex px-5 py-2 text-sm font-semibold rounded-lg bg-gray-900 text-white hover:bg-gray-700 transition-colors"
                           >
                             Apply Now
-                          </a>
+                          </button>
                         </td>
                       </tr>
                     )
