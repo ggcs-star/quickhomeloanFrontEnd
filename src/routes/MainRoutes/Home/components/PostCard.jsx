@@ -1,12 +1,7 @@
+import { Link } from "react-router-dom";
+
 export default function PostCard({ post }) {
-  const postUrl = `https://news.quickhomeloan.in/${post.title_slug}`;
-
-  const handleClick = (e) => {
-    e.preventDefault();
-
-    // ❌ DO NOT overwrite active category here
-    window.location.href = postUrl;
-  };
+  const postUrl = `/${post.title_slug}`;
 
   const date = new Date(post.created_at).toLocaleDateString("en-IN", {
     day: "2-digit",
@@ -14,35 +9,50 @@ export default function PostCard({ post }) {
     year: "numeric",
   });
 
-  return (
-    <a
-      href={postUrl}
-      onClick={handleClick}
-      className="block relative h-72 rounded-2xl overflow-hidden bg-gray-300 cursor-pointer"
-    >
-      <div className="absolute inset-0 bg-gradient-to-b from-gray-200 to-gray-400" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+  const imageUrl = post.image_big
+    ? `https://news.quickhomeloan.in/${post.image_big}`
+    : "";
 
-      <div className="absolute top-4 left-4 z-10">
-        <span
-          className="px-3 py-1 text-xs font-semibold rounded text-white"
-          style={{ backgroundColor: post.category_color }}
-        >
-          {post.category_name}
-        </span>
+  return (
+    <Link
+      to={postUrl}
+      className="flex flex-col gap-4 p-4 rounded-2xl border border-gray-200 transition bg-white h-full"
+    >
+      {/* Image */}
+      <div className="overflow-hidden rounded-xl bg-gray-100 aspect-[16/9]">
+        {imageUrl && (
+          <img
+            src={imageUrl}
+            alt={post.title}
+            className="w-full h-full object-cover"
+          />
+        )}
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 p-5 z-10">
-        <h3 className="text-white text-lg font-semibold line-clamp-2">
-          {post.title}
-        </h3>
+      {/* Content */}
+      <div className="flex flex-col flex-1 min-w-0">
+        <div>
+          {/* Category */}
+          <span
+            className="inline-block px-3 py-1 text-xs font-semibold rounded text-white mb-2"
+            style={{ backgroundColor: post.category_color }}
+          >
+            {post.category_name}
+          </span>
 
-        <div className="mt-2 text-xs text-gray-300 flex gap-2">
+          {/* Title */}
+          <h3 className="text-gray-900 text-lg font-semibold line-clamp-2">
+            {post.title}
+          </h3>
+        </div>
+
+        {/* Meta */}
+        <div className="mt-auto pt-3 text-xs text-gray-500 flex gap-2">
           <span>{post.author_username}</span>
           <span>•</span>
           <span>{date}</span>
         </div>
       </div>
-    </a>
+    </Link>
   );
 }
